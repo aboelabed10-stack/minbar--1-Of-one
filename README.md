@@ -4,29 +4,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>منبر ون | منصة الرياضيات للتوجيهي</title>
+<title>منبر ون | رياضيات التوجيهي</title>
 
 <style>
-
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
 }
 
 :root{
-    --navy:#071326;
-    --navy2:#0b1d36;
-    --card:#102542;
-    --card2:#132d4d;
-    --blue:#39a9ff;
-    --cyan:#55d6ff;
-    --purple:#876cff;
-    --gold:#ffc94a;
-    --green:#35d39a;
-    --text:#f4f8ff;
-    --muted:#9eb0c8;
-    --border:rgba(255,255,255,.09);
+    --bg:#061226;
+    --bg2:#091a32;
+    --card:#0d2340;
+    --card2:#112b4c;
+    --blue:#35b7ff;
+    --purple:#8068ff;
+    --gold:#ffc84a;
+    --green:#38d39f;
+    --red:#ff6d8d;
+    --white:#f5f8ff;
+    --muted:#9cafc7;
+    --line:rgba(255,255,255,.09);
 }
 
 html{
@@ -35,13 +34,17 @@ html{
 
 body{
     font-family:Tahoma,Arial,sans-serif;
-    background:var(--navy);
-    color:var(--text);
+    background:var(--bg);
+    color:var(--white);
     overflow-x:hidden;
 }
 
-button{
+button,input,textarea,select{
     font-family:inherit;
+}
+
+button{
+    cursor:pointer;
 }
 
 a{
@@ -49,42 +52,55 @@ a{
     color:inherit;
 }
 
+/* ===== الخلفية الرياضية ===== */
 
-/* ================= HEADER ================= */
+body:before{
+    content:"π     √     ∑     x²     ∞     ÷";
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    color:rgba(255,255,255,.018);
+    font-size:70px;
+    font-weight:bold;
+    line-height:3;
+    word-spacing:50px;
+    transform:rotate(-12deg) scale(1.4);
+    pointer-events:none;
+}
+
+/* ===== HEADER ===== */
 
 header{
     position:sticky;
     top:0;
-    z-index:999;
-
-    background:rgba(7,19,38,.88);
+    z-index:1000;
+    background:rgba(6,18,38,.88);
     backdrop-filter:blur(18px);
-
-    border-bottom:1px solid var(--border);
+    border-bottom:1px solid var(--line);
 }
 
 .nav{
-    width:92%;
+    width:94%;
     max-width:1250px;
-    height:76px;
+    min-height:72px;
     margin:auto;
 
     display:flex;
     align-items:center;
     justify-content:space-between;
+    gap:15px;
 }
 
 .logo{
     display:flex;
     align-items:center;
-    gap:11px;
+    gap:10px;
 }
 
 .logo-icon{
-    width:48px;
-    height:48px;
-
-    border-radius:15px;
+    width:45px;
+    height:45px;
+    border-radius:14px;
 
     display:grid;
     place-items:center;
@@ -93,712 +109,553 @@ header{
     font-weight:bold;
 
     background:linear-gradient(135deg,var(--blue),var(--purple));
-
-    box-shadow:0 0 25px rgba(57,169,255,.25);
+    box-shadow:0 8px 25px rgba(53,183,255,.18);
 }
 
-.logo-text h2{
+.logo h2{
     font-size:20px;
 }
 
-.logo-text span{
+.logo small{
+    display:block;
     color:var(--muted);
-    font-size:9px;
+    font-size:8px;
     letter-spacing:2px;
+    margin-top:2px;
 }
 
-nav{
+.nav-links{
     display:flex;
-    gap:24px;
+    gap:18px;
 }
 
-nav a{
-    color:#b8c7db;
-    font-size:13px;
-    transition:.25s;
+.nav-links a{
+    color:#aebed3;
+    font-size:12px;
+    transition:.2s;
 }
 
-nav a:hover{
-    color:var(--cyan);
+.nav-links a:hover{
+    color:var(--blue);
 }
 
-.login-btn{
-    border:0;
-    padding:11px 18px;
+.nav-actions{
+    display:flex;
+    gap:8px;
+}
 
-    border-radius:12px;
-
+.small-btn{
+    padding:10px 14px;
+    border-radius:11px;
+    border:1px solid var(--line);
     color:white;
-    background:linear-gradient(135deg,var(--blue),var(--purple));
-
-    cursor:pointer;
-    font-weight:bold;
-
-    box-shadow:0 7px 25px rgba(57,169,255,.18);
+    background:rgba(255,255,255,.04);
+    font-size:11px;
 }
 
+.small-btn.primary{
+    border:0;
+    background:linear-gradient(135deg,var(--blue),var(--purple));
+}
 
-/* ================= HERO ================= */
+/* ===== HERO ===== */
 
 .hero{
-    position:relative;
     min-height:650px;
-
     display:flex;
     align-items:center;
-
+    position:relative;
     overflow:hidden;
-
-    background:
-    radial-gradient(circle at 85% 25%,rgba(57,169,255,.13),transparent 30%),
-    radial-gradient(circle at 15% 70%,rgba(135,108,255,.12),transparent 30%),
-    var(--navy);
 }
 
-.math-bg{
+.glow{
     position:absolute;
-    inset:0;
+    width:400px;
+    height:400px;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:.12;
     pointer-events:none;
-    overflow:hidden;
 }
 
-.math-bg span{
-    position:absolute;
-    color:rgba(255,255,255,.035);
-    font-size:80px;
-    font-weight:bold;
-    animation:float 8s infinite ease-in-out;
+.glow.one{
+    background:var(--blue);
+    top:-180px;
+    right:-100px;
 }
 
-.math-bg span:nth-child(1){
-    top:12%;
-    left:8%;
+.glow.two{
+    background:var(--purple);
+    bottom:-180px;
+    left:-100px;
 }
 
-.math-bg span:nth-child(2){
-    top:65%;
-    left:18%;
-    animation-delay:2s;
-}
-
-.math-bg span:nth-child(3){
-    top:20%;
-    right:12%;
-    animation-delay:1s;
-}
-
-.math-bg span:nth-child(4){
-    bottom:10%;
-    right:20%;
-    animation-delay:3s;
-}
-
-@keyframes float{
-    0%,100%{
-        transform:translateY(0) rotate(0);
-    }
-
-    50%{
-        transform:translateY(-25px) rotate(8deg);
-    }
-}
-
-.hero-container{
-    width:92%;
+.hero-content{
+    width:94%;
     max-width:1250px;
     margin:auto;
 
     display:grid;
-    grid-template-columns:1.05fr .95fr;
-
-    gap:60px;
+    grid-template-columns:1.1fr .9fr;
+    gap:55px;
     align-items:center;
-
-    position:relative;
-    z-index:2;
 }
 
-.date{
+.badge{
     display:inline-flex;
-    align-items:center;
-    gap:8px;
-
-    padding:8px 14px;
-
+    padding:8px 13px;
     border-radius:30px;
-
-    background:rgba(255,255,255,.055);
-    border:1px solid var(--border);
-
-    color:#b9c8dc;
-    font-size:12px;
+    background:rgba(53,183,255,.07);
+    border:1px solid rgba(53,183,255,.16);
+    color:#8edbff;
+    font-size:11px;
 }
 
 .hero h1{
-    margin-top:22px;
-
     font-size:clamp(42px,6vw,72px);
-
     line-height:1.12;
+    margin-top:20px;
 }
 
-.hero h1 .blue{
-    color:var(--cyan);
+.hero h1 span{
+    color:var(--blue);
 }
 
-.hero h1 .gold{
+.hero h1 b{
     color:var(--gold);
 }
 
-.hero-description{
-    margin-top:20px;
-
+.hero-text{
     color:var(--muted);
-
     max-width:650px;
-
-    font-size:16px;
+    margin-top:20px;
+    line-height:1.9;
+    font-size:14px;
 }
 
 .hero-buttons{
     display:flex;
-    gap:13px;
-
-    margin-top:30px;
+    gap:12px;
+    margin-top:28px;
 }
 
 .btn{
     border:0;
     border-radius:13px;
-
-    padding:14px 22px;
-
-    cursor:pointer;
-
+    padding:14px 21px;
+    color:white;
     font-weight:bold;
-    transition:.25s;
+    font-size:12px;
+    transition:.2s;
 }
 
 .btn:hover{
     transform:translateY(-3px);
 }
 
-.primary{
-    color:white;
-
+.btn.primary{
     background:linear-gradient(135deg,var(--blue),var(--purple));
-
-    box-shadow:0 10px 30px rgba(57,169,255,.2);
+    box-shadow:0 12px 30px rgba(53,183,255,.16);
 }
 
-.secondary{
-    color:white;
-
+.btn.dark{
     background:rgba(255,255,255,.05);
-
-    border:1px solid var(--border);
+    border:1px solid var(--line);
 }
 
-
-/* ================= MATH CARD ================= */
-
-.math-card{
-    min-height:420px;
-
+.math-board{
+    min-height:410px;
+    padding:28px;
     border-radius:30px;
 
-    padding:30px;
-
-    position:relative;
-    overflow:hidden;
-
     background:
-    linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.025));
+    radial-gradient(circle at center,rgba(53,183,255,.12),transparent 45%),
+    linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.025));
 
-    border:1px solid var(--border);
-
-    box-shadow:0 25px 80px rgba(0,0,0,.3);
+    border:1px solid var(--line);
+    box-shadow:0 30px 90px rgba(0,0,0,.28);
 }
 
-.math-card:before{
-    content:"";
-
-    position:absolute;
-
-    width:260px;
-    height:260px;
-
-    border-radius:50%;
-
-    background:rgba(57,169,255,.08);
-
-    top:-100px;
-    right:-100px;
-}
-
-.card-top{
+.board-head{
     display:flex;
     justify-content:space-between;
-
     color:var(--muted);
-    font-size:12px;
+    font-size:11px;
 }
 
-.live{
+.board-status{
     color:var(--green);
 }
 
 .equation{
-    margin:65px 0 55px;
-
     text-align:center;
-
-    font-size:45px;
+    margin:65px 0;
+    font-size:38px;
     font-weight:bold;
-
-    color:white;
-
-    text-shadow:0 0 30px rgba(85,214,255,.25);
 }
 
 .equation span{
-    color:var(--cyan);
+    color:var(--blue);
 }
 
-.math-items{
+.symbols{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:12px;
 }
 
-.math-item{
-    height:85px;
-
-    border-radius:18px;
-
+.symbol{
+    height:75px;
+    border-radius:17px;
     display:grid;
     place-items:center;
-
-    font-size:28px;
-    font-weight:bold;
-
-    background:rgba(255,255,255,.045);
-
-    border:1px solid var(--border);
-
-    color:#d9e7fa;
+    background:rgba(255,255,255,.035);
+    border:1px solid var(--line);
+    font-size:25px;
 }
 
-.math-item:nth-child(2){
+.symbol:nth-child(2){
     color:var(--gold);
 }
 
-.math-item:nth-child(3){
-    color:#b092ff;
+.symbol:nth-child(3){
+    color:#a894ff;
 }
 
-.math-item:nth-child(4){
+.symbol:nth-child(4){
     color:var(--green);
 }
 
-.math-item:nth-child(5){
-    color:var(--cyan);
+.symbol:nth-child(5){
+    color:#ff8db2;
 }
 
-.math-item:nth-child(6){
-    color:#ff8eb5;
+.symbol:nth-child(6){
+    color:var(--blue);
 }
 
-
-/* ================= STATS ================= */
+/* ===== STATS ===== */
 
 .stats{
-    padding:20px 0 50px;
-
-    background:var(--navy);
+    padding:10px 0 50px;
 }
 
 .stats-grid{
-    width:92%;
+    width:94%;
     max-width:1100px;
     margin:auto;
 
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:14px;
+    gap:13px;
 }
 
 .stat{
     padding:20px;
-
-    border-radius:17px;
-
     text-align:center;
-
-    background:rgba(255,255,255,.035);
-    border:1px solid var(--border);
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.025);
+    border-radius:18px;
 }
 
 .stat strong{
     display:block;
-
     font-size:25px;
-
-    color:var(--cyan);
+    color:var(--blue);
 }
 
 .stat span{
     color:var(--muted);
-    font-size:12px;
+    font-size:11px;
 }
 
-
-/* ================= GENERAL ================= */
+/* ===== SECTIONS ===== */
 
 .section{
-    padding:85px 0;
+    padding:80px 0;
+}
+
+.alt{
+    background:#08192f;
 }
 
 .container{
-    width:92%;
+    width:94%;
     max-width:1250px;
     margin:auto;
 }
 
-.section-head{
-    margin-bottom:35px;
+.section-title{
+    margin-bottom:30px;
 }
 
-.section-head small{
-    color:var(--cyan);
-    font-weight:bold;
+.section-title small{
+    color:var(--blue);
+    font-size:11px;
 }
 
-.section-head h2{
+.section-title h2{
+    font-size:32px;
     margin-top:6px;
-
-    font-size:34px;
 }
 
-.section-head p{
+.section-title p{
     color:var(--muted);
-    margin-top:5px;
+    margin-top:7px;
+    font-size:12px;
 }
 
-
-/* ================= STUDENT DASHBOARD ================= */
-
-.dashboard{
-    background:#091a31;
-}
+/* ===== DASHBOARD ===== */
 
 .dashboard-grid{
     display:grid;
-    grid-template-columns:1.5fr .8fr;
-    gap:20px;
+    grid-template-columns:1.4fr .8fr;
+    gap:18px;
 }
 
-.dashboard-card{
+.panel{
+    padding:26px;
     background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:23px;
-
-    padding:28px;
+    border:1px solid var(--line);
+    border-radius:22px;
 }
 
-.progress-title{
+.progress-head{
     display:flex;
     justify-content:space-between;
-
     margin-bottom:12px;
-
-    font-size:13px;
+    font-size:12px;
 }
 
-.progress-title span{
-    color:var(--cyan);
+.progress-head span{
+    color:var(--blue);
 }
 
-.progress-bar{
-    height:10px;
-
-    background:#07172b;
-
+.progress{
+    height:9px;
+    background:#061326;
     border-radius:20px;
-
     overflow:hidden;
 }
 
-.progress-bar span{
+.progress span{
     display:block;
-
     width:72%;
     height:100%;
-
     background:linear-gradient(90deg,var(--blue),var(--purple));
-
-    border-radius:20px;
 }
 
 .tasks{
-    margin-top:25px;
-
     display:grid;
-    gap:12px;
+    gap:10px;
+    margin-top:22px;
 }
 
 .task{
-    padding:15px;
-
-    border-radius:14px;
-
     display:flex;
     align-items:center;
     justify-content:space-between;
-
-    background:rgba(255,255,255,.04);
+    padding:13px;
+    border-radius:13px;
+    background:rgba(255,255,255,.035);
 }
 
 .task-info{
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:10px;
 }
 
 .task-icon{
-    width:42px;
-    height:42px;
-
-    border-radius:12px;
-
+    width:40px;
+    height:40px;
+    border-radius:11px;
     display:grid;
     place-items:center;
-
-    background:rgba(57,169,255,.1);
-
-    font-size:20px;
+    background:rgba(53,183,255,.08);
 }
 
 .task p{
     color:var(--muted);
-    font-size:11px;
+    font-size:10px;
+    margin-top:3px;
 }
 
-.done{
+.completed{
     color:var(--green);
-    font-size:12px;
+    font-size:11px;
 }
 
 .goal{
     text-align:center;
 }
 
-.goal-icon{
+.trophy{
     font-size:55px;
-}
-
-.goal h3{
-    margin:10px 0;
 }
 
 .goal p{
     color:var(--muted);
-    font-size:13px;
+    font-size:12px;
+    line-height:1.8;
+    margin:8px 0 20px;
 }
 
+/* ===== FEATURES ===== */
 
-/* ================= FEATURES ================= */
-
-.feature-grid{
+.features{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:17px;
+    gap:15px;
 }
 
 .feature{
-    padding:28px 20px;
-
-    border-radius:21px;
-
+    padding:25px 20px;
     background:var(--card);
-
-    border:1px solid var(--border);
-
+    border:1px solid var(--line);
+    border-radius:20px;
     transition:.25s;
 }
 
 .feature:hover{
-    transform:translateY(-7px);
-
-    border-color:rgba(85,214,255,.25);
+    transform:translateY(-6px);
+    border-color:rgba(53,183,255,.25);
 }
 
 .feature-icon{
-    font-size:38px;
+    font-size:35px;
 }
 
 .feature h3{
     margin-top:13px;
+    font-size:16px;
 }
 
 .feature p{
     color:var(--muted);
-    font-size:12px;
-    margin-top:5px;
+    font-size:11px;
+    line-height:1.7;
+    margin-top:6px;
 }
 
+/* ===== CARDS ===== */
 
-/* ================= LESSONS ================= */
-
-.lessons{
-    background:#091a31;
-}
-
-.lesson-grid{
+.cards{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:20px;
+    gap:18px;
 }
 
-.lesson{
+.card{
     background:var(--card);
-
-    border:1px solid var(--border);
-
+    border:1px solid var(--line);
     border-radius:21px;
-
     overflow:hidden;
-
     transition:.25s;
 }
 
-.lesson:hover{
-    transform:translateY(-6px);
+.card:hover{
+    transform:translateY(-5px);
 }
 
-.lesson-image{
-    height:190px;
-
+.card-image{
+    height:170px;
     display:grid;
     place-items:center;
-
-    font-size:58px;
-
+    font-size:60px;
     background:
-    radial-gradient(circle at center,rgba(57,169,255,.18),transparent 60%),
-    #0a1c34;
+    radial-gradient(circle,rgba(53,183,255,.13),transparent 60%),
+    #0a1d36;
 }
 
-.lesson-body{
-    padding:22px;
+.card-body{
+    padding:21px;
 }
 
 .tag{
     display:inline-block;
-
+    color:var(--blue);
+    background:rgba(53,183,255,.07);
     padding:5px 9px;
-
     border-radius:20px;
-
-    font-size:10px;
-
-    color:var(--cyan);
-
-    background:rgba(57,169,255,.09);
+    font-size:9px;
 }
 
-.lesson h3{
-    margin:10px 0 5px;
+.card h3{
+    margin:10px 0 6px;
+    font-size:16px;
 }
 
-.lesson p{
+.card p{
     color:var(--muted);
-    font-size:12px;
+    font-size:11px;
+    line-height:1.7;
 }
 
-.lesson-bottom{
+.card-bottom{
     display:flex;
     align-items:center;
     justify-content:space-between;
-
-    margin-top:18px;
+    margin-top:17px;
 }
 
 .duration{
     color:var(--muted);
-    font-size:11px;
+    font-size:10px;
 }
 
-
-/* ================= SUMMARIES ================= */
+/* ===== SUMMARIES ===== */
 
 .summary-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:20px;
+    gap:18px;
 }
 
 .summary{
-    padding:25px;
-
-    border-radius:20px;
-
+    padding:24px;
     background:var(--card);
-
-    border:1px solid var(--border);
+    border:1px solid var(--line);
+    border-radius:20px;
 }
 
 .pdf{
-    width:58px;
-    height:65px;
-
+    width:55px;
+    height:62px;
     display:grid;
     place-items:center;
-
-    border-radius:14px;
-
-    color:#ff8eb5;
+    border-radius:13px;
+    color:#ff8bad;
+    background:rgba(255,107,157,.08);
     font-weight:bold;
-
-    background:rgba(255,107,157,.09);
 }
 
 .summary h3{
-    margin-top:15px;
+    margin-top:14px;
 }
 
 .summary p{
     color:var(--muted);
-    font-size:12px;
-    margin:5px 0 15px;
+    font-size:11px;
+    margin:6px 0 17px;
 }
 
+/* ===== ROOMS ===== */
 
-/* ================= ROOMS ================= */
-
-.rooms{
-    background:#091a31;
-}
-
-.room-grid{
+.rooms-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:20px;
+    gap:18px;
 }
 
 .room{
-    padding:27px;
-
-    border-radius:21px;
-
+    padding:24px;
+    border-radius:20px;
     background:var(--card);
-
-    border:1px solid var(--border);
+    border:1px solid var(--line);
 }
 
-.room-top{
+.room-head{
     display:flex;
     justify-content:space-between;
 }
@@ -809,48 +666,40 @@ nav a:hover{
 
 .online{
     color:var(--green);
-    font-size:11px;
+    font-size:10px;
 }
 
 .room p{
     color:var(--muted);
-    font-size:12px;
-    margin:7px 0 15px;
-}
-
-.members{
-    color:#9fb0c7;
     font-size:11px;
+    line-height:1.7;
+    margin:8px 0;
 }
 
+/* ===== TEST ===== */
 
-/* ================= TEST ================= */
-
-.test-box{
-    padding:45px;
-
-    border-radius:28px;
-
+.test{
+    padding:38px;
+    border-radius:25px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-
     gap:20px;
 
     background:
-    radial-gradient(circle at 80% 30%,rgba(85,214,255,.15),transparent 30%),
-    linear-gradient(135deg,#102d50,#151f48);
+    radial-gradient(circle at 80% 20%,rgba(53,183,255,.13),transparent 35%),
+    linear-gradient(135deg,#102d50,#151d46);
 
-    border:1px solid var(--border);
+    border:1px solid var(--line);
 }
 
-.test-box p{
+.test p{
     color:var(--muted);
-    margin-top:5px;
+    font-size:12px;
+    margin-top:7px;
 }
 
-
-/* ================= TEACHER ================= */
+/* ===== TEACHER ===== */
 
 .teacher{
     display:grid;
@@ -862,83 +711,63 @@ nav a:hover{
 .teacher-photo{
     width:180px;
     height:180px;
-
     border-radius:50%;
-
     display:grid;
     place-items:center;
-
-    font-size:75px;
-
-    background:
-    linear-gradient(135deg,#163b63,#22214f);
-
-    border:1px solid var(--border);
-
-    box-shadow:0 15px 50px rgba(0,0,0,.25);
+    font-size:70px;
+    background:linear-gradient(145deg,#123b60,#211f50);
+    border:1px solid var(--line);
 }
 
 .teacher p{
     color:var(--muted);
-    max-width:700px;
-    margin:10px 0 20px;
+    font-size:12px;
+    line-height:1.9;
+    max-width:750px;
+    margin:10px 0 18px;
 }
 
 .phone{
     display:inline-block;
-
-    padding:12px 17px;
-
+    padding:12px 16px;
     border-radius:12px;
-
     background:rgba(255,255,255,.04);
-
-    border:1px solid var(--border);
+    border:1px solid var(--line);
+    font-size:12px;
 }
 
-
-/* ================= CTA ================= */
+/* ===== CTA ===== */
 
 .cta{
     text-align:center;
-
     padding:90px 20px;
-
-    background:
-    radial-gradient(circle at center,rgba(57,169,255,.1),transparent 45%),
-    var(--navy);
 }
 
 .cta h2{
-    font-size:40px;
+    font-size:38px;
 }
 
 .cta p{
     color:var(--muted);
-    margin:10px 0 25px;
+    margin:10px 0 23px;
 }
 
-
-/* ================= FOOTER ================= */
+/* ===== FOOTER ===== */
 
 footer{
     padding:45px 20px;
-
     text-align:center;
-
-    background:#050e1d;
-
-    border-top:1px solid var(--border);
+    background:#040c19;
+    border-top:1px solid var(--line);
 }
 
-.footer-logo{
+footer h3{
     font-size:22px;
-    font-weight:bold;
 }
 
 footer p{
-    color:#73849d;
-    font-size:12px;
+    color:#71839c;
+    font-size:11px;
     margin-top:7px;
 }
 
@@ -946,76 +775,155 @@ footer p{
     display:flex;
     justify-content:center;
     gap:20px;
-    margin:22px 0;
+    margin:20px 0;
 }
 
 .footer-links a{
-    color:#9eafc7;
-    font-size:12px;
+    color:#91a3bc;
+    font-size:11px;
 }
 
+/* ===== MODAL ===== */
 
-/* ================= MOBILE ================= */
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:2000;
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:rgba(0,0,0,.7);
+    backdrop-filter:blur(8px);
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-width:440px;
+    padding:28px;
+
+    border-radius:24px;
+
+    background:#0d2340;
+    border:1px solid var(--line);
+
+    box-shadow:0 30px 100px rgba(0,0,0,.5);
+}
+
+.modal-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.close{
+    width:35px;
+    height:35px;
+    border:0;
+    border-radius:10px;
+    color:white;
+    background:rgba(255,255,255,.06);
+    font-size:18px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    color:#dbe7f5;
+    font-size:11px;
+    margin-bottom:7px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    width:100%;
+    padding:13px;
+    border-radius:11px;
+    border:1px solid var(--line);
+    outline:none;
+    background:#07172b;
+    color:white;
+}
+
+.form-group textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.form-note{
+    color:var(--muted);
+    font-size:10px;
+    line-height:1.7;
+    margin-top:13px;
+}
+
+/* ===== MOBILE ===== */
 
 @media(max-width:950px){
 
-    nav{
+    .nav-links{
         display:none;
     }
 
-    .hero-container{
+    .hero-content{
         grid-template-columns:1fr;
     }
 
-    .math-card{
+    .math-board{
         display:none;
     }
 
-    .feature-grid{
+    .features{
         grid-template-columns:repeat(2,1fr);
-    }
-
-    .lesson-grid,
-    .summary-grid,
-    .room-grid{
-        grid-template-columns:1fr 1fr;
     }
 
     .dashboard-grid{
         grid-template-columns:1fr;
+    }
+
+    .cards,
+    .summary-grid,
+    .rooms-grid{
+        grid-template-columns:1fr 1fr;
     }
 }
 
 @media(max-width:600px){
 
     .nav{
-        height:68px;
+        min-height:65px;
     }
 
-    .logo-icon{
-        width:42px;
-        height:42px;
-    }
-
-    .logo-text h2{
+    .logo h2{
         font-size:17px;
     }
 
-    .login-btn{
-        padding:9px 12px;
-        font-size:11px;
+    .nav-actions .small-btn:first-child{
+        display:none;
     }
 
     .hero{
-        min-height:600px;
+        min-height:590px;
     }
 
     .hero h1{
         font-size:43px;
     }
 
-    .hero-description{
-        font-size:14px;
+    .hero-text{
+        font-size:13px;
     }
 
     .hero-buttons{
@@ -1030,10 +938,10 @@ footer p{
         grid-template-columns:1fr 1fr;
     }
 
-    .feature-grid,
-    .lesson-grid,
+    .features,
+    .cards,
     .summary-grid,
-    .room-grid{
+    .rooms-grid{
         grid-template-columns:1fr;
     }
 
@@ -1041,12 +949,11 @@ footer p{
         padding:60px 0;
     }
 
-    .section-head h2{
+    .section-title h2{
         font-size:28px;
     }
 
-    .test-box{
-        padding:30px;
+    .test{
         flex-direction:column;
         align-items:flex-start;
     }
@@ -1060,22 +967,14 @@ footer p{
         margin:auto;
     }
 
-    .teacher p{
-        font-size:13px;
-    }
-
     .cta h2{
-        font-size:30px;
+        font-size:29px;
     }
-
 }
-
 </style>
 </head>
 
-
 <body>
-
 
 <!-- ================= HEADER ================= -->
 
@@ -1085,116 +984,86 @@ footer p{
 
 <a href="#home" class="logo">
 
-<div class="logo-icon">
-∑
-</div>
+<div class="logo-icon">∑</div>
 
-<div class="logo-text">
-
+<div>
 <h2>منبر ون</h2>
-
-<span>MINBAR ONE</span>
-
+<small>MINBAR ONE</small>
 </div>
 
 </a>
 
 
-<nav>
+<div class="nav-links">
 
 <a href="#home">الرئيسية</a>
-<a href="#dashboard">لوحة الطالب</a>
 <a href="#lessons">الحصص</a>
 <a href="#summaries">الملخصات</a>
 <a href="#rooms">الرومات</a>
 <a href="#tests">الاختبارات</a>
 
-</nav>
+</div>
 
 
-<button
-class="login-btn"
-onclick="login()">
+<div class="nav-actions">
 
-👤 دخول الطالب
-
+<button class="small-btn" onclick="openModal('teacherModal')">
+👨‍🏫 الأستاذ
 </button>
+
+<button class="small-btn primary" onclick="openModal('loginModal')">
+👤 دخول
+</button>
+
+</div>
 
 </div>
 
 </header>
 
 
-
 <!-- ================= HERO ================= -->
 
 <section class="hero" id="home">
 
-<div class="math-bg">
-
-<span>π</span>
-<span>√</span>
-<span>∑</span>
-<span>x²</span>
-
-</div>
+<div class="glow one"></div>
+<div class="glow two"></div>
 
 
-<div class="hero-container">
-
+<div class="hero-content">
 
 <div>
 
-<div class="date">
-
-📅
-
-<span id="today"></span>
-
+<div class="badge">
+🎓 منصة الرياضيات لطلاب التوجيهي
 </div>
 
 
 <h1>
-
-من هنا تبدأ
-
+مستقبلك يبدأ
 <br>
-
-رحلتك نحو
-
-<span class="blue">التفوق</span>
-
-<span class="gold"> 🎯</span>
-
+من <span>منبر ون</span>
+<b> 🚀</b>
 </h1>
 
 
-<p class="hero-description">
+<p class="hero-text">
 
-<strong>منبر ون</strong> — منصة تعليمية متخصصة في رياضيات التوجيهي.
-حصص مرتبة، ملخصات، اختبارات ورومات تعليمية...
-كل ما تحتاجه للنجاح في مكان واحد.
+منصة تعليمية تجمع لك الحصص، الملخصات،
+الاختبارات والرومات التعليمية في مكان واحد.
+تعلّم، تدرب، وتابع تقدمك خطوة بخطوة نحو هدفك.
 
 </p>
 
 
 <div class="hero-buttons">
 
-<button
-class="btn primary"
-onclick="goTo('lessons')">
-
+<button class="btn primary" onclick="scrollToSection('lessons')">
 🚀 ابدأ التعلم
-
 </button>
 
-
-<button
-class="btn secondary"
-onclick="goTo('tests')">
-
+<button class="btn dark" onclick="scrollToSection('tests')">
 📝 اختبر نفسك
-
 </button>
 
 </div>
@@ -1202,33 +1071,32 @@ onclick="goTo('tests')">
 </div>
 
 
+<div class="math-board">
 
-<div class="math-card">
+<div class="board-head">
 
-<div class="card-top">
+<span>🧮 مختبر الرياضيات</span>
 
-<span>🧮 لوحة الرياضيات</span>
-
-<span class="live">● جاهز للتعلم</span>
+<span class="board-status">
+● جاهز للتعلم
+</span>
 
 </div>
 
 
 <div class="equation">
-
 <span>x²</span> + 2x + 1 = 0
-
 </div>
 
 
-<div class="math-items">
+<div class="symbols">
 
-<div class="math-item">π</div>
-<div class="math-item">√</div>
-<div class="math-item">∑</div>
-<div class="math-item">x²</div>
-<div class="math-item">∞</div>
-<div class="math-item">÷</div>
+<div class="symbol">π</div>
+<div class="symbol">√</div>
+<div class="symbol">∑</div>
+<div class="symbol">x²</div>
+<div class="symbol">∞</div>
+<div class="symbol">÷</div>
 
 </div>
 
@@ -1237,7 +1105,6 @@ onclick="goTo('tests')">
 </div>
 
 </section>
-
 
 
 <!-- ================= STATS ================= -->
@@ -1247,38 +1114,23 @@ onclick="goTo('tests')">
 <div class="stats-grid">
 
 <div class="stat">
-
 <strong>🎥</strong>
-
-<span>حصص تعليمية</span>
-
+<span>حصص فيديو</span>
 </div>
 
-
 <div class="stat">
-
 <strong>📚</strong>
-
-<span>ملخصات ومراجعات</span>
-
+<span>ملخصات</span>
 </div>
 
-
 <div class="stat">
-
 <strong>📝</strong>
-
-<span>اختبارات تدريبية</span>
-
+<span>اختبارات</span>
 </div>
 
-
 <div class="stat">
-
 <strong>🏆</strong>
-
-<span>طريقك للتميز</span>
-
+<span>إنجازات</span>
 </div>
 
 </div>
@@ -1286,20 +1138,19 @@ onclick="goTo('tests')">
 </section>
 
 
-
 <!-- ================= DASHBOARD ================= -->
 
-<section class="section dashboard" id="dashboard">
+<section class="section alt" id="dashboard">
 
 <div class="container">
 
-<div class="section-head">
+<div class="section-title">
 
-<small>مساحتك التعليمية</small>
+<small>لوحة الطالب</small>
 
 <h2>👋 أهلاً بك يا بطل</h2>
 
-<p>تابع تقدمك وأنجز مهامك اليومية.</p>
+<p>هنا تتابع رحلتك التعليمية.</p>
 
 </div>
 
@@ -1307,9 +1158,9 @@ onclick="goTo('tests')">
 <div class="dashboard-grid">
 
 
-<div class="dashboard-card">
+<div class="panel">
 
-<div class="progress-title">
+<div class="progress-head">
 
 <strong>🔥 تقدمك في الخطة</strong>
 
@@ -1318,10 +1169,8 @@ onclick="goTo('tests')">
 </div>
 
 
-<div class="progress-bar">
-
+<div class="progress">
 <span></span>
-
 </div>
 
 
@@ -1335,16 +1184,13 @@ onclick="goTo('tests')">
 <div class="task-icon">🎥</div>
 
 <div>
-
 <strong>حصة الدوال</strong>
-
 <p>شرح وتطبيقات</p>
-
 </div>
 
 </div>
 
-<span class="done">مكتملة ✓</span>
+<span class="completed">✓ مكتملة</span>
 
 </div>
 
@@ -1353,19 +1199,16 @@ onclick="goTo('tests')">
 
 <div class="task-info">
 
-<div class="task-icon">📖</div>
+<div class="task-icon">📚</div>
 
 <div>
-
 <strong>مراجعة القوانين</strong>
-
 <p>15 دقيقة</p>
-
 </div>
 
 </div>
 
-<span class="done">مكتملة ✓</span>
+<span class="completed">✓ مكتملة</span>
 
 </div>
 
@@ -1377,17 +1220,14 @@ onclick="goTo('tests')">
 <div class="task-icon">📝</div>
 
 <div>
-
 <strong>اختبار اليوم</strong>
-
 <p>10 أسئلة</p>
-
 </div>
 
 </div>
 
-<span style="color:var(--gold);font-size:12px">
-ابدأ الآن →
+<span style="color:var(--gold);font-size:10px">
+ابدأ →
 </span>
 
 </div>
@@ -1397,11 +1237,9 @@ onclick="goTo('tests')">
 </div>
 
 
-<div class="dashboard-card goal">
+<div class="panel goal">
 
-<div class="goal-icon">
-🏆
-</div>
+<div class="trophy">🏆</div>
 
 <h3>هدفك القادم</h3>
 
@@ -1410,14 +1248,8 @@ onclick="goTo('tests')">
 لتحصل على شارة الإنجاز.
 </p>
 
-<br>
-
-<button
-class="btn primary"
-onclick="alert('سيتم تفعيل نظام الشارات عند ربط حساب الطالب')">
-
-عرض الإنجازات
-
+<button class="btn primary" onclick="showMessage('سيتم تفعيل نظام الإنجازات مع حساب الطالب.')">
+الإنجازات
 </button>
 
 </div>
@@ -1430,74 +1262,49 @@ onclick="alert('سيتم تفعيل نظام الشارات عند ربط حسا
 </section>
 
 
-
 <!-- ================= FEATURES ================= -->
 
 <section class="section">
 
 <div class="container">
 
-<div class="section-head">
+<div class="section-title">
 
 <small>كل شيء في مكان واحد</small>
 
-<h2>🚀 لماذا منبر ون؟</h2>
+<h2>🚀 منصة صممت لتساعدك</h2>
 
 </div>
 
 
-<div class="feature-grid">
+<div class="features">
 
 
 <div class="feature">
-
 <div class="feature-icon">🎥</div>
-
-<h3>حصص الفيديو</h3>
-
-<p>
-دروس مرتبة حسب الوحدات والدروس.
-</p>
-
+<h3>الحصص</h3>
+<p>حصص مرتبة حسب الوحدات والدروس.</p>
 </div>
 
 
 <div class="feature">
-
 <div class="feature-icon">📚</div>
-
 <h3>المكتبة</h3>
-
-<p>
-ملخصات وقوانين وملفات للمراجعة.
-</p>
-
+<p>ملخصات وقوانين وملفات للمراجعة.</p>
 </div>
 
 
 <div class="feature">
-
 <div class="feature-icon">💬</div>
-
 <h3>الرومات</h3>
-
-<p>
-مساحات للنقاش وطرح الأسئلة.
-</p>
-
+<p>تفاعل وناقش واسأل عن المسائل.</p>
 </div>
 
 
 <div class="feature">
-
 <div class="feature-icon">🏆</div>
-
 <h3>الاختبارات</h3>
-
-<p>
-اختبر نفسك وتابع مستواك.
-</p>
-
+<p>اختبر نفسك وتابع مستوى تقدمك.</p>
 </div>
 
 
@@ -1508,34 +1315,31 @@ onclick="alert('سيتم تفعيل نظام الشارات عند ربط حسا
 </section>
 
 
-
 <!-- ================= LESSONS ================= -->
 
-<section class="section lessons" id="lessons">
+<section class="section alt" id="lessons">
 
 <div class="container">
 
-<div class="section-head">
+<div class="section-title">
 
 <small>تعلم خطوة بخطوة</small>
 
-<h2>🎥 أحدث الحصص</h2>
+<h2>🎥 الحصص التعليمية</h2>
 
-<p>اختر الحصة وابدأ التعلم.</p>
+<p>اختر الدرس وابدأ التعلم.</p>
 
 </div>
 
 
-<div class="lesson-grid">
+<div class="cards">
 
 
-<div class="lesson">
+<div class="card">
 
-<div class="lesson-image">
-📐
-</div>
+<div class="card-image">📐</div>
 
-<div class="lesson-body">
+<div class="card-body">
 
 <span class="tag">الوحدة الأولى</span>
 
@@ -1545,16 +1349,12 @@ onclick="alert('سيتم تفعيل نظام الشارات عند ربط حسا
 شرح الدوال بطريقة سهلة مع أمثلة وتطبيقات.
 </p>
 
-<div class="lesson-bottom">
+<div class="card-bottom">
 
 <span class="duration">⏱ 45 دقيقة</span>
 
-<button
-class="btn primary"
-onclick="alert('سيتم تشغيل الفيديو هنا بعد ربط المنصة')">
-
+<button class="btn primary" onclick="showMessage('سيتم تشغيل الفيديو بعد ربط مكتبة الفيديوهات.')">
 ▶ مشاهدة
-
 </button>
 
 </div>
@@ -1564,33 +1364,26 @@ onclick="alert('سيتم تشغيل الفيديو هنا بعد ربط المن
 </div>
 
 
+<div class="card">
 
-<div class="lesson">
+<div class="card-image">∫</div>
 
-<div class="lesson-image">
-∫
-</div>
-
-<div class="lesson-body">
+<div class="card-body">
 
 <span class="tag">الوحدة الثانية</span>
 
 <h3>التفاضل</h3>
 
 <p>
-شرح أساسيات التفاضل والقوانين المهمة.
+أساسيات التفاضل وأهم القوانين والتطبيقات.
 </p>
 
-<div class="lesson-bottom">
+<div class="card-bottom">
 
 <span class="duration">⏱ 50 دقيقة</span>
 
-<button
-class="btn primary"
-onclick="alert('سيتم تشغيل الفيديو هنا بعد ربط المنصة')">
-
+<button class="btn primary" onclick="showMessage('سيتم تشغيل الفيديو بعد ربط مكتبة الفيديوهات.')">
 ▶ مشاهدة
-
 </button>
 
 </div>
@@ -1600,14 +1393,11 @@ onclick="alert('سيتم تشغيل الفيديو هنا بعد ربط المن
 </div>
 
 
+<div class="card">
 
-<div class="lesson">
+<div class="card-image">√</div>
 
-<div class="lesson-image">
-√
-</div>
-
-<div class="lesson-body">
+<div class="card-body">
 
 <span class="tag">الوحدة الثالثة</span>
 
@@ -1617,16 +1407,12 @@ onclick="alert('سيتم تشغيل الفيديو هنا بعد ربط المن
 أهم أفكار التكامل مع تدريبات توجيهي.
 </p>
 
-<div class="lesson-bottom">
+<div class="card-bottom">
 
 <span class="duration">⏱ 55 دقيقة</span>
 
-<button
-class="btn primary"
-onclick="alert('سيتم تشغيل الفيديو هنا بعد ربط المنصة')">
-
+<button class="btn primary" onclick="showMessage('سيتم تشغيل الفيديو بعد ربط مكتبة الفيديوهات.')">
 ▶ مشاهدة
-
 </button>
 
 </div>
@@ -1643,20 +1429,19 @@ onclick="alert('سيتم تشغيل الفيديو هنا بعد ربط المن
 </section>
 
 
-
 <!-- ================= SUMMARIES ================= -->
 
 <section class="section" id="summaries">
 
 <div class="container">
 
-<div class="section-head">
+<div class="section-title">
 
 <small>مكتبة منبر ون</small>
 
-<h2>📚 الملخصات والملفات</h2>
+<h2>📚 الملخصات</h2>
 
-<p>كل القوانين والمراجعات التي تحتاجها.</p>
+<p>ملفات تساعدك على المراجعة بسرعة.</p>
 
 </div>
 
@@ -1672,12 +1457,8 @@ onclick="alert('سيتم تشغيل الفيديو هنا بعد ربط المن
 
 <p>أهم القوانين والأفكار والأسئلة.</p>
 
-<button
-class="btn primary"
-onclick="alert('سيتم فتح الملف بعد رفعه من لوحة الأستاذ')">
-
+<button class="btn primary" onclick="showMessage('سيتم فتح ملف PDF بعد ربط المكتبة.')">
 📖 فتح الملخص
-
 </button>
 
 </div>
@@ -1691,12 +1472,8 @@ onclick="alert('سيتم فتح الملف بعد رفعه من لوحة الأ�
 
 <p>مراجعة سريعة لأهم القوانين.</p>
 
-<button
-class="btn primary"
-onclick="alert('سيتم فتح الملف بعد رفعه من لوحة الأستاذ')">
-
+<button class="btn primary" onclick="showMessage('سيتم فتح ملف PDF بعد ربط المكتبة.')">
 📖 فتح الملف
-
 </button>
 
 </div>
@@ -1708,14 +1485,10 @@ onclick="alert('سيتم فتح الملف بعد رفعه من لوحة الأ�
 
 <h3>نماذج التوجيهي</h3>
 
-<p>أسئلة تدريبية للمراجعة.</p>
+<p>نماذج وأسئلة تدريبية للمراجعة.</p>
 
-<button
-class="btn primary"
-onclick="alert('سيتم فتح الملف بعد رفعه من لوحة الأستاذ')">
-
+<button class="btn primary" onclick="showMessage('سيتم فتح ملف PDF بعد ربط المكتبة.')">
 📖 فتح النماذج
-
 </button>
 
 </div>
@@ -1728,30 +1501,29 @@ onclick="alert('سيتم فتح الملف بعد رفعه من لوحة الأ�
 </section>
 
 
-
 <!-- ================= ROOMS ================= -->
 
-<section class="section rooms" id="rooms">
+<section class="section alt" id="rooms">
 
 <div class="container">
 
-<div class="section-head">
+<div class="section-title">
 
 <small>تعلم مع زملائك</small>
 
 <h2>💬 الرومات التعليمية</h2>
 
-<p>ناقش، اسأل، وتبادل المعرفة.</p>
+<p>مساحات للنقاش وطرح الأسئلة.</p>
 
 </div>
 
 
-<div class="room-grid">
+<div class="rooms-grid">
 
 
 <div class="room">
 
-<div class="room-top">
+<div class="room-head">
 
 <div class="room-icon">🧮</div>
 
@@ -1761,31 +1533,18 @@ onclick="alert('سيتم فتح الملف بعد رفعه من لوحة الأ�
 
 <h3>روم الرياضيات العام</h3>
 
-<p>
-للنقاش والأسئلة العامة.
-</p>
+<p>للنقاش والأسئلة العامة.</p>
 
-<div class="members">
-👥 245 طالب
-</div>
-
-<br>
-
-<button
-class="btn primary"
-onclick="alert('سيتم فتح الروم بعد تفعيل حسابات الطلاب')">
-
+<button class="btn primary" onclick="showMessage('سيتم فتح الروم بعد تسجيل الدخول.')">
 دخول الروم
-
 </button>
 
 </div>
 
 
-
 <div class="room">
 
-<div class="room-top">
+<div class="room-head">
 
 <div class="room-icon">🔥</div>
 
@@ -1795,31 +1554,18 @@ onclick="alert('سيتم فتح الروم بعد تفعيل حسابات الط
 
 <h3>روم المراجعة</h3>
 
-<p>
-مراجعة قبل الاختبارات.
-</p>
+<p>مراجعة قبل الاختبارات.</p>
 
-<div class="members">
-👥 180 طالب
-</div>
-
-<br>
-
-<button
-class="btn primary"
-onclick="alert('سيتم فتح الروم بعد تفعيل حسابات الطلاب')">
-
+<button class="btn primary" onclick="showMessage('سيتم فتح الروم بعد تسجيل الدخول.')">
 دخول الروم
-
 </button>
 
 </div>
 
 
-
 <div class="room">
 
-<div class="room-top">
+<div class="room-head">
 
 <div class="room-icon">❓</div>
 
@@ -1829,22 +1575,10 @@ onclick="alert('سيتم فتح الروم بعد تفعيل حسابات الط
 
 <h3>روم الأسئلة</h3>
 
-<p>
-اسأل عن أي سؤال لم تفهمه.
-</p>
+<p>اسأل عن أي سؤال لم تفهمه.</p>
 
-<div class="members">
-👥 120 طالب
-</div>
-
-<br>
-
-<button
-class="btn primary"
-onclick="alert('سيتم فتح الروم بعد تفعيل حسابات الطلاب')">
-
+<button class="btn primary" onclick="showMessage('سيتم فتح الروم بعد تسجيل الدخول.')">
 دخول الروم
-
 </button>
 
 </div>
@@ -1857,31 +1591,26 @@ onclick="alert('سيتم فتح الروم بعد تفعيل حسابات الط
 </section>
 
 
-
-<!-- ================= TEST ================= -->
+<!-- ================= TESTS ================= -->
 
 <section class="section" id="tests">
 
 <div class="container">
 
-<div class="test-box">
+<div class="test">
 
 <div>
 
 <h2>📝 جاهز تختبر نفسك؟</h2>
 
 <p>
-اختبار قصير يساعدك على معرفة مستواك.
+اختبار قصير يساعدك على معرفة مستواك في الرياضيات.
 </p>
 
 </div>
 
-<button
-class="btn primary"
-onclick="alert('سيتم تفعيل الاختبارات الحقيقية في المرحلة القادمة')">
-
+<button class="btn primary" onclick="showMessage('سيتم تشغيل نظام الاختبارات في المرحلة القادمة.')">
 🚀 ابدأ الاختبار
-
 </button>
 
 </div>
@@ -1891,14 +1620,13 @@ onclick="alert('سيتم تفعيل الاختبارات الحقيقية في �
 </section>
 
 
-
 <!-- ================= TEACHER ================= -->
 
-<section class="section" id="teacher">
+<section class="section alt" id="teacher">
 
 <div class="container">
 
-<div class="section-head">
+<div class="section-title">
 
 <small>مدرس الرياضيات</small>
 
@@ -1908,7 +1636,6 @@ onclick="alert('سيتم تفعيل الاختبارات الحقيقية في �
 
 
 <div class="teacher">
-
 
 <div class="teacher-photo">
 👨‍🏫
@@ -1920,23 +1647,21 @@ onclick="alert('سيتم تفعيل الاختبارات الحقيقية في �
 <h2>الأستاذ ———</h2>
 
 <p>
-هنا نضع اسم الأستاذ ونبذة عنه وخبرته وطريقة تدريسه.
-وسيظهر رقم التواصل هنا بعد تجهيز لوحة الإدارة.
+هنا ستظهر معلومات الأستاذ، خبرته، وطريقة التواصل معه.
+يمكن تعديل هذه المعلومات من لوحة تحكم الأستاذ بعد ربط قاعدة البيانات.
 </p>
 
 <div class="phone">
-📞 رقم الأستاذ: <strong>سيتم إضافته لاحقًا</strong>
+📞 رقم الأستاذ: سيتم إضافته
 </div>
 
 </div>
-
 
 </div>
 
 </div>
 
 </section>
-
 
 
 <!-- ================= CTA ================= -->
@@ -1946,32 +1671,23 @@ onclick="alert('سيتم تفعيل الاختبارات الحقيقية في �
 <h2>🎯 مستعد تحقق هدفك؟</h2>
 
 <p>
-ابدأ الآن واجعل كل يوم خطوة جديدة نحو التفوق.
+كل يوم دراسة هو خطوة جديدة نحو التفوق.
 </p>
 
-<button
-class="btn primary"
-onclick="goTo('lessons')">
-
-🚀 ابدأ رحلتك في منبر ون
-
+<button class="btn primary" onclick="scrollToSection('lessons')">
+🚀 ابدأ رحلة منبر ون
 </button>
 
 </section>
-
 
 
 <!-- ================= FOOTER ================= -->
 
 <footer>
 
-<div class="footer-logo">
-∑ منبر ون
-</div>
+<h3>∑ منبر ون</h3>
 
-<p>
-منصة الرياضيات لطلاب التوجيهي 🎓
-</p>
+<p>منصة الرياضيات لطلاب التوجيهي 🎓</p>
 
 
 <div class="footer-links">
@@ -1992,64 +1708,199 @@ onclick="goTo('lessons')">
 </footer>
 
 
+<!-- ================= LOGIN MODAL ================= -->
+
+<div class="modal" id="loginModal">
+
+<div class="modal-box">
+
+<div class="modal-top">
+
+<h2>👤 دخول الطالب</h2>
+
+<button class="close" onclick="closeModal('loginModal')">
+×
+</button>
+
+</div>
+
+
+<div class="form-group">
+
+<label>البريد الإلكتروني</label>
+
+<input
+type="email"
+id="loginEmail"
+placeholder="example@email.com"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>كلمة المرور</label>
+
+<input
+type="password"
+id="loginPassword"
+placeholder="كلمة المرور"
+>
+
+</div>
+
+
+<button class="btn primary" style="width:100%" onclick="fakeLogin()">
+🚀 تسجيل الدخول
+</button>
+
+
+<p class="form-note">
+
+في المرحلة القادمة سيتم ربط هذا النموذج بحسابات الطلاب في Supabase،
+بحيث يستطيع كل طالب إنشاء حساب والدخول إلى ملفه الشخصي.
+
+</p>
+
+</div>
+
+</div>
+
+
+<!-- ================= TEACHER MODAL ================= -->
+
+<div class="modal" id="teacherModal">
+
+<div class="modal-box">
+
+<div class="modal-top">
+
+<h2>👨‍🏫 دخول الأستاذ</h2>
+
+<button class="close" onclick="closeModal('teacherModal')">
+×
+</button>
+
+</div>
+
+
+<div class="form-group">
+
+<label>البريد الإلكتروني</label>
+
+<input
+type="email"
+placeholder="البريد الإلكتروني"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>كلمة المرور</label>
+
+<input
+type="password"
+placeholder="كلمة المرور"
+>
+
+</div>
+
+
+<button class="btn primary" style="width:100%" onclick="showMessage('سيتم تفعيل لوحة الأستاذ في المرحلة القادمة.')">
+🔐 دخول لوحة الأستاذ
+</button>
+
+</div>
+
+</div>
+
 
 <script>
 
-/* التاريخ */
+/* ===== التاريخ ===== */
 
-const now = new Date();
+function scrollToSection(id){
 
-const days = [
-"الأحد",
-"الاثنين",
-"الثلاثاء",
-"الأربعاء",
-"الخميس",
-"الجمعة",
-"السبت"
-];
+    const element =
+    document.getElementById(id);
 
-const months = [
-"يناير",
-"فبراير",
-"مارس",
-"أبريل",
-"مايو",
-"يونيو",
-"يوليو",
-"أغسطس",
-"سبتمبر",
-"أكتوبر",
-"نوفمبر",
-"ديسمبر"
-];
-
-document.getElementById("today").textContent =
-days[now.getDay()] +
-" • " +
-now.getDate() +
-" " +
-months[now.getMonth()] +
-" " +
-now.getFullYear();
-
-
-/* الانتقال */
-
-function goTo(id){
-
-document.getElementById(id).scrollIntoView({
-behavior:"smooth"
-});
+    if(element){
+        element.scrollIntoView({
+            behavior:"smooth"
+        });
+    }
 
 }
 
 
-/* الدخول */
+/* ===== النوافذ ===== */
 
-function login(){
+function openModal(id){
 
-window.location.href="login.html";
+    document
+    .getElementById(id)
+    .classList.add("show");
+
+}
+
+
+function closeModal(id){
+
+    document
+    .getElementById(id)
+    .classList.remove("show");
+
+}
+
+
+/* إغلاق النافذة عند الضغط خارجها */
+
+document.querySelectorAll(".modal").forEach(function(modal){
+
+    modal.addEventListener("click",function(event){
+
+        if(event.target === modal){
+            modal.classList.remove("show");
+        }
+
+    });
+
+});
+
+
+/* ===== تسجيل دخول تجريبي ===== */
+
+function fakeLogin(){
+
+    const email =
+    document.getElementById("loginEmail").value;
+
+    const password =
+    document.getElementById("loginPassword").value;
+
+    if(!email || !password){
+
+        alert("⚠️ اكتب البريد الإلكتروني وكلمة المرور.");
+
+        return;
+
+    }
+
+    alert(
+        "✅ تم استلام بيانات الدخول.\n\nسيتم ربط تسجيل الدخول الحقيقي بـ Supabase في المرحلة القادمة."
+    );
+
+}
+
+
+/* ===== رسائل ===== */
+
+function showMessage(text){
+
+    alert("ℹ️ " + text);
 
 }
 
