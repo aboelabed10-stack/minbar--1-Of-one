@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منبر ون - لوحة الأستاذ</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Tahoma,Arial,sans-serif;
+background:#06152d;
+color:white;
+}
+
+header{
+background:#0a1e3b;
+padding:18px;
+border-bottom:1px solid #23456b;
+}
+
+.header{
+max-width:1100px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:24px;
+font-weight:bold;
+}
+
+.home{
+color:white;
+text-decoration:none;
+background:#12345c;
+padding:11px 16px;
+border-radius:12px;
+}
+
+.container{
+width:92%;
+max-width:1100px;
+margin:auto;
+padding:25px 0 50px;
+}
+
+.hero{
+background:linear-gradient(135deg,#0d3158,#202052);
+padding:30px;
+border-radius:25px;
+border:1px solid #285074;
+}
+
+.hero h1{
+margin:8px 0;
+font-size:30px;
+}
+
+.hero p{
+color:#a9bfd7;
+line-height:1.8;
+}
+
+.actions{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+margin-top:25px;
+}
+
+.action{
+background:#0b2342;
+color:white;
+border:1px solid #214568;
+border-radius:20px;
+padding:25px;
+cursor:pointer;
+text-align:right;
+}
+
+.action:hover{
+background:#103157;
+}
+
+.icon{
+font-size:35px;
+}
+
+.action h3{
+font-size:17px;
+margin:10px 0 5px;
+}
+
+.action p{
+font-size:11px;
+color:#91a8c2;
+}
+
+.section{
+margin-top:35px;
+}
+
+.section h2{
+font-size:22px;
+}
+
+.items{
+display:grid;
+gap:10px;
+}
+
+.item{
+background:#0b2342;
+border:1px solid #1e4163;
+padding:15px;
+border-radius:15px;
+}
+
+.item b{
+font-size:14px;
+}
+
+.item small{
+display:block;
+color:#8da5bf;
+margin-top:6px;
+}
+
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.75);
+align-items:center;
+justify-content:center;
+padding:20px;
+z-index:10;
+}
+
+.modal.show{
+display:flex;
+}
+
+.box{
+width:100%;
+max-width:500px;
+background:#0b2342;
+border:1px solid #2a4e70;
+border-radius:22px;
+padding:25px;
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.close{
+background:#173654;
+color:white;
+border:0;
+width:35px;
+height:35px;
+border-radius:10px;
+font-size:20px;
+}
+
+label{
+display:block;
+font-size:11px;
+color:#b5c8dc;
+margin-bottom:6px;
+}
+
+input,textarea,select{
+width:100%;
+padding:13px;
+margin-bottom:15px;
+background:#06172e;
+color:white;
+border:1px solid #2b4c6b;
+border-radius:11px;
+font-family:inherit;
+}
+
+textarea{
+min-height:90px;
+}
+
+.save{
+width:100%;
+padding:14px;
+border:0;
+border-radius:12px;
+background:linear-gradient(135deg,#20baff,#735cff);
+color:white;
+font-weight:bold;
+font-size:15px;
+}
+
+.message{
+text-align:center;
+font-size:11px;
+margin-top:12px;
+color:#55e0aa;
+}
+
+@media(max-width:600px){
+.actions{
+grid-template-columns:1fr;
+}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="header">
+<div class="logo">∑ 📐 منبر ون</div>
+<a class="home" href="index.html">🏠 الرئيسية</a>
+</div>
+</header>
+
+<div class="container">
+
+<div class="hero">
+<div>👨‍🏫 لوحة الأستاذ</div>
+<h1>أهلاً بك في منبر ون 🎓</h1>
+<p>
+من هنا يمكنك إضافة الحصص والملخصات والرومات والاختبارات.
+</p>
+</div>
+
+<div class="actions">
+
+<button class="action" onclick="openModal('lesson')">
+<div class="icon">🎥</div>
+<h3>إضافة حصة</h3>
+<p>إضافة عنوان الحصة ورابط الفيديو.</p>
+</button>
+
+<button class="action" onclick="openModal('summary')">
+<div class="icon">📚</div>
+<h3>إضافة ملخص</h3>
+<p>إضافة ملخص أو ملف تعليمي.</p>
+</button>
+
+<button class="action" onclick="openModal('room')">
+<div class="icon">💬</div>
+<h3>إنشاء روم</h3>
+<p>إضافة روم للطلاب.</p>
+</button>
+
+<button class="action" onclick="openModal('test')">
+<div class="icon">📝</div>
+<h3>إضافة اختبار</h3>
+<p>إضافة اختبار جديد.</p>
+</button>
+
+</div>
+
+<div class="section">
+<h2>📋 آخر الحصص</h2>
+<div class="items" id="lessons">
+<div class="item">جاري التحميل...</div>
+</div>
+</div>
+
+</div>
+
+
+<!-- إضافة حصة -->
+
+<div class="modal" id="lesson">
+
+<div class="box">
+
+<div class="top">
+<h2>🎥 إضافة حصة</h2>
+<button class="close" onclick="closeModal('lesson')">×</button>
+</div>
+
+<label>عنوان الحصة</label>
+<input id="lessonTitle" placeholder="مثال: قوانين الأسس">
+
+<label>الوحدة</label>
+<select id="lessonUnit">
+<option>الوحدة الأولى</option>
+<option>الوحدة الثانية</option>
+<option>الوحدة الثالثة</option>
+<option>الوحدة الرابعة</option>
+<option>مراجعة عامة</option>
+</select>
+
+<label>رابط الفيديو</label>
+<input id="lessonVideo" placeholder="ضع رابط الفيديو">
+
+<label>وصف الحصة</label>
+<textarea id="lessonDescription" placeholder="اكتب وصف الحصة"></textarea>
+
+<button class="save" onclick="addLesson()">
+➕ حفظ الحصة
+</button>
+
+<div class="message" id="lessonMessage"></div>
+
+</div>
+</div>
+
+
+<!-- إضافة ملخص -->
+
+<div class="modal" id="summary">
+
+<div class="box">
+
+<div class="top">
+<h2>📚 إضافة ملخص</h2>
+<button class="close" onclick="closeModal('summary')">×</button>
+</div>
+
+<label>اسم الملخص</label>
+<input id="summaryTitle" placeholder="مثال: ملخص الوحدة الأولى">
+
+<label>رابط الملخص</label>
+<input id="summaryLink" placeholder="رابط ملف PDF">
+
+<label>الوصف</label>
+<textarea id="summaryDescription"></textarea>
+
+<button class="save" onclick="addSummary()">
+➕ حفظ الملخص
+</button>
+
+<div class="message" id="summaryMessage"></div>
+
+</div>
+</div>
+
+
+<!-- إنشاء روم -->
+
+<div class="modal" id="room">
+
+<div class="box">
+
+<div class="top">
+<h2>💬 إنشاء روم</h2>
+<button class="close" onclick="closeModal('room')">×</button>
+</div>
+
+<label>اسم الروم</label>
+<input id="roomName" placeholder="مثال: روم مراجعة الرياضيات">
+
+<label>رابط الروم</label>
+<input id="roomLink" placeholder="رابط الروم">
+
+<label>الوصف</label>
+<textarea id="roomDescription"></textarea>
+
+<button class="save" onclick="addRoom()">
+➕ إنشاء الروم
+</button>
+
+<div class="message" id="roomMessage"></div>
+
+</div>
+</div>
+
+
+<!-- إضافة اختبار -->
+
+<div class="modal" id="test">
+
+<div class="box">
+
+<div class="top">
+<h2>📝 إضافة اختبار</h2>
+<button class="close" onclick="closeModal('test')">×</button>
+</div>
+
+<label>اسم الاختبار</label>
+<input id="testTitle" placeholder="مثال: اختبار الوحدة الأولى">
+
+<label>عدد الأسئلة</label>
+<input id="testQuestions" type="number" placeholder="10">
+
+<label>رابط الاختبار</label>
+<input id="testLink" placeholder="رابط الاختبار">
+
+<button class="save" onclick="addTest()">
+➕ حفظ الاختبار
+</button>
+
+<div class="message" id="testMessage"></div>
+
+</div>
+</div>
+
+
+<script>
+
+/* =========================
+   SUPABASE
+========================= */
+
+const SUPABASE_URL =
+"https://vugnptbvkitokwqxulla.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable__WJDSewc6JN6XTM6czk11Q_lgON6Chj";
+
+
+/* =========================
+   الاتصال
+========================= */
+
+async function request(table,method="GET",data=null){
+
+let options={
+method:method,
+headers:{
+"apikey":SUPABASE_KEY,
+"Authorization":"Bearer "+SUPABASE_KEY,
+"Content-Type":"application/json",
+"Prefer":"return=representation"
+}
+};
+
+if(data){
+options.body=JSON.stringify(data);
+}
+
+const response=await fetch(
+SUPABASE_URL+"/rest/v1/"+table,
+options
+);
+
+if(!response.ok){
+throw new Error(await response.text());
+}
+
+const text=await response.text();
+
+return text ? JSON.parse(text) : [];
+
+}
+
+
+/* =========================
+   النوافذ
+========================= */
+
+function openModal(id){
+document.getElementById(id).classList.add("show");
+}
+
+function closeModal(id){
+document.getElementById(id).classList.remove("show");
+}
+
+
+/* =========================
+   إضافة حصة
+========================= */
+
+async function addLesson(){
+
+const title=document.getElementById("lessonTitle").value.trim();
+const unit=document.getElementById("lessonUnit").value;
+const video=document.getElementById("lessonVideo").value.trim();
+const description=document.getElementById("lessonDescription").value.trim();
+
+if(!title){
+document.getElementById("lessonMessage").textContent=
+"اكتب عنوان الحصة أولًا";
+return;
+}
+
+try{
+
+await request("lessons","POST",{
+title:title,
+unit:unit,
+video_url:video,
+description:description
+});
+
+document.getElementById("lessonMessage").textContent=
+"تمت إضافة الحصة بنجاح ✅";
+
+document.getElementById("lessonTitle").value="";
+document.getElementById("lessonVideo").value="";
+document.getElementById("lessonDescription").value="";
+
+loadLessons();
+
+}catch(error){
+
+console.error(error);
+
+document.getElementById("lessonMessage").textContent=
+"حدث خطأ في الحفظ ❌";
+
+}
+
+}
+
+
+/* =========================
+   إضافة ملخص
+========================= */
+
+async function addSummary(){
+
+const title=document.getElementById("summaryTitle").value.trim();
+const link=document.getElementById("summaryLink").value.trim();
+const description=document.getElementById("summaryDescription").value.trim();
+
+if(!title){
+document.getElementById("summaryMessage").textContent=
+"اكتب اسم الملخص";
+return;
+}
+
+try{
+
+await request("summaries","POST",{
+title:title,
+file_url:link,
+description:description
+});
+
+document.getElementById("summaryMessage").textContent=
+"تم حفظ الملخص ✅";
+
+}catch(error){
+
+console.error(error);
+
+document.getElementById("summaryMessage").textContent=
+"حدث خطأ في الحفظ ❌";
+
+}
+
+}
+
+
+/* =========================
+   إضافة روم
+========================= */
+
+async function addRoom(){
+
+const name=document.getElementById("roomName").value.trim();
+const link=document.getElementById("roomLink").value.trim();
+const description=document.getElementById("roomDescription").value.trim();
+
+if(!name){
+document.getElementById("roomMessage").textContent=
+"اكتب اسم الروم";
+return;
+}
+
+try{
+
+await request("rooms","POST",{
+name:name,
+room_link:link,
+description:description
+});
+
+document.getElementById("roomMessage").textContent=
+"تم إنشاء الروم ✅";
+
+}catch(error){
+
+console.error(error);
+
+document.getElementById("roomMessage").textContent=
+"حدث خطأ في الحفظ ❌";
+
+}
+
+}
+
+
+/* =========================
+   إضافة اختبار
+========================= */
+
+async function addTest(){
+
+const title=document.getElementById("testTitle").value.trim();
+const questions=parseInt(document.getElementById("testQuestions").value)||0;
+const link=document.getElementById("testLink").value.trim();
+
+if(!title){
+document.getElementById("testMessage").textContent=
+"اكتب اسم الاختبار";
+return;
+}
+
+try{
+
+await request("tests","POST",{
+title:title,
+questions_count:questions,
+test_link:link
+});
+
+document.getElementById("testMessage").textContent=
+"تم حفظ الاختبار ✅";
+
+}catch(error){
+
+console.error(error);
+
+document.getElementById("testMessage").textContent=
+"حدث خطأ في الحفظ ❌";
+
+}
+
+}
+
+
+/* =========================
+   تحميل الحصص
+========================= */
+
+async function loadLessons(){
+
+try{
+
+const data=await request(
+"lessons?select=*&order=created_at.desc"
+);
+
+const box=document.getElementById("lessons");
+
+if(!data.length){
+
+box.innerHTML=
+'<div class="item">لا توجد حصص حتى الآن 📚</div>';
+
+return;
+
+}
+
+box.innerHTML=data.map(item=>`
+
+<div class="item">
+
+<b>🎥 ${escapeHTML(item.title)}</b>
+
+<small>
+${escapeHTML(item.unit || "رياضيات")}
+</small>
+
+</div>
+
+`).join("");
+
+}catch(error){
+
+console.error(error);
+
+document.getElementById("lessons").innerHTML=
+'<div class="item">تعذر تحميل الحصص.</div>';
+
+}
+
+}
+
+
+/* =========================
+   حماية النص
+========================= */
+
+function escapeHTML(value){
+
+return String(value ?? "")
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
+}
+
+
+/* =========================
+   تشغيل
+========================= */
+
+loadLessons();
+
+</script>
+
+</body>
+</html>
