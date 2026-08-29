@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منبر ون - لوحة الأستاذ</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Tahoma,Arial,sans-serif;
+background:#06152d;
+color:white;
+}
+
+header{
+background:#0a1e3b;
+padding:18px;
+border-bottom:1px solid #23456b;
+}
+
+.header{
+max-width:1000px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:23px;
+font-weight:bold;
+}
+
+.home{
+color:white;
+text-decoration:none;
+background:#12345c;
+padding:11px 16px;
+border-radius:12px;
+}
+
+.container{
+width:92%;
+max-width:1000px;
+margin:auto;
+padding:25px 0 50px;
+}
+
+.hero{
+background:linear-gradient(135deg,#0d3158,#202052);
+padding:30px;
+border-radius:25px;
+border:1px solid #285074;
+}
+
+.hero h1{
+margin:10px 0;
+font-size:29px;
+}
+
+.hero p{
+color:#a9bfd7;
+line-height:1.8;
+}
+
+.actions{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+margin-top:25px;
+}
+
+.action{
+background:#0b2342;
+color:white;
+border:1px solid #214568;
+border-radius:20px;
+padding:25px;
+cursor:pointer;
+text-align:right;
+font-family:inherit;
+}
+
+.action:hover{
+background:#103157;
+}
+
+.icon{
+font-size:35px;
+}
+
+.action h3{
+font-size:16px;
+margin:10px 0 5px;
+}
+
+.action p{
+font-size:11px;
+color:#91a8c2;
+}
+
+.section{
+margin-top:35px;
+}
+
+.section h2{
+font-size:21px;
+}
+
+.lesson{
+background:#0b2342;
+border:1px solid #1e4163;
+padding:17px;
+border-radius:15px;
+margin-top:10px;
+}
+
+.lesson b{
+font-size:14px;
+}
+
+.lesson small{
+display:block;
+color:#8da5bf;
+margin-top:7px;
+}
+
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.78);
+align-items:center;
+justify-content:center;
+padding:20px;
+z-index:10;
+}
+
+.modal.show{
+display:flex;
+}
+
+.box{
+width:100%;
+max-width:500px;
+background:#0b2342;
+border:1px solid #2a4e70;
+border-radius:22px;
+padding:25px;
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.close{
+background:#173654;
+color:white;
+border:0;
+width:35px;
+height:35px;
+border-radius:10px;
+font-size:20px;
+cursor:pointer;
+}
+
+label{
+display:block;
+font-size:11px;
+color:#b5c8dc;
+margin-bottom:6px;
+}
+
+input,textarea,select{
+width:100%;
+padding:13px;
+margin-bottom:15px;
+background:#06172e;
+color:white;
+border:1px solid #2b4c6b;
+border-radius:11px;
+font-family:inherit;
+}
+
+textarea{
+min-height:90px;
+}
+
+.save{
+width:100%;
+padding:14px;
+border:0;
+border-radius:12px;
+background:linear-gradient(135deg,#20baff,#735cff);
+color:white;
+font-weight:bold;
+font-size:15px;
+cursor:pointer;
+}
+
+.message{
+text-align:center;
+font-size:11px;
+margin-top:12px;
+color:#55e0aa;
+min-height:18px;
+}
+
+@media(max-width:600px){
+.actions{
+grid-template-columns:1fr;
+}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="header">
+
+<div class="logo">
+∑ 📐 منبر ون
+</div>
+
+<a class="home" href="index.html">
+🏠 الرئيسية
+</a>
+
+</div>
+</header>
+
+<div class="container">
+
+<div class="hero">
+
+<div>👨‍🏫 لوحة الأستاذ</div>
+
+<h1>أهلاً بك في منبر ون 🎓</h1>
+
+<p>
+أضف حصص الرياضيات والفيديوهات لطلابك بسهولة.
+</p>
+
+</div>
+
+<div class="actions">
+
+<button class="action" onclick="openModal()">
+
+<div class="icon">🎥</div>
+
+<h3>إضافة حصة</h3>
+
+<p>
+إضافة عنوان الحصة والوحدة ورابط الفيديو.
+</p>
+
+</button>
+
+</div>
+
+<div class="section">
+
+<h2>🎥 الحصص المضافة</h2>
+
+<div id="lessons">
+جاري تحميل الحصص...
+</div>
+
+</div>
+
+</div>
+
+
+<div class="modal" id="lessonModal">
+
+<div class="box">
+
+<div class="top">
+
+<h2>🎥 إضافة حصة</h2>
+
+<button class="close" onclick="closeModal()">×</button>
+
+</div>
+
+<label>عنوان الحصة</label>
+
+<input id="title" placeholder="مثال: قوانين الأسس">
+
+<label>الوحدة</label>
+
+<select id="unit">
+<option>الوحدة الأولى</option>
+<option>الوحدة الثانية</option>
+<option>الوحدة الثالثة</option>
+<option>الوحدة الرابعة</option>
+<option>مراجعة عامة</option>
+</select>
+
+<label>رابط الفيديو</label>
+
+<input id="video" placeholder="https://...">
+
+<label>مدة الحصة</label>
+
+<input id="duration" placeholder="مثال: 30 دقيقة">
+
+<label>وصف الحصة</label>
+
+<textarea id="description" placeholder="اكتب وصف الحصة"></textarea>
+
+<button class="save" onclick="saveLesson()">
+➕ حفظ الحصة
+</button>
+
+<div class="message" id="message"></div>
+
+</div>
+</div>
+
+
+<script>
+
+const SUPABASE_URL =
+"https://vugnptbvkitokwqxulla.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable__WJDSewc6JN6XTM6czk11Q_lgON6Chj";
+
+
+function openModal(){
+document.getElementById("lessonModal").classList.add("show");
+}
+
+function closeModal(){
+document.getElementById("lessonModal").classList.remove("show");
+}
+
+
+async function supabaseRequest(url,options={}){
+
+const response=await fetch(
+SUPABASE_URL+url,
+{
+...options,
+headers:{
+"apikey":SUPABASE_KEY,
+"Authorization":"Bearer "+SUPABASE_KEY,
+"Content-Type":"application/json",
+"Prefer":"return=representation"
+}
+}
+);
+
+if(!response.ok){
+throw new Error(await response.text());
+}
+
+return response.json();
+
+}
+
+
+async function saveLesson(){
+
+const title=document.getElementById("title").value.trim();
+const unit=document.getElementById("unit").value;
+const video=document.getElementById("video").value.trim();
+const duration=document.getElementById("duration").value.trim();
+const description=document.getElementById("description").value.trim();
+
+const message=document.getElementById("message");
+
+if(!title){
+message.textContent="⚠️ اكتب عنوان الحصة أولًا";
+return;
+}
+
+message.textContent="جاري الحفظ...";
+
+try{
+
+await supabaseRequest(
+"/rest/v1/lessons",
+{
+method:"POST",
+body:JSON.stringify({
+title:title,
+unit:unit,
+video_url:video,
+duration:duration,
+description:description
+})
+}
+);
+
+message.textContent="تمت إضافة الحصة بنجاح ✅";
+
+document.getElementById("title").value="";
+document.getElementById("video").value="";
+document.getElementById("duration").value="";
+document.getElementById("description").value="";
+
+loadLessons();
+
+}catch(error){
+
+console.error(error);
+
+message.textContent="❌ حدث خطأ أثناء الحفظ";
+
+}
+
+}
+
+
+async function loadLessons(){
+
+const box=document.getElementById("lessons");
+
+try{
+
+const data=await supabaseRequest(
+"/rest/v1/lessons?select=*&order=created_at.desc",
+{
+method:"GET"
+}
+);
+
+if(!data.length){
+
+box.innerHTML="لا توجد حصص مضافة حتى الآن 📚";
+return;
+
+}
+
+box.innerHTML="";
+
+data.forEach(lesson=>{
+
+const item=document.createElement("div");
+
+item.className="lesson";
+
+item.innerHTML=
+"<b>🎥 "+
+escapeHTML(lesson.title)+
+"</b>"+
+"<small>"+
+escapeHTML(lesson.unit || "")+
+" • "+
+escapeHTML(lesson.duration || "")+
+"</small>";
+
+box.appendChild(item);
+
+});
+
+}catch(error){
+
+console.error(error);
+
+box.innerHTML="❌ تعذر تحميل الحصص";
+
+}
+
+}
+
+
+function escapeHTML(text){
+
+return String(text ?? "")
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
+}
+
+loadLessons();
+
+</script>
+
+</body>
+</html>
