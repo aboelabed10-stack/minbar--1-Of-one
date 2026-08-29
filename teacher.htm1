@@ -1,0 +1,2754 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>لوحة الأستاذ | منبر ون</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+font-family:Tahoma,Arial,sans-serif;
+background:
+radial-gradient(circle at 90% 5%,#293d8c 0,transparent 25%),
+radial-gradient(circle at 5% 70%,#702c72 0,transparent 25%),
+#05091b;
+color:#fff;
+min-height:100vh;
+overflow-x:hidden;
+}
+
+button,input,select,textarea{
+font-family:inherit;
+}
+
+button{
+cursor:pointer;
+}
+
+
+/* =========================
+   الأشياء المتحركة
+========================= */
+
+.floating{
+position:fixed;
+top:-60px;
+z-index:0;
+pointer-events:none;
+opacity:.28;
+font-size:20px;
+animation:fall linear infinite;
+}
+
+.f1{right:8%;animation-duration:10s}
+.f2{right:24%;animation-duration:14s;animation-delay:2s}
+.f3{right:43%;animation-duration:12s;animation-delay:5s}
+.f4{right:65%;animation-duration:16s;animation-delay:1s}
+.f5{right:86%;animation-duration:13s;animation-delay:4s}
+
+@keyframes fall{
+
+0%{
+transform:translateY(-70px) rotate(0deg);
+}
+
+100%{
+transform:translateY(110vh) rotate(360deg);
+}
+
+}
+
+.star{
+position:fixed;
+color:#ffe36b;
+z-index:0;
+animation:shine 1.5s infinite alternate;
+}
+
+.st1{top:18%;right:15%}
+.st2{top:44%;right:82%;animation-delay:.4s}
+.st3{top:73%;right:20%;animation-delay:.8s}
+
+@keyframes shine{
+
+from{
+opacity:.15;
+transform:scale(.7);
+}
+
+to{
+opacity:1;
+transform:scale(1.2);
+}
+
+}
+
+
+/* =========================
+   التطبيق
+========================= */
+
+.app{
+position:relative;
+z-index:2;
+display:flex;
+min-height:100vh;
+}
+
+
+/* =========================
+   القائمة الجانبية
+========================= */
+
+.sidebar{
+
+width:220px;
+background:
+rgba(6,14,36,.92);
+
+border-left:
+1px solid rgba(255,255,255,.08);
+
+padding:18px 13px;
+
+position:fixed;
+right:0;
+top:0;
+bottom:0;
+
+z-index:20;
+
+backdrop-filter:blur(18px);
+}
+
+.brand{
+
+display:flex;
+align-items:center;
+gap:9px;
+
+padding:8px;
+margin-bottom:25px;
+}
+
+.brandIcon{
+
+width:39px;
+height:39px;
+
+border-radius:12px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:
+linear-gradient(135deg,#11c9ff,#8b4fff);
+
+font-size:18px;
+
+box-shadow:
+0 0 25px rgba(35,190,255,.22);
+}
+
+.brand h1{
+font-size:13px;
+}
+
+.brand small{
+display:block;
+font-size:6px;
+color:#6d85a6;
+margin-top:3px;
+}
+
+
+.menuTitle{
+
+font-size:7px;
+
+color:#5e7595;
+
+padding:
+0 9px 8px;
+}
+
+.menu{
+
+display:flex;
+flex-direction:column;
+gap:5px;
+}
+
+.menu button{
+
+width:100%;
+
+border:0;
+
+background:transparent;
+
+color:#8298b5;
+
+padding:10px 9px;
+
+border-radius:10px;
+
+display:flex;
+align-items:center;
+
+gap:9px;
+
+font-size:8px;
+
+text-align:right;
+
+transition:.2s;
+}
+
+.menu button:hover{
+
+background:
+rgba(60,190,255,.08);
+
+color:#fff;
+
+transform:translateX(-2px);
+}
+
+.menu button.active{
+
+background:
+linear-gradient(
+135deg,
+rgba(14,164,220,.2),
+rgba(122,71,219,.2)
+);
+
+color:#fff;
+
+border:
+1px solid rgba(80,190,255,.12);
+}
+
+.menuIcon{
+
+width:25px;
+height:25px;
+
+border-radius:8px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:12px;
+
+flex-shrink:0;
+}
+
+.mi1{background:#087eaf}
+.mi2{background:#8050bd}
+.mi3{background:#b77318}
+.mi4{background:#13836d}
+.mi5{background:#c04867}
+.mi6{background:#3d61bd}
+.mi7{background:#8850a8}
+.mi8{background:#456b38}
+
+.sidebarBottom{
+
+position:absolute;
+
+bottom:15px;
+right:13px;
+left:13px;
+}
+
+.backBtn{
+
+width:100%;
+
+padding:9px;
+
+border-radius:10px;
+
+border:
+1px solid rgba(255,255,255,.07);
+
+background:#0a1832;
+
+color:#8298b5;
+
+font-size:8px;
+}
+
+
+/* =========================
+   المحتوى
+========================= */
+
+.content{
+
+margin-right:220px;
+
+width:calc(100% - 220px);
+
+padding:20px;
+
+max-width:1300px;
+}
+
+
+/* =========================
+   الهيدر
+========================= */
+
+.topbar{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+margin-bottom:17px;
+}
+
+.pageTitle h2{
+
+font-size:20px;
+}
+
+.pageTitle p{
+
+font-size:8px;
+
+color:#7187a5;
+
+margin-top:5px;
+}
+
+.teacherProfile{
+
+display:flex;
+
+align-items:center;
+
+gap:9px;
+
+background:
+rgba(10,25,50,.75);
+
+border:
+1px solid rgba(255,255,255,.07);
+
+padding:7px 9px;
+
+border-radius:12px;
+}
+
+.teacherAvatar{
+
+width:34px;
+height:34px;
+
+border-radius:10px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:
+linear-gradient(135deg,#ff9b35,#e0447b);
+}
+
+.teacherProfile span{
+
+font-size:8px;
+}
+
+.teacherProfile small{
+
+display:block;
+
+font-size:6px;
+
+color:#7187a5;
+
+margin-top:3px;
+}
+
+
+/* =========================
+   الإحصائيات
+========================= */
+
+.stats{
+
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:10px;
+
+margin-bottom:17px;
+}
+
+.stat{
+
+position:relative;
+
+overflow:hidden;
+
+padding:15px;
+
+border-radius:16px;
+
+border:
+1px solid rgba(255,255,255,.08);
+
+background:#0a1933;
+
+min-height:95px;
+}
+
+.statIcon{
+
+width:31px;
+height:31px;
+
+border-radius:10px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:14px;
+
+margin-bottom:8px;
+}
+
+.stat strong{
+
+font-size:20px;
+
+display:block;
+}
+
+.stat span{
+
+font-size:7px;
+
+color:#7187a5;
+}
+
+.stat:nth-child(1) .statIcon{
+background:#087eaf;
+}
+
+.stat:nth-child(2) .statIcon{
+background:#8050bd;
+}
+
+.stat:nth-child(3) .statIcon{
+background:#b77318;
+}
+
+.stat:nth-child(4) .statIcon{
+background:#13836d;
+}
+
+.stat::after{
+
+content:"";
+
+position:absolute;
+
+width:70px;
+height:70px;
+
+border-radius:50%;
+
+left:-30px;
+bottom:-30px;
+
+background:
+rgba(255,255,255,.03);
+}
+
+
+/* =========================
+   الأقسام
+========================= */
+
+.panel{
+
+background:
+rgba(8,22,45,.88);
+
+border:
+1px solid rgba(255,255,255,.07);
+
+border-radius:18px;
+
+padding:16px;
+
+margin-bottom:14px;
+
+box-shadow:
+0 12px 35px rgba(0,0,0,.14);
+}
+
+.panelHead{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+margin-bottom:13px;
+}
+
+.panelHead h3{
+
+font-size:12px;
+}
+
+.panelHead span{
+
+font-size:7px;
+
+color:#687f9e;
+}
+
+
+/* =========================
+   أزرار الإضافة
+========================= */
+
+.quickGrid{
+
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:9px;
+}
+
+.quick{
+
+border:0;
+
+padding:13px 8px;
+
+border-radius:13px;
+
+color:white;
+
+text-align:right;
+
+transition:.25s;
+}
+
+.quick:hover{
+
+transform:
+translateY(-3px);
+
+filter:brightness(1.1);
+}
+
+.quickIcon{
+
+width:30px;
+height:30px;
+
+border-radius:9px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:14px;
+
+margin-bottom:8px;
+
+background:
+rgba(255,255,255,.15);
+}
+
+.quick h4{
+
+font-size:8px;
+}
+
+.quick p{
+
+font-size:6px;
+
+color:
+rgba(255,255,255,.65);
+
+margin-top:4px;
+}
+
+.q1{
+background:
+linear-gradient(135deg,#087aa5,#0c4f83);
+}
+
+.q2{
+background:
+linear-gradient(135deg,#7142a5,#42206f);
+}
+
+.q3{
+background:
+linear-gradient(135deg,#a15d18,#69380d);
+}
+
+.q4{
+background:
+linear-gradient(135deg,#127c68,#0b5145);
+}
+
+
+/* =========================
+   البحث
+========================= */
+
+.search{
+
+position:relative;
+
+margin-bottom:12px;
+}
+
+.search input{
+
+width:100%;
+
+height:39px;
+
+background:#07152c;
+
+border:
+1px solid rgba(255,255,255,.09);
+
+border-radius:10px;
+
+color:white;
+
+padding:
+0 38px 0 10px;
+
+outline:none;
+
+font-size:8px;
+}
+
+.search span{
+
+position:absolute;
+
+right:13px;
+
+top:11px;
+
+font-size:12px;
+}
+
+
+/* =========================
+   جدول المحتوى
+========================= */
+
+.contentList{
+
+display:grid;
+
+gap:7px;
+}
+
+.contentItem{
+
+display:flex;
+
+align-items:center;
+
+gap:9px;
+
+padding:10px;
+
+border-radius:11px;
+
+background:#08172f;
+
+border:
+1px solid rgba(255,255,255,.06);
+}
+
+.contentIcon{
+
+width:32px;
+height:32px;
+
+border-radius:9px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:14px;
+
+flex-shrink:0;
+}
+
+.videoIcon{background:#087eaf}
+.testIcon{background:#ad6b18}
+.summaryIcon{background:#7547a8}
+.roomIcon{background:#14836d}
+
+.contentInfo{
+
+min-width:0;
+
+flex:1;
+}
+
+.contentInfo h4{
+
+font-size:8px;
+
+white-space:nowrap;
+
+overflow:hidden;
+
+text-overflow:ellipsis;
+}
+
+.contentInfo p{
+
+font-size:6px;
+
+color:#6e86a4;
+
+margin-top:4px;
+}
+
+.itemActions{
+
+display:flex;
+
+gap:5px;
+}
+
+.smallBtn{
+
+border:0;
+
+border-radius:7px;
+
+padding:6px 7px;
+
+font-size:6px;
+
+color:white;
+}
+
+.edit{
+background:#244d91;
+}
+
+.delete{
+background:#7c2941;
+}
+
+
+/* =========================
+   الطلاب
+========================= */
+
+.studentBox{
+
+display:grid;
+
+grid-template-columns:
+1fr 1fr;
+
+gap:9px;
+}
+
+.student{
+
+padding:11px;
+
+border-radius:11px;
+
+background:#08172f;
+
+border:
+1px solid rgba(255,255,255,.06);
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+}
+
+.studentAvatar{
+
+width:30px;
+height:30px;
+
+border-radius:9px;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+background:
+linear-gradient(135deg,#23aee8,#7653cf);
+
+font-size:12px;
+}
+
+.studentInfo{
+
+flex:1;
+}
+
+.studentInfo h4{
+
+font-size:8px;
+}
+
+.studentInfo p{
+
+font-size:6px;
+
+color:#7187a4;
+
+margin-top:4px;
+}
+
+.online{
+
+width:7px;
+height:7px;
+
+border-radius:50%;
+
+background:#36d99c;
+
+box-shadow:
+0 0 8px #36d99c;
+}
+
+
+/* =========================
+   النوافذ
+========================= */
+
+.modal{
+
+position:fixed;
+
+inset:0;
+
+background:
+rgba(0,0,0,.72);
+
+backdrop-filter:blur(7px);
+
+display:none;
+
+align-items:center;
+
+justify-content:center;
+
+z-index:100;
+
+padding:20px;
+}
+
+.modal.show{
+display:flex;
+}
+
+.modalBox{
+
+width:100%;
+
+max-width:500px;
+
+max-height:90vh;
+
+overflow:auto;
+
+background:
+linear-gradient(145deg,#101f42,#21163d);
+
+border:
+1px solid rgba(90,200,255,.17);
+
+border-radius:20px;
+
+padding:20px;
+
+box-shadow:
+0 25px 80px rgba(0,0,0,.55);
+}
+
+.modalHead{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+margin-bottom:16px;
+}
+
+.modalHead h3{
+
+font-size:14px;
+}
+
+.close{
+
+border:0;
+
+background:none;
+
+color:#7890ad;
+
+font-size:20px;
+}
+
+.formGroup{
+
+margin-bottom:10px;
+}
+
+.formGroup label{
+
+display:block;
+
+font-size:7px;
+
+color:#8ba0bb;
+
+margin-bottom:5px;
+}
+
+.formGroup input,
+.formGroup textarea,
+.formGroup select{
+
+width:100%;
+
+background:#07152c;
+
+border:
+1px solid rgba(255,255,255,.09);
+
+border-radius:9px;
+
+color:white;
+
+padding:10px;
+
+outline:none;
+
+font-size:8px;
+}
+
+.formGroup textarea{
+
+min-height:80px;
+
+resize:vertical;
+}
+
+.saveBtn{
+
+width:100%;
+
+height:40px;
+
+border:0;
+
+border-radius:9px;
+
+background:
+linear-gradient(135deg,#08a8dd,#764ce0);
+
+color:white;
+
+font-size:9px;
+}
+
+
+/* =========================
+   الهاتف
+========================= */
+
+@media(max-width:800px){
+
+.sidebar{
+
+width:62px;
+
+padding:12px 7px;
+}
+
+.brandText,
+.menuTitle,
+.menu button span,
+.sidebarBottom{
+
+display:none;
+}
+
+.brand{
+
+justify-content:center;
+
+padding:3px;
+}
+
+.brandIcon{
+
+width:38px;
+height:38px;
+}
+
+.menu button{
+
+justify-content:center;
+
+padding:7px;
+}
+
+.menuIcon{
+
+width:30px;
+height:30px;
+}
+
+.content{
+
+margin-right:62px;
+
+width:
+calc(100% - 62px);
+
+padding:12px;
+}
+
+.stats{
+
+grid-template-columns:
+repeat(2,1fr);
+}
+
+.quickGrid{
+
+grid-template-columns:
+repeat(2,1fr);
+}
+
+.studentBox{
+
+grid-template-columns:1fr;
+}
+
+.pageTitle h2{
+
+font-size:16px;
+}
+
+}
+
+@media(max-width:450px){
+
+.stats{
+
+grid-template-columns:
+repeat(2,1fr);
+
+gap:6px;
+}
+
+.stat{
+
+padding:11px;
+}
+
+.quickGrid{
+
+gap:6px;
+}
+
+.quick{
+
+padding:10px 7px;
+}
+
+.teacherProfile{
+
+display:none;
+}
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- عناصر تعليمية تنزل من الأعلى -->
+
+<div class="floating f1">✏️</div>
+<div class="floating f2">📚</div>
+<div class="floating f3">📐</div>
+<div class="floating f4">🧮</div>
+<div class="floating f5">🎓</div>
+
+<div class="star st1">✦</div>
+<div class="star st2">★</div>
+<div class="star st3">✦</div>
+
+
+<div class="app">
+
+
+<!-- =========================
+     القائمة
+========================= -->
+
+<aside class="sidebar">
+
+
+<div class="brand">
+
+<div class="brandIcon">
+∑
+</div>
+
+<div class="brandText">
+
+<h1>
+منبر ون
+</h1>
+
+<small>
+لوحة الأستاذ
+</small>
+
+</div>
+
+</div>
+
+
+<div class="menuTitle">
+لوحة التحكم
+</div>
+
+
+<nav class="menu">
+
+
+<button
+class="active"
+onclick="showSection('dashboard',this)">
+
+<div class="menuIcon mi1">📊</div>
+
+<span>
+الرئيسية
+</span>
+
+</button>
+
+
+<button
+onclick="showSection('lessons',this)">
+
+<div class="menuIcon mi2">🎥</div>
+
+<span>
+الحصص
+</span>
+
+</button>
+
+
+<button
+onclick="showSection('summaries',this)">
+
+<div class="menuIcon mi3">📚</div>
+
+<span>
+الملخصات
+</span>
+
+</button>
+
+
+<button
+onclick="showSection('tests',this)">
+
+<div class="menuIcon mi4">📝</div>
+
+<span>
+الاختبارات
+</span>
+
+</button>
+
+
+<button
+onclick="showSection('rooms',this)">
+
+<div class="menuIcon mi5">💬</div>
+
+<span>
+الرومات
+</span>
+
+</button>
+
+
+<button
+onclick="showSection('students',this)">
+
+<div class="menuIcon mi6">👨‍🎓</div>
+
+<span>
+الطلاب
+</span>
+
+</button>
+
+
+<button
+onclick="showSection('notifications',this)">
+
+<div class="menuIcon mi7">🔔</div>
+
+<span>
+الإشعارات
+</span>
+
+</button>
+
+
+<button
+onclick="showSection('settings',this)">
+
+<div class="menuIcon mi8">⚙️</div>
+
+<span>
+الإعدادات
+</span>
+
+</button>
+
+
+</nav>
+
+
+<div class="sidebarBottom">
+
+<button
+class="backBtn"
+onclick="location.href='index.html'">
+
+🏠 العودة للموقع
+
+</button>
+
+</div>
+
+
+</aside>
+
+
+<!-- =========================
+     المحتوى
+========================= -->
+
+<main class="content">
+
+
+<div class="topbar">
+
+
+<div class="pageTitle">
+
+<h2>
+لوحة تحكم الأستاذ 👨‍🏫
+</h2>
+
+<p>
+إدارة منصة منبر ون التعليمية
+</p>
+
+</div>
+
+
+<div class="teacherProfile">
+
+<div class="teacherAvatar">
+👨‍🏫
+</div>
+
+<div>
+
+<span>
+الأستاذ
+</span>
+
+<small>
+مدير المحتوى
+</small>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================
+     الرئيسية
+========================= -->
+
+<section
+id="dashboard"
+class="dashboardSection">
+
+
+<div class="stats">
+
+
+<div class="stat">
+
+<div class="statIcon">
+🎥
+</div>
+
+<strong id="lessonCount">
+0
+</strong>
+
+<span>
+إجمالي الحصص
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<div class="statIcon">
+📚
+</div>
+
+<strong id="summaryCount">
+0
+</strong>
+
+<span>
+الملخصات
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<div class="statIcon">
+📝
+</div>
+
+<strong id="testCount">
+0
+</strong>
+
+<span>
+الاختبارات
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<div class="statIcon">
+👨‍🎓
+</div>
+
+<strong id="studentCount">
+0
+</strong>
+
+<span>
+الطلاب
+</span>
+
+</div>
+
+
+</div>
+
+
+<!-- الإضافة السريعة -->
+
+<div class="panel">
+
+
+<div class="panelHead">
+
+<h3>
+⚡ إضافة سريعة
+</h3>
+
+<span>
+أنشئ محتوى جديدًا
+</span>
+
+</div>
+
+
+<div class="quickGrid">
+
+
+<button
+class="quick q1"
+onclick="openModal('lesson')">
+
+<div class="quickIcon">
+🎥
+</div>
+
+<h4>
+إضافة حصة
+</h4>
+
+<p>
+فيديو ودرس جديد
+</p>
+
+</button>
+
+
+<button
+class="quick q2"
+onclick="openModal('summary')">
+
+<div class="quickIcon">
+📚
+</div>
+
+<h4>
+إضافة ملخص
+</h4>
+
+<p>
+ملخص وقوانين
+</p>
+
+</button>
+
+
+<button
+class="quick q3"
+onclick="openModal('test')">
+
+<div class="quickIcon">
+📝
+</div>
+
+<h4>
+إضافة اختبار
+</h4>
+
+<p>
+اختبار للطلاب
+</p>
+
+</button>
+
+
+<button
+class="quick q4"
+onclick="openModal('room')">
+
+<div class="quickIcon">
+💬
+</div>
+
+<h4>
+إضافة روم
+</h4>
+
+<p>
+روم للدراسة
+</p>
+
+</button>
+
+
+</div>
+
+</div>
+
+
+<!-- أحدث المحتوى -->
+
+<div class="panel">
+
+
+<div class="panelHead">
+
+<h3>
+🆕 أحدث الحصص
+</h3>
+
+<span>
+المحتوى المضاف
+</span>
+
+</div>
+
+
+<div
+id="latestLessons"
+class="contentList">
+
+<div class="contentItem">
+
+<div class="contentIcon videoIcon">
+⏳
+</div>
+
+<div class="contentInfo">
+
+<h4>
+جاري تحميل الحصص...
+</h4>
+
+<p>
+انتظر قليلًا
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================
+     الحصص
+========================= -->
+
+<section
+id="lessons"
+class="dashboardSection"
+style="display:none">
+
+
+<div class="panel">
+
+
+<div class="panelHead">
+
+<h3>
+🎥 إدارة الحصص
+</h3>
+
+<button
+class="smallBtn edit"
+onclick="openModal('lesson')">
+
+➕ إضافة حصة
+
+</button>
+
+</div>
+
+
+<div class="search">
+
+<span>🔎</span>
+
+<input
+id="lessonSearch"
+placeholder="ابحث عن حصة..."
+oninput="filterLessons()">
+
+</div>
+
+
+<div
+id="allLessons"
+class="contentList">
+
+<div class="empty">
+جاري التحميل...
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     الملخصات
+========================= -->
+
+<section
+id="summaries"
+class="dashboardSection"
+style="display:none">
+
+
+<div class="panel">
+
+
+<div class="panelHead">
+
+<h3>
+📚 إدارة الملخصات
+</h3>
+
+<button
+class="smallBtn edit"
+onclick="openModal('summary')">
+
+➕ إضافة ملخص
+
+</button>
+
+</div>
+
+
+<div class="empty">
+
+قسم الملخصات جاهز للإضافة والتطوير 📚
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     الاختبارات
+========================= -->
+
+<section
+id="tests"
+class="dashboardSection"
+style="display:none">
+
+
+<div class="panel">
+
+
+<div class="panelHead">
+
+<h3>
+📝 إدارة الاختبارات
+</h3>
+
+<button
+class="smallBtn edit"
+onclick="openModal('test')">
+
+➕ إضافة اختبار
+
+</button>
+
+</div>
+
+
+<div class="empty">
+
+قسم الاختبارات جاهز لبناء الاختبارات التفاعلية 🚀
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     الرومات
+========================= -->
+
+<section
+id="rooms"
+class="dashboardSection"
+style="display:none">
+
+
+<div class="panel">
+
+
+<div class="panelHead">
+
+<h3>
+💬 إدارة الرومات
+</h3>
+
+<button
+class="smallBtn edit"
+onclick="openModal('room')">
+
+➕ إضافة روم
+
+</button>
+
+</div>
+
+
+<div class="empty">
+
+قسم الرومات جاهز 👥
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     الطلاب
+========================= -->
+
+<section
+id="students"
+class="dashboardSection"
+style="display:none">
+
+
+<div class="panel">
+
+
+<div class="panelHead">
+
+<h3>
+👨‍🎓 الطلاب
+</h3>
+
+<span>
+قائمة الطلاب
+</span>
+
+</div>
+
+
+<div
+class="studentBox"
+id="studentList">
+
+
+<div class="student">
+
+<div class="studentAvatar">
+👨‍🎓
+</div>
+
+<div class="studentInfo">
+
+<h4>
+طلاب المنصة
+</h4>
+
+<p>
+سيتم عرض الطلاب هنا
+</p>
+
+</div>
+
+<div class="online">
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     الإشعارات
+========================= -->
+
+<section
+id="notifications"
+class="dashboardSection"
+style="display:none">
+
+
+<div class="panel">
+
+
+<div class="panelHead">
+
+<h3>
+🔔 الإشعارات
+</h3>
+
+</div>
+
+
+<div class="empty">
+
+لا توجد إشعارات جديدة 🔔
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     الإعدادات
+========================= -->
+
+<section
+id="settings"
+class="dashboardSection"
+style="display:none">
+
+
+<div class="panel">
+
+
+<div class="panelHead">
+
+<h3>
+⚙️ إعدادات المنصة
+</h3>
+
+</div>
+
+
+<div class="empty">
+
+إعدادات المنصة ستتم إضافتها في المرحلة القادمة ⚙️
+
+</div>
+
+
+</div>
+
+</section>
+
+
+</main>
+
+</div>
+
+
+<!-- =========================
+     نافذة الإضافة
+========================= -->
+
+<div
+id="modal"
+class="modal">
+
+
+<div class="modalBox">
+
+
+<div class="modalHead">
+
+<h3 id="modalTitle">
+إضافة محتوى
+</h3>
+
+<button
+class="close"
+onclick="closeModal()">
+
+×
+
+</button>
+
+</div>
+
+
+<form
+id="contentForm"
+onsubmit="saveContent(event)">
+
+
+<input
+type="hidden"
+id="contentType">
+
+
+<div class="formGroup">
+
+<label>
+العنوان
+</label>
+
+<input
+id="title"
+required
+placeholder="مثال: قوانين الأسس">
+
+</div>
+
+
+<div class="formGroup">
+
+<label>
+الوحدة
+</label>
+
+<input
+id="unit"
+placeholder="مثال: الوحدة الأولى">
+
+</div>
+
+
+<div class="formGroup">
+
+<label>
+الوصف
+</label>
+
+<textarea
+id="description"
+placeholder="اكتب وصفًا مختصرًا..."></textarea>
+
+</div>
+
+
+<div
+id="videoField"
+class="formGroup">
+
+<label>
+رابط الفيديو
+</label>
+
+<input
+id="video_url"
+placeholder="ضع رابط الفيديو">
+
+</div>
+
+
+<div
+id="urlField"
+class="formGroup"
+style="display:none">
+
+<label>
+الرابط
+</label>
+
+<input
+id="url"
+placeholder="ضع الرابط">
+
+</div>
+
+
+<button
+class="saveBtn"
+type="submit">
+
+💾 حفظ المحتوى
+
+</button>
+
+
+</form>
+
+
+</div>
+
+</div>
+
+
+<script>
+
+
+/* =========================
+   إعداد Supabase
+========================= */
+
+const SUPABASE_URL =
+"https://vugnptbvkitokwqxulla.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable__WJDSewc6JN6XTM6czk11Q_lgON6Chj";
+
+
+/* =========================
+   التنقل
+========================= */
+
+function showSection(id,button){
+
+document
+.querySelectorAll(".dashboardSection")
+.forEach(section=>{
+
+section.style.display="none";
+
+});
+
+
+document
+.getElementById(id)
+.style.display="block";
+
+
+document
+.querySelectorAll(".menu button")
+.forEach(btn=>{
+
+btn.classList.remove("active");
+
+});
+
+
+button.classList.add("active");
+
+}
+
+
+/* =========================
+   نافذة الإضافة
+========================= */
+
+function openModal(type){
+
+const modal =
+document.getElementById("modal");
+
+const title =
+document.getElementById("modalTitle");
+
+const contentType =
+document.getElementById("contentType");
+
+const videoField =
+document.getElementById("videoField");
+
+const urlField =
+document.getElementById("urlField");
+
+
+contentType.value=type;
+
+videoField.style.display="none";
+
+urlField.style.display="none";
+
+
+if(type==="lesson"){
+
+title.innerText=
+"🎥 إضافة حصة";
+
+videoField.style.display="block";
+
+}
+
+else if(type==="summary"){
+
+title.innerText=
+"📚 إضافة ملخص";
+
+urlField.style.display="block";
+
+}
+
+else if(type==="test"){
+
+title.innerText=
+"📝 إضافة اختبار";
+
+urlField.style.display="block";
+
+}
+
+else if(type==="room"){
+
+title.innerText=
+"💬 إضافة روم";
+
+urlField.style.display="block";
+
+}
+
+
+modal.classList.add("show");
+
+}
+
+
+function closeModal(){
+
+document
+.getElementById("modal")
+.classList
+.remove("show");
+
+}
+
+
+/* =========================
+   حفظ المحتوى
+========================= */
+
+async function saveContent(event){
+
+event.preventDefault();
+
+
+const type =
+document.getElementById(
+"contentType"
+).value;
+
+
+const title =
+document.getElementById(
+"title"
+).value.trim();
+
+
+const unit =
+document.getElementById(
+"unit"
+).value.trim();
+
+
+const description =
+document.getElementById(
+"description"
+).value.trim();
+
+
+const video_url =
+document.getElementById(
+"video_url"
+).value.trim();
+
+
+const url =
+document.getElementById(
+"url"
+).value.trim();
+
+
+let table;
+
+
+let body;
+
+
+if(type==="lesson"){
+
+table="lessons";
+
+body={
+title,
+unit,
+description,
+video_url
+};
+
+}
+
+else if(type==="summary"){
+
+table="summaries";
+
+body={
+title,
+unit,
+description,
+url
+};
+
+}
+
+else if(type==="test"){
+
+table="tests";
+
+body={
+title,
+unit,
+description,
+url
+};
+
+}
+
+else if(type==="room"){
+
+table="rooms";
+
+body={
+title,
+description,
+url
+};
+
+}
+
+
+try{
+
+
+const response =
+await fetch(
+
+SUPABASE_URL+
+"/rest/v1/"+
+table,
+
+{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":
+"application/json",
+
+"apikey":
+SUPABASE_KEY,
+
+"Authorization":
+"Bearer "+SUPABASE_KEY,
+
+"Prefer":
+"return=minimal"
+
+},
+
+body:
+JSON.stringify(body)
+
+}
+
+);
+
+
+if(!response.ok){
+
+const error =
+await response.text();
+
+throw new Error(error);
+
+}
+
+
+alert(
+"تمت الإضافة بنجاح 🎉"
+);
+
+
+document
+.getElementById("contentForm")
+.reset();
+
+
+closeModal();
+
+
+loadDashboard();
+
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"حدث خطأ أثناء الحفظ ❌"
+);
+
+}
+
+}
+
+
+/* =========================
+   جلب جدول
+========================= */
+
+async function getTable(table){
+
+try{
+
+const response =
+await fetch(
+
+SUPABASE_URL+
+"/rest/v1/"+
+table+
+"?select=*",
+
+{
+
+headers:{
+
+"apikey":
+SUPABASE_KEY,
+
+"Authorization":
+"Bearer "+SUPABASE_KEY
+
+}
+
+}
+
+);
+
+
+if(!response.ok){
+
+return [];
+
+}
+
+
+return await response.json();
+
+
+}catch(error){
+
+console.error(error);
+
+return [];
+
+}
+
+}
+
+
+/* =========================
+   تحميل لوحة التحكم
+========================= */
+
+async function loadDashboard(){
+
+
+const lessons =
+await getTable("lessons");
+
+
+const summaries =
+await getTable("summaries");
+
+
+const tests =
+await getTable("tests");
+
+
+document
+.getElementById("lessonCount")
+.innerText =
+lessons.length;
+
+
+document
+.getElementById("summaryCount")
+.innerText =
+summaries.length;
+
+
+document
+.getElementById("testCount")
+.innerText =
+tests.length;
+
+
+/* أحدث الحصص */
+
+const latest =
+document
+.getElementById(
+"latestLessons"
+);
+
+
+latest.innerHTML="";
+
+
+if(!lessons.length){
+
+latest.innerHTML=`
+
+<div class="contentItem">
+
+<div class="contentIcon videoIcon">
+📚
+</div>
+
+<div class="contentInfo">
+
+<h4>
+لا توجد حصص بعد
+</h4>
+
+<p>
+ابدأ بإضافة أول حصة
+</p>
+
+</div>
+
+</div>
+
+`;
+
+}else{
+
+
+lessons
+.slice()
+.sort(
+(a,b)=>
+new Date(b.created_at||0)
+-
+new Date(a.created_at||0)
+)
+.slice(0,5)
+.forEach(lesson=>{
+
+latest.innerHTML+=`
+
+<div class="contentItem">
+
+<div class="contentIcon videoIcon">
+🎥
+</div>
+
+<div class="contentInfo">
+
+<h4>
+${safe(lesson.title)}
+</h4>
+
+<p>
+${safe(lesson.unit||"رياضيات")}
+</p>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* كل الحصص */
+
+renderLessons(lessons);
+
+}
+
+
+/* =========================
+   عرض الحصص
+========================= */
+
+let lessonsCache=[];
+
+
+function renderLessons(lessons){
+
+lessonsCache=lessons;
+
+
+const box =
+document.getElementById(
+"allLessons"
+);
+
+
+if(!lessons.length){
+
+box.innerHTML=`
+
+<div class="empty">
+لا توجد حصص حتى الآن 📚
+</div>
+
+`;
+
+return;
+
+}
+
+
+box.innerHTML="";
+
+
+lessons.forEach(lesson=>{
+
+box.innerHTML+=`
+
+<div
+class="contentItem"
+data-title="${safe(
+String(lesson.title||"")
+.toLowerCase()
+)}">
+
+
+<div class="contentIcon videoIcon">
+🎥
+</div>
+
+
+<div class="contentInfo">
+
+<h4>
+${safe(lesson.title)}
+</h4>
+
+<p>
+${safe(lesson.unit||"رياضيات")}
+${lesson.duration
+?
+" • "+safe(lesson.duration)
+:
+""}
+</p>
+
+</div>
+
+
+<div class="itemActions">
+
+${
+lesson.video_url
+?
+`
+<button
+class="smallBtn edit"
+onclick="window.open('${safe(lesson.video_url)}','_blank')">
+
+▶️ مشاهدة
+
+</button>
+`
+:
+""
+}
+
+
+<button
+class="smallBtn delete"
+onclick="deleteLesson('${lesson.id}')">
+
+🗑️ حذف
+
+</button>
+
+</div>
+
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* =========================
+   بحث الحصص
+========================= */
+
+function filterLessons(){
+
+const text =
+document
+.getElementById("lessonSearch")
+.value
+.toLowerCase()
+.trim();
+
+
+const filtered =
+lessonsCache.filter(lesson=>
+
+String(
+lesson.title||""
+)
+.toLowerCase()
+.includes(text)
+
+);
+
+
+renderLessons(filtered);
+
+}
+
+
+/* =========================
+   حذف حصة
+========================= */
+
+async function deleteLesson(id){
+
+if(!confirm(
+"هل أنت متأكد من حذف هذه الحصة؟"
+)){
+
+return;
+
+}
+
+
+try{
+
+const response =
+await fetch(
+
+SUPABASE_URL+
+"/rest/v1/lessons?id=eq."+
+encodeURIComponent(id),
+
+{
+
+method:"DELETE",
+
+headers:{
+
+"apikey":
+SUPABASE_KEY,
+
+"Authorization":
+"Bearer "+SUPABASE_KEY
+
+}
+
+}
+
+);
+
+
+if(!response.ok){
+
+throw new Error();
+
+}
+
+
+alert(
+"تم حذف الحصة 🗑️"
+);
+
+
+loadDashboard();
+
+
+}catch(error){
+
+alert(
+"تعذر حذف الحصة ❌"
+);
+
+}
+
+}
+
+
+/* =========================
+   حماية النصوص
+========================= */
+
+function safe(text){
+
+return String(text ?? "")
+
+.replaceAll("&","&amp;")
+
+.replaceAll("<","&lt;")
+
+.replaceAll(">","&gt;")
+
+.replaceAll('"',"&quot;")
+
+.replaceAll("'","&#039;");
+
+}
+
+
+/* =========================
+   التشغيل
+========================= */
+
+loadDashboard();
+
+</script>
+
+</body>
+</html>
