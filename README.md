@@ -64,6 +64,10 @@ button{
     cursor:pointer;
 }
 
+a{
+    -webkit-tap-highlight-color:transparent;
+}
+
 .page{
     position:relative;
     z-index:2;
@@ -299,7 +303,7 @@ header{
 
 
 /* =====================================================
-   زخارف متحركة
+   زخارف
 ===================================================== */
 
 .float{
@@ -363,9 +367,6 @@ header{
         rotate(180deg);
     }
 }
-
-
-/* النجوم */
 
 .star{
 
@@ -653,8 +654,16 @@ header{
     background:#087db5;
 }
 
-.type-no-video{
-    background:#7c4d17;
+.type-summary{
+    background:#7146a8;
+}
+
+.type-test{
+    background:#a66a19;
+}
+
+.type-room{
+    background:#16806b;
 }
 
 .resultInfo{
@@ -1111,97 +1120,153 @@ header{
     white-space:nowrap;
 }
 
-.noVideo{
-
-    margin-right:auto;
-
-    color:#ffca66;
-
-    font-size:7px;
-
-    padding:7px 8px;
-
-    border-radius:7px;
-
-    background:
-    rgba(220,150,40,.1);
-
-    white-space:nowrap;
-}
-
 
 /* =====================================================
-   الملخصات والاختبارات والرومات
+   بطاقات المحتوى الجديدة
 ===================================================== */
 
-.futureGrid{
+.contentGrid{
 
     display:grid;
 
     grid-template-columns:
     repeat(3,1fr);
 
-    gap:8px;
+    gap:9px;
 }
 
-.future{
+.contentCard{
 
-    padding:14px 8px;
+    padding:15px;
 
-    border-radius:14px;
-
-    text-align:center;
+    border-radius:15px;
 
     background:#0a1b36;
 
     border:
     1px solid
-    rgba(255,255,255,.07);
+    rgba(255,255,255,.08);
+
+    transition:.25s;
 }
 
-.futureIcon{
+.contentCard:hover{
+
+    transform:
+    translateY(-3px);
+
+    border-color:
+    rgba(100,210,255,.22);
+}
+
+.contentIcon{
+
+    width:39px;
+
+    height:39px;
+
+    border-radius:11px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
 
     font-size:17px;
+
+    margin-bottom:9px;
 }
 
-.future h3{
+.summaryIcon{
 
-    font-size:9px;
-
-    margin-top:7px;
+    background:
+    linear-gradient(
+        135deg,
+        #7549ad,
+        #a54fd0
+    );
 }
 
-.future p{
+.testIcon{
 
-    font-size:6px;
-
-    color:#7189a5;
-
-    margin-top:4px;
+    background:
+    linear-gradient(
+        135deg,
+        #98621b,
+        #d48b22
+    );
 }
 
-.empty{
+.roomIcon{
 
-    padding:22px;
+    background:
+    linear-gradient(
+        135deg,
+        #12705e,
+        #19a783
+    );
+}
 
-    border-radius:14px;
+.contentCard h3{
 
-    text-align:center;
+    font-size:10px;
 
-    color:#7188a4;
+    white-space:nowrap;
 
-    font-size:8px;
+    overflow:hidden;
 
-    background:#091931;
+    text-overflow:ellipsis;
+}
 
-    border:
-    1px dashed
-    #294563;
+.contentCard p{
+
+    color:#7189a6;
+
+    font-size:7px;
+
+    line-height:1.7;
+
+    margin-top:6px;
+
+    min-height:28px;
+}
+
+.contentButton{
+
+    display:inline-block;
+
+    margin-top:10px;
+
+    padding:7px 10px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+    color:white;
+
+    font-size:7px;
+}
+
+.summaryButton{
+
+    background:#7045a5;
+}
+
+.testButton{
+
+    background:#a66a19;
+}
+
+.roomButton{
+
+    background:#147861;
 }
 
 
 /* =====================================================
-   رسالة تحميل الحصص
+   حالة التحميل
 ===================================================== */
 
 .loading{
@@ -1217,7 +1282,33 @@ header{
 
 
 /* =====================================================
-   رسالة الخطأ
+   حالة عدم وجود محتوى
+===================================================== */
+
+.empty{
+
+    padding:22px;
+
+    border-radius:14px;
+
+    text-align:center;
+
+    color:#7188a4;
+
+    font-size:8px;
+
+    line-height:1.8;
+
+    background:#091931;
+
+    border:
+    1px dashed
+    #294563;
+}
+
+
+/* =====================================================
+   الخطأ
 ===================================================== */
 
 .errorBox{
@@ -1490,6 +1581,12 @@ footer{
         grid-template-columns:1fr;
     }
 
+    .contentGrid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
 }
 
 @media(max-width:650px){
@@ -1557,12 +1654,6 @@ footer{
         display:none;
     }
 
-    .futureGrid{
-
-        grid-template-columns:
-        repeat(3,1fr);
-    }
-
     .stats{
 
         gap:5px;
@@ -1621,14 +1712,11 @@ footer{
         padding:10px;
     }
 
-    .watch,
-    .noVideo{
+    .contentGrid{
 
-        font-size:6px;
-
-        padding:
-        6px 6px;
+        grid-template-columns:1fr;
     }
+
 }
 
 </style>
@@ -1748,13 +1836,11 @@ onclick="logoutStudent()">
 
 <section class="hero">
 
-
 <div class="heroBadge">
 
 🧮 منصة الرياضيات
 
 </div>
-
 
 <h1>
 
@@ -1764,14 +1850,13 @@ onclick="logoutStudent()">
 
 </h1>
 
-
 <p>
 
 تعلّم الرياضيات، شاهد الحصص،
-راجع الملخصات واختبر نفسك.
+راجع الملخصات، حل الامتحانات
+وادخل رومات الدراسة.
 
 </p>
-
 
 </section>
 
@@ -1789,7 +1874,7 @@ onclick="logoutStudent()">
 <input
 id="search"
 type="text"
-placeholder="ابحث عن حصة أو درس..."
+placeholder="ابحث عن حصة أو ملخص أو امتحان أو روم..."
 oninput="searchEverything()">
 
 </div>
@@ -1816,7 +1901,6 @@ class="resultList">
 ===================================================== -->
 
 <section class="section">
-
 
 <div class="sectionHead">
 
@@ -1921,7 +2005,6 @@ class="option c4">
 
 <section class="section">
 
-
 <div class="sectionHead">
 
 <h2>
@@ -1937,21 +2020,17 @@ class="option c4">
 
 <div class="challenge">
 
-
 <div class="challengeTag">
 🧠 سؤال رياضيات
 </div>
-
 
 <h3>
 هل تستطيع حل هذه المسألة؟
 </h3>
 
-
 <div class="question">
 8 × 7 + 4 = ؟
 </div>
-
 
 <button
 onclick="challengeAnswer()">
@@ -1959,7 +2038,6 @@ onclick="challengeAnswer()">
 عرض الإجابة
 
 </button>
-
 
 </div>
 
@@ -1971,7 +2049,6 @@ onclick="challengeAnswer()">
 ===================================================== -->
 
 <section class="section">
-
 
 <div class="sectionHead">
 
@@ -2041,7 +2118,6 @@ onclick="challengeAnswer()">
 class="section"
 id="lessons">
 
-
 <div class="sectionHead">
 
 <h2>
@@ -2059,11 +2135,9 @@ id="lessons">
 id="lessonsContainer"
 class="lessonList">
 
-
 <div class="loading">
 ⏳ جاري تحميل الحصص...
 </div>
-
 
 </div>
 
@@ -2078,69 +2152,26 @@ class="lessonList">
 class="section"
 id="summaries">
 
-
 <div class="sectionHead">
 
 <h2>
 📚 الملخصات
 </h2>
 
-</div>
-
-
-<div class="futureGrid">
-
-
-<div class="future">
-
-<div class="futureIcon">
-📖
-</div>
-
-<h3>
-ملخصات الدروس
-</h3>
-
-<p>
-القوانين والنقاط المهمة
-</p>
+<span>
+ما يضيفه الأستاذ
+</span>
 
 </div>
 
 
-<div class="future">
+<div
+id="summariesContainer"
+class="contentGrid">
 
-<div class="futureIcon">
-⚡
+<div class="loading">
+⏳ جاري تحميل الملخصات...
 </div>
-
-<h3>
-مراجعة سريعة
-</h3>
-
-<p>
-معلومات مهمة
-</p>
-
-</div>
-
-
-<div class="future">
-
-<div class="futureIcon">
-📌
-</div>
-
-<h3>
-المفضلة
-</h3>
-
-<p>
-للدراسة لاحقًا
-</p>
-
-</div>
-
 
 </div>
 
@@ -2155,19 +2186,26 @@ id="summaries">
 class="section"
 id="tests">
 
-
 <div class="sectionHead">
 
 <h2>
-📝 الاختبارات
+📝 الامتحانات
 </h2>
+
+<span>
+ما يضيفه الأستاذ
+</span>
 
 </div>
 
 
-<div class="empty">
+<div
+id="testsContainer"
+class="contentGrid">
 
-الاختبارات التفاعلية ستظهر هنا 🚀
+<div class="loading">
+⏳ جاري تحميل الامتحانات...
+</div>
 
 </div>
 
@@ -2182,19 +2220,26 @@ id="tests">
 class="section"
 id="rooms">
 
-
 <div class="sectionHead">
 
 <h2>
 💬 الرومات
 </h2>
 
+<span>
+رومات الدراسة
+</span>
+
 </div>
 
 
-<div class="empty">
+<div
+id="roomsContainer"
+class="contentGrid">
 
-رومات الدراسة ستظهر هنا 👥
+<div class="loading">
+⏳ جاري تحميل الرومات...
+</div>
 
 </div>
 
@@ -2247,7 +2292,6 @@ onclick="closeStudentLogin()">
 <div
 id="studentMessage"
 class="message">
-
 </div>
 
 
@@ -2297,10 +2341,6 @@ onclick="switchAuthMode()">
 </div>
 
 
-<!-- =====================================================
-     JavaScript
-===================================================== -->
-
 <script>
 
 
@@ -2316,16 +2356,19 @@ const SUPABASE_KEY =
 
 
 /* =====================================================
-   متغيرات
+   المتغيرات
 ===================================================== */
 
 let allLessons = [];
+let allSummaries = [];
+let allTests = [];
+let allRooms = [];
 
 let isSignupMode = false;
 
 
 /* =====================================================
-   دالة الطلب إلى Supabase
+   طلب Supabase
 ===================================================== */
 
 async function supabaseRequest(
@@ -2430,6 +2473,35 @@ function safe(text){
 
 
 /* =====================================================
+   رابط المحتوى
+===================================================== */
+
+function getContentUrl(item){
+
+    return String(
+
+        item.url ||
+
+        item.file_url ||
+
+        item.pdf_url ||
+
+        item.link ||
+
+        item.room_url ||
+
+        item.test_url ||
+
+        item.video_url ||
+
+        ""
+
+    ).trim();
+
+}
+
+
+/* =====================================================
    تحميل الحصص
 ===================================================== */
 
@@ -2450,206 +2522,613 @@ async function loadLessons(){
     `;
 
 
-    try{
+    const lessons =
+    await getTable("lessons");
 
-        const lessons =
-        await getTable("lessons");
 
+    allLessons =
+    Array.isArray(lessons)
+    ? lessons
+    : [];
 
-        allLessons =
-        Array.isArray(lessons)
-        ? lessons
-        : [];
 
+    allLessons.sort(
 
-        if(!allLessons.length){
+        (a,b)=>
 
-            box.innerHTML = `
+        new Date(
+            b.created_at || 0
+        )
 
-                <div class="empty">
+        -
 
-                    📚 لا توجد حصص حتى الآن.
+        new Date(
+            a.created_at || 0
+        )
 
-                    <br><br>
+    );
 
-                    عندما يضيف الأستاذ أول حصة
-                    ستظهر هنا تلقائيًا.
 
-                </div>
-
-            `;
-
-            return;
-
-        }
-
-
-        /* ترتيب الأحدث أولًا */
-
-        allLessons.sort(
-
-            (a,b)=>
-
-            new Date(
-                b.created_at || 0
-            )
-
-            -
-
-            new Date(
-                a.created_at || 0
-            )
-
-        );
-
-
-        box.innerHTML = "";
-
-
-        allLessons.forEach(
-            function(lesson){
-
-                const item =
-                document.createElement(
-                    "div"
-                );
-
-
-                item.className =
-                "lesson";
-
-
-                const title =
-                lesson.title ||
-                "حصة رياضيات";
-
-
-                const unit =
-                lesson.unit ||
-                "رياضيات";
-
-
-                const duration =
-                lesson.duration
-                ? " • " +
-                  lesson.duration
-                : "";
-
-
-                const videoUrl =
-                String(
-                    lesson.video_url ||
-                    ""
-                ).trim();
-
-
-                const hasVideo =
-                videoUrl !== "";
-
-
-                let action = "";
-
-
-                if(hasVideo){
-
-                    action = `
-
-                        <a
-                            class="watch"
-                            href="${safe(videoUrl)}"
-                            target="_blank"
-                            rel="noopener noreferrer">
-
-                            ▶️ مشاهدة
-
-                        </a>
-
-                    `;
-
-                }else{
-
-                    action = `
-
-                        <span class="noVideo">
-
-                            ⚠️ لا يوجد فيديو
-
-                        </span>
-
-                    `;
-
-                }
-
-
-                item.innerHTML = `
-
-                    <div
-                        class="lessonIcon
-                        ${hasVideo
-                            ? ""
-                            : "noVideoIcon"}">
-
-                        ${hasVideo
-                            ? "🎥"
-                            : "⚠️"}
-
-                    </div>
-
-
-                    <div class="lessonInfo">
-
-                        <h3>
-                            ${safe(title)}
-                        </h3>
-
-                        <p>
-
-                            ${safe(unit)}
-
-                            ${safe(duration)}
-
-                        </p>
-
-                    </div>
-
-
-                    ${action}
-
-                `;
-
-
-                box.appendChild(item);
-
-            }
-        );
-
-
-    }catch(error){
-
-        console.error(error);
-
+    if(!allLessons.length){
 
         box.innerHTML = `
 
-            <div class="errorBox">
+            <div class="empty">
 
-                ⚠️ حدث خطأ أثناء تحميل الحصص.
+                📚 لا توجد حصص حتى الآن.
 
-                <br>
+                <br><br>
 
-                تأكد من اتصال الموقع بقاعدة البيانات.
+                عندما يضيف الأستاذ أول حصة
+                ستظهر هنا تلقائيًا.
 
             </div>
 
         `;
 
+        return;
+
     }
+
+
+    box.innerHTML = "";
+
+
+    allLessons.forEach(
+        function(lesson){
+
+            const item =
+            document.createElement(
+                "div"
+            );
+
+
+            item.className =
+            "lesson";
+
+
+            const title =
+            lesson.title ||
+            "حصة رياضيات";
+
+
+            const unit =
+            lesson.unit ||
+            "رياضيات";
+
+
+            const duration =
+            lesson.duration
+            ? " • " +
+              lesson.duration
+            : "";
+
+
+            const videoUrl =
+            String(
+                lesson.video_url ||
+                lesson.url ||
+                ""
+            ).trim();
+
+
+            const hasVideo =
+            videoUrl !== "";
+
+
+            let action = "";
+
+
+            if(hasVideo){
+
+                action = `
+
+                    <a
+                        class="watch"
+                        href="${safe(videoUrl)}"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        ▶️ مشاهدة
+
+                    </a>
+
+                `;
+
+            }else{
+
+                action = `
+
+                    <span
+                        class="watch"
+                        style="
+                        color:#ffca66;
+                        background:rgba(220,150,40,.1);
+                        ">
+
+                        ⚠️ لا يوجد فيديو
+
+                    </span>
+
+                `;
+
+            }
+
+
+            item.innerHTML = `
+
+                <div
+                    class="lessonIcon
+                    ${hasVideo
+                        ? ""
+                        : "noVideoIcon"}">
+
+                    ${hasVideo
+                        ? "🎥"
+                        : "⚠️"}
+
+                </div>
+
+
+                <div class="lessonInfo">
+
+                    <h3>
+                        ${safe(title)}
+                    </h3>
+
+                    <p>
+
+                        ${safe(unit)}
+
+                        ${safe(duration)}
+
+                    </p>
+
+                </div>
+
+
+                ${action}
+
+            `;
+
+
+            box.appendChild(item);
+
+        }
+    );
 
 }
 
 
 /* =====================================================
-   البحث في الحصص
+   تحميل الملخصات
+===================================================== */
+
+async function loadSummaries(){
+
+    const box =
+    document.getElementById(
+        "summariesContainer"
+    );
+
+
+    const data =
+    await getTable("summaries");
+
+
+    allSummaries =
+    Array.isArray(data)
+    ? data
+    : [];
+
+
+    allSummaries.sort(
+
+        (a,b)=>
+
+        new Date(
+            b.created_at || 0
+        )
+
+        -
+
+        new Date(
+            a.created_at || 0
+        )
+
+    );
+
+
+    if(!allSummaries.length){
+
+        box.innerHTML = `
+
+            <div class="empty">
+
+                📚 لا توجد ملخصات حتى الآن.
+
+                <br>
+
+                ستظهر هنا تلقائيًا عندما يضيف الأستاذ ملخصًا.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    box.innerHTML = "";
+
+
+    allSummaries.forEach(
+        function(summary){
+
+            const url =
+            getContentUrl(summary);
+
+
+            const title =
+            summary.title ||
+            "ملخص الدرس";
+
+
+            const description =
+            summary.description ||
+            summary.unit ||
+            "ملخص من الأستاذ";
+
+
+            const card =
+            document.createElement(
+                "div"
+            );
+
+
+            card.className =
+            "contentCard";
+
+
+            card.innerHTML = `
+
+                <div class="contentIcon summaryIcon">
+                    📚
+                </div>
+
+                <h3>
+                    ${safe(title)}
+                </h3>
+
+                <p>
+                    ${safe(description)}
+                </p>
+
+                ${
+                    url
+                    ?
+                    `
+                    <a
+                        class="contentButton summaryButton"
+                        href="${safe(url)}"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        📖 فتح الملخص
+
+                    </a>
+                    `
+                    :
+                    `
+                    <span
+                        class="contentButton summaryButton"
+                        style="opacity:.55">
+
+                        ⚠️ الملف غير متوفر
+
+                    </span>
+                    `
+                }
+
+            `;
+
+
+            box.appendChild(card);
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   تحميل الامتحانات
+===================================================== */
+
+async function loadTests(){
+
+    const box =
+    document.getElementById(
+        "testsContainer"
+    );
+
+
+    const data =
+    await getTable("tests");
+
+
+    allTests =
+    Array.isArray(data)
+    ? data
+    : [];
+
+
+    allTests.sort(
+
+        (a,b)=>
+
+        new Date(
+            b.created_at || 0
+        )
+
+        -
+
+        new Date(
+            a.created_at || 0
+        )
+
+    );
+
+
+    if(!allTests.length){
+
+        box.innerHTML = `
+
+            <div class="empty">
+
+                📝 لا توجد امتحانات حتى الآن.
+
+                <br>
+
+                ستظهر هنا تلقائيًا عندما يضيف الأستاذ امتحانًا.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    box.innerHTML = "";
+
+
+    allTests.forEach(
+        function(test){
+
+            const url =
+            getContentUrl(test);
+
+
+            const title =
+            test.title ||
+            "امتحان رياضيات";
+
+
+            const description =
+            test.description ||
+            test.unit ||
+            "اختبار من إعداد الأستاذ";
+
+
+            const card =
+            document.createElement(
+                "div"
+            );
+
+
+            card.className =
+            "contentCard";
+
+
+            card.innerHTML = `
+
+                <div class="contentIcon testIcon">
+                    📝
+                </div>
+
+                <h3>
+                    ${safe(title)}
+                </h3>
+
+                <p>
+                    ${safe(description)}
+                </p>
+
+                ${
+                    url
+                    ?
+                    `
+                    <a
+                        class="contentButton testButton"
+                        href="${safe(url)}"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        📝 فتح الامتحان
+
+                    </a>
+                    `
+                    :
+                    `
+                    <span
+                        class="contentButton testButton"
+                        style="opacity:.55">
+
+                        ⚠️ الرابط غير متوفر
+
+                    </span>
+                    `
+                }
+
+            `;
+
+
+            box.appendChild(card);
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   تحميل الرومات
+===================================================== */
+
+async function loadRooms(){
+
+    const box =
+    document.getElementById(
+        "roomsContainer"
+    );
+
+
+    const data =
+    await getTable("rooms");
+
+
+    allRooms =
+    Array.isArray(data)
+    ? data
+    : [];
+
+
+    allRooms.sort(
+
+        (a,b)=>
+
+        new Date(
+            b.created_at || 0
+        )
+
+        -
+
+        new Date(
+            a.created_at || 0
+        )
+
+    );
+
+
+    if(!allRooms.length){
+
+        box.innerHTML = `
+
+            <div class="empty">
+
+                💬 لا توجد رومات حتى الآن.
+
+                <br>
+
+                ستظهر هنا تلقائيًا عندما يضيف الأستاذ رومًا.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    box.innerHTML = "";
+
+
+    allRooms.forEach(
+        function(room){
+
+            const url =
+            getContentUrl(room);
+
+
+            const title =
+            room.title ||
+            room.name ||
+            "روم دراسة";
+
+
+            const description =
+            room.description ||
+            room.subject ||
+            "روم للدراسة والمناقشة";
+
+
+            const card =
+            document.createElement(
+                "div"
+            );
+
+
+            card.className =
+            "contentCard";
+
+
+            card.innerHTML = `
+
+                <div class="contentIcon roomIcon">
+                    💬
+                </div>
+
+                <h3>
+                    ${safe(title)}
+                </h3>
+
+                <p>
+                    ${safe(description)}
+                </p>
+
+                ${
+                    url
+                    ?
+                    `
+                    <a
+                        class="contentButton roomButton"
+                        href="${safe(url)}"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        💬 دخول الروم
+
+                    </a>
+                    `
+                    :
+                    `
+                    <span
+                        class="contentButton roomButton"
+                        style="opacity:.55">
+
+                        ⚠️ الرابط غير متوفر
+
+                    </span>
+                    `
+                }
+
+            `;
+
+
+            box.appendChild(card);
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   البحث في كل محتوى المنصة
 ===================================================== */
 
 function searchEverything(){
@@ -2694,37 +3173,131 @@ function searchEverything(){
     .add("show");
 
 
-    const results =
-    allLessons.filter(
-        function(lesson){
-
-            const title =
-            String(
-                lesson.title || ""
-            ).toLowerCase();
+    const results = [];
 
 
-            const description =
-            String(
-                lesson.description || ""
-            ).toLowerCase();
+    /* الحصص */
+
+    allLessons.forEach(
+        function(item){
+
+            if(matchesSearch(item,text)){
+
+                results.push({
+
+                    type:"lesson",
+
+                    title:
+                    item.title ||
+                    "حصة رياضيات",
+
+                    description:
+                    item.unit ||
+                    item.description ||
+                    "رياضيات",
+
+                    url:
+                    item.video_url ||
+                    item.url ||
+                    ""
+
+                });
+
+            }
+
+        }
+    );
 
 
-            const unit =
-            String(
-                lesson.unit || ""
-            ).toLowerCase();
+    /* الملخصات */
+
+    allSummaries.forEach(
+        function(item){
+
+            if(matchesSearch(item,text)){
+
+                results.push({
+
+                    type:"summary",
+
+                    title:
+                    item.title ||
+                    "ملخص الدرس",
+
+                    description:
+                    item.description ||
+                    item.unit ||
+                    "ملخص",
+
+                    url:
+                    getContentUrl(item)
+
+                });
+
+            }
+
+        }
+    );
 
 
-            return (
+    /* الامتحانات */
 
-                title.includes(text) ||
+    allTests.forEach(
+        function(item){
 
-                description.includes(text) ||
+            if(matchesSearch(item,text)){
 
-                unit.includes(text)
+                results.push({
 
-            );
+                    type:"test",
+
+                    title:
+                    item.title ||
+                    "امتحان",
+
+                    description:
+                    item.description ||
+                    item.unit ||
+                    "امتحان",
+
+                    url:
+                    getContentUrl(item)
+
+                });
+
+            }
+
+        }
+    );
+
+
+    /* الرومات */
+
+    allRooms.forEach(
+        function(item){
+
+            if(matchesSearch(item,text)){
+
+                results.push({
+
+                    type:"room",
+
+                    title:
+                    item.title ||
+                    item.name ||
+                    "روم",
+
+                    description:
+                    item.description ||
+                    item.subject ||
+                    "روم دراسة",
+
+                    url:
+                    getContentUrl(item)
+
+                });
+
+            }
 
         }
     );
@@ -2736,7 +3309,7 @@ function searchEverything(){
 
             <div class="empty">
 
-                🔍 لم نجد حصة مطابقة لبحثك.
+                🔍 لم نجد نتيجة مطابقة لبحثك.
 
             </div>
 
@@ -2751,21 +3324,17 @@ function searchEverything(){
 
 
     results.forEach(
-        function(lesson){
+        function(item){
 
-            const videoUrl =
+            const hasUrl =
             String(
-                lesson.video_url || ""
-            ).trim();
-
-
-            const hasVideo =
-            videoUrl !== "";
+                item.url || ""
+            ).trim() !== "";
 
 
             const result =
             document.createElement(
-                hasVideo
+                hasUrl
                 ? "a"
                 : "div"
             );
@@ -2775,10 +3344,10 @@ function searchEverything(){
             "result";
 
 
-            if(hasVideo){
+            if(hasUrl){
 
                 result.href =
-                videoUrl;
+                item.url;
 
                 result.target =
                 "_blank";
@@ -2789,17 +3358,44 @@ function searchEverything(){
             }
 
 
+            let icon = "📚";
+            let iconClass = "type-summary";
+            let typeName = "ملخص";
+
+
+            if(item.type === "lesson"){
+
+                icon = "🎥";
+                iconClass = "type-video";
+                typeName = "حصة";
+
+            }
+
+
+            if(item.type === "test"){
+
+                icon = "📝";
+                iconClass = "type-test";
+                typeName = "امتحان";
+
+            }
+
+
+            if(item.type === "room"){
+
+                icon = "💬";
+                iconClass = "type-room";
+                typeName = "روم";
+
+            }
+
+
             result.innerHTML = `
 
                 <div
-                    class="resultIcon
-                    ${hasVideo
-                        ? "type-video"
-                        : "type-no-video"}">
+                    class="resultIcon ${iconClass}">
 
-                    ${hasVideo
-                        ? "🎥"
-                        : "⚠️"}
+                    ${icon}
 
                 </div>
 
@@ -2807,26 +3403,14 @@ function searchEverything(){
                 <div class="resultInfo">
 
                     <h3>
-                        ${safe(
-                            lesson.title ||
-                            "حصة رياضيات"
-                        )}
+                        ${safe(item.title)}
                     </h3>
 
                     <p>
 
-                        ${safe(
-                            lesson.unit ||
-                            "رياضيات"
-                        )}
-
+                        ${typeName}
                         •
-
-                        ${
-                            hasVideo
-                            ? "يوجد فيديو"
-                            : "لا يوجد فيديو"
-                        }
+                        ${safe(item.description)}
 
                     </p>
 
@@ -2836,6 +3420,49 @@ function searchEverything(){
 
 
             list.appendChild(result);
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   مطابقة البحث
+===================================================== */
+
+function matchesSearch(
+    item,
+    text
+){
+
+    const values = [
+
+        item.title,
+
+        item.name,
+
+        item.description,
+
+        item.unit,
+
+        item.subject,
+
+        item.lesson,
+
+        item.chapter
+
+    ];
+
+
+    return values.some(
+        function(value){
+
+            return String(
+                value || ""
+            )
+            .toLowerCase()
+            .includes(text);
 
         }
     );
@@ -2897,7 +3524,7 @@ function closeStudentLogin(){
 
 
 /* =====================================================
-   تغيير وضع تسجيل الدخول / إنشاء الحساب
+   تغيير وضع الدخول
 ===================================================== */
 
 function switchAuthMode(){
@@ -2998,7 +3625,7 @@ function updateAuthWindow(){
 
 
 /* =====================================================
-   رسالة نافذة الطالب
+   الرسائل
 ===================================================== */
 
 function showAuthMessage(
@@ -3130,6 +3757,7 @@ async function studentLogin(){
             "info"
         );
 
+
         try{
 
             const response =
@@ -3141,16 +3769,6 @@ async function studentLogin(){
                 {
 
                     method:"POST",
-
-                    headers:{
-
-                        "apikey":
-                        SUPABASE_KEY,
-
-                        "Content-Type":
-                        "application/json"
-
-                    },
 
                     body:
                     JSON.stringify({
@@ -3172,19 +3790,11 @@ async function studentLogin(){
 
             if(!response.ok){
 
-                console.error(
-                    data
-                );
-
-
                 let message =
                 "تعذر إنشاء الحساب.";
 
 
-                if(
-                    data &&
-                    data.msg
-                ){
+                if(data && data.msg){
 
                     message =
                     data.msg;
@@ -3259,6 +3869,7 @@ async function studentLogin(){
 
             console.error(error);
 
+
             showAuthMessage(
                 "❌ حدث خطأ في الاتصال. حاول مرة أخرى.",
                 "error"
@@ -3296,16 +3907,6 @@ async function studentLogin(){
 
                 method:"POST",
 
-                headers:{
-
-                    "apikey":
-                    SUPABASE_KEY,
-
-                    "Content-Type":
-                    "application/json"
-
-                },
-
                 body:
                 JSON.stringify({
 
@@ -3325,11 +3926,6 @@ async function studentLogin(){
 
 
         if(!response.ok){
-
-            console.error(
-                data
-            );
-
 
             showAuthMessage(
                 "❌ البريد الإلكتروني أو كلمة المرور غير صحيحة.",
@@ -3386,7 +3982,7 @@ async function studentLogin(){
 
 
 /* =====================================================
-   حفظ جلسة الطالب
+   حفظ الجلسة
 ===================================================== */
 
 function saveSession(data){
@@ -3398,9 +3994,7 @@ function saveSession(data){
     }
 
 
-    if(
-        data.access_token
-    ){
+    if(data.access_token){
 
         localStorage.setItem(
             "minbar_access_token",
@@ -3410,9 +4004,7 @@ function saveSession(data){
     }
 
 
-    if(
-        data.refresh_token
-    ){
+    if(data.refresh_token){
 
         localStorage.setItem(
             "minbar_refresh_token",
@@ -3442,7 +4034,7 @@ function saveSession(data){
 
 
 /* =====================================================
-   قراءة المستخدم الحالي
+   المستخدم المحفوظ
 ===================================================== */
 
 function getSavedUser(){
@@ -3477,7 +4069,7 @@ function getSavedUser(){
 
 
 /* =====================================================
-   تحديث واجهة الطالب
+   تحديث واجهة المستخدم
 ===================================================== */
 
 function updateUserInterface(
@@ -3571,9 +4163,6 @@ async function logoutStudent(){
 
                     headers:{
 
-                        "apikey":
-                        SUPABASE_KEY,
-
                         "Authorization":
                         "Bearer " +
                         accessToken
@@ -3621,7 +4210,7 @@ async function logoutStudent(){
 
 
 /* =====================================================
-   استعادة جلسة الطالب
+   استعادة الجلسة
 ===================================================== */
 
 async function restoreSession(){
@@ -3660,9 +4249,6 @@ async function restoreSession(){
                 method:"GET",
 
                 headers:{
-
-                    "apikey":
-                    SUPABASE_KEY,
 
                     "Authorization":
                     "Bearer " +
@@ -3704,6 +4290,7 @@ async function restoreSession(){
 
         console.error(error);
 
+
         updateUserInterface(
             savedUser
         );
@@ -3714,7 +4301,7 @@ async function restoreSession(){
 
 
 /* =====================================================
-   إغلاق النافذة عند الضغط خارجها
+   إغلاق النافذة بالخارج
 ===================================================== */
 
 document
@@ -3752,6 +4339,12 @@ async function startSite(){
     await Promise.all([
 
         loadLessons(),
+
+        loadSummaries(),
+
+        loadTests(),
+
+        loadRooms(),
 
         restoreSession()
 
