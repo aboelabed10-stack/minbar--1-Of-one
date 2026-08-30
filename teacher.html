@@ -1,0 +1,2933 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>منبر ون | لوحة الأستاذ</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Tahoma,Arial,sans-serif;
+    background:
+    radial-gradient(circle at 85% 5%,#1c326b 0,transparent 30%),
+    radial-gradient(circle at 10% 80%,#321b59 0,transparent 30%),
+    #050b1d;
+    color:#fff;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+button,
+input,
+textarea,
+select{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+/* =========================
+   الخلفية المتحركة
+========================= */
+
+.math-bg{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:0;
+}
+
+.math-item{
+    position:absolute;
+    top:-70px;
+    color:rgba(255,255,255,.16);
+    font-size:25px;
+    animation:fall linear infinite;
+}
+
+.math-item:nth-child(1){
+    left:5%;
+    animation-duration:12s;
+    animation-delay:0s;
+}
+
+.math-item:nth-child(2){
+    left:14%;
+    animation-duration:16s;
+    animation-delay:3s;
+}
+
+.math-item:nth-child(3){
+    left:27%;
+    animation-duration:13s;
+    animation-delay:1s;
+}
+
+.math-item:nth-child(4){
+    left:40%;
+    animation-duration:17s;
+    animation-delay:5s;
+}
+
+.math-item:nth-child(5){
+    left:55%;
+    animation-duration:14s;
+    animation-delay:2s;
+}
+
+.math-item:nth-child(6){
+    left:68%;
+    animation-duration:18s;
+    animation-delay:4s;
+}
+
+.math-item:nth-child(7){
+    left:80%;
+    animation-duration:13s;
+    animation-delay:1s;
+}
+
+.math-item:nth-child(8){
+    left:92%;
+    animation-duration:16s;
+    animation-delay:6s;
+}
+
+@keyframes fall{
+    0%{
+        transform:translateY(-80px) rotate(0deg);
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* =========================
+   شاشة كلمة المرور
+========================= */
+
+.lock-screen{
+    position:fixed;
+    inset:0;
+    z-index:999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+
+    background:
+    radial-gradient(circle at 50% 20%,#203b78 0,transparent 35%),
+    #04091a;
+}
+
+.lock-card{
+    width:100%;
+    max-width:420px;
+    padding:35px 25px;
+    border-radius:28px;
+
+    background:
+    linear-gradient(145deg,rgba(17,35,72,.98),rgba(30,20,65,.98));
+
+    border:2px solid rgba(89,210,255,.25);
+
+    box-shadow:
+    0 30px 100px rgba(0,0,0,.65),
+    0 0 45px rgba(40,180,255,.08);
+
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.lock-card:before{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    background:#19c9ff;
+    filter:blur(100px);
+    opacity:.08;
+    top:-80px;
+    right:-80px;
+}
+
+.lock-icon{
+    width:82px;
+    height:82px;
+    margin:0 auto 18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:24px;
+
+    background:
+    linear-gradient(135deg,#08a9df,#7652df);
+
+    font-size:37px;
+
+    box-shadow:
+    0 12px 35px rgba(0,0,0,.35),
+    0 0 25px rgba(70,190,255,.18);
+}
+
+.lock-card h1{
+    font-size:22px;
+    margin-bottom:8px;
+}
+
+.lock-card p{
+    color:#8ca1be;
+    font-size:9px;
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+.pin-display{
+    height:54px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:9px;
+    margin-bottom:18px;
+}
+
+.pin-dot{
+    width:13px;
+    height:13px;
+    border-radius:50%;
+    background:#263c62;
+    border:1px solid #426086;
+    transition:.2s;
+}
+
+.pin-dot.active{
+    background:#55dcff;
+    box-shadow:0 0 14px #55dcff;
+}
+
+.pin-input{
+    width:100%;
+    height:48px;
+
+    background:#07152f;
+    border:1px solid #ffffff18;
+    border-radius:13px;
+
+    color:#fff;
+    text-align:center;
+    font-size:20px;
+    letter-spacing:8px;
+
+    outline:none;
+}
+
+.pin-input:focus{
+    border-color:#48d5ff;
+    box-shadow:0 0 0 3px #48d5ff12;
+}
+
+.unlock-btn{
+    width:100%;
+    height:48px;
+    margin-top:12px;
+
+    border:0;
+    border-radius:13px;
+
+    color:#fff;
+    font-size:11px;
+    font-weight:bold;
+
+    background:
+    linear-gradient(135deg,#079fd4,#7650df);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+
+.unlock-btn:hover{
+    transform:translateY(-2px);
+}
+
+.lock-error{
+    min-height:20px;
+    margin-top:12px;
+    color:#ff8b9a;
+    font-size:8px;
+}
+
+/* =========================
+   التطبيق
+========================= */
+
+#teacherApp{
+    display:none;
+    position:relative;
+    z-index:2;
+}
+
+/* =========================
+   Header
+========================= */
+
+header{
+    height:75px;
+
+    position:sticky;
+    top:0;
+    z-index:50;
+
+    background:rgba(5,13,32,.92);
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid #ffffff12;
+}
+
+.header{
+    width:92%;
+    max-width:1150px;
+    height:100%;
+    margin:auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo-icon{
+    width:43px;
+    height:43px;
+
+    border-radius:13px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+    linear-gradient(135deg,#08b7e8,#7651df);
+
+    font-size:21px;
+    font-weight:bold;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.3);
+}
+
+.logo-text{
+    font-size:15px;
+    font-weight:bold;
+}
+
+.logo-text small{
+    display:block;
+    margin-top:3px;
+    color:#6f88a9;
+    font-size:6px;
+}
+
+.header-actions{
+    display:flex;
+    gap:7px;
+}
+
+.home-btn,
+.logout-btn{
+    border:1px solid #ffffff15;
+    color:#fff;
+    text-decoration:none;
+
+    padding:9px 12px;
+    border-radius:10px;
+
+    font-size:8px;
+
+    background:#0d1e3c;
+}
+
+.logout-btn{
+    background:linear-gradient(135deg,#71384d,#934461);
+}
+
+/* =========================
+   الصفحة
+========================= */
+
+.container{
+    width:92%;
+    max-width:1150px;
+    margin:auto;
+}
+
+.hero{
+    margin-top:25px;
+
+    padding:27px 23px;
+
+    border-radius:24px;
+
+    background:
+    linear-gradient(135deg,
+    rgba(12,57,93,.95),
+    rgba(48,25,82,.95));
+
+    border:1px solid #5acfff28;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.22);
+}
+
+.badge{
+    display:inline-block;
+
+    padding:6px 10px;
+
+    border-radius:20px;
+
+    background:#21c9ff14;
+    border:1px solid #21c9ff25;
+
+    color:#61dcff;
+
+    font-size:8px;
+}
+
+.hero h1{
+    font-size:25px;
+    margin-top:10px;
+}
+
+.hero h1 span{
+    color:#55d9ff;
+}
+
+.hero p{
+    margin-top:7px;
+
+    color:#94abc7;
+
+    font-size:9px;
+    line-height:1.9;
+}
+
+/* =========================
+   الإحصائيات
+========================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:9px;
+
+    margin-top:18px;
+}
+
+.stat{
+    padding:16px 10px;
+
+    border-radius:15px;
+
+    background:#0a1b36;
+
+    border:1px solid #ffffff12;
+
+    text-align:center;
+}
+
+.stat-icon{
+    font-size:18px;
+    margin-bottom:7px;
+}
+
+.stat strong{
+    display:block;
+    font-size:18px;
+}
+
+.stat span{
+    display:block;
+
+    color:#7188a6;
+
+    font-size:7px;
+
+    margin-top:5px;
+}
+
+/* =========================
+   الأقسام
+========================= */
+
+.section{
+    margin-top:24px;
+}
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:11px;
+}
+
+.section-head h2{
+    font-size:15px;
+}
+
+.section-head span{
+    color:#7087a4;
+    font-size:7px;
+}
+
+/* =========================
+   لوحة الإدارة
+========================= */
+
+.admin-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:9px;
+}
+
+.admin-card{
+    padding:16px;
+
+    border-radius:16px;
+
+    background:#0a1b36;
+
+    border:1px solid #ffffff12;
+
+    transition:.25s;
+}
+
+.admin-card:hover{
+    transform:translateY(-3px);
+    border-color:#55d9ff35;
+}
+
+.admin-icon{
+    width:38px;
+    height:38px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:11px;
+
+    font-size:18px;
+
+    margin-bottom:10px;
+}
+
+.blue{
+    background:linear-gradient(135deg,#087daf,#295bd4);
+}
+
+.purple{
+    background:linear-gradient(135deg,#6540aa,#a24fcb);
+}
+
+.green{
+    background:linear-gradient(135deg,#087d69,#1aa88f);
+}
+
+.gold{
+    background:linear-gradient(135deg,#9a5d18,#d8992c);
+}
+
+.admin-card h3{
+    font-size:10px;
+}
+
+.admin-card p{
+    margin-top:5px;
+
+    color:#7189a7;
+
+    font-size:7px;
+}
+
+/* =========================
+   النماذج
+========================= */
+
+.form-box{
+    padding:18px;
+
+    background:#091a34;
+
+    border:1px solid #ffffff12;
+
+    border-radius:17px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:9px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    color:#8da3bf;
+    font-size:8px;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+
+    background:#06142b;
+
+    border:1px solid #ffffff16;
+
+    border-radius:10px;
+
+    color:#fff;
+
+    outline:none;
+
+    padding:11px;
+
+    font-size:9px;
+}
+
+.form-group textarea{
+    min-height:75px;
+    resize:vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    border-color:#46d7ff;
+    box-shadow:0 0 0 3px #46d7ff0c;
+}
+
+.add-btn{
+    margin-top:11px;
+
+    border:0;
+
+    padding:11px 18px;
+
+    border-radius:10px;
+
+    color:#fff;
+
+    background:
+    linear-gradient(135deg,#079fd4,#7550df);
+
+    font-size:9px;
+}
+
+.add-btn:disabled{
+    opacity:.6;
+}
+
+/* =========================
+   المحتوى
+========================= */
+
+.content-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:9px;
+}
+
+.content-card{
+    padding:15px;
+
+    border-radius:15px;
+
+    background:#0a1b36;
+
+    border:1px solid #ffffff12;
+
+    min-width:0;
+}
+
+.card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:8px;
+}
+
+.card-icon{
+    width:38px;
+    height:38px;
+
+    border-radius:11px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:17px;
+}
+
+.delete-btn{
+    border:0;
+
+    width:30px;
+    height:30px;
+
+    border-radius:8px;
+
+    color:#ff9aa7;
+
+    background:#a02e4715;
+
+    font-size:12px;
+}
+
+.content-card h3{
+    margin-top:10px;
+
+    font-size:10px;
+
+    line-height:1.7;
+}
+
+.content-card p{
+    margin-top:5px;
+
+    color:#7189a5;
+
+    font-size:7px;
+
+    line-height:1.8;
+}
+
+.card-link{
+    display:block;
+
+    margin-top:10px;
+
+    padding:8px;
+
+    border-radius:8px;
+
+    color:#fff;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    background:#ffffff10;
+
+    font-size:7px;
+}
+
+/* =========================
+   رسائل
+========================= */
+
+.message{
+    min-height:22px;
+
+    margin-top:9px;
+
+    font-size:8px;
+
+    text-align:center;
+}
+
+.success{
+    color:#61e6ae;
+}
+
+.error{
+    color:#ff8d9c;
+}
+
+.info{
+    color:#5bd9ff;
+}
+
+.empty{
+    padding:25px;
+
+    border-radius:14px;
+
+    text-align:center;
+
+    color:#7188a4;
+
+    font-size:8px;
+
+    background:#091931;
+
+    border:1px dashed #294563;
+}
+
+/* =========================
+   Footer
+========================= */
+
+footer{
+    text-align:center;
+
+    padding:35px 0 20px;
+
+    color:#4e6682;
+
+    font-size:7px;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media(max-width:800px){
+
+    .admin-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .content-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    .content-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:20px;
+    }
+
+    .header-actions{
+        gap:4px;
+    }
+
+    .home-btn,
+    .logout-btn{
+        padding:7px 6px;
+        font-size:6px;
+    }
+
+}
+
+@media(max-width:420px){
+
+    .logo-text{
+        font-size:11px;
+    }
+
+    .logo-icon{
+        width:36px;
+        height:36px;
+    }
+
+    .admin-grid{
+        grid-template-columns:1fr 1fr;
+        gap:6px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     الخلفية
+========================= -->
+
+<div class="math-bg">
+    <div class="math-item">⭐</div>
+    <div class="math-item">📐</div>
+    <div class="math-item">∑</div>
+    <div class="math-item">⭐</div>
+    <div class="math-item">📏</div>
+    <div class="math-item">π</div>
+    <div class="math-item">△</div>
+    <div class="math-item">✦</div>
+</div>
+
+
+<!-- =========================
+     شاشة كلمة المرور
+========================= -->
+
+<div class="lock-screen" id="lockScreen">
+
+    <div class="lock-card">
+
+        <div class="lock-icon">
+            🔐
+        </div>
+
+        <h1>دخول الأستاذ</h1>
+
+        <p>
+            مرحبًا بك في لوحة تحكم منبر ون.
+            أدخل كلمة المرور للوصول إلى أدوات الإدارة.
+        </p>
+
+        <div class="pin-display" id="pinDisplay">
+            <span class="pin-dot"></span>
+            <span class="pin-dot"></span>
+            <span class="pin-dot"></span>
+            <span class="pin-dot"></span>
+            <span class="pin-dot"></span>
+        </div>
+
+        <input
+            id="pinInput"
+            class="pin-input"
+            type="password"
+            inputmode="numeric"
+            maxlength="5"
+            placeholder="•••••"
+            autocomplete="off"
+        >
+
+        <button
+            class="unlock-btn"
+            onclick="checkPassword()"
+        >
+            🔓 دخول إلى لوحة الأستاذ
+        </button>
+
+        <div id="lockError" class="lock-error"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     التطبيق
+========================= -->
+
+<div id="teacherApp">
+
+<header>
+
+    <div class="header">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                ∑
+            </div>
+
+            <div class="logo-text">
+                منبر ون
+                <small>
+                    MINBAR ONE • TEACHER
+                </small>
+            </div>
+
+        </div>
+
+        <div class="header-actions">
+
+            <a
+                href="index.html"
+                class="home-btn"
+            >
+                🏠 الرئيسية
+            </a>
+
+            <button
+                class="logout-btn"
+                onclick="logoutTeacher()"
+            >
+                🚪 خروج
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+<!-- =========================
+     الترحيب
+========================= -->
+
+<section class="hero">
+
+    <span class="badge">
+        👨‍🏫 لوحة الأستاذ
+    </span>
+
+    <h1>
+        أهلاً بك في
+        <span>منبر ون</span>
+        🎓
+    </h1>
+
+    <p>
+        من هنا يمكنك إدارة الحصص والملخصات والاختبارات
+        ورومات الدراسة الخاصة بالمنصة.
+    </p>
+
+</section>
+
+
+<!-- =========================
+     الإحصائيات
+========================= -->
+
+<section class="stats">
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            🎥
+        </div>
+
+        <strong id="lessonsCount">
+            0
+        </strong>
+
+        <span>
+            الحصص
+        </span>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            📚
+        </div>
+
+        <strong id="summariesCount">
+            0
+        </strong>
+
+        <span>
+            الملخصات
+        </span>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            📝
+        </div>
+
+        <strong id="testsCount">
+            0
+        </strong>
+
+        <span>
+            الاختبارات
+        </span>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            💬
+        </div>
+
+        <strong id="roomsCount">
+            0
+        </strong>
+
+        <span>
+            الرومات
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     الأدوات
+========================= -->
+
+<section class="section">
+
+    <div class="section-head">
+
+        <h2>
+            🛠️ أدوات الإدارة
+        </h2>
+
+        <span>
+            إدارة المنصة
+        </span>
+
+    </div>
+
+    <div class="admin-grid">
+
+        <div class="admin-card">
+
+            <div class="admin-icon blue">
+                🎥
+            </div>
+
+            <h3>
+                إدارة الحصص
+            </h3>
+
+            <p>
+                أضف روابط فيديو الحصص والدروس.
+            </p>
+
+        </div>
+
+
+        <div class="admin-card">
+
+            <div class="admin-icon purple">
+                📚
+            </div>
+
+            <h3>
+                إدارة الملخصات
+            </h3>
+
+            <p>
+                أضف ملفات وروابط الملخصات.
+            </p>
+
+        </div>
+
+
+        <div class="admin-card">
+
+            <div class="admin-icon gold">
+                📝
+            </div>
+
+            <h3>
+                إدارة الاختبارات
+            </h3>
+
+            <p>
+                أضف الاختبارات وعدد أسئلتها.
+            </p>
+
+        </div>
+
+
+        <div class="admin-card">
+
+            <div class="admin-icon green">
+                💬
+            </div>
+
+            <h3>
+                إدارة الرومات
+            </h3>
+
+            <p>
+                أنشئ روابط رومات الدراسة.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     إضافة حصة
+========================= -->
+
+<section class="section">
+
+    <div class="section-head">
+
+        <h2>
+            🎥 إضافة حصة جديدة
+        </h2>
+
+        <span>
+            lessons
+        </span>
+
+    </div>
+
+    <div class="form-box">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>
+                    عنوان الحصة *
+                </label>
+
+                <input
+                    id="lessonTitle"
+                    type="text"
+                    placeholder="مثال: قوانين الأسس"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    الوحدة
+                </label>
+
+                <input
+                    id="lessonUnit"
+                    type="text"
+                    placeholder="مثال: الوحدة الأولى"
+                >
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>
+                    وصف الحصة
+                </label>
+
+                <textarea
+                    id="lessonDescription"
+                    placeholder="اكتب وصفًا مختصرًا للحصة..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    رابط الفيديو *
+                </label>
+
+                <input
+                    id="lessonVideo"
+                    type="url"
+                    placeholder="https://..."
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    مدة الحصة
+                </label>
+
+                <input
+                    id="lessonDuration"
+                    type="text"
+                    placeholder="مثال: 35 دقيقة"
+                >
+
+            </div>
+
+        </div>
+
+        <button
+            class="add-btn"
+            onclick="addLesson()"
+        >
+            ➕ إضافة الحصة
+        </button>
+
+        <div id="lessonMessage" class="message"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     إضافة ملخص
+========================= -->
+
+<section class="section">
+
+    <div class="section-head">
+
+        <h2>
+            📚 إضافة ملخص
+        </h2>
+
+        <span>
+            summaries
+        </span>
+
+    </div>
+
+    <div class="form-box">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>
+                    عنوان الملخص *
+                </label>
+
+                <input
+                    id="summaryTitle"
+                    type="text"
+                    placeholder="مثال: ملخص قوانين الأسس"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    رابط الملف *
+                </label>
+
+                <input
+                    id="summaryUrl"
+                    type="url"
+                    placeholder="https://..."
+                >
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>
+                    وصف الملخص
+                </label>
+
+                <textarea
+                    id="summaryDescription"
+                    placeholder="اكتب وصفًا مختصرًا..."
+                ></textarea>
+
+            </div>
+
+        </div>
+
+        <button
+            class="add-btn"
+            onclick="addSummary()"
+        >
+            ➕ إضافة الملخص
+        </button>
+
+        <div id="summaryMessage" class="message"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     إضافة اختبار
+========================= -->
+
+<section class="section">
+
+    <div class="section-head">
+
+        <h2>
+            📝 إضافة اختبار
+        </h2>
+
+        <span>
+            tests
+        </span>
+
+    </div>
+
+    <div class="form-box">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>
+                    عنوان الاختبار *
+                </label>
+
+                <input
+                    id="testTitle"
+                    type="text"
+                    placeholder="مثال: اختبار الوحدة الأولى"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    عدد الأسئلة *
+                </label>
+
+                <input
+                    id="testQuestions"
+                    type="number"
+                    min="1"
+                    placeholder="10"
+                >
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>
+                    وصف الاختبار
+                </label>
+
+                <textarea
+                    id="testDescription"
+                    placeholder="اكتب وصف الاختبار..."
+                ></textarea>
+
+            </div>
+
+        </div>
+
+        <button
+            class="add-btn"
+            onclick="addTest()"
+        >
+            ➕ إضافة الاختبار
+        </button>
+
+        <div id="testMessage" class="message"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     إضافة روم
+========================= -->
+
+<section class="section">
+
+    <div class="section-head">
+
+        <h2>
+            💬 إضافة روم
+        </h2>
+
+        <span>
+            rooms
+        </span>
+
+    </div>
+
+    <div class="form-box">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>
+                    اسم الروم *
+                </label>
+
+                <input
+                    id="roomName"
+                    type="text"
+                    placeholder="مثال: روم الصف التاسع"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    رابط الروم *
+                </label>
+
+                <input
+                    id="roomLink"
+                    type="url"
+                    placeholder="https://..."
+                >
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>
+                    وصف الروم
+                </label>
+
+                <textarea
+                    id="roomDescription"
+                    placeholder="اكتب وصف الروم..."
+                ></textarea>
+
+            </div>
+
+        </div>
+
+        <button
+            class="add-btn"
+            onclick="addRoom()"
+        >
+            ➕ إضافة الروم
+        </button>
+
+        <div id="roomMessage" class="message"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     عرض الحصص
+========================= -->
+
+<section class="section">
+
+    <div class="section-head">
+
+        <h2>
+            🎥 الحصص الحالية
+        </h2>
+
+        <span>
+            إدارة الحصص
+        </span>
+
+    </div>
+
+    <div
+        id="lessonsContainer"
+        class="content-grid"
+    >
+        <div class="empty">
+            ⏳ جاري التحميل...
+        </div>
+    </div>
+
+</section>
+
+
+<!-- =========================
+     عرض الملخصات
+========================= -->
+
+<section class="section">
+
+    <div class="section-head">
+
+        <h2>
+            📚 الملخصات الحالية
+        </h2>
+
+        <span>
+            إدارة الملخصات
+        </span>
+
+    </div>
+
+    <div
+        id="summariesContainer"
+        class="content-grid"
+    >
+        <div class="empty">
+            ⏳ جاري التحميل...
+        </div>
+    </div>
+
+</section>
+
+
+<!-- =========================
+     عرض الاختبارات
+========================= -->
+
+<section class="section">
+
+    <div class="section-head">
+
+        <h2>
+            📝 الاختبارات الحالية
+        </h2>
+
+        <span>
+            إدارة الاختبارات
+        </span>
+
+    </div>
+
+    <div
+        id="testsContainer"
+        class="content-grid"
+    >
+        <div class="empty">
+            ⏳ جاري التحميل...
+        </div>
+    </div>
+
+</section>
+
+
+<!-- =========================
+     عرض الرومات
+========================= -->
+
+<section class="section">
+
+    <div class="section-head">
+
+        <h2>
+            💬 الرومات الحالية
+        </h2>
+
+        <span>
+            إدارة الرومات
+        </span>
+
+    </div>
+
+    <div
+        id="roomsContainer"
+        class="content-grid"
+    >
+        <div class="empty">
+            ⏳ جاري التحميل...
+        </div>
+    </div>
+
+</section>
+
+
+<footer>
+    منبر ون • منصة الرياضيات 🎓
+</footer>
+
+</main>
+
+</div>
+
+
+<script>
+
+/* ==================================================
+   إعدادات Supabase
+================================================== */
+
+const SUPABASE_URL =
+"https://vugnptbvkitokwqxulla.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable__WJDSewc6JN6XTM6czk11Q_lgON6Chj";
+
+
+/* ==================================================
+   كلمة مرور الأستاذ
+================================================== */
+
+const TEACHER_PASSWORD = "15951";
+
+
+/* ==================================================
+   طلبات Supabase
+================================================== */
+
+async function supabaseRequest(url, options = {}){
+
+    return fetch(url,{
+        ...options,
+
+        headers:{
+            apikey:SUPABASE_KEY,
+            "Content-Type":"application/json",
+
+            ...(options.headers || {})
+        }
+    });
+
+}
+
+
+/* ==================================================
+   حماية شاشة الأستاذ
+================================================== */
+
+function updatePinDots(){
+
+    const value =
+        document.getElementById("pinInput").value;
+
+    const dots =
+        document.querySelectorAll(".pin-dot");
+
+    dots.forEach((dot,index)=>{
+
+        dot.classList.toggle(
+            "active",
+            index < value.length
+        );
+
+    });
+
+}
+
+
+document
+.getElementById("pinInput")
+.addEventListener("input",updatePinDots);
+
+
+document
+.getElementById("pinInput")
+.addEventListener("keydown",function(e){
+
+    if(e.key === "Enter"){
+        checkPassword();
+    }
+
+});
+
+
+function checkPassword(){
+
+    const input =
+        document.getElementById("pinInput");
+
+    const error =
+        document.getElementById("lockError");
+
+    if(input.value === TEACHER_PASSWORD){
+
+        sessionStorage.setItem(
+            "teacher_unlocked",
+            "true"
+        );
+
+        document.getElementById(
+            "lockScreen"
+        ).style.display="none";
+
+        document.getElementById(
+            "teacherApp"
+        ).style.display="block";
+
+        error.textContent="";
+
+        loadEverything();
+
+    }else{
+
+        error.textContent =
+            "❌ كلمة المرور غير صحيحة.";
+
+        input.value="";
+
+        updatePinDots();
+
+        input.focus();
+
+    }
+
+}
+
+
+function logoutTeacher(){
+
+    sessionStorage.removeItem(
+        "teacher_unlocked"
+    );
+
+    location.reload();
+
+}
+
+
+/* ==================================================
+   حماية عند فتح الصفحة
+================================================== */
+
+function checkTeacherSession(){
+
+    if(
+        sessionStorage.getItem(
+            "teacher_unlocked"
+        ) === "true"
+    ){
+
+        document.getElementById(
+            "lockScreen"
+        ).style.display="none";
+
+        document.getElementById(
+            "teacherApp"
+        ).style.display="block";
+
+        loadEverything();
+
+    }
+
+}
+
+
+/* ==================================================
+   جلب جدول
+================================================== */
+
+async function getTable(table){
+
+    try{
+
+        const response =
+            await supabaseRequest(
+                `${SUPABASE_URL}/rest/v1/${table}?select=*`
+            );
+
+        if(!response.ok){
+
+            console.error(
+                table,
+                await response.text()
+            );
+
+            return [];
+
+        }
+
+        const data =
+            await response.json();
+
+        return Array.isArray(data)
+            ? data
+            : [];
+
+    }catch(error){
+
+        console.error(error);
+
+        return [];
+
+    }
+
+}
+
+
+/* ==================================================
+   حماية النص
+================================================== */
+
+function safe(value){
+
+    return String(value ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* ==================================================
+   الرسائل
+================================================== */
+
+function showMessage(id,text,type="info"){
+
+    const box =
+        document.getElementById(id);
+
+    box.className =
+        "message " + type;
+
+    box.textContent = text;
+
+}
+
+
+/* ==================================================
+   إضافة حصة
+================================================== */
+
+async function addLesson(){
+
+    const title =
+        document.getElementById(
+            "lessonTitle"
+        ).value.trim();
+
+    const description =
+        document.getElementById(
+            "lessonDescription"
+        ).value.trim();
+
+    const unit =
+        document.getElementById(
+            "lessonUnit"
+        ).value.trim();
+
+    const video_url =
+        document.getElementById(
+            "lessonVideo"
+        ).value.trim();
+
+    const duration =
+        document.getElementById(
+            "lessonDuration"
+        ).value.trim();
+
+
+    if(!title || !video_url){
+
+        showMessage(
+            "lessonMessage",
+            "⚠️ أدخل عنوان الحصة ورابط الفيديو.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showMessage(
+        "lessonMessage",
+        "⏳ جاري إضافة الحصة...",
+        "info"
+    );
+
+
+    try{
+
+        const response =
+            await supabaseRequest(
+                `${SUPABASE_URL}/rest/v1/lessons`,
+                {
+                    method:"POST",
+
+                    headers:{
+                        Prefer:"return=representation"
+                    },
+
+                    body:JSON.stringify({
+
+                        title,
+                        description,
+                        unit,
+                        video_url,
+                        duration
+
+                    })
+
+                }
+            );
+
+
+        if(!response.ok){
+
+            const error =
+                await response.text();
+
+            console.error(error);
+
+            showMessage(
+                "lessonMessage",
+                "❌ لم تتم إضافة الحصة. تأكد من صلاحيات Supabase.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        showMessage(
+            "lessonMessage",
+            "✅ تمت إضافة الحصة بنجاح.",
+            "success"
+        );
+
+
+        document.getElementById(
+            "lessonTitle"
+        ).value="";
+
+        document.getElementById(
+            "lessonDescription"
+        ).value="";
+
+        document.getElementById(
+            "lessonUnit"
+        ).value="";
+
+        document.getElementById(
+            "lessonVideo"
+        ).value="";
+
+        document.getElementById(
+            "lessonDuration"
+        ).value="";
+
+
+        loadLessons();
+
+    }catch(error){
+
+        console.error(error);
+
+        showMessage(
+            "lessonMessage",
+            "❌ حدث خطأ في الاتصال.",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   إضافة ملخص
+================================================== */
+
+async function addSummary(){
+
+    const title =
+        document.getElementById(
+            "summaryTitle"
+        ).value.trim();
+
+    const description =
+        document.getElementById(
+            "summaryDescription"
+        ).value.trim();
+
+    const file_url =
+        document.getElementById(
+            "summaryUrl"
+        ).value.trim();
+
+
+    if(!title || !file_url){
+
+        showMessage(
+            "summaryMessage",
+            "⚠️ أدخل عنوان الملخص والرابط.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showMessage(
+        "summaryMessage",
+        "⏳ جاري إضافة الملخص...",
+        "info"
+    );
+
+
+    try{
+
+        const response =
+            await supabaseRequest(
+                `${SUPABASE_URL}/rest/v1/summaries`,
+                {
+                    method:"POST",
+
+                    headers:{
+                        Prefer:"return=representation"
+                    },
+
+                    body:JSON.stringify({
+
+                        title,
+                        description,
+                        file_url
+
+                    })
+
+                }
+            );
+
+
+        if(!response.ok){
+
+            console.error(
+                await response.text()
+            );
+
+            showMessage(
+                "summaryMessage",
+                "❌ لم تتم إضافة الملخص.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        showMessage(
+            "summaryMessage",
+            "✅ تمت إضافة الملخص.",
+            "success"
+        );
+
+
+        document.getElementById(
+            "summaryTitle"
+        ).value="";
+
+        document.getElementById(
+            "summaryDescription"
+        ).value="";
+
+        document.getElementById(
+            "summaryUrl"
+        ).value="";
+
+
+        loadSummaries();
+
+    }catch(error){
+
+        console.error(error);
+
+        showMessage(
+            "summaryMessage",
+            "❌ حدث خطأ في الاتصال.",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   إضافة اختبار
+================================================== */
+
+async function addTest(){
+
+    const title =
+        document.getElementById(
+            "testTitle"
+        ).value.trim();
+
+    const description =
+        document.getElementById(
+            "testDescription"
+        ).value.trim();
+
+    const questions_count =
+        Number(
+            document.getElementById(
+                "testQuestions"
+            ).value
+        );
+
+
+    if(!title || !questions_count){
+
+        showMessage(
+            "testMessage",
+            "⚠️ أدخل عنوان الاختبار وعدد الأسئلة.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showMessage(
+        "testMessage",
+        "⏳ جاري إضافة الاختبار...",
+        "info"
+    );
+
+
+    try{
+
+        const response =
+            await supabaseRequest(
+                `${SUPABASE_URL}/rest/v1/tests`,
+                {
+                    method:"POST",
+
+                    headers:{
+                        Prefer:"return=representation"
+                    },
+
+                    body:JSON.stringify({
+
+                        title,
+                        description,
+                        questions_count
+
+                    })
+
+                }
+            );
+
+
+        if(!response.ok){
+
+            console.error(
+                await response.text()
+            );
+
+            showMessage(
+                "testMessage",
+                "❌ لم تتم إضافة الاختبار.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        showMessage(
+            "testMessage",
+            "✅ تمت إضافة الاختبار.",
+            "success"
+        );
+
+
+        document.getElementById(
+            "testTitle"
+        ).value="";
+
+        document.getElementById(
+            "testDescription"
+        ).value="";
+
+        document.getElementById(
+            "testQuestions"
+        ).value="";
+
+
+        loadTests();
+
+    }catch(error){
+
+        console.error(error);
+
+        showMessage(
+            "testMessage",
+            "❌ حدث خطأ في الاتصال.",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   إضافة روم
+================================================== */
+
+async function addRoom(){
+
+    const name =
+        document.getElementById(
+            "roomName"
+        ).value.trim();
+
+    const description =
+        document.getElementById(
+            "roomDescription"
+        ).value.trim();
+
+    const room_link =
+        document.getElementById(
+            "roomLink"
+        ).value.trim();
+
+
+    if(!name || !room_link){
+
+        showMessage(
+            "roomMessage",
+            "⚠️ أدخل اسم الروم والرابط.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showMessage(
+        "roomMessage",
+        "⏳ جاري إضافة الروم...",
+        "info"
+    );
+
+
+    try{
+
+        const response =
+            await supabaseRequest(
+                `${SUPABASE_URL}/rest/v1/rooms`,
+                {
+                    method:"POST",
+
+                    headers:{
+                        Prefer:"return=representation"
+                    },
+
+                    body:JSON.stringify({
+
+                        name,
+                        description,
+                        room_link
+
+                    })
+
+                }
+            );
+
+
+        if(!response.ok){
+
+            console.error(
+                await response.text()
+            );
+
+            showMessage(
+                "roomMessage",
+                "❌ لم تتم إضافة الروم.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        showMessage(
+            "roomMessage",
+            "✅ تمت إضافة الروم.",
+            "success"
+        );
+
+
+        document.getElementById(
+            "roomName"
+        ).value="";
+
+        document.getElementById(
+            "roomDescription"
+        ).value="";
+
+        document.getElementById(
+            "roomLink"
+        ).value="";
+
+
+        loadRooms();
+
+    }catch(error){
+
+        console.error(error);
+
+        showMessage(
+            "roomMessage",
+            "❌ حدث خطأ في الاتصال.",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   حذف سجل
+================================================== */
+
+async function deleteRow(table,id){
+
+    const confirmDelete =
+        confirm(
+            "هل أنت متأكد أنك تريد حذف هذا العنصر؟"
+        );
+
+    if(!confirmDelete){
+        return;
+    }
+
+
+    try{
+
+        const response =
+            await supabaseRequest(
+                `${SUPABASE_URL}/rest/v1/${table}?id=eq.${id}`,
+                {
+                    method:"DELETE"
+                }
+            );
+
+
+        if(!response.ok){
+
+            alert(
+                "❌ لم تتم عملية الحذف."
+            );
+
+            console.error(
+                await response.text()
+            );
+
+            return;
+
+        }
+
+
+        if(table==="lessons"){
+            loadLessons();
+        }
+
+        if(table==="summaries"){
+            loadSummaries();
+        }
+
+        if(table==="tests"){
+            loadTests();
+        }
+
+        if(table==="rooms"){
+            loadRooms();
+        }
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "❌ حدث خطأ أثناء الحذف."
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   تحميل الحصص
+================================================== */
+
+async function loadLessons(){
+
+    const data =
+        await getTable("lessons");
+
+    const box =
+        document.getElementById(
+            "lessonsContainer"
+        );
+
+
+    document.getElementById(
+        "lessonsCount"
+    ).textContent =
+        data.length;
+
+
+    if(!data.length){
+
+        box.innerHTML =
+            `<div class="empty">
+                🎥 لا توجد حصص حاليًا.
+            </div>`;
+
+        return;
+
+    }
+
+
+    data.sort(
+        (a,b)=>
+            new Date(b.created_at || 0)
+            -
+            new Date(a.created_at || 0)
+    );
+
+
+    box.innerHTML="";
+
+
+    data.forEach(item=>{
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "content-card";
+
+
+        card.innerHTML = `
+
+            <div class="card-top">
+
+                <div class="card-icon blue">
+                    🎥
+                </div>
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteRow('lessons',${item.id})"
+                >
+                    🗑️
+                </button>
+
+            </div>
+
+            <h3>
+                ${safe(item.title || "حصة رياضيات")}
+            </h3>
+
+            <p>
+                ${safe(item.description || "لا يوجد وصف")}
+            </p>
+
+            <p>
+                📘 ${safe(item.unit || "رياضيات")}
+                ${item.duration
+                    ? " • ⏱️ "+safe(item.duration)
+                    : ""}
+            </p>
+
+            ${
+                item.video_url
+                ?
+                `<a
+                    class="card-link"
+                    href="${safe(item.video_url)}"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    ▶️ مشاهدة الفيديو
+                </a>`
+                :
+                ""
+            }
+
+        `;
+
+
+        box.appendChild(card);
+
+    });
+
+}
+
+
+/* ==================================================
+   تحميل الملخصات
+================================================== */
+
+async function loadSummaries(){
+
+    const data =
+        await getTable("summaries");
+
+    const box =
+        document.getElementById(
+            "summariesContainer"
+        );
+
+
+    document.getElementById(
+        "summariesCount"
+    ).textContent =
+        data.length;
+
+
+    if(!data.length){
+
+        box.innerHTML =
+            `<div class="empty">
+                📚 لا توجد ملخصات حاليًا.
+            </div>`;
+
+        return;
+
+    }
+
+
+    data.sort(
+        (a,b)=>
+            new Date(b.created_at || 0)
+            -
+            new Date(a.created_at || 0)
+    );
+
+
+    box.innerHTML="";
+
+
+    data.forEach(item=>{
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "content-card";
+
+
+        card.innerHTML = `
+
+            <div class="card-top">
+
+                <div class="card-icon purple">
+                    📚
+                </div>
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteRow('summaries',${item.id})"
+                >
+                    🗑️
+                </button>
+
+            </div>
+
+            <h3>
+                ${safe(item.title || "ملخص")}
+            </h3>
+
+            <p>
+                ${safe(item.description || "لا يوجد وصف")}
+            </p>
+
+            ${
+                item.file_url
+                ?
+                `<a
+                    class="card-link"
+                    href="${safe(item.file_url)}"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    📖 فتح الملخص
+                </a>`
+                :
+                ""
+            }
+
+        `;
+
+
+        box.appendChild(card);
+
+    });
+
+}
+
+
+/* ==================================================
+   تحميل الاختبارات
+================================================== */
+
+async function loadTests(){
+
+    const data =
+        await getTable("tests");
+
+    const box =
+        document.getElementById(
+            "testsContainer"
+        );
+
+
+    document.getElementById(
+        "testsCount"
+    ).textContent =
+        data.length;
+
+
+    if(!data.length){
+
+        box.innerHTML =
+            `<div class="empty">
+                📝 لا توجد اختبارات حاليًا.
+            </div>`;
+
+        return;
+
+    }
+
+
+    data.sort(
+        (a,b)=>
+            new Date(b.created_at || 0)
+            -
+            new Date(a.created_at || 0)
+    );
+
+
+    box.innerHTML="";
+
+
+    data.forEach(item=>{
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "content-card";
+
+
+        card.innerHTML = `
+
+            <div class="card-top">
+
+                <div class="card-icon gold">
+                    📝
+                </div>
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteRow('tests',${item.id})"
+                >
+                    🗑️
+                </button>
+
+            </div>
+
+            <h3>
+                ${safe(item.title || "اختبار رياضيات")}
+            </h3>
+
+            <p>
+                ${safe(item.description || "لا يوجد وصف")}
+            </p>
+
+            <p>
+                ❓ عدد الأسئلة:
+                ${safe(item.questions_count || 0)}
+            </p>
+
+        `;
+
+
+        box.appendChild(card);
+
+    });
+
+}
+
+
+/* ==================================================
+   تحميل الرومات
+================================================== */
+
+async function loadRooms(){
+
+    const data =
+        await getTable("rooms");
+
+    const box =
+        document.getElementById(
+            "roomsContainer"
+        );
+
+
+    document.getElementById(
+        "roomsCount"
+    ).textContent =
+        data.length;
+
+
+    if(!data.length){
+
+        box.innerHTML =
+            `<div class="empty">
+                💬 لا توجد رومات حاليًا.
+            </div>`;
+
+        return;
+
+    }
+
+
+    data.sort(
+        (a,b)=>
+            new Date(b.created_at || 0)
+            -
+            new Date(a.created_at || 0)
+    );
+
+
+    box.innerHTML="";
+
+
+    data.forEach(item=>{
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "content-card";
+
+
+        card.innerHTML = `
+
+            <div class="card-top">
+
+                <div class="card-icon green">
+                    💬
+                </div>
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteRow('rooms',${item.id})"
+                >
+                    🗑️
+                </button>
+
+            </div>
+
+            <h3>
+                ${safe(item.name || "روم الدراسة")}
+            </h3>
+
+            <p>
+                ${safe(item.description || "لا يوجد وصف")}
+            </p>
+
+            ${
+                item.room_link
+                ?
+                `<a
+                    class="card-link"
+                    href="${safe(item.room_link)}"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    💬 دخول الروم
+                </a>`
+                :
+                ""
+            }
+
+        `;
+
+
+        box.appendChild(card);
+
+    });
+
+}
+
+
+/* ==================================================
+   تحميل كل شيء
+================================================== */
+
+async function loadEverything(){
+
+    await Promise.all([
+
+        loadLessons(),
+
+        loadSummaries(),
+
+        loadTests(),
+
+        loadRooms()
+
+    ]);
+
+}
+
+
+/* ==================================================
+   تشغيل الصفحة
+================================================== */
+
+checkTeacherSession();
+
+</script>
+
+</body>
+</html>
