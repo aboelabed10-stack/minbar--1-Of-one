@@ -1,0 +1,2595 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>لوحة الأستاذ | الامتحانات | منبر ون</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Tahoma,Arial,sans-serif;
+    background:
+    radial-gradient(circle at 85% 5%,#172b63 0,transparent 28%),
+    radial-gradient(circle at 10% 70%,#27174f 0,transparent 28%),
+    #050b1d;
+    color:#fff;
+    min-height:100vh;
+}
+
+button,
+input,
+textarea{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.page{
+    position:relative;
+    z-index:2;
+}
+
+header{
+    height:72px;
+    background:rgba(5,13,32,.94);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid #ffffff14;
+    position:sticky;
+    top:0;
+    z-index:50;
+}
+
+.header{
+    width:94%;
+    max-width:1150px;
+    height:100%;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logoIcon{
+    width:44px;
+    height:44px;
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#12c9ff,#855cff);
+    font-size:22px;
+}
+
+.logoText{
+    font-size:16px;
+    font-weight:bold;
+}
+
+.logoText small{
+    display:block;
+    color:#7187a7;
+    font-size:7px;
+    margin-top:3px;
+}
+
+.headerActions{
+    display:flex;
+    gap:8px;
+}
+
+.headerBtn,
+.logoutBtn{
+    border-radius:10px;
+    padding:10px 13px;
+    font-size:11px;
+    color:#fff;
+}
+
+.headerBtn{
+    text-decoration:none;
+    background:#0b1b36;
+    border:1px solid #ffffff20;
+}
+
+.logoutBtn{
+    background:#8f304820;
+    border:1px solid #ff8d9c35;
+    color:#ffb2bd;
+}
+
+.hero{
+    width:94%;
+    max-width:1150px;
+    margin:24px auto 0;
+    padding:30px 25px;
+    border-radius:25px;
+    background:
+    linear-gradient(135deg,rgba(11,49,88,.96),rgba(42,23,76,.94));
+    border:1px solid #5abfff2e;
+    box-shadow:0 18px 55px #0003;
+}
+
+.heroBadge{
+    display:inline-block;
+    padding:8px 12px;
+    border-radius:20px;
+    background:#23caff1a;
+    border:1px solid #23caff30;
+    color:#5cdcff;
+    font-size:11px;
+}
+
+.hero h1{
+    font-size:28px;
+    line-height:1.5;
+    margin-top:12px;
+}
+
+.hero h1 span{
+    color:#54d8ff;
+}
+
+.hero p{
+    color:#9aafc9;
+    font-size:12px;
+    line-height:2;
+    margin-top:7px;
+}
+
+.section{
+    width:94%;
+    max-width:1150px;
+    margin:25px auto 0;
+}
+
+.sectionHead{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+}
+
+.sectionHead h2{
+    font-size:19px;
+}
+
+.sectionHead span{
+    font-size:10px;
+    color:#7188a6;
+}
+
+.panel{
+    background:rgba(9,25,49,.9);
+    border:1px solid #ffffff13;
+    border-radius:20px;
+    padding:20px;
+}
+
+.formGrid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+.formGroup{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.formGroup label{
+    color:#9db1c9;
+    font-size:11px;
+}
+
+.formGroup input,
+.formGroup textarea{
+    width:100%;
+    border:1px solid #ffffff19;
+    border-radius:11px;
+    background:#07152e;
+    color:#fff;
+    padding:12px 13px;
+    outline:none;
+    font-size:12px;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus{
+    border-color:#40cfff80;
+    box-shadow:0 0 0 3px #40cfff0d;
+}
+
+.formGroup textarea{
+    min-height:90px;
+    resize:vertical;
+    line-height:1.8;
+}
+
+.actions{
+    display:flex;
+    gap:8px;
+    margin-top:14px;
+}
+
+.mainBtn,
+.cancelBtn{
+    border-radius:11px;
+    padding:12px 17px;
+    color:#fff;
+    font-size:11px;
+}
+
+.mainBtn{
+    border:0;
+    background:linear-gradient(135deg,#08a9df,#7650e5);
+}
+
+.cancelBtn{
+    display:none;
+    border:1px solid #ffffff18;
+    background:#ffffff12;
+}
+
+.message{
+    min-height:22px;
+    margin-bottom:9px;
+    text-align:center;
+    font-size:10px;
+}
+
+.success{
+    color:#69e9b0;
+}
+
+.error{
+    color:#ff8f9d;
+}
+
+.info{
+    color:#65d8ff;
+}
+
+.testsList{
+    display:grid;
+    gap:10px;
+}
+
+.testCard{
+    background:#0a1b36;
+    border:1px solid #ffffff12;
+    border-radius:16px;
+    padding:15px;
+}
+
+.testTop{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.testIcon{
+    width:48px;
+    height:48px;
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    background:linear-gradient(135deg,#a65d19,#d99327);
+    flex-shrink:0;
+}
+
+.testInfo{
+    flex:1;
+    min-width:0;
+}
+
+.testInfo h3{
+    font-size:14px;
+}
+
+.testInfo p{
+    color:#7f95b0;
+    font-size:10px;
+    margin-top:6px;
+    line-height:1.7;
+}
+
+.testActions{
+    display:flex;
+    gap:7px;
+}
+
+.editBtn,
+.deleteBtn{
+    border:0;
+    border-radius:9px;
+    color:#fff;
+    padding:9px 11px;
+    font-size:10px;
+}
+
+.editBtn{
+    background:#1689ba;
+}
+
+.deleteBtn{
+    background:#8e3049;
+}
+
+.questionsArea{
+    margin-top:15px;
+    padding-top:15px;
+    border-top:1px solid #ffffff12;
+    display:none;
+}
+
+.questionsArea.show{
+    display:block;
+}
+
+.questionForm{
+    background:#07152e;
+    border:1px solid #ffffff12;
+    border-radius:15px;
+    padding:15px;
+}
+
+.questionForm h3{
+    font-size:14px;
+    margin-bottom:13px;
+}
+
+.questionGrid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.questionGrid .full{
+    grid-column:1/-1;
+}
+
+.optionBox{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.optionBox label{
+    color:#91a7c1;
+    font-size:10px;
+}
+
+.optionBox input{
+    background:#0a1b36;
+    border:1px solid #ffffff16;
+    color:#fff;
+    border-radius:9px;
+    padding:10px;
+    font-size:11px;
+    outline:none;
+}
+
+.correctSelect{
+    background:#0a1b36;
+    color:#fff;
+    border:1px solid #ffffff16;
+    border-radius:9px;
+    padding:10px;
+    font-size:11px;
+    outline:none;
+}
+
+.questionActions{
+    margin-top:12px;
+    display:flex;
+    gap:7px;
+}
+
+.questionsList{
+    display:grid;
+    gap:8px;
+    margin-top:12px;
+}
+
+.questionItem{
+    padding:12px;
+    border-radius:12px;
+    background:#0a1b36;
+    border:1px solid #ffffff12;
+}
+
+.questionItemTop{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+}
+
+.questionNumber{
+    width:30px;
+    height:30px;
+    border-radius:8px;
+    background:#7041bd;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:11px;
+    flex-shrink:0;
+}
+
+.questionText{
+    flex:1;
+    font-size:11px;
+    line-height:1.8;
+}
+
+.questionButtons{
+    display:flex;
+    gap:5px;
+}
+
+.smallBtn{
+    border:0;
+    border-radius:7px;
+    padding:6px 8px;
+    color:#fff;
+    font-size:8px;
+}
+
+.smallEdit{
+    background:#1689ba;
+}
+
+.smallDelete{
+    background:#8e3049;
+}
+
+.optionsPreview{
+    margin-top:9px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:6px;
+}
+
+.optionPreview{
+    padding:7px;
+    border-radius:7px;
+    background:#07152e;
+    color:#8095b0;
+    font-size:8px;
+}
+
+.optionPreview.correct{
+    border:1px solid #45d9a180;
+    color:#69e9b0;
+}
+
+.empty{
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    color:#7188a4;
+    font-size:11px;
+    line-height:2;
+    background:#091931;
+    border:1px dashed #294563;
+}
+
+.loading{
+    padding:25px;
+    text-align:center;
+    color:#65d8ff;
+    font-size:11px;
+}
+
+.lockScreen{
+    position:fixed;
+    inset:0;
+    z-index:999;
+    background:
+    radial-gradient(circle at 50% 20%,#172d67 0,transparent 35%),
+    #030817;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.lockScreen.hidden{
+    display:none;
+}
+
+.lockBox{
+    width:100%;
+    max-width:400px;
+    background:linear-gradient(145deg,#101f42,#1d1740);
+    border:1px solid #64c8ff35;
+    border-radius:25px;
+    padding:28px 22px;
+    box-shadow:0 25px 90px #0009;
+    text-align:center;
+}
+
+.lockIcon{
+    width:75px;
+    height:75px;
+    margin:0 auto 15px;
+    border-radius:21px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:33px;
+    background:linear-gradient(135deg,#08b9ec,#7650e5);
+}
+
+.lockBox h1{
+    font-size:22px;
+}
+
+.lockBox p{
+    color:#8195b1;
+    font-size:10px;
+    line-height:1.9;
+    margin-top:8px;
+}
+
+.passwordDots{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin:21px 0 15px;
+}
+
+.dot{
+    width:13px;
+    height:13px;
+    border-radius:50%;
+    border:1px solid #5c7699;
+}
+
+.dot.active{
+    background:#55d9ff;
+    border-color:#55d9ff;
+    box-shadow:0 0 12px #55d9ff;
+}
+
+.keypad{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:9px;
+}
+
+.key{
+    height:50px;
+    border:1px solid #ffffff13;
+    border-radius:12px;
+    background:#091a35;
+    color:#fff;
+    font-size:15px;
+}
+
+.key.clear{
+    color:#ff9ba9;
+}
+
+.key.enter{
+    color:#62dcff;
+}
+
+.lockMessage{
+    min-height:22px;
+    margin-top:10px;
+    font-size:10px;
+    color:#ff8f9d;
+}
+
+.confirmOverlay{
+    position:fixed;
+    inset:0;
+    background:#000b;
+    backdrop-filter:blur(7px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:500;
+    padding:20px;
+}
+
+.confirmOverlay.show{
+    display:flex;
+}
+
+.confirmBox{
+    width:100%;
+    max-width:370px;
+    padding:23px;
+    border-radius:20px;
+    background:linear-gradient(145deg,#111f40,#21183e);
+    border:1px solid #ffffff18;
+    text-align:center;
+}
+
+.confirmBox h3{
+    font-size:16px;
+}
+
+.confirmBox p{
+    color:#8ca0b8;
+    font-size:10px;
+    line-height:1.9;
+    margin:9px 0 16px;
+}
+
+.confirmActions{
+    display:flex;
+    gap:8px;
+}
+
+.confirmActions button{
+    flex:1;
+    border:0;
+    border-radius:9px;
+    padding:11px;
+    color:#fff;
+    font-size:10px;
+}
+
+.confirmYes{
+    background:#96354d;
+}
+
+.confirmNo{
+    background:#ffffff14;
+}
+
+@media(max-width:700px){
+
+    .formGrid,
+    .questionGrid{
+        grid-template-columns:1fr;
+    }
+
+    .full,
+    .questionGrid .full{
+        grid-column:auto;
+    }
+
+    .testTop{
+        align-items:flex-start;
+    }
+
+    .testActions{
+        flex-direction:column;
+    }
+
+    .optionsPreview{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:450px){
+
+    .logoText{
+        font-size:12px;
+    }
+
+    .logoIcon{
+        width:37px;
+        height:37px;
+    }
+
+    .headerBtn,
+    .logoutBtn{
+        font-size:8px;
+        padding:8px 7px;
+    }
+
+    .hero h1{
+        font-size:21px;
+    }
+
+    .hero p{
+        font-size:10px;
+    }
+
+    .sectionHead h2{
+        font-size:16px;
+    }
+
+    .testInfo h3{
+        font-size:12px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     شاشة دخول الأستاذ
+========================= -->
+
+<div class="lockScreen" id="lockScreen">
+
+    <div class="lockBox">
+
+        <div class="lockIcon">🔐</div>
+
+        <h1>لوحة الأستاذ</h1>
+
+        <p>
+            أدخل كلمة المرور للوصول إلى نظام إدارة الامتحانات.
+        </p>
+
+        <div class="passwordDots" id="passwordDots">
+
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+
+        </div>
+
+        <div class="keypad">
+
+            <button class="key" onclick="pressKey('1')">1</button>
+            <button class="key" onclick="pressKey('2')">2</button>
+            <button class="key" onclick="pressKey('3')">3</button>
+
+            <button class="key" onclick="pressKey('4')">4</button>
+            <button class="key" onclick="pressKey('5')">5</button>
+            <button class="key" onclick="pressKey('6')">6</button>
+
+            <button class="key" onclick="pressKey('7')">7</button>
+            <button class="key" onclick="pressKey('8')">8</button>
+            <button class="key" onclick="pressKey('9')">9</button>
+
+            <button class="key clear" onclick="clearPassword()">⌫</button>
+            <button class="key" onclick="pressKey('0')">0</button>
+            <button class="key enter" onclick="checkPassword()">✓</button>
+
+        </div>
+
+        <div id="lockMessage" class="lockMessage"></div>
+
+    </div>
+
+</div>
+
+
+<div class="page">
+
+<header>
+
+    <div class="header">
+
+        <div class="logo">
+
+            <div class="logoIcon">∑</div>
+
+            <div class="logoText">
+                منبر ون
+                <small>MINBAR ONE • TEACHER</small>
+            </div>
+
+        </div>
+
+        <div class="headerActions">
+
+            <a href="index.html" class="headerBtn">
+                🏠 الرئيسية
+            </a>
+
+            <button class="logoutBtn" onclick="lockAgain()">
+                🔒 قفل
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     المقدمة
+========================= -->
+
+<section class="hero">
+
+    <div class="heroBadge">
+        📝 نظام الامتحانات
+    </div>
+
+    <h1>
+        إدارة <span>الاختبارات والأسئلة</span> 🎓
+    </h1>
+
+    <p>
+        أنشئ الاختبارات وأضف إليها الأسئلة والخيارات،
+        وحدد الإجابة الصحيحة، وسيتمكن الطلاب من أداء الاختبار
+        من صفحة الطالب.
+    </p>
+
+</section>
+
+
+<!-- =========================
+     إنشاء اختبار
+========================= -->
+
+<section class="section">
+
+    <div class="sectionHead">
+
+        <h2>➕ إنشاء اختبار جديد</h2>
+
+        <span>بيانات الاختبار</span>
+
+    </div>
+
+    <div class="panel">
+
+        <div id="testMessage" class="message"></div>
+
+        <div class="formGrid">
+
+            <div class="formGroup">
+
+                <label>عنوان الاختبار</label>
+
+                <input
+                    id="testTitle"
+                    type="text"
+                    placeholder="مثال: اختبار الوحدة الأولى">
+
+            </div>
+
+            <div class="formGroup">
+
+                <label>عدد الأسئلة</label>
+
+                <input
+                    id="testQuestions"
+                    type="number"
+                    min="1"
+                    placeholder="مثال: 10">
+
+            </div>
+
+            <div class="formGroup full">
+
+                <label>وصف الاختبار</label>
+
+                <textarea
+                    id="testDescription"
+                    placeholder="اكتب وصفًا مختصرًا للاختبار"></textarea>
+
+            </div>
+
+        </div>
+
+        <div class="actions">
+
+            <button
+                class="mainBtn"
+                id="testSaveBtn"
+                onclick="saveTest()">
+
+                ➕ إضافة الاختبار
+
+            </button>
+
+            <button
+                class="cancelBtn"
+                id="testCancelBtn"
+                onclick="cancelTestEdit()">
+
+                إلغاء التعديل
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     الاختبارات
+========================= -->
+
+<section class="section">
+
+    <div class="sectionHead">
+
+        <h2>📋 الاختبارات الموجودة</h2>
+
+        <span id="testsCountText">0 اختبار</span>
+
+    </div>
+
+    <div class="testsList" id="testsList">
+
+        <div class="loading">
+            ⏳ جاري تحميل الاختبارات...
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer style="text-align:center;padding:35px 0 20px;color:#4e6682;font-size:9px;">
+    منبر ون • نظام الامتحانات 🎓
+</footer>
+
+</div>
+
+
+<!-- =========================
+     نافذة تأكيد الحذف
+========================= -->
+
+<div class="confirmOverlay" id="confirmOverlay">
+
+    <div class="confirmBox">
+
+        <h3>⚠️ تأكيد الحذف</h3>
+
+        <p id="confirmText">
+            هل أنت متأكد من الحذف؟
+        </p>
+
+        <div class="confirmActions">
+
+            <button
+                class="confirmYes"
+                onclick="confirmDelete()">
+
+                نعم، احذف
+
+            </button>
+
+            <button
+                class="confirmNo"
+                onclick="closeConfirm()">
+
+                إلغاء
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   SUPABASE
+========================================================= */
+
+const SUPABASE_URL =
+"https://vugnptbvkitokwqxulla.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable__WJDSewc6JN6XTM6czk11Q_lgON6Chj";
+
+
+/* =========================================================
+   كلمة مرور الأستاذ
+========================================================= */
+
+const TEACHER_PASSWORD = "15951";
+
+let enteredPassword = "";
+
+
+/* =========================================================
+   البيانات
+========================================================= */
+
+let tests = [];
+
+let questionsByTest = {};
+
+let editingTestId = null;
+
+let editingQuestionId = null;
+
+let currentQuestionTestId = null;
+
+let deleteTable = null;
+
+let deleteId = null;
+
+
+/* =========================================================
+   Supabase Request
+========================================================= */
+
+async function supabaseRequest(url, options = {}){
+
+    return fetch(url, {
+
+        ...options,
+
+        headers: {
+
+            apikey: SUPABASE_KEY,
+
+            "Content-Type":"application/json",
+
+            ...(options.headers || {})
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   جلب جدول
+========================================================= */
+
+async function getTable(table, query = "?select=*"){
+
+    try{
+
+        const response =
+        await supabaseRequest(
+            `${SUPABASE_URL}/rest/v1/${table}${query}`
+        );
+
+        if(!response.ok){
+
+            console.error(
+                "Supabase error:",
+                table,
+                response.status,
+                await response.text()
+            );
+
+            return [];
+
+        }
+
+        const data =
+        await response.json();
+
+        return Array.isArray(data)
+        ? data
+        : [];
+
+    }catch(error){
+
+        console.error(error);
+
+        return [];
+
+    }
+
+}
+
+
+/* =========================================================
+   تسجيل الدخول
+========================================================= */
+
+function pressKey(number){
+
+    if(enteredPassword.length >= 5){
+
+        return;
+
+    }
+
+    enteredPassword += number;
+
+    updateDots();
+
+    if(enteredPassword.length === 5){
+
+        setTimeout(checkPassword,150);
+
+    }
+
+}
+
+
+function clearPassword(){
+
+    enteredPassword =
+    enteredPassword.slice(0,-1);
+
+    updateDots();
+
+    document
+    .getElementById("lockMessage")
+    .textContent = "";
+
+}
+
+
+function updateDots(){
+
+    document
+    .querySelectorAll("#passwordDots .dot")
+    .forEach((dot,index)=>{
+
+        dot.classList.toggle(
+            "active",
+            index < enteredPassword.length
+        );
+
+    });
+
+}
+
+
+function checkPassword(){
+
+    if(enteredPassword === TEACHER_PASSWORD){
+
+        localStorage.setItem(
+            "teacher_unlocked",
+            "true"
+        );
+
+        document
+        .getElementById("lockScreen")
+        .classList.add("hidden");
+
+        enteredPassword = "";
+
+        updateDots();
+
+        loadTests();
+
+    }else{
+
+        document
+        .getElementById("lockMessage")
+        .textContent =
+        "❌ كلمة المرور غير صحيحة";
+
+        enteredPassword = "";
+
+        updateDots();
+
+    }
+
+}
+
+
+function lockAgain(){
+
+    localStorage.removeItem(
+        "teacher_unlocked"
+    );
+
+    document
+    .getElementById("lockScreen")
+    .classList.remove("hidden");
+
+    enteredPassword = "";
+
+    updateDots();
+
+}
+
+
+function checkSavedUnlock(){
+
+    if(
+        localStorage.getItem("teacher_unlocked")
+        === "true"
+    ){
+
+        document
+        .getElementById("lockScreen")
+        .classList.add("hidden");
+
+        loadTests();
+
+    }
+
+}
+
+
+/* =========================================================
+   الرسائل
+========================================================= */
+
+function showMessage(id,text,type="info"){
+
+    const element =
+    document.getElementById(id);
+
+    element.className =
+    "message " + type;
+
+    element.textContent = text;
+
+}
+
+
+/* =========================================================
+   تحميل الاختبارات
+========================================================= */
+
+async function loadTests(){
+
+    tests =
+    await getTable(
+        "tests",
+        "?select=*&order=created_at.desc"
+    );
+
+    renderTests();
+
+}
+
+
+/* =========================================================
+   عرض الاختبارات
+========================================================= */
+
+function renderTests(){
+
+    const box =
+    document.getElementById("testsList");
+
+    document
+    .getElementById("testsCountText")
+    .textContent =
+    `${tests.length} اختبار`;
+
+    if(!tests.length){
+
+        box.innerHTML = `
+            <div class="empty">
+                📝 لا توجد اختبارات حتى الآن.
+                <br>
+                أنشئ أول اختبار من النموذج أعلاه.
+            </div>
+        `;
+
+        return;
+
+    }
+
+    box.innerHTML = "";
+
+    tests.forEach(test=>{
+
+        const card =
+        document.createElement("div");
+
+        card.className = "testCard";
+
+        card.innerHTML = `
+
+            <div class="testTop">
+
+                <div class="testIcon">
+                    📝
+                </div>
+
+                <div class="testInfo">
+
+                    <h3>
+                        ${escapeHTML(
+                            test.title ||
+                            "اختبار بدون عنوان"
+                        )}
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(
+                            test.description ||
+                            "بدون وصف"
+                        )}
+
+                        ${
+                            test.questions_count
+                            ? " • " +
+                              test.questions_count +
+                              " سؤال"
+                            : ""
+                        }
+
+                    </p>
+
+                </div>
+
+                <div class="testActions">
+
+                    <button
+                        class="editBtn"
+                        onclick="editTest(${test.id})">
+
+                        ✏️ تعديل
+
+                    </button>
+
+                    <button
+                        class="deleteBtn"
+                        onclick="askDelete(
+                            'tests',
+                            ${test.id},
+                            'الاختبار'
+                        )">
+
+                        🗑️ حذف
+
+                    </button>
+
+                    <button
+                        class="editBtn"
+                        onclick="toggleQuestions(${test.id})">
+
+                        ❓ الأسئلة
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div
+                class="questionsArea"
+                id="questionsArea-${test.id}">
+
+                <div class="questionForm">
+
+                    <h3 id="questionFormTitle-${test.id}">
+                        ➕ إضافة سؤال
+                    </h3>
+
+                    <div class="questionGrid">
+
+                        <div class="optionBox" style="grid-column:1/-1">
+
+                            <label>
+                                نص السؤال
+                            </label>
+
+                            <input
+                                id="questionText-${test.id}"
+                                placeholder="اكتب السؤال هنا">
+
+                        </div>
+
+                        <div class="optionBox">
+
+                            <label>
+                                الخيار A
+                            </label>
+
+                            <input
+                                id="optionA-${test.id}"
+                                placeholder="الخيار الأول">
+
+                        </div>
+
+                        <div class="optionBox">
+
+                            <label>
+                                الخيار B
+                            </label>
+
+                            <input
+                                id="optionB-${test.id}"
+                                placeholder="الخيار الثاني">
+
+                        </div>
+
+                        <div class="optionBox">
+
+                            <label>
+                                الخيار C
+                            </label>
+
+                            <input
+                                id="optionC-${test.id}"
+                                placeholder="الخيار الثالث">
+
+                        </div>
+
+                        <div class="optionBox">
+
+                            <label>
+                                الخيار D
+                            </label>
+
+                            <input
+                                id="optionD-${test.id}"
+                                placeholder="الخيار الرابع">
+
+                        </div>
+
+                        <div class="optionBox">
+
+                            <label>
+                                الإجابة الصحيحة
+                            </label>
+
+                            <select
+                                class="correctSelect"
+                                id="correctAnswer-${test.id}">
+
+                                <option value="">
+                                    اختر الإجابة الصحيحة
+                                </option>
+
+                                <option value="A">
+                                    A
+                                </option>
+
+                                <option value="B">
+                                    B
+                                </option>
+
+                                <option value="C">
+                                    C
+                                </option>
+
+                                <option value="D">
+                                    D
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="questionActions">
+
+                        <button
+                            class="mainBtn"
+                            id="questionSaveBtn-${test.id}"
+                            onclick="saveQuestion(${test.id})">
+
+                            ➕ إضافة السؤال
+
+                        </button>
+
+                        <button
+                            class="cancelBtn"
+                            id="questionCancelBtn-${test.id}"
+                            onclick="cancelQuestionEdit(${test.id})">
+
+                            إلغاء التعديل
+
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="questionMessage-${test.id}"
+                        class="message"
+                        style="margin-top:10px">
+                    </div>
+
+                </div>
+
+                <div
+                    class="questionsList"
+                    id="questionsList-${test.id}">
+
+                    <div class="loading">
+                        ⏳ جاري تحميل الأسئلة...
+                    </div>
+
+                </div>
+
+            </div>
+        `;
+
+        box.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================================================
+   إنشاء / تعديل اختبار
+========================================================= */
+
+async function saveTest(){
+
+    const title =
+    document
+    .getElementById("testTitle")
+    .value
+    .trim();
+
+    const description =
+    document
+    .getElementById("testDescription")
+    .value
+    .trim();
+
+    const questionsValue =
+    document
+    .getElementById("testQuestions")
+    .value;
+
+    const questions_count =
+    questionsValue
+    ? Number(questionsValue)
+    : 0;
+
+    if(!title){
+
+        showMessage(
+            "testMessage",
+            "⚠️ اكتب عنوان الاختبار.",
+            "error"
+        );
+
+        return;
+
+    }
+
+    if(questions_count < 1){
+
+        showMessage(
+            "testMessage",
+            "⚠️ أدخل عدد الأسئلة.",
+            "error"
+        );
+
+        return;
+
+    }
+
+    const data = {
+
+        title,
+        description,
+        questions_count
+
+    };
+
+    try{
+
+        let response;
+
+        if(editingTestId){
+
+            response =
+            await supabaseRequest(
+                `${SUPABASE_URL}/rest/v1/tests?id=eq.${editingTestId}`,
+                {
+                    method:"PATCH",
+                    headers:{
+                        Prefer:"return=minimal"
+                    },
+                    body:JSON.stringify(data)
+                }
+            );
+
+        }else{
+
+            response =
+            await supabaseRequest(
+                `${SUPABASE_URL}/rest/v1/tests`,
+                {
+                    method:"POST",
+                    headers:{
+                        Prefer:"return=minimal"
+                    },
+                    body:JSON.stringify(data)
+                }
+            );
+
+        }
+
+        if(!response.ok){
+
+            console.error(await response.text());
+
+            showMessage(
+                "testMessage",
+                "❌ لم يتم حفظ الاختبار. تحقق من صلاحيات Supabase.",
+                "error"
+            );
+
+            return;
+
+        }
+
+        showMessage(
+            "testMessage",
+            editingTestId
+            ? "✅ تم تعديل الاختبار."
+            : "✅ تمت إضافة الاختبار.",
+            "success"
+        );
+
+        clearTestForm();
+
+        await loadTests();
+
+    }catch(error){
+
+        console.error(error);
+
+        showMessage(
+            "testMessage",
+            "❌ حدث خطأ في الاتصال.",
+            "error"
+        );
+
+    }
+
+}
+
+
+function editTest(id){
+
+    const test =
+    tests.find(
+        x=>Number(x.id) === Number(id)
+    );
+
+    if(!test){
+
+        return;
+
+    }
+
+    editingTestId = id;
+
+    document
+    .getElementById("testTitle")
+    .value =
+    test.title || "";
+
+    document
+    .getElementById("testDescription")
+    .value =
+    test.description || "";
+
+    document
+    .getElementById("testQuestions")
+    .value =
+    test.questions_count || "";
+
+    document
+    .getElementById("testSaveBtn")
+    .textContent =
+    "💾 حفظ التعديل";
+
+    document
+    .getElementById("testCancelBtn")
+    .style.display =
+    "block";
+
+    document
+    .getElementById("testTitle")
+    .scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+
+}
+
+
+function cancelTestEdit(){
+
+    clearTestForm();
+
+}
+
+
+function clearTestForm(){
+
+    editingTestId = null;
+
+    document
+    .getElementById("testTitle")
+    .value = "";
+
+    document
+    .getElementById("testDescription")
+    .value = "";
+
+    document
+    .getElementById("testQuestions")
+    .value = "";
+
+    document
+    .getElementById("testSaveBtn")
+    .textContent =
+    "➕ إضافة الاختبار";
+
+    document
+    .getElementById("testCancelBtn")
+    .style.display =
+    "none";
+
+}
+
+
+/* =========================================================
+   فتح / إغلاق الأسئلة
+========================================================= */
+
+async function toggleQuestions(testId){
+
+    const area =
+    document
+    .getElementById(
+        `questionsArea-${testId}`
+    );
+
+    if(!area){
+
+        return;
+
+    }
+
+    const isOpen =
+    area.classList.contains("show");
+
+    document
+    .querySelectorAll(".questionsArea")
+    .forEach(x=>{
+        x.classList.remove("show");
+    });
+
+    if(isOpen){
+
+        return;
+
+    }
+
+    area.classList.add("show");
+
+    currentQuestionTestId = testId;
+
+    editingQuestionId = null;
+
+    clearQuestionForm(testId);
+
+    await loadQuestions(testId);
+
+}
+
+
+/* =========================================================
+   تحميل الأسئلة
+========================================================= */
+
+async function loadQuestions(testId){
+
+    const list =
+    document
+    .getElementById(
+        `questionsList-${testId}`
+    );
+
+    list.innerHTML = `
+        <div class="loading">
+            ⏳ جاري تحميل الأسئلة...
+        </div>
+    `;
+
+    const questions =
+    await getTable(
+        "test_questions",
+        `?select=*&test_id=eq.${testId}&order=question_order.asc,id.asc`
+    );
+
+    questionsByTest[testId] = questions;
+
+    renderQuestions(
+        testId,
+        questions
+    );
+
+}
+
+
+/* =========================================================
+   عرض الأسئلة
+========================================================= */
+
+function renderQuestions(testId,questions){
+
+    const list =
+    document
+    .getElementById(
+        `questionsList-${testId}`
+    );
+
+    if(!questions.length){
+
+        list.innerHTML = `
+            <div class="empty">
+                ❓ لا توجد أسئلة لهذا الاختبار حتى الآن.
+                <br>
+                أضف السؤال الأول من النموذج أعلاه.
+            </div>
+        `;
+
+        return;
+
+    }
+
+    list.innerHTML = "";
+
+    questions.forEach((question,index)=>{
+
+        const item =
+        document.createElement("div");
+
+        item.className =
+        "questionItem";
+
+        const correctText =
+        question[`option_${String(
+            question.correct_answer || ""
+        ).toLowerCase()}`] || "";
+
+        item.innerHTML = `
+
+            <div class="questionItemTop">
+
+                <div class="questionNumber">
+                    ${index + 1}
+                </div>
+
+                <div class="questionText">
+
+                    ${escapeHTML(
+                        question.question_text
+                    )}
+
+                </div>
+
+                <div class="questionButtons">
+
+                    <button
+                        class="smallBtn smallEdit"
+                        onclick="editQuestion(
+                            ${testId},
+                            ${question.id}
+                        )">
+
+                        ✏️
+
+                    </button>
+
+                    <button
+                        class="smallBtn smallDelete"
+                        onclick="askDelete(
+                            'test_questions',
+                            ${question.id},
+                            'السؤال'
+                        )">
+
+                        🗑️
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="optionsPreview">
+
+                <div class="optionPreview ${
+                    question.correct_answer === "A"
+                    ? "correct"
+                    : ""
+                }">
+
+                    A:
+                    ${escapeHTML(
+                        question.option_a
+                    )}
+
+                </div>
+
+                <div class="optionPreview ${
+                    question.correct_answer === "B"
+                    ? "correct"
+                    : ""
+                }">
+
+                    B:
+                    ${escapeHTML(
+                        question.option_b
+                    )}
+
+                </div>
+
+                <div class="optionPreview ${
+                    question.correct_answer === "C"
+                    ? "correct"
+                    : ""
+                }">
+
+                    C:
+                    ${escapeHTML(
+                        question.option_c
+                    )}
+
+                </div>
+
+                <div class="optionPreview ${
+                    question.correct_answer === "D"
+                    ? "correct"
+                    : ""
+                }">
+
+                    D:
+                    ${escapeHTML(
+                        question.option_d
+                    )}
+
+                </div>
+
+            </div>
+
+        `;
+
+        list.appendChild(item);
+
+    });
+
+}
+
+
+/* =========================================================
+   إضافة / تعديل سؤال
+========================================================= */
+
+async function saveQuestion(testId){
+
+    const question_text =
+    document
+    .getElementById(
+        `questionText-${testId}`
+    )
+    .value
+    .trim();
+
+    const option_a =
+    document
+    .getElementById(
+        `optionA-${testId}`
+    )
+    .value
+    .trim();
+
+    const option_b =
+    document
+    .getElementById(
+        `optionB-${testId}`
+    )
+    .value
+    .trim();
+
+    const option_c =
+    document
+    .getElementById(
+        `optionC-${testId}`
+    )
+    .value
+    .trim();
+
+    const option_d =
+    document
+    .getElementById(
+        `optionD-${testId}`
+    )
+    .value
+    .trim();
+
+    const correct_answer =
+    document
+    .getElementById(
+        `correctAnswer-${testId}`
+    )
+    .value;
+
+    if(
+        !question_text ||
+        !option_a ||
+        !option_b ||
+        !option_c ||
+        !option_d
+    ){
+
+        showQuestionMessage(
+            testId,
+            "⚠️ املأ السؤال وجميع الخيارات.",
+            "error"
+        );
+
+        return;
+
+    }
+
+    if(!correct_answer){
+
+        showQuestionMessage(
+            testId,
+            "⚠️ اختر الإجابة الصحيحة.",
+            "error"
+        );
+
+        return;
+
+    }
+
+    const currentQuestions =
+    questionsByTest[testId] || [];
+
+    let question_order;
+
+    if(editingQuestionId){
+
+        const oldQuestion =
+        currentQuestions.find(
+            q=>Number(q.id) ===
+            Number(editingQuestionId)
+        );
+
+        question_order =
+        oldQuestion
+        ? oldQuestion.question_order
+        : currentQuestions.length + 1;
+
+    }else{
+
+        question_order =
+        currentQuestions.length + 1;
+
+    }
+
+    const data = {
+
+        test_id:Number(testId),
+
+        question_text,
+
+        option_a,
+
+        option_b,
+
+        option_c,
+
+        option_d,
+
+        correct_answer,
+
+        question_order
+
+    };
+
+    try{
+
+        let response;
+
+        if(editingQuestionId){
+
+            response =
+            await supabaseRequest(
+                `${SUPABASE_URL}/rest/v1/test_questions?id=eq.${editingQuestionId}`,
+                {
+                    method:"PATCH",
+                    headers:{
+                        Prefer:"return=minimal"
+                    },
+                    body:JSON.stringify(data)
+                }
+            );
+
+        }else{
+
+            response =
+            await supabaseRequest(
+                `${SUPABASE_URL}/rest/v1/test_questions`,
+                {
+                    method:"POST",
+                    headers:{
+                        Prefer:"return=minimal"
+                    },
+                    body:JSON.stringify(data)
+                }
+            );
+
+        }
+
+        if(!response.ok){
+
+            console.error(
+                await response.text()
+            );
+
+            showQuestionMessage(
+                testId,
+                "❌ لم يتم حفظ السؤال. تحقق من صلاحيات Supabase.",
+                "error"
+            );
+
+            return;
+
+        }
+
+        showQuestionMessage(
+            testId,
+            editingQuestionId
+            ? "✅ تم تعديل السؤال."
+            : "✅ تمت إضافة السؤال.",
+            "success"
+        );
+
+        editingQuestionId = null;
+
+        clearQuestionForm(testId);
+
+        await loadQuestions(testId);
+
+        await updateTestQuestionCount(testId);
+
+        await loadTests();
+
+    }catch(error){
+
+        console.error(error);
+
+        showQuestionMessage(
+            testId,
+            "❌ حدث خطأ في الاتصال.",
+            "error"
+        );
+
+    }
+
+}
+
+
+function editQuestion(testId,questionId){
+
+    const questions =
+    questionsByTest[testId] || [];
+
+    const question =
+    questions.find(
+        q=>Number(q.id) ===
+        Number(questionId)
+    );
+
+    if(!question){
+
+        return;
+
+    }
+
+    editingQuestionId =
+    questionId;
+
+    currentQuestionTestId =
+    testId;
+
+    document
+    .getElementById(
+        `questionText-${testId}`
+    )
+    .value =
+    question.question_text || "";
+
+    document
+    .getElementById(
+        `optionA-${testId}`
+    )
+    .value =
+    question.option_a || "";
+
+    document
+    .getElementById(
+        `optionB-${testId}`
+    )
+    .value =
+    question.option_b || "";
+
+    document
+    .getElementById(
+        `optionC-${testId}`
+    )
+    .value =
+    question.option_c || "";
+
+    document
+    .getElementById(
+        `optionD-${testId}`
+    )
+    .value =
+    question.option_d || "";
+
+    document
+    .getElementById(
+        `correctAnswer-${testId}`
+    )
+    .value =
+    question.correct_answer || "";
+
+    document
+    .getElementById(
+        `questionSaveBtn-${testId}`
+    )
+    .textContent =
+    "💾 حفظ السؤال";
+
+    document
+    .getElementById(
+        `questionCancelBtn-${testId}`
+    )
+    .style.display =
+    "block";
+
+    document
+    .getElementById(
+        `questionText-${testId}`
+    )
+    .scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+
+}
+
+
+function cancelQuestionEdit(testId){
+
+    editingQuestionId = null;
+
+    clearQuestionForm(testId);
+
+}
+
+
+function clearQuestionForm(testId){
+
+    const fields = [
+
+        `questionText-${testId}`,
+        `optionA-${testId}`,
+        `optionB-${testId}`,
+        `optionC-${testId}`,
+        `optionD-${testId}`
+
+    ];
+
+    fields.forEach(id=>{
+
+        const element =
+        document.getElementById(id);
+
+        if(element){
+
+            element.value = "";
+
+        }
+
+    });
+
+    const select =
+    document.getElementById(
+        `correctAnswer-${testId}`
+    );
+
+    if(select){
+
+        select.value = "";
+
+    }
+
+    const saveButton =
+    document.getElementById(
+        `questionSaveBtn-${testId}`
+    );
+
+    if(saveButton){
+
+        saveButton.textContent =
+        "➕ إضافة السؤال";
+
+    }
+
+    const cancelButton =
+    document.getElementById(
+        `questionCancelBtn-${testId}`
+    );
+
+    if(cancelButton){
+
+        cancelButton.style.display =
+        "none";
+
+    }
+
+}
+
+
+/* =========================================================
+   تحديث عدد أسئلة الاختبار
+========================================================= */
+
+async function updateTestQuestionCount(testId){
+
+    const questions =
+    await getTable(
+        "test_questions",
+        `?select=id&test_id=eq.${testId}`
+    );
+
+    const count =
+    questions.length;
+
+    await supabaseRequest(
+        `${SUPABASE_URL}/rest/v1/tests?id=eq.${testId}`,
+        {
+            method:"PATCH",
+            headers:{
+                Prefer:"return=minimal"
+            },
+            body:JSON.stringify({
+                questions_count:count
+            })
+        }
+    );
+
+}
+
+
+/* =========================================================
+   رسالة السؤال
+========================================================= */
+
+function showQuestionMessage(
+    testId,
+    text,
+    type="info"
+){
+
+    const element =
+    document.getElementById(
+        `questionMessage-${testId}`
+    );
+
+    if(!element){
+
+        return;
+
+    }
+
+    element.className =
+    "message " + type;
+
+    element.textContent =
+    text;
+
+}
+
+
+/* =========================================================
+   الحذف
+========================================================= */
+
+function askDelete(table,id,type){
+
+    deleteTable = table;
+
+    deleteId = id;
+
+    document
+    .getElementById("confirmText")
+    .textContent =
+    `هل أنت متأكد أنك تريد حذف ${type}؟ لا يمكن التراجع عن هذه العملية.`;
+
+    document
+    .getElementById("confirmOverlay")
+    .classList
+    .add("show");
+
+}
+
+
+function closeConfirm(){
+
+    deleteTable = null;
+
+    deleteId = null;
+
+    document
+    .getElementById("confirmOverlay")
+    .classList
+    .remove("show");
+
+}
+
+
+async function confirmDelete(){
+
+    if(!deleteTable || !deleteId){
+
+        closeConfirm();
+
+        return;
+
+    }
+
+    const table =
+    deleteTable;
+
+    const id =
+    deleteId;
+
+    closeConfirm();
+
+    try{
+
+        const response =
+        await supabaseRequest(
+            `${SUPABASE_URL}/rest/v1/${table}?id=eq.${id}`,
+            {
+                method:"DELETE",
+                headers:{
+                    Prefer:"return=minimal"
+                }
+            }
+        );
+
+        if(!response.ok){
+
+            console.error(
+                await response.text()
+            );
+
+            alert(
+                "❌ لم يتم الحذف. تحقق من صلاحيات Supabase."
+            );
+
+            return;
+
+        }
+
+        if(table === "tests"){
+
+            /*
+             حذف أسئلة الاختبار المرتبطة
+             أيضًا، حتى لا تبقى أسئلة بلا اختبار.
+            */
+
+            await supabaseRequest(
+                `${SUPABASE_URL}/rest/v1/test_questions?test_id=eq.${id}`,
+                {
+                    method:"DELETE",
+                    headers:{
+                        Prefer:"return=minimal"
+                    }
+                }
+            );
+
+            await loadTests();
+
+        }else if(table === "test_questions"){
+
+            if(currentQuestionTestId){
+
+                await loadQuestions(
+                    currentQuestionTestId
+                );
+
+                await updateTestQuestionCount(
+                    currentQuestionTestId
+                );
+
+                await loadTests();
+
+            }
+
+        }
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "❌ حدث خطأ أثناء الحذف."
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   حماية HTML
+========================================================= */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================================================
+   إغلاق نافذة الحذف بالخارج
+========================================================= */
+
+document
+.getElementById("confirmOverlay")
+.addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === this){
+
+            closeConfirm();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   بدء الصفحة
+========================================================= */
+
+checkSavedUnlock();
+
+</script>
+
+</body>
+</html>
