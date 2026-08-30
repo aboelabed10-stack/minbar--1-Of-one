@@ -1,21 +1,18 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>منبر ون | منصة الرياضيات</title>
-
-<style>
+<title>منبر ون | منصة الرياضيات</title><style>
 *{box-sizing:border-box;margin:0;padding:0}
+
 html{scroll-behavior:smooth}
 
 body{
 font-family:Tahoma,Arial,sans-serif;
 background:
-radial-gradient(circle at 85% 5%,#351020 0,transparent 25%),
-radial-gradient(circle at 10% 55%,#21114a 0,transparent 28%),
-radial-gradient(circle at 70% 90%,#3a1018 0,transparent 25%),
-#050817;
+radial-gradient(circle at 85% 5%,#173d70 0,transparent 28%),
+radial-gradient(circle at 10% 70%,#34205f 0,transparent 30%),
+linear-gradient(135deg,#040a19,#07152d 55%,#0a1028);
 color:#fff;
 min-height:100vh;
 overflow-x:hidden
@@ -24,7 +21,10 @@ overflow-x:hidden
 button,input{font-family:inherit}
 button{cursor:pointer}
 
-.page{position:relative;z-index:2}
+.page{
+position:relative;
+z-index:2
+}
 
 /* ===== الخلفية المتحركة ===== */
 
@@ -36,42 +36,59 @@ pointer-events:none;
 z-index:0
 }
 
-.math-item{
+.math-symbol{
 position:absolute;
 top:-80px;
-font-size:25px;
 font-weight:bold;
-color:#ff334f;
-opacity:.18;
+opacity:.16;
 animation:fall linear infinite;
-text-shadow:0 0 15px #ff193d
+filter:drop-shadow(0 0 8px rgba(85,210,255,.3))
 }
 
-.math-item:nth-child(1){left:5%;animation-duration:12s;animation-delay:0s}
-.math-item:nth-child(2){left:15%;animation-duration:16s;animation-delay:3s}
-.math-item:nth-child(3){left:27%;animation-duration:13s;animation-delay:6s}
-.math-item:nth-child(4){left:39%;animation-duration:18s;animation-delay:1s}
-.math-item:nth-child(5){left:52%;animation-duration:14s;animation-delay:4s}
-.math-item:nth-child(6){left:65%;animation-duration:17s;animation-delay:2s}
-.math-item:nth-child(7){left:76%;animation-duration:12s;animation-delay:7s}
-.math-item:nth-child(8){left:88%;animation-duration:19s;animation-delay:5s}
-.math-item:nth-child(9){left:95%;animation-duration:15s;animation-delay:8s}
+.math-symbol:nth-child(1){left:7%;font-size:28px;animation-duration:13s}
+.math-symbol:nth-child(2){left:19%;font-size:22px;animation-duration:17s;animation-delay:2s}
+.math-symbol:nth-child(3){left:32%;font-size:30px;animation-duration:15s;animation-delay:5s}
+.math-symbol:nth-child(4){left:47%;font-size:20px;animation-duration:19s;animation-delay:1s}
+.math-symbol:nth-child(5){left:61%;font-size:27px;animation-duration:14s;animation-delay:4s}
+.math-symbol:nth-child(6){left:74%;font-size:24px;animation-duration:18s;animation-delay:7s}
+.math-symbol:nth-child(7){left:88%;font-size:30px;animation-duration:16s;animation-delay:3s}
+.math-symbol:nth-child(8){left:94%;font-size:18px;animation-duration:21s;animation-delay:6s}
 
 @keyframes fall{
 0%{transform:translateY(-100px) rotate(0deg);opacity:0}
-10%{opacity:.2}
-50%{opacity:.3}
-90%{opacity:.15}
+15%{opacity:.18}
+85%{opacity:.18}
 100%{transform:translateY(110vh) rotate(360deg);opacity:0}
+}
+
+.star{
+position:absolute;
+width:4px;
+height:4px;
+border-radius:50%;
+background:#fff;
+box-shadow:0 0 10px #7ddcff;
+animation:twinkle 2.5s infinite alternate
+}
+
+.star.s1{top:14%;left:12%}
+.star.s2{top:27%;left:78%;animation-delay:.8s}
+.star.s3{top:48%;left:25%;animation-delay:1.4s}
+.star.s4{top:68%;left:91%;animation-delay:.4s}
+.star.s5{top:83%;left:58%;animation-delay:1.8s}
+
+@keyframes twinkle{
+from{opacity:.15;transform:scale(.7)}
+to{opacity:1;transform:scale(1.4)}
 }
 
 /* ===== الهيدر ===== */
 
 header{
 height:70px;
-background:rgba(5,8,23,.88);
-backdrop-filter:blur(16px);
-border-bottom:1px solid #ff334f26;
+background:rgba(4,12,30,.92);
+backdrop-filter:blur(15px);
+border-bottom:1px solid #ffffff14;
 position:sticky;
 top:0;
 z-index:50
@@ -93,16 +110,19 @@ align-items:center;
 gap:9px
 }
 
+.logoIcon,.userIcon{
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg,#14c9ff,#7657e8);
+box-shadow:0 0 18px rgba(32,190,255,.2)
+}
+
 .logoIcon{
 width:39px;
 height:39px;
 border-radius:12px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:19px;
-background:linear-gradient(135deg,#ff1744,#a50025);
-box-shadow:0 0 22px #ff174455
+font-size:19px
 }
 
 .logoText{
@@ -112,7 +132,7 @@ font-weight:bold
 
 .logoText small{
 display:block;
-color:#a98690;
+color:#7187a7;
 font-size:6px;
 margin-top:3px
 }
@@ -123,7 +143,9 @@ gap:7px;
 align-items:center
 }
 
-.studentBtn,.teacherBtn,.logoutBtn{
+.studentBtn,
+.teacherBtn,
+.logoutBtn{
 border:0;
 color:#fff;
 font-size:8px;
@@ -132,53 +154,53 @@ border-radius:10px;
 display:flex;
 align-items:center;
 gap:5px;
-transition:.25s
-}
-
-.studentBtn{
-background:linear-gradient(135deg,#d50935,#8d0c30)
-}
-
-.teacherBtn{
-background:linear-gradient(135deg,#f04a22,#9e2416);
+transition:.25s;
 text-decoration:none
 }
 
+.studentBtn{
+background:linear-gradient(135deg,#087fb5,#7450d8)
+}
+
+.teacherBtn{
+background:linear-gradient(135deg,#087c76,#c08a28)
+}
+
 .logoutBtn{
-background:linear-gradient(135deg,#8f3048,#b84b62);
+background:linear-gradient(135deg,#40548a,#6c5bc5);
 display:none
 }
 
-.studentBtn:hover,.teacherBtn:hover,.logoutBtn:hover{
+.studentBtn:hover,
+.teacherBtn:hover,
+.logoutBtn:hover{
 transform:translateY(-2px);
-box-shadow:0 8px 25px #ff174433
+filter:brightness(1.12)
 }
 
 .userBox{
 display:none;
 align-items:center;
 gap:7px;
-background:#101226;
-border:1px solid #ff334f24;
+background:#0b1b36;
+border:1px solid #ffffff17;
 padding:5px 8px;
 border-radius:10px;
 font-size:7px;
-color:#d9aeb7
+color:#a9bdd5
 }
 
 .userIcon{
 width:27px;
 height:27px;
-border-radius:8px;
-display:flex;
-align-items:center;
-justify-content:center;
-background:linear-gradient(135deg,#ff1744,#7d0b29)
+border-radius:8px
 }
 
-/* ===== Hero ===== */
+/* ===== البطل ===== */
 
-.hero,.search,.section{
+.hero,
+.search,
+.section{
 width:92%;
 max-width:1100px;
 margin-left:auto;
@@ -187,36 +209,35 @@ margin-right:auto
 
 .hero{
 margin-top:22px;
-padding:32px 23px;
-border-radius:25px;
+padding:30px 23px;
+border-radius:24px;
 background:
-linear-gradient(135deg,rgba(74,13,36,.96),rgba(34,17,69,.95)),
-linear-gradient(135deg,#ff1744,#7c19b8);
-border:1px solid #ff536d3d;
-box-shadow:0 20px 65px #0005;
+linear-gradient(135deg,rgba(11,55,96,.96),rgba(45,28,87,.95));
+border:1px solid #5abfff2e;
+box-shadow:0 18px 55px #0003;
 position:relative;
 overflow:hidden
 }
 
 .hero:after{
-content:"π   √   ∑   △   ○";
+content:"";
 position:absolute;
-left:20px;
-bottom:10px;
-font-size:35px;
-letter-spacing:14px;
-color:#ff4963;
-opacity:.08;
-transform:rotate(-5deg)
+width:180px;
+height:180px;
+border:1px solid #6ddcff30;
+border-radius:35px;
+transform:rotate(25deg);
+left:-70px;
+top:-90px
 }
 
 .heroBadge{
 display:inline-block;
-padding:7px 10px;
+padding:6px 9px;
 border-radius:20px;
-background:#ff24451a;
-border:1px solid #ff496330;
-color:#ff7185;
+background:#23caff1a;
+border:1px solid #23caff30;
+color:#5cdcff;
 font-size:8px
 }
 
@@ -227,12 +248,11 @@ margin-top:10px
 }
 
 .hero h1 span{
-color:#ff526d;
-text-shadow:0 0 20px #ff174433
+color:#54d8ff
 }
 
 .hero p{
-color:#c2aeb5;
+color:#9aafc9;
 font-size:9px;
 line-height:1.9;
 margin-top:5px
@@ -248,9 +268,9 @@ position:relative
 .search input{
 width:100%;
 height:45px;
-border:1px solid #ff334f2b;
+border:1px solid #ffffff1f;
 border-radius:13px;
-background:#0d1025;
+background:#0b1b36;
 color:#fff;
 padding:0 43px 0 15px;
 outline:none;
@@ -259,16 +279,15 @@ transition:.25s
 }
 
 .search input:focus{
-border-color:#ff405c;
-box-shadow:0 0 20px #ff17441c
+border-color:#4fdcff66;
+box-shadow:0 0 20px #20bfff12
 }
 
 .searchIcon{
 position:absolute;
 right:14px;
 top:13px;
-font-size:15px;
-color:#ff405c
+font-size:15px
 }
 
 /* ===== الأقسام ===== */
@@ -290,12 +309,15 @@ font-size:15px
 
 .sectionHead span{
 font-size:7px;
-color:#9d7780
+color:#7188a6
 }
 
-.options,.stats,.lessonList,.contentGrid{
+.options,
+.stats,
+.lessonList,
+.contentGrid{
 display:grid;
-gap:9px
+gap:8px
 }
 
 .options{
@@ -305,9 +327,9 @@ grid-template-columns:repeat(4,1fr)
 .option{
 color:#fff;
 text-decoration:none;
-border-radius:16px;
-padding:14px 8px;
-border:1px solid #ffffff15;
+border-radius:15px;
+padding:13px 8px;
+border:1px solid #ffffff17;
 transition:.25s;
 position:relative;
 overflow:hidden
@@ -315,20 +337,19 @@ overflow:hidden
 
 .option:hover{
 transform:translateY(-4px);
-box-shadow:0 12px 30px #0006
+border-color:#ffffff35;
+box-shadow:0 12px 25px #0003
 }
 
 .optionIcon{
-width:31px;
-height:31px;
+width:30px;
+height:30px;
 border-radius:9px;
 display:flex;
 justify-content:center;
 align-items:center;
 font-size:14px;
-margin-bottom:7px;
-background:linear-gradient(135deg,#ff1744,#a9002b)!important;
-box-shadow:0 0 15px #ff174433
+margin-bottom:7px
 }
 
 .option h3{
@@ -336,28 +357,55 @@ font-size:9px
 }
 
 .option p{
-color:#ffffffa8;
+color:#ffffff9e;
 font-size:6px;
 margin-top:4px
 }
 
-.c1{background:linear-gradient(135deg,#41101e,#701b35)}
-.c2{background:linear-gradient(135deg,#27134c,#552070)}
-.c3{background:linear-gradient(135deg,#4b2116,#79251a)}
-.c4{background:linear-gradient(135deg,#111d42,#24315e)}
+.c1{
+background:linear-gradient(135deg,#073b67,#087aa2)
+}
+
+.c2{
+background:linear-gradient(135deg,#36205e,#69358b)
+}
+
+.c3{
+background:linear-gradient(135deg,#174e61,#287c91)
+}
+
+.c4{
+background:linear-gradient(135deg,#104a43,#147660)
+}
+
+.c1 .optionIcon{
+background:#079ed3
+}
+
+.c2 .optionIcon{
+background:#9856d8
+}
+
+.c3 .optionIcon{
+background:#3c9eb7
+}
+
+.c4 .optionIcon{
+background:#1ac29f
+}
 
 /* ===== التحدي ===== */
 
 .challenge{
 padding:17px;
 border-radius:17px;
-background:linear-gradient(135deg,#30113d,#17183f);
-border:1px solid #ff426033;
-box-shadow:0 12px 40px #0003
+background:linear-gradient(135deg,#30205d,#151e4b);
+border:1px solid #b478ff2e;
+box-shadow:0 10px 30px #0002
 }
 
 .challengeTag{
-color:#ff7890;
+color:#d49aff;
 font-size:8px
 }
 
@@ -368,23 +416,23 @@ margin-top:8px
 
 .question{
 margin-top:10px;
-background:#0004;
+background:#0003;
 padding:14px;
 border-radius:11px;
 font-size:15px;
 text-align:center;
-line-height:1.8;
-border:1px solid #ffffff0c
+line-height:1.8
 }
 
-.challenge button,.quizBtn{
+.challenge button,
+.quizBtn{
 margin-top:10px;
 width:100%;
 border:0;
 padding:10px;
 border-radius:9px;
 color:#fff;
-background:linear-gradient(135deg,#ff1744,#a70c42);
+background:linear-gradient(135deg,#8b54ff,#2eb9d3);
 font-size:9px
 }
 
@@ -401,7 +449,7 @@ gap:7px
 
 .answer{
 border:1px solid #ffffff1c;
-background:#0c1028;
+background:#0a1832;
 color:#fff;
 padding:10px;
 border-radius:9px;
@@ -409,8 +457,7 @@ font-size:9px
 }
 
 .answer:hover{
-background:#24152d;
-border-color:#ff405c
+background:#172b4e
 }
 
 .feedback{
@@ -429,7 +476,7 @@ grid-template-columns:repeat(3,1fr)
 .stat{
 padding:13px 8px;
 border-radius:13px;
-background:#0d1128;
+background:#0a1b35;
 border:1px solid #ffffff12;
 text-align:center
 }
@@ -441,14 +488,22 @@ font-size:17px
 
 .stat span{
 display:block;
-color:#8f7480;
+color:#728aa8;
 font-size:7px;
 margin-top:5px
 }
 
-.points strong{color:#ffcc4d}
-.progress strong{color:#ff536d}
-.rank strong{color:#d27cff}
+.points strong{
+color:#ffd34e
+}
+
+.progress strong{
+color:#45d8ff
+}
+
+.rank strong{
+color:#b87cff
+}
 
 /* ===== الحصص ===== */
 
@@ -462,15 +517,15 @@ align-items:center;
 gap:9px;
 padding:12px;
 border-radius:14px;
-background:#0c1129;
-border:1px solid #ff334f14;
+background:#0a1b36;
+border:1px solid #64aae61a;
 min-width:0;
-transition:.25s
+transition:.2s
 }
 
 .lesson:hover{
 transform:translateY(-2px);
-border-color:#ff334f33
+border-color:#4ccfff38
 }
 
 .lessonIcon{
@@ -481,12 +536,12 @@ display:flex;
 align-items:center;
 justify-content:center;
 font-size:15px;
-background:linear-gradient(135deg,#ff1744,#7d0b2a);
+background:linear-gradient(135deg,#00aeea,#5b51dc);
 flex-shrink:0
 }
 
 .noVideoIcon{
-background:linear-gradient(135deg,#765016,#a86c1e)
+background:linear-gradient(135deg,#3e6680,#567ca0)
 }
 
 .lessonInfo{
@@ -502,7 +557,7 @@ text-overflow:ellipsis
 }
 
 .lessonInfo p{
-color:#8f7480;
+color:#728aa6;
 font-size:7px;
 margin-top:5px;
 white-space:nowrap;
@@ -510,7 +565,8 @@ overflow:hidden;
 text-overflow:ellipsis
 }
 
-.watch,.noVideo{
+.watch,
+.noVideo{
 margin-right:auto;
 font-size:7px;
 padding:7px 8px;
@@ -519,14 +575,14 @@ white-space:nowrap
 }
 
 .watch{
-color:#ff7084;
+color:#4fdcff;
 text-decoration:none;
-background:#ff174414
+background:#28c8ff14
 }
 
 .noVideo{
-color:#ffca66;
-background:#dc96281a
+color:#9fc8dc;
+background:#628ca51a
 }
 
 /* ===== البطاقات ===== */
@@ -538,7 +594,7 @@ grid-template-columns:repeat(3,1fr)
 .contentCard{
 padding:15px 10px;
 border-radius:14px;
-background:#0c1129;
+background:#0a1b36;
 border:1px solid #ffffff12;
 min-width:0;
 transition:.25s
@@ -546,8 +602,8 @@ transition:.25s
 
 .contentCard:hover{
 transform:translateY(-3px);
-border-color:#ff334f30;
-box-shadow:0 12px 35px #0005
+border-color:#55cfff30;
+box-shadow:0 12px 30px #0003
 }
 
 .contentIcon{
@@ -562,15 +618,15 @@ margin-bottom:9px
 }
 
 .summaryIcon{
-background:linear-gradient(135deg,#ff1744,#8d174f)
+background:linear-gradient(135deg,#6d3fc0,#a457d8)
 }
 
 .testIcon{
-background:linear-gradient(135deg,#ff5b24,#a72c18)
+background:linear-gradient(135deg,#277b9c,#3fb8ca)
 }
 
 .roomIcon{
-background:linear-gradient(135deg,#d71948,#721b62)
+background:linear-gradient(135deg,#087b69,#19b394)
 }
 
 .contentCard h3{
@@ -579,7 +635,7 @@ line-height:1.6
 }
 
 .contentCard p{
-color:#8f7480;
+color:#7189a5;
 font-size:7px;
 line-height:1.7;
 margin-top:5px
@@ -594,24 +650,31 @@ text-align:center;
 text-decoration:none;
 color:#fff;
 font-size:7px;
-background:#ff17441a;
-border:1px solid #ff334f14
+background:#ffffff14;
+transition:.2s
 }
 
-.empty,.loading{
+.contentButton:hover{
+background:#ffffff22
+}
+
+/* ===== الحالات ===== */
+
+.empty,
+.loading{
 padding:22px;
 border-radius:14px;
 text-align:center;
-color:#907985;
+color:#7188a4;
 font-size:8px;
 line-height:2;
-background:#0a1024;
-border:1px dashed #ff334f25
+background:#091931;
+border:1px dashed #294563
 }
 
 .loading{
 border:0;
-color:#ff6078
+color:#65d8ff
 }
 
 /* ===== نتائج البحث ===== */
@@ -638,7 +701,7 @@ align-items:center;
 gap:9px;
 padding:10px;
 border-radius:12px;
-background:#0c1129;
+background:#0a1b36;
 border:1px solid #ffffff14;
 text-decoration:none;
 color:#fff
@@ -654,10 +717,21 @@ justify-content:center;
 flex-shrink:0
 }
 
-.type-video{background:#b80e35}
-.type-summary{background:#7b1b65}
-.type-test{background:#b53b18}
-.type-room{background:#8d174f}
+.type-video{
+background:#087db5
+}
+
+.type-summary{
+background:#7547bd
+}
+
+.type-test{
+background:#287f99
+}
+
+.type-room{
+background:#16806d
+}
 
 .resultInfo{
 min-width:0;
@@ -673,7 +747,7 @@ text-overflow:ellipsis
 
 .resultInfo p{
 font-size:7px;
-color:#8f7480;
+color:#7189a6;
 margin-top:4px
 }
 
@@ -682,7 +756,7 @@ margin-top:4px
 footer{
 text-align:center;
 padding:28px 0 18px;
-color:#674f5c;
+color:#4e6682;
 font-size:7px
 }
 
@@ -691,7 +765,7 @@ font-size:7px
 .modal{
 position:fixed;
 inset:0;
-background:#000c;
+background:#000b;
 backdrop-filter:blur(7px);
 display:none;
 align-items:center;
@@ -707,8 +781,8 @@ display:flex
 .loginBox{
 width:100%;
 max-width:390px;
-background:linear-gradient(145deg,#17102c,#281020);
-border:1px solid #ff526d38;
+background:linear-gradient(145deg,#101f42,#1d1740);
+border:1px solid #64c8ff2e;
 border-radius:22px;
 padding:23px;
 box-shadow:0 25px 80px #0008
@@ -718,7 +792,7 @@ box-shadow:0 25px 80px #0008
 float:left;
 border:0;
 background:none;
-color:#a28b96;
+color:#8297b3;
 font-size:22px
 }
 
@@ -729,7 +803,7 @@ margin-bottom:6px
 
 .loginBox p{
 font-size:8px;
-color:#9c8590;
+color:#8195b1;
 margin-bottom:18px;
 line-height:1.8
 }
@@ -740,15 +814,11 @@ height:42px;
 margin-bottom:9px;
 border:1px solid #ffffff1a;
 border-radius:10px;
-background:#0b0e20;
+background:#08152e;
 color:#fff;
 padding:0 12px;
 outline:none;
 font-size:10px
-}
-
-.loginBox input:focus{
-border-color:#ff405c
 }
 
 .loginBox button.main{
@@ -757,7 +827,7 @@ height:42px;
 border:0;
 border-radius:10px;
 color:#fff;
-background:linear-gradient(135deg,#ff1744,#8d0d3a);
+background:linear-gradient(135deg,#09a9df,#7650e5);
 font-size:10px
 }
 
@@ -765,13 +835,13 @@ font-size:10px
 margin-top:13px;
 text-align:center;
 font-size:8px;
-color:#9b8791
+color:#8498b4
 }
 
 .switch button{
 border:0;
 background:none;
-color:#ff5c74
+color:#4dd7ff
 }
 
 .message{
@@ -782,23 +852,37 @@ font-size:8px;
 line-height:1.7
 }
 
-.successMessage{color:#67e8b1}
-.errorMessage{color:#ff8f9d}
-.infoMessage{color:#ff7187}
+.successMessage{
+color:#67e8b1
+}
 
-/* ===== الهاتف ===== */
+.errorMessage{
+color:#8fdcff
+}
+
+.infoMessage{
+color:#64d9ff
+}
+
+/* ===== الجوال ===== */
 
 @media(max-width:750px){
-.hero,.search,.section,.searchResults{
+
+.hero,
+.search,
+.section,
+.searchResults{
 width:94%
 }
 
 .lessonList{
 grid-template-columns:1fr
 }
+
 }
 
 @media(max-width:650px){
+
 .options{
 grid-template-columns:repeat(4,1fr);
 gap:5px
@@ -815,9 +899,11 @@ font-size:21px
 .option p{
 display:none
 }
+
 }
 
 @media(max-width:430px){
+
 .logoIcon{
 width:34px;
 height:34px
@@ -827,7 +913,8 @@ height:34px
 font-size:11px
 }
 
-.studentBtn,.teacherBtn{
+.studentBtn,
+.teacherBtn{
 padding:7px 5px;
 font-size:6px
 }
@@ -839,262 +926,128 @@ font-size:19px
 .answers{
 grid-template-columns:1fr
 }
+
 }
-</style>
-</head>
-
-<body>
-
-<!-- عناصر الرياضيات المتساقطة -->
-<div class="math-bg">
-<div class="math-item">★</div>
-<div class="math-item">π</div>
-<div class="math-item">√</div>
-<div class="math-item">△</div>
-<div class="math-item">∑</div>
-<div class="math-item">✦</div>
-<div class="math-item">○</div>
-<div class="math-item">×</div>
-<div class="math-item">★</div>
-</div>
-
-<header>
-<div class="header">
-
-<div class="logo">
+</style></head><body><!-- الخلفية --><div class="math-bg">
+<div class="math-symbol">∑</div>
+<div class="math-symbol">π</div>
+<div class="math-symbol">√</div>
+<div class="math-symbol">∞</div>
+<div class="math-symbol">△</div>
+<div class="math-symbol">×</div>
+<div class="math-symbol">÷</div>
+<div class="math-symbol">∫</div><div class="star s1"></div>
+<div class="star s2"></div>
+<div class="star s3"></div>
+<div class="star s4"></div>
+<div class="star s5"></div>
+</div><header>
+<div class="header"><div class="logo">
 <div class="logoIcon">∑</div>
 <div class="logoText">
 منبر ون
 <small>MINBAR ONE • MATH</small>
 </div>
-</div>
-
-<div class="loginButtons">
-
-<button class="studentBtn" id="studentLoginButton" onclick="openStudentLogin()">
+</div><div class="loginButtons"><button class="studentBtn" id="studentLoginButton" onclick="openStudentLogin()">
 👨‍🎓 دخول الطالب
-</button>
-
-<a class="teacherBtn" href="teacher.html">
+</button><a class="teacherBtn" href="teacher.html">
 👨‍🏫 دخول الأستاذ
-</a>
-
-<div class="userBox" id="userBox">
+</a><div class="userBox" id="userBox">
 <div class="userIcon">👨‍🎓</div>
 <span id="userEmail">طالب</span>
-</div>
-
-<button class="logoutBtn" id="logoutButton" onclick="logoutStudent()">
+</div><button class="logoutBtn" id="logoutButton" onclick="logoutStudent()">
 🚪 خروج
-</button>
-
+</button></div>
 </div>
-</div>
-</header>
-
-<div class="page">
-
-<section class="hero">
-
-<div class="heroBadge">🧮 منصة الرياضيات</div>
-
-<h1>
+</header><div class="page"><section class="hero"><div class="heroBadge">
+🧮 منصة الرياضيات
+</div><h1>
 مرحبًا بك في <span>منبر ون</span> 🚀
-</h1>
-
-<p>
+</h1><p>
 تعلّم الرياضيات، شاهد الحصص، راجع الملخصات، حل الاختبارات وادخل إلى رومات الدراسة.
-</p>
-
-</section>
-
-<div class="search">
+</p></section><div class="search">
 <span class="searchIcon">🔎</span>
 <input
 id="search"
 type="text"
 placeholder="ابحث عن حصة أو ملخص أو اختبار أو روم..."
 oninput="searchEverything()">
-</div>
-
-<div id="searchResults" class="searchResults">
-<div class="sectionHead">
+</div><div id="searchResults" class="searchResults"><div class="sectionHead">
 <h2>🔎 نتائج البحث</h2>
-</div>
-<div id="resultList" class="resultList"></div>
-</div>
-
-<section class="section">
-
-<div class="sectionHead">
+</div><div id="resultList" class="resultList"></div></div><section class="section"><div class="sectionHead">
 <h2>🎯 ماذا تريد اليوم؟</h2>
 <span>أقسام المنصة</span>
-</div>
-
-<div class="options">
-
-<a href="#lessons" class="option c1">
+</div><div class="options"><a href="#lessons" class="option c1">
 <div class="optionIcon">🎥</div>
 <h3>الحصص</h3>
 <p>شاهد الدروس</p>
-</a>
-
-<a href="#summaries" class="option c2">
+</a><a href="#summaries" class="option c2">
 <div class="optionIcon">📚</div>
 <h3>الملخصات</h3>
 <p>راجع القوانين</p>
-</a>
-
-<a href="#tests" class="option c3">
+</a><a href="#tests" class="option c3">
 <div class="optionIcon">📝</div>
 <h3>الاختبارات</h3>
 <p>اختبر نفسك</p>
-</a>
-
-<a href="#rooms" class="option c4">
+</a><a href="#rooms" class="option c4">
 <div class="optionIcon">💬</div>
 <h3>الرومات</h3>
 <p>تعلّم مع الآخرين</p>
-</a>
-
-</div>
-</section>
-
-<section class="section">
-
-<div class="sectionHead">
+</a></div>
+</section><section class="section"><div class="sectionHead">
 <h2>🔥 تحدي اليوم</h2>
 <span id="challengeProgress">السؤال 1 من 6</span>
-</div>
-
-<div class="challenge">
-
-<div class="challengeTag">🧠 تحدي متدرج</div>
-
-<h3 id="challengeTitle">
+</div><div class="challenge"><div class="challengeTag">
+🧠 تحدي متدرج
+</div><h3 id="challengeTitle">
 ابدأ بتحدي اليوم، ثم ستظهر 5 أسئلة أصعب تدريجيًا.
-</h3>
-
-<div id="challengeQuestion" class="question">
+</h3><div id="challengeQuestion" class="question">
 8 × 7 + 4 = ؟
-</div>
-
-<div id="quizArea" class="quizArea">
-<div id="answers" class="answers"></div>
-<div id="feedback" class="feedback"></div>
-</div>
-
-<button id="challengeButton" onclick="startOrAnswerChallenge()">
+</div><div id="quizArea" class="quizArea"><div id="answers" class="answers"></div><div id="feedback" class="feedback"></div></div><button id="challengeButton" onclick="startOrAnswerChallenge()">
 ابدأ التحدي
-</button>
-
-</div>
-</section>
-
-<section class="section">
-
-<div class="sectionHead">
+</button></div>
+</section><section class="section"><div class="sectionHead">
 <h2>🏆 مستواك</h2>
 <span>تقدمك</span>
-</div>
-
-<div class="stats">
-
-<div class="stat points">
+</div><div class="stats"><div class="stat points">
 <strong id="pointsStat">0</strong>
 <span>⭐ النقاط</span>
-</div>
-
-<div class="stat progress">
+</div><div class="stat progress">
 <strong id="progressStat">0%</strong>
 <span>📊 التقدم</span>
-</div>
-
-<div class="stat rank">
+</div><div class="stat rank">
 <strong id="rankStat">🥉</strong>
 <span>المستوى</span>
-</div>
-
-</div>
-</section>
-
-<section class="section" id="lessons">
-
-<div class="sectionHead">
+</div></div>
+</section><section class="section" id="lessons"><div class="sectionHead">
 <h2>🎥 أحدث الحصص</h2>
 <span>من الأستاذ</span>
-</div>
-
-<div id="lessonsContainer" class="lessonList">
+</div><div id="lessonsContainer" class="lessonList">
 <div class="loading">⏳ جاري تحميل الحصص...</div>
-</div>
-
-</section>
-
-<section class="section" id="summaries">
-
-<div class="sectionHead">
+</div></section><section class="section" id="summaries"><div class="sectionHead">
 <h2>📚 الملخصات</h2>
 <span>من الأستاذ</span>
-</div>
-
-<div id="summariesContainer" class="contentGrid">
+</div><div id="summariesContainer" class="contentGrid">
 <div class="loading">⏳ جاري تحميل الملخصات...</div>
-</div>
-
-</section>
-
-<section class="section" id="tests">
-
-<div class="sectionHead">
+</div></section><section class="section" id="tests"><div class="sectionHead">
 <h2>📝 الاختبارات</h2>
 <span>من الأستاذ</span>
-</div>
-
-<div id="testsContainer" class="contentGrid">
+</div><div id="testsContainer" class="contentGrid">
 <div class="loading">⏳ جاري تحميل الاختبارات...</div>
-</div>
-
-</section>
-
-<section class="section" id="rooms">
-
-<div class="sectionHead">
+</div></section><section class="section" id="rooms"><div class="sectionHead">
 <h2>💬 الرومات</h2>
 <span>من الأستاذ</span>
-</div>
-
-<div id="roomsContainer" class="contentGrid">
+</div><div id="roomsContainer" class="contentGrid">
 <div class="loading">⏳ جاري تحميل الرومات...</div>
-</div>
-
-</section>
-
-<footer>
+</div></section><footer>
 منبر ون • منصة الرياضيات 🎓
-</footer>
-
-</div>
-
-<!-- نافذة تسجيل الطالب -->
-
-<div id="studentModal" class="modal">
-
-<div class="loginBox">
-
-<button class="close" onclick="closeStudentLogin()">×</button>
+</footer></div><!-- تسجيل الدخول --><div id="studentModal" class="modal"><div class="loginBox"><button class="close" onclick="closeStudentLogin()">×</button>
 
 <h2 id="authTitle">
 👨‍🎓 دخول الطالب
-</h2>
-
-<p id="authDescription">
+</h2><p id="authDescription">
 سجّل الدخول لمتابعة رحلتك التعليمية.
-</p>
-
-<div id="studentMessage" class="message"></div>
-
-<input
+</p><div id="studentMessage" class="message"></div><input
 id="studentEmail"
 type="email"
 autocomplete="email"
@@ -1113,26 +1066,12 @@ onclick="studentAuth()">
 تسجيل الدخول
 </button>
 
-<div class="switch">
-
-<span id="switchText">
+<div class="switch"><span id="switchText">
 ليس لديك حساب؟
-</span>
-
-<button id="switchButton" onclick="switchAuthMode()">
+</span><button id="switchButton" onclick="switchAuthMode()">
 إنشاء حساب
-</button>
-
-</div>
-
-</div>
-</div>
-
-<script>
-
-/* ================================
-   SUPABASE
-================================ */
+</button></div></div>
+</div><script>
 
 const SUPABASE_URL="https://vugnptbvkitokwqxulla.supabase.co";
 
@@ -1148,11 +1087,6 @@ let isSignupMode=false;
 let challengeIndex=0;
 let challengeStarted=false;
 let challengeAnswered=false;
-
-
-/* ================================
-   تحديات الرياضيات
-================================ */
 
 const challenges=[
 
@@ -1200,11 +1134,6 @@ p:40
 
 ];
 
-
-/* ================================
-   حماية النصوص
-================================ */
-
 function safe(t){
 
 return String(t??"")
@@ -1215,11 +1144,6 @@ return String(t??"")
 .replaceAll("'","&#039;");
 
 }
-
-
-/* ================================
-   اتصال Supabase
-================================ */
 
 async function supabaseRequest(url,options={}){
 
@@ -1234,11 +1158,6 @@ apikey:SUPABASE_KEY,
 
 }
 
-
-/* ================================
-   جلب الجداول
-================================ */
-
 async function getTable(table){
 
 try{
@@ -1247,7 +1166,7 @@ const r=await supabaseRequest(
 `${SUPABASE_URL}/rest/v1/${table}?select=*`
 );
 
-if(!r.ok)return[];
+if(!r.ok)return [];
 
 const d=await r.json();
 
@@ -1256,23 +1175,18 @@ return Array.isArray(d)?d:[];
 }catch(e){
 
 console.error(e);
-return[];
+
+return [];
 
 }
 
 }
-
 
 function sortNew(a,b){
 
 return new Date(b.created_at||0)-new Date(a.created_at||0);
 
 }
-
-
-/* ================================
-   الحصص
-================================ */
 
 async function loadLessons(){
 
@@ -1323,10 +1237,7 @@ ${x.duration?' • '+safe(x.duration):''}
 ${
 url
 ?
-`<a class="watch"
-href="${safe(url)}"
-target="_blank"
-rel="noopener">
+`<a class="watch" href="${safe(url)}" target="_blank" rel="noopener">
 ▶️ مشاهدة
 </a>`
 :
@@ -1340,11 +1251,6 @@ box.appendChild(d);
 });
 
 }
-
-
-/* ================================
-   الملخصات
-================================ */
 
 async function loadSummaries(){
 
@@ -1365,11 +1271,6 @@ d,
 
 }
 
-
-/* ================================
-   الاختبارات
-================================ */
-
 async function loadTests(){
 
 const d=await getTable("tests");
@@ -1388,11 +1289,6 @@ d,
 );
 
 }
-
-
-/* ================================
-   الرومات
-================================ */
 
 async function loadRooms(){
 
@@ -1413,11 +1309,6 @@ d,
 
 }
 
-
-/* ================================
-   عرض البطاقات
-================================ */
-
 function renderCards(
 id,
 data,
@@ -1434,9 +1325,7 @@ const box=document.getElementById(id);
 if(!data.length){
 
 box.innerHTML=
-`<div class="empty">
-${icon} لا يوجد محتوى حتى الآن.
-</div>`;
+`<div class="empty">${icon} لا يوجد محتوى حتى الآن.</div>`;
 
 return;
 
@@ -1447,8 +1336,7 @@ box.innerHTML="";
 data.forEach(x=>{
 
 const desc=
-descFields.map(k=>x[k]).find(v=>v)
-||fallback;
+descFields.map(k=>x[k]).find(v=>v)||fallback;
 
 const url=
 String(
@@ -1468,15 +1356,18 @@ d.innerHTML=`
 ${icon}
 </div>
 
-<h3>${safe(title)}</h3>
+<h3>
+${safe(title)}
+</h3>
 
-<p>${safe(desc)}</p>
+<p>
+${safe(desc)}
+</p>
 
 ${
 url
 ?
-`<a
-class="contentButton"
+`<a class="contentButton"
 href="${safe(url)}"
 target="_blank"
 rel="noopener">
@@ -1495,11 +1386,6 @@ box.appendChild(d);
 });
 
 }
-
-
-/* ================================
-   البحث
-================================ */
 
 function searchEverything(){
 
@@ -1537,8 +1423,7 @@ let r=[];
 arr.forEach(x=>{
 
 const s=
-JSON.stringify(x)
-.toLowerCase();
+JSON.stringify(x).toLowerCase();
 
 if(s.includes(text)){
 
@@ -1554,8 +1439,7 @@ url:x[urlKey]||x.url||x.link||""
 
 });
 
-}
-);
+});
 
 if(!r.length){
 
@@ -1570,8 +1454,9 @@ list.innerHTML="";
 
 r.forEach(x=>{
 
-const d=
-document.createElement(x.url?'a':'div');
+const d=document.createElement(
+x.url?'a':'div'
+);
 
 d.className="result";
 
@@ -1595,7 +1480,9 @@ ${x.icon}
 ${safe(x.title)}
 </h3>
 
-<p>${x.name}</p>
+<p>
+${x.name}
+</p>
 
 </div>
 
@@ -1606,11 +1493,6 @@ list.appendChild(d);
 });
 
 }
-
-
-/* ================================
-   المستخدم
-================================ */
 
 function getSavedUser(){
 
@@ -1628,41 +1510,42 @@ return null;
 
 }
 
-
 function updateUserInterface(user){
 
-document.getElementById("studentLoginButton")
-.style.display=user?"none":"flex";
+document.getElementById(
+"studentLoginButton"
+).style.display=user?"none":"flex";
 
-document.getElementById("userBox")
-.style.display=user?"flex":"none";
+document.getElementById(
+"userBox"
+).style.display=user?"flex":"none";
 
-document.getElementById("logoutButton")
-.style.display=user?"flex":"none";
+document.getElementById(
+"logoutButton"
+).style.display=user?"flex":"none";
 
-document.getElementById("userEmail")
-.textContent=user?.email||"الطالب";
+document.getElementById(
+"userEmail"
+).textContent=user?.email||"الطالب";
 
 }
 
-
-/* ================================
-   رسائل الدخول
-================================ */
-
 function showAuthMessage(t,type="info"){
 
-const b=
-document.getElementById("studentMessage");
+const b=document.getElementById(
+"studentMessage"
+);
 
 b.className=
 "message "+
 (
 type==="success"
-?"successMessage"
+?
+"successMessage"
 :
 type==="error"
-?"errorMessage"
+?
+"errorMessage"
 :
 "infoMessage"
 );
@@ -1671,11 +1554,11 @@ b.textContent=t;
 
 }
 
-
 function clearAuthMessage(){
 
-const b=
-document.getElementById("studentMessage");
+const b=document.getElementById(
+"studentMessage"
+);
 
 b.className="message";
 
@@ -1683,34 +1566,27 @@ b.textContent="";
 
 }
 
-
-/* ================================
-   نافذة الدخول
-================================ */
-
 function openStudentLogin(){
 
 isSignupMode=false;
 
 updateAuthWindow();
 
-document
-.getElementById("studentModal")
-.classList.add("show");
+document.getElementById(
+"studentModal"
+).classList.add("show");
 
 }
 
-
 function closeStudentLogin(){
 
-document
-.getElementById("studentModal")
-.classList.remove("show");
+document.getElementById(
+"studentModal"
+).classList.remove("show");
 
 clearAuthMessage();
 
 }
-
 
 function switchAuthMode(){
 
@@ -1720,41 +1596,47 @@ updateAuthWindow();
 
 }
 
-
 function updateAuthWindow(){
 
-document.getElementById("authTitle")
-.textContent=
+document.getElementById(
+"authTitle"
+).textContent=
 isSignupMode
-?"🧑‍🎓 إنشاء حساب طالب"
-:"👨‍🎓 دخول الطالب";
+?
+"🧑‍🎓 إنشاء حساب طالب"
+:
+"👨‍🎓 دخول الطالب";
 
-document.getElementById("authDescription")
-.textContent=
+document.getElementById(
+"authDescription"
+).textContent=
 isSignupMode
 ?
 "أنشئ حسابك باستخدام البريد الإلكتروني وكلمة المرور."
 :
 "سجّل الدخول لمتابعة رحلتك التعليمية.";
 
-document.getElementById("authMainButton")
-.textContent=
+document.getElementById(
+"authMainButton"
+).textContent=
 isSignupMode
 ?
 "إنشاء الحساب"
 :
 "تسجيل الدخول";
 
-document.getElementById("switchText")
-.textContent=
+document.getElementById(
+"switchText"
+).textContent=
 isSignupMode
 ?
 "لديك حساب بالفعل؟"
 :
 "ليس لديك حساب؟";
 
-document.getElementById("switchButton")
-.textContent=
+document.getElementById(
+"switchButton"
+).textContent=
 isSignupMode
 ?
 "تسجيل الدخول"
@@ -1765,24 +1647,22 @@ clearAuthMessage();
 
 }
 
-
-/* ================================
-   تسجيل الطالب
-================================ */
-
 async function studentAuth(){
 
 const email=
-document.getElementById("studentEmail")
-.value
-.trim();
+document.getElementById(
+"studentEmail"
+).value.trim();
 
 const password=
-document.getElementById("studentPassword")
-.value;
+document.getElementById(
+"studentPassword"
+).value;
 
 const btn=
-document.getElementById("authMainButton");
+document.getElementById(
+"authMainButton"
+);
 
 clearAuthMessage();
 
@@ -1819,8 +1699,7 @@ showAuthMessage(
 "info"
 );
 
-const r=
-await supabaseRequest(
+const r=await supabaseRequest(
 `${SUPABASE_URL}/auth/v1/signup`,
 {
 method:"POST",
@@ -1883,8 +1762,7 @@ showAuthMessage(
 "info"
 );
 
-const r=
-await supabaseRequest(
+const r=await supabaseRequest(
 `${SUPABASE_URL}/auth/v1/token?grant_type=password`,
 {
 method:"POST",
@@ -1944,41 +1822,40 @@ btn.disabled=false;
 
 }
 
-
-/* ================================
-   حفظ الجلسة
-================================ */
-
 function saveSession(d){
 
-if(d.access_token)
+if(d.access_token){
+
 localStorage.setItem(
 "minbar_access_token",
 d.access_token
 );
 
-if(d.refresh_token)
+}
+
+if(d.refresh_token){
+
 localStorage.setItem(
 "minbar_refresh_token",
 d.refresh_token
 );
 
-if(d.user)
+}
+
+if(d.user){
+
 localStorage.setItem(
 "minbar_user",
 JSON.stringify(d.user)
 );
+
+}
 
 updateUserInterface(
 d.user||getSavedUser()
 );
 
 }
-
-
-/* ================================
-   استعادة الجلسة
-================================ */
 
 async function restoreSession(){
 
@@ -1999,8 +1876,7 @@ return;
 
 try{
 
-const r=
-await supabaseRequest(
+const r=await supabaseRequest(
 `${SUPABASE_URL}/auth/v1/user`,
 {
 headers:{
@@ -2036,11 +1912,6 @@ updateUserInterface(saved);
 
 }
 
-
-/* ================================
-   تسجيل الخروج
-================================ */
-
 async function logoutStudent(){
 
 const token=
@@ -2070,7 +1941,6 @@ Authorization:`Bearer ${token}`
 "minbar_access_token",
 "minbar_refresh_token",
 "minbar_user"
-
 ].forEach(
 k=>localStorage.removeItem(k)
 );
@@ -2081,62 +1951,55 @@ alert("تم تسجيل الخروج 👋");
 
 }
 
-
-/* ================================
-   الإحصائيات
-================================ */
-
 function loadStats(){
 
-const s=
-JSON.parse(
-localStorage.getItem("minbar_stats")
-||
+const s=JSON.parse(
+localStorage.getItem("minbar_stats")||
 '{"points":0,"answered":0}'
 );
 
-document.getElementById("pointsStat")
-.textContent=s.points;
+document.getElementById(
+"pointsStat"
+).textContent=s.points;
 
-document.getElementById("progressStat")
-.textContent=
+document.getElementById(
+"progressStat"
+).textContent=
 Math.min(
 100,
 Math.round(s.answered/6*100)
 )+"%";
 
-document.getElementById("rankStat")
-.textContent=
+document.getElementById(
+"rankStat"
+).textContent=
 s.points>=100
-?'🏆'
+?
+'🏆'
 :
 s.points>=60
-?'🥇'
+?
+'🥇'
 :
 s.points>=30
-?'🥈'
+?
+'🥈'
 :
 '🥉';
 
 }
 
-
 function addPoints(p){
 
-const s=
-JSON.parse(
-localStorage.getItem("minbar_stats")
-||
+const s=JSON.parse(
+localStorage.getItem("minbar_stats")||
 '{"points":0,"answered":0}'
 );
 
 s.points+=p;
 
 s.answered=
-Math.min(
-6,
-s.answered+1
-);
+Math.min(6,s.answered+1);
 
 localStorage.setItem(
 "minbar_stats",
@@ -2146,11 +2009,6 @@ JSON.stringify(s)
 loadStats();
 
 }
-
-
-/* ================================
-   التحدي
-================================ */
 
 function startOrAnswerChallenge(){
 
@@ -2178,8 +2036,9 @@ document.querySelector(
 
 if(Number.isNaN(chosen)){
 
-document.getElementById("feedback")
-.textContent=
+document.getElementById(
+"feedback"
+).textContent=
 "اختر إجابة أولًا 🙂";
 
 return;
@@ -2190,8 +2049,9 @@ challengeAnswered=true;
 
 if(chosen===correct){
 
-document.getElementById("feedback")
-.textContent=
+document.getElementById(
+"feedback"
+).textContent=
 `✅ إجابة صحيحة! +${challenges[challengeIndex].p} نقطة 🎉`;
 
 addPoints(
@@ -2202,14 +2062,16 @@ challenges[challengeIndex].p
 
 else{
 
-document.getElementById("feedback")
-.textContent=
+document.getElementById(
+"feedback"
+).textContent=
 `❌ ليست صحيحة. الإجابة: ${challenges[challengeIndex].a[correct]}`;
 
 }
 
-document.getElementById("challengeButton")
-.textContent=
+document.getElementById(
+"challengeButton"
+).textContent=
 challengeIndex<5
 ?
 "السؤال التالي"
@@ -2218,23 +2080,26 @@ challengeIndex<5
 
 }
 
-
 function showChallenge(){
 
 const x=challenges[challengeIndex];
 
-document.getElementById("challengeProgress")
-.textContent=
+document.getElementById(
+"challengeProgress"
+).textContent=
 `السؤال ${challengeIndex+1} من 6`;
 
-document.getElementById("challengeQuestion")
-.textContent=x.q;
+document.getElementById(
+"challengeQuestion"
+).textContent=x.q;
 
-document.getElementById("feedback")
-.textContent="";
+document.getElementById(
+"feedback"
+).textContent="";
 
-document.getElementById("answers")
-.innerHTML=
+document.getElementById(
+"answers"
+).innerHTML=
 x.a.map(
 (v,i)=>
 `
@@ -2245,24 +2110,22 @@ ${safe(v)}
 `
 ).join("");
 
-document.getElementById("quizArea")
-.style.display="block";
+document.getElementById(
+"quizArea"
+).style.display="block";
 
-document.getElementById("challengeButton")
-.textContent="تأكيد الإجابة";
+document.getElementById(
+"challengeButton"
+).textContent=
+"تأكيد الإجابة";
 
 challengeAnswered=false;
 
 }
 
-
-/* ================================
-   الانتقال بين الأسئلة
-================================ */
-
-document
-.getElementById("challengeButton")
-.addEventListener(
+document.getElementById(
+"challengeButton"
+).addEventListener(
 "click",
 ()=>{
 
@@ -2302,20 +2165,13 @@ document.getElementById(
 }
 );
 
-
-/* ================================
-   إغلاق النافذة بالنقر خارجها
-================================ */
-
-document
-.getElementById("studentModal")
-.addEventListener(
+document.getElementById(
+"studentModal"
+).addEventListener(
 "click",
 e=>{
 
-if(
-e.target===e.currentTarget
-){
+if(e.target===e.currentTarget){
 
 closeStudentLogin();
 
@@ -2323,11 +2179,6 @@ closeStudentLogin();
 
 }
 );
-
-
-/* ================================
-   تشغيل الموقع
-================================ */
 
 async function startSite(){
 
@@ -2349,7 +2200,5 @@ restoreSession()
 
 startSite();
 
-</script>
-
-</body>
+</script></body>
 </html>
