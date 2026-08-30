@@ -1,232 +1,220 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>منبر ون | منصة الرياضيات</title>
 
 <style>
-
-/* =====================================================
-   MINBAR ONE
-   MAIN INDEX
-   PART 1
-   ===================================================== */
-
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
 }
 
-html{
-    scroll-behavior:smooth;
-}
-
 body{
-    font-family:
-    Tahoma,
-    Arial,
-    sans-serif;
-
+    font-family:Tahoma,Arial,sans-serif;
     background:
-    radial-gradient(
-        circle at 85% 5%,
-        #172b63 0,
-        transparent 28%
-    ),
-
-    radial-gradient(
-        circle at 10% 70%,
-        #27174f 0,
-        transparent 28%
-    ),
-
-    #050b1d;
-
+        radial-gradient(circle at 85% 5%,#172b63 0,transparent 28%),
+        radial-gradient(circle at 10% 70%,#27174f 0,transparent 28%),
+        #050b1d;
     color:#fff;
-
     min-height:100vh;
-
     overflow-x:hidden;
 }
 
-button,
-input,
-textarea,
-select{
+button,input{
     font-family:inherit;
 }
 
-button{
+.page{
+    position:relative;
+    z-index:2;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    height:70px;
+    background:rgba(5,13,32,.88);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+    position:sticky;
+    top:0;
+    z-index:50;
+}
+
+.header{
+    width:92%;
+    max-width:1100px;
+    height:100%;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.logoIcon{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#12c9ff,#855cff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+    box-shadow:0 0 25px rgba(30,190,255,.25);
+}
+
+.logoText{
+    font-size:15px;
+    font-weight:bold;
+}
+
+.logoText small{
+    display:block;
+    color:#7187a7;
+    font-size:6px;
+    margin-top:3px;
+}
+
+/* =========================
+   LOGIN BUTTONS
+========================= */
+
+.loginButtons{
+    display:flex;
+    gap:7px;
+    align-items:center;
+}
+
+.studentBtn,
+.teacherBtn{
+    border:0;
+    color:white;
+    font-size:8px;
+    padding:10px 13px;
+    border-radius:10px;
     cursor:pointer;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:5px;
+    transition:.25s;
 }
 
-a{
-    color:inherit;
+.studentBtn{
+    background:linear-gradient(135deg,#087fb5,#7450d8);
 }
 
-
-/* =====================================================
-   BACKGROUND
-   ===================================================== */
-
-.backgroundGlow{
-    position:fixed;
-
-    width:300px;
-    height:300px;
-
-    border-radius:50%;
-
-    filter:blur(90px);
-
-    opacity:.12;
-
-    pointer-events:none;
-
-    z-index:0;
+.teacherBtn{
+    background:linear-gradient(135deg,#a65a17,#d38b20);
 }
 
-.glowOne{
-    top:80px;
-    right:-100px;
-
-    background:#00bfff;
+.studentBtn:hover,
+.teacherBtn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
 }
 
-.glowTwo{
-    bottom:40px;
-    left:-100px;
-
-    background:#8b4dff;
-}
-
-
-/* =====================================================
-   FLOATING EDUCATION ICONS
-   ===================================================== */
+/* =========================
+   FLOATING ICONS
+========================= */
 
 .float{
     position:fixed;
-
-    top:-70px;
-
-    font-size:22px;
-
-    opacity:.20;
-
+    top:-60px;
+    font-size:20px;
+    opacity:.23;
     pointer-events:none;
-
     z-index:0;
-
-    animation:
-    falling
-    linear
-    infinite;
+    animation:fall linear infinite;
 }
 
-.float1{
-    right:7%;
-    animation-duration:12s;
+.f1{
+    right:8%;
+    animation-duration:11s;
 }
 
-.float2{
-    right:25%;
-    animation-duration:16s;
+.f2{
+    right:27%;
+    animation-duration:15s;
     animation-delay:2s;
 }
 
-.float3{
-    right:45%;
-    animation-duration:13s;
+.f3{
+    right:47%;
+    animation-duration:12s;
     animation-delay:4s;
 }
 
-.float4{
-    right:67%;
-    animation-duration:17s;
+.f4{
+    right:68%;
+    animation-duration:16s;
     animation-delay:1s;
 }
 
-.float5{
-    right:88%;
-    animation-duration:14s;
+.f5{
+    right:89%;
+    animation-duration:13s;
     animation-delay:5s;
 }
 
-@keyframes falling{
-
-    0%{
-        transform:
-        translateY(-80px)
-        rotate(0deg);
+@keyframes fall{
+    from{
+        transform:translateY(-70px) rotate(0deg);
     }
 
-    100%{
-        transform:
-        translateY(110vh)
-        rotate(360deg);
+    to{
+        transform:translateY(110vh) rotate(180deg);
     }
-
 }
 
-
-/* =====================================================
+/* =========================
    STARS
-   ===================================================== */
+========================= */
 
 .star{
     position:fixed;
-
     color:#ffe36b;
-
-    font-size:16px;
-
+    font-size:15px;
+    animation:shine 1.8s infinite alternate;
     z-index:0;
-
-    pointer-events:none;
-
-    animation:
-    shining
-    1.8s
-    infinite
-    alternate;
 }
 
-.star1{
+.s1{
     top:14%;
     right:18%;
 }
 
-.star2{
-    top:33%;
+.s2{
+    top:34%;
     right:80%;
-
     animation-delay:.5s;
 }
 
-.star3{
-    top:59%;
+.s3{
+    top:60%;
     right:13%;
-
     animation-delay:1s;
 }
 
-.star4{
-    top:77%;
-    right:72%;
-
+.s4{
+    top:76%;
+    right:73%;
     animation-delay:.7s;
 }
 
-@keyframes shining{
-
+@keyframes shine{
     from{
         opacity:.15;
         transform:scale(.7);
@@ -236,309 +224,42 @@ a{
         opacity:1;
         transform:scale(1.2);
     }
-
 }
 
-
-/* =====================================================
-   PAGE
-   ===================================================== */
-
-.page{
-    position:relative;
-
-    z-index:2;
-
-    min-height:100vh;
-}
-
-
-/* =====================================================
-   HEADER
-   ===================================================== */
-
-header{
-    height:72px;
-
-    background:
-    rgba(5,13,32,.90);
-
-    backdrop-filter:
-    blur(15px);
-
-    border-bottom:
-    1px solid
-    rgba(255,255,255,.08);
-
-    position:sticky;
-
-    top:0;
-
-    z-index:50;
-}
-
-.header{
-    width:92%;
-
-    max-width:1100px;
-
-    height:100%;
-
-    margin:auto;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:15px;
-}
-
-
-/* =====================================================
-   LOGO
-   ===================================================== */
-
-.logo{
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    min-width:0;
-}
-
-.logoIcon{
-    width:42px;
-    height:42px;
-
-    border-radius:13px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #12c9ff,
-        #855cff
-    );
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:20px;
-
-    box-shadow:
-    0 0 25px
-    rgba(30,190,255,.25);
-
-    flex-shrink:0;
-}
-
-.logoText{
-    font-size:15px;
-
-    font-weight:bold;
-
-    white-space:nowrap;
-}
-
-.logoText small{
-    display:block;
-
-    color:#7187a7;
-
-    font-size:7px;
-
-    margin-top:3px;
-
-    letter-spacing:.5px;
-}
-
-
-/* =====================================================
-   LOGIN BUTTONS
-   ===================================================== */
-
-.loginButtons{
-    display:flex;
-
-    align-items:center;
-
-    gap:7px;
-}
-
-.studentBtn,
-.teacherBtn{
-    border:0;
-
-    color:white;
-
-    font-size:8px;
-
-    padding:
-    10px 12px;
-
-    border-radius:10px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:5px;
-
-    text-decoration:none;
-
-    transition:.25s;
-
-    white-space:nowrap;
-}
-
-.studentBtn{
-    background:
-    linear-gradient(
-        135deg,
-        #087fb5,
-        #7450d8
-    );
-}
-
-.teacherBtn{
-    background:
-    linear-gradient(
-        135deg,
-        #a65a17,
-        #d38b20
-    );
-}
-
-.studentBtn:hover,
-.teacherBtn:hover{
-    transform:
-    translateY(-2px);
-
-    box-shadow:
-    0 8px 20px
-    rgba(0,0,0,.25);
-}
-
-
-/* =====================================================
+/* =========================
    HERO
-   ===================================================== */
+========================= */
 
 .hero{
     width:92%;
-
     max-width:1100px;
-
-    margin:
-    25px auto 0;
-
-    padding:
-    32px 24px;
-
-    border-radius:25px;
-
+    margin:22px auto 0;
+    padding:30px 24px;
+    border-radius:24px;
     background:
-    linear-gradient(
-        135deg,
-        rgba(11,49,88,.96),
-        rgba(42,23,76,.94)
-    );
-
-    border:
-    1px solid
-    rgba(90,190,255,.18);
-
-    box-shadow:
-    0 18px 55px
-    rgba(0,0,0,.22);
-
-    position:relative;
-
-    overflow:hidden;
-}
-
-.hero::before{
-    content:"";
-
-    position:absolute;
-
-    width:180px;
-    height:180px;
-
-    border-radius:50%;
-
-    background:
-    rgba(0,190,255,.10);
-
-    top:-90px;
-    left:-60px;
-
-    filter:blur(20px);
-}
-
-.hero::after{
-    content:"";
-
-    position:absolute;
-
-    width:160px;
-    height:160px;
-
-    border-radius:50%;
-
-    background:
-    rgba(150,70,255,.10);
-
-    bottom:-100px;
-    right:-50px;
-
-    filter:blur(20px);
-}
-
-.heroContent{
-    position:relative;
-
-    z-index:2;
+        linear-gradient(
+            135deg,
+            rgba(11,49,88,.96),
+            rgba(42,23,76,.94)
+        );
+    border:1px solid rgba(90,190,255,.18);
+    box-shadow:0 18px 55px rgba(0,0,0,.22);
 }
 
 .heroBadge{
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:5px;
-
-    padding:
-    7px 11px;
-
+    display:inline-block;
+    padding:7px 10px;
     border-radius:20px;
-
-    background:
-    rgba(35,202,255,.10);
-
-    border:
-    1px solid
-    rgba(35,202,255,.18);
-
+    background:rgba(35,202,255,.1);
+    border:1px solid rgba(35,202,255,.18);
     color:#5cdcff;
-
     font-size:8px;
 }
 
 .hero h1{
-    font-size:26px;
-
-    line-height:1.6;
-
-    margin-top:12px;
+    font-size:25px;
+    line-height:1.5;
+    margin-top:11px;
 }
 
 .hero h1 span{
@@ -547,142 +268,55 @@ header{
 
 .hero p{
     color:#9aafc9;
-
     font-size:9px;
-
-    line-height:2;
-
+    line-height:1.9;
     margin-top:5px;
-
-    max-width:650px;
 }
 
-
-/* =====================================================
-   HERO FEATURES
-   ===================================================== */
-
-.heroFeatures{
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:7px;
-
-    margin-top:17px;
-}
-
-.heroFeature{
-    padding:
-    7px 9px;
-
-    border-radius:9px;
-
-    background:
-    rgba(255,255,255,.05);
-
-    border:
-    1px solid
-    rgba(255,255,255,.07);
-
-    color:#a8bad0;
-
-    font-size:7px;
-}
-
-
-/* =====================================================
+/* =========================
    SEARCH
-   ===================================================== */
-
-.searchArea{
-    width:92%;
-
-    max-width:1100px;
-
-    margin:
-    15px auto 0;
-}
+========================= */
 
 .search{
+    width:92%;
+    max-width:1100px;
+    margin:14px auto 0;
     position:relative;
-
-    width:100%;
 }
 
 .search input{
     width:100%;
-
-    height:47px;
-
-    border:
-    1px solid
-    rgba(255,255,255,.12);
-
-    border-radius:14px;
-
+    height:45px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:13px;
     background:#0b1b36;
-
     color:white;
-
-    padding:
-    0 45px 0 15px;
-
+    padding:0 43px 0 15px;
     outline:none;
-
     font-size:10px;
-
-    transition:.25s;
 }
 
 .search input:focus{
     border-color:#2acbff;
-
-    box-shadow:
-    0 0 20px
-    rgba(42,203,255,.10);
-}
-
-.search input::placeholder{
-    color:#637b99;
+    box-shadow:0 0 20px rgba(42,203,255,.08);
 }
 
 .searchIcon{
     position:absolute;
-
-    right:15px;
-
-    top:14px;
-
-    font-size:16px;
-
-    pointer-events:none;
+    right:14px;
+    top:13px;
+    font-size:15px;
 }
 
-
-/* =====================================================
+/* =========================
    SEARCH RESULTS
-   ===================================================== */
+========================= */
 
 .searchResults{
-    margin-top:9px;
-
+    width:92%;
+    max-width:1100px;
+    margin:9px auto 0;
     display:none;
-
-    background:
-    rgba(7,19,41,.96);
-
-    border:
-    1px solid
-    rgba(255,255,255,.08);
-
-    border-radius:15px;
-
-    padding:12px;
-
-    box-shadow:
-    0 20px 50px
-    rgba(0,0,0,.25);
 }
 
 .searchResults.show{
@@ -690,131 +324,91 @@ header{
 }
 
 .resultTitle{
+    font-size:10px;
     color:#9eb3ce;
-
-    font-size:9px;
-
-    margin-bottom:8px;
+    margin-bottom:7px;
 }
 
 .resultList{
     display:grid;
-
     gap:7px;
-
-    max-height:400px;
-
-    overflow-y:auto;
 }
 
 .result{
     display:flex;
-
     align-items:center;
-
     gap:9px;
-
     padding:10px;
-
-    border-radius:11px;
-
+    border-radius:12px;
     background:#0a1b36;
-
-    border:
-    1px solid
-    rgba(255,255,255,.07);
-
+    border:1px solid rgba(255,255,255,.08);
     text-decoration:none;
-
+    color:white;
     transition:.2s;
 }
 
 .result:hover{
-    transform:
-    translateX(-3px);
-
-    border-color:
-    rgba(255,255,255,.20);
+    transform:translateX(-3px);
+    border-color:rgba(255,255,255,.2);
 }
 
 .resultIcon{
-    width:34px;
-    height:34px;
-
+    width:32px;
+    height:32px;
     border-radius:9px;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     flex-shrink:0;
+}
 
-    font-size:15px;
+.type-video{
+    background:#087db5;
+}
+
+.type-summary{
+    background:#7442a8;
+}
+
+.type-test{
+    background:#bd741b;
+}
+
+.type-room{
+    background:#16846d;
 }
 
 .resultInfo{
     min-width:0;
-
-    flex:1;
 }
 
 .resultInfo h3{
     font-size:9px;
-
     white-space:nowrap;
-
     overflow:hidden;
-
     text-overflow:ellipsis;
 }
 
 .resultInfo p{
-    color:#7189a6;
-
     font-size:7px;
-
+    color:#7189a6;
     margin-top:4px;
 }
 
-.typeVideo{
-    background:#087db5;
-}
-
-.typeSummary{
-    background:#7442a8;
-}
-
-.typeTest{
-    background:#bd741b;
-}
-
-.typeRoom{
-    background:#16846d;
-}
-
-
-/* =====================================================
-   GENERAL SECTION
-   ===================================================== */
+/* =========================
+   SECTIONS
+========================= */
 
 .section{
     width:92%;
-
     max-width:1100px;
-
-    margin:
-    26px auto 0;
+    margin:24px auto 0;
 }
 
 .sectionHead{
     display:flex;
-
-    align-items:center;
-
     justify-content:space-between;
-
+    align-items:center;
     margin-bottom:11px;
 }
 
@@ -823,318 +417,155 @@ header{
 }
 
 .sectionHead span{
-    color:#7188a6;
-
     font-size:7px;
+    color:#7188a6;
 }
 
-
-/* =====================================================
+/* =========================
    OPTIONS
-   ===================================================== */
+========================= */
 
 .options{
     display:grid;
-
-    grid-template-columns:
-    repeat(4,1fr);
-
+    grid-template-columns:repeat(4,1fr);
     gap:9px;
 }
 
 .option{
     color:white;
-
     text-decoration:none;
-
     border-radius:15px;
-
-    padding:
-    14px 9px;
-
-    border:
-    1px solid
-    rgba(255,255,255,.09);
-
+    padding:13px 8px;
+    border:1px solid rgba(255,255,255,.09);
     transition:.25s;
-
-    position:relative;
-
-    overflow:hidden;
-}
-
-.option::after{
-    content:"";
-
-    position:absolute;
-
-    width:70px;
-    height:70px;
-
-    border-radius:50%;
-
-    background:
-    rgba(255,255,255,.05);
-
-    left:-30px;
-    bottom:-35px;
 }
 
 .option:hover{
-    transform:
-    translateY(-4px);
-
-    box-shadow:
-    0 12px 25px
-    rgba(0,0,0,.20);
+    transform:translateY(-4px);
 }
 
 .optionIcon{
-    width:33px;
-    height:33px;
-
-    border-radius:10px;
-
+    width:31px;
+    height:31px;
+    border-radius:9px;
     display:flex;
-
-    align-items:center;
-
     justify-content:center;
-
+    align-items:center;
     font-size:15px;
-
-    margin-bottom:8px;
-
-    position:relative;
-
-    z-index:2;
+    margin-bottom:7px;
 }
 
 .option h3{
     font-size:9px;
-
-    position:relative;
-
-    z-index:2;
 }
 
 .option p{
-    color:
-    rgba(255,255,255,.62);
-
+    color:rgba(255,255,255,.62);
     font-size:6px;
-
     margin-top:4px;
-
-    position:relative;
-
-    z-index:2;
 }
 
-.option1{
-    background:
-    linear-gradient(
-        135deg,
-        #073b67,
-        #087aa2
-    );
+.c1{
+    background:linear-gradient(135deg,#073b67,#087aa2);
 }
 
-.option1 .optionIcon{
+.c1 .optionIcon{
     background:#079ed3;
 }
 
-.option2{
-    background:
-    linear-gradient(
-        135deg,
-        #36205e,
-        #69358b
-    );
+.c2{
+    background:linear-gradient(135deg,#36205e,#69358b);
 }
 
-.option2 .optionIcon{
+.c2 .optionIcon{
     background:#9856d8;
 }
 
-.option3{
-    background:
-    linear-gradient(
-        135deg,
-        #694218,
-        #a86616
-    );
+.c3{
+    background:linear-gradient(135deg,#694218,#a86616);
 }
 
-.option3 .optionIcon{
+.c3 .optionIcon{
     background:#eaa52e;
 }
 
-.option4{
-    background:
-    linear-gradient(
-        135deg,
-        #104a43,
-        #147660
-    );
+.c4{
+    background:linear-gradient(135deg,#104a43,#147660);
 }
 
-.option4 .optionIcon{
+.c4 .optionIcon{
     background:#1ac29f;
 }
 
-
-/* =====================================================
+/* =========================
    CHALLENGE
-   ===================================================== */
+========================= */
 
 .challenge{
     padding:18px;
-
-    border-radius:18px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #30205d,
-        #151e4b
-    );
-
-    border:
-    1px solid
-    rgba(180,120,255,.18);
-
-    position:relative;
-
-    overflow:hidden;
-}
-
-.challenge::before{
-    content:"";
-
-    position:absolute;
-
-    width:130px;
-    height:130px;
-
-    border-radius:50%;
-
-    background:
-    rgba(190,80,255,.08);
-
-    left:-60px;
-
-    top:-60px;
-}
-
-.challengeContent{
-    position:relative;
-
-    z-index:2;
+    border-radius:17px;
+    background:linear-gradient(135deg,#30205d,#151e4b);
+    border:1px solid rgba(180,120,255,.18);
 }
 
 .challengeTag{
     color:#d49aff;
-
     font-size:8px;
 }
 
 .challenge h3{
     font-size:12px;
-
     margin-top:8px;
 }
 
 .question{
     margin-top:10px;
-
-    background:
-    rgba(0,0,0,.18);
-
-    padding:13px;
-
+    background:rgba(0,0,0,.18);
+    padding:12px;
     border-radius:11px;
-
-    font-size:14px;
-
+    font-size:13px;
     text-align:center;
-
-    border:
-    1px solid
-    rgba(255,255,255,.04);
 }
 
 .challenge button{
     margin-top:10px;
-
     width:100%;
-
     border:0;
-
-    padding:10px;
-
+    padding:9px;
     border-radius:9px;
-
     color:white;
-
-    background:
-    linear-gradient(
-        135deg,
-        #8b54ff,
-        #c247a6
-    );
-
+    background:linear-gradient(135deg,#8b54ff,#c247a6);
     font-size:9px;
-
-    transition:.2s;
+    cursor:pointer;
 }
 
-.challenge button:hover{
-    transform:
-    translateY(-2px);
-}
-
-
-/* =====================================================
+/* =========================
    STATS
-   ===================================================== */
+========================= */
 
 .stats{
     display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
+    grid-template-columns:repeat(3,1fr);
     gap:8px;
 }
 
 .stat{
     padding:14px 8px;
-
-    border-radius:14px;
-
+    border-radius:13px;
     background:#0a1b35;
-
-    border:
-    1px solid
-    rgba(255,255,255,.07);
-
+    border:1px solid rgba(255,255,255,.07);
     text-align:center;
 }
 
 .stat strong{
     display:block;
-
-    font-size:18px;
+    font-size:17px;
 }
 
 .stat span{
     display:block;
-
     color:#728aa8;
-
     font-size:7px;
-
     margin-top:5px;
 }
 
@@ -1150,234 +581,132 @@ header{
     color:#b87cff;
 }
 
-
-/* =====================================================
+/* =========================
    LESSONS
-   ===================================================== */
+========================= */
 
 .lessonList{
     display:grid;
-
-    grid-template-columns:
-    repeat(2,1fr);
-
+    grid-template-columns:repeat(2,1fr);
     gap:9px;
 }
 
 .lesson{
     display:flex;
-
     align-items:center;
-
     gap:9px;
-
     padding:12px;
-
     border-radius:14px;
-
     background:#0a1b36;
-
-    border:
-    1px solid
-    rgba(100,170,230,.10);
-
-    transition:.2s;
-}
-
-.lesson:hover{
-    border-color:
-    rgba(80,200,255,.20);
-
-    transform:
-    translateY(-2px);
+    border:1px solid rgba(100,170,230,.1);
 }
 
 .lessonIcon{
     width:38px;
     height:38px;
-
     border-radius:10px;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     font-size:15px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #00aeea,
-        #5b51dc
-    );
-
+    background:linear-gradient(135deg,#00aeea,#5b51dc);
     flex-shrink:0;
 }
 
 .lessonInfo{
     min-width:0;
-
-    flex:1;
 }
 
 .lessonInfo h3{
     font-size:9px;
-
     white-space:nowrap;
-
     overflow:hidden;
-
     text-overflow:ellipsis;
 }
 
 .lessonInfo p{
     color:#728aa6;
-
     font-size:7px;
-
     margin-top:5px;
 }
 
 .watch{
     margin-right:auto;
-
     color:#4fdcff;
-
     text-decoration:none;
-
     font-size:7px;
-
     padding:6px 8px;
-
     border-radius:7px;
-
-    background:
-    rgba(40,200,255,.08);
-
-    white-space:nowrap;
+    background:rgba(40,200,255,.08);
 }
 
-
-/* =====================================================
-   FUTURE CARDS
-   ===================================================== */
+/* =========================
+   FUTURE
+========================= */
 
 .futureGrid{
     display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
+    grid-template-columns:repeat(3,1fr);
     gap:8px;
 }
 
 .future{
-    padding:16px 8px;
-
+    padding:15px 8px;
     border-radius:14px;
-
     text-align:center;
-
     background:#0a1b36;
-
-    border:
-    1px solid
-    rgba(255,255,255,.07);
-
-    transition:.2s;
-}
-
-.future:hover{
-    transform:
-    translateY(-3px);
-
-    border-color:
-    rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.07);
 }
 
 .futureIcon{
-    font-size:20px;
+    font-size:18px;
 }
 
 .future h3{
     font-size:9px;
-
     margin-top:7px;
 }
 
 .future p{
     font-size:6px;
-
     color:#7189a5;
-
     margin-top:4px;
 }
 
-
-/* =====================================================
-   EMPTY
-   ===================================================== */
-
 .empty{
-    padding:23px;
-
+    padding:22px;
     border-radius:14px;
-
     text-align:center;
-
     color:#7188a4;
-
     font-size:8px;
-
     background:#091931;
-
-    border:
-    1px dashed
-    #294563;
+    border:1px dashed #294563;
 }
 
-
-/* =====================================================
+/* =========================
    FOOTER
-   ===================================================== */
+========================= */
 
 footer{
     text-align:center;
-
-    padding:
-    35px 0 22px;
-
+    padding:30px 0 18px;
     color:#4e6682;
-
     font-size:7px;
 }
 
-
-/* =====================================================
-   MODAL
-   ===================================================== */
+/* =========================
+   STUDENT LOGIN MODAL
+========================= */
 
 .modal{
     position:fixed;
-
     inset:0;
-
-    background:
-    rgba(0,0,0,.75);
-
-    backdrop-filter:
-    blur(7px);
-
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(7px);
     display:none;
-
     align-items:center;
-
     justify-content:center;
-
     z-index:100;
-
     padding:20px;
 }
 
@@ -1387,325 +716,163 @@ footer{
 
 .loginBox{
     width:100%;
-
-    max-width:380px;
-
-    background:
-    linear-gradient(
-        145deg,
-        #101f42,
-        #1d1740
-    );
-
-    border:
-    1px solid
-    rgba(100,200,255,.18);
-
+    max-width:370px;
+    background:linear-gradient(145deg,#101f42,#1d1740);
+    border:1px solid rgba(100,200,255,.18);
     border-radius:22px;
-
-    padding:24px;
-
-    box-shadow:
-    0 25px 80px
-    rgba(0,0,0,.5);
-
-    animation:
-    modalIn
-    .25s
-    ease;
-}
-
-@keyframes modalIn{
-
-    from{
-        opacity:0;
-
-        transform:
-        scale(.92)
-        translateY(15px);
-    }
-
-    to{
-        opacity:1;
-
-        transform:
-        scale(1)
-        translateY(0);
-    }
-
+    padding:23px;
+    box-shadow:0 25px 80px rgba(0,0,0,.5);
 }
 
 .close{
     float:left;
-
     border:0;
-
     background:none;
-
     color:#8297b3;
-
-    font-size:22px;
-
+    font-size:20px;
     cursor:pointer;
 }
 
 .loginBox h2{
     font-size:18px;
-
-    margin-bottom:7px;
+    margin-bottom:6px;
 }
 
 .loginBox p{
     font-size:8px;
-
     color:#8195b1;
-
     margin-bottom:18px;
-
-    line-height:1.8;
 }
 
 .loginBox input{
     width:100%;
-
-    height:43px;
-
+    height:42px;
     margin-bottom:9px;
-
-    border:
-    1px solid
-    rgba(255,255,255,.10);
-
+    border:1px solid rgba(255,255,255,.1);
     border-radius:10px;
-
     background:#08152e;
-
     color:white;
-
-    padding:
-    0 12px;
-
+    padding:0 12px;
     outline:none;
-
-    font-size:9px;
-}
-
-.loginBox input:focus{
-    border-color:#29c9ff;
-}
-
-.loginBox .main{
-    width:100%;
-
-    height:43px;
-
-    border:0;
-
-    border-radius:10px;
-
-    color:white;
-
-    background:
-    linear-gradient(
-        135deg,
-        #09a9df,
-        #7650e5
-    );
-
     font-size:10px;
+}
 
+.loginBox button.main{
+    width:100%;
+    height:42px;
+    border:0;
+    border-radius:10px;
+    color:white;
+    background:linear-gradient(135deg,#09a9df,#7650e5);
+    font-size:10px;
+    cursor:pointer;
+}
+
+.switch{
+    margin-top:13px;
+    text-align:center;
+    font-size:8px;
+    color:#8498b4;
+}
+
+.switch button{
+    border:0;
+    background:none;
+    color:#4dd7ff;
+    font-size:8px;
     cursor:pointer;
 }
 
 .message{
-    min-height:18px;
-
-    text-align:center;
-
-    color:#5cdcff;
-
-    font-size:8px;
-
+    min-height:17px;
     margin-bottom:7px;
+    text-align:center;
+    font-size:8px;
+    color:#65dcff;
 }
 
+/* =========================
+   MOBILE
+========================= */
 
-/* =====================================================
-   RESPONSIVE
-   ===================================================== */
-
-@media(max-width:800px){
+@media(max-width:650px){
 
     .header{
         width:94%;
-    }
-
-    .hero{
-        width:94%;
-    }
-
-    .searchArea{
-        width:94%;
-    }
-
-    .section{
-        width:94%;
-    }
-
-    .options{
-        grid-template-columns:
-        repeat(2,1fr);
-    }
-
-    .lessonList{
-        grid-template-columns:1fr;
-    }
-
-}
-
-@media(max-width:550px){
-
-    header{
-        height:68px;
-    }
-
-    .logoIcon{
-        width:37px;
-        height:37px;
-
-        font-size:18px;
-    }
-
-    .logoText{
-        font-size:13px;
-    }
-
-    .logoText small{
-        font-size:6px;
-    }
-
-    .studentBtn,
-    .teacherBtn{
-        padding:
-        8px 7px;
-
-        font-size:7px;
-    }
-
-    .hero{
-        margin-top:17px;
-
-        padding:
-        25px 17px;
     }
 
     .hero h1{
         font-size:21px;
     }
 
-    .hero p{
-        font-size:8px;
-    }
-
-    .heroFeatures{
+    .options{
+        grid-template-columns:repeat(4,1fr);
         gap:5px;
     }
 
-    .heroFeature{
-        font-size:6px;
-    }
-
-    .options{
-        gap:6px;
-    }
-
     .option{
-        padding:
-        11px 6px;
+        padding:10px 4px;
+        text-align:center;
+    }
+
+    .optionIcon{
+        margin-left:auto;
+        margin-right:auto;
     }
 
     .option p{
         display:none;
     }
 
-    .stats{
-        gap:5px;
+    .lessonList{
+        grid-template-columns:1fr;
+    }
+
+    .studentBtn,
+    .teacherBtn{
+        padding:8px 7px;
+        font-size:7px;
+    }
+
+    .loginButtons{
+        gap:4px;
+    }
+
+    .logoText{
+        font-size:13px;
     }
 
     .futureGrid{
         grid-template-columns:1fr;
     }
-
 }
-
-@media(max-width:380px){
-
-    .logoText{
-        display:none;
-    }
-
-    .studentBtn,
-    .teacherBtn{
-        padding:
-        8px 6px;
-
-        font-size:6px;
-    }
-
-}
-
-
-/* =====================================================
-   END OF PART 1 CSS
-   ===================================================== */
-
 </style>
-
 </head>
 
 <body>
 
+<!-- زخارف -->
 
-<!-- =====================================================
-     BACKGROUND
-     ===================================================== -->
+<div class="float f1">✂️</div>
+<div class="float f2">📚</div>
+<div class="float f3">✏️</div>
+<div class="float f4">📐</div>
+<div class="float f5">🧮</div>
 
-<div class="backgroundGlow glowOne"></div>
-
-<div class="backgroundGlow glowTwo"></div>
-
-
-<div class="float float1">📚</div>
-
-<div class="float float2">✏️</div>
-
-<div class="float float3">📐</div>
-
-<div class="float float4">🧮</div>
-
-<div class="float float5">⭐</div>
-
-
-<div class="star star1">✦</div>
-
-<div class="star star2">★</div>
-
-<div class="star star3">✦</div>
-
-<div class="star star4">★</div>
-
+<div class="star s1">✦</div>
+<div class="star s2">★</div>
+<div class="star s3">✦</div>
+<div class="star s4">★</div>
 
 <div class="page">
 
-
-<!-- =====================================================
+<!-- =========================
      HEADER
-     ===================================================== -->
+========================= -->
 
 <header>
 
 <div class="header">
-
 
 <div class="logo">
 
@@ -1725,101 +892,58 @@ MINBAR ONE • MATH
 
 </div>
 
-
 <div class="loginButtons">
-
 
 <button
 class="studentBtn"
 onclick="openStudentLogin()">
 
-👨‍🎓 دخول الطالب
+👨‍🎓
+دخول الطالب
 
 </button>
-
 
 <a
 class="teacherBtn"
 href="teacher.html">
 
-👨‍🏫 دخول الأستاذ
+👨‍🏫
+دخول الأستاذ
 
 </a>
 
-
 </div>
-
 
 </div>
 
 </header>
 
-
-<!-- =====================================================
+<!-- =========================
      HERO
-     ===================================================== -->
+========================= -->
 
 <section class="hero">
 
-<div class="heroContent">
-
-
 <div class="heroBadge">
-
 🧮 منصة الرياضيات
-
 </div>
 
-
 <h1>
-
 مرحبًا بك في
 <span>منبر ون</span>
 🚀
-
 </h1>
 
-
 <p>
-
-تعلّم الرياضيات بطريقة سهلة،
-شاهد الحصص، راجع الملخصات،
-اختبر نفسك وطوّر مستواك.
-
+تعلّم الرياضيات، شاهد الحصص،
+راجع الملخصات واختبر نفسك.
 </p>
-
-
-<div class="heroFeatures">
-
-<div class="heroFeature">
-🎥 حصص تعليمية
-</div>
-
-<div class="heroFeature">
-📚 ملخصات
-</div>
-
-<div class="heroFeature">
-📝 اختبارات
-</div>
-
-<div class="heroFeature">
-💬 رومات
-</div>
-
-</div>
-
-
-</div>
 
 </section>
 
-
-<!-- =====================================================
+<!-- =========================
      SEARCH
-     ===================================================== -->
-
-<div class="searchArea">
+========================= -->
 
 <div class="search">
 
@@ -1830,12 +954,10 @@ href="teacher.html">
 <input
 id="search"
 type="text"
-autocomplete="off"
-placeholder="ابحث عن حصة، ملخص، اختبار أو روم..."
+placeholder="ابحث عن فيديو، ملخص، اختبار أو روم..."
 oninput="searchEverything()">
 
 </div>
-
 
 <div
 id="searchResults"
@@ -1852,12 +974,9 @@ class="resultList">
 
 </div>
 
-</div>
-
-
-<!-- =====================================================
-     MAIN OPTIONS
-     ===================================================== -->
+<!-- =========================
+     OPTIONS
+========================= -->
 
 <section class="section">
 
@@ -1873,13 +992,9 @@ class="resultList">
 
 </div>
 
-
 <div class="options">
 
-
-<a
-href="#lessons"
-class="option option1">
+<a href="#lessons" class="option c1">
 
 <div class="optionIcon">
 🎥
@@ -1890,15 +1005,12 @@ class="option option1">
 </h3>
 
 <p>
-شاهد الدروس التعليمية
+شاهد الدروس
 </p>
 
 </a>
 
-
-<a
-href="#summaries"
-class="option option2">
+<a href="#summaries" class="option c2">
 
 <div class="optionIcon">
 📚
@@ -1909,15 +1021,12 @@ class="option option2">
 </h3>
 
 <p>
-راجع القوانين المهمة
+راجع القوانين
 </p>
 
 </a>
 
-
-<a
-href="#tests"
-class="option option3">
+<a href="#tests" class="option c3">
 
 <div class="optionIcon">
 📝
@@ -1928,15 +1037,12 @@ class="option option3">
 </h3>
 
 <p>
-اختبر معلوماتك
+اختبر نفسك
 </p>
 
 </a>
 
-
-<a
-href="#rooms"
-class="option option4">
+<a href="#rooms" class="option c4">
 
 <div class="optionIcon">
 💬
@@ -1947,20 +1053,18 @@ class="option option4">
 </h3>
 
 <p>
-تعلّم وتناقش
+تعلّم مع الآخرين
 </p>
 
 </a>
-
 
 </div>
 
 </section>
 
-
-<!-- =====================================================
-     DAILY CHALLENGE
-     ===================================================== -->
+<!-- =========================
+     CHALLENGE
+========================= -->
 
 <section class="section">
 
@@ -1976,44 +1080,31 @@ class="option option4">
 
 </div>
 
-
 <div class="challenge">
-
-<div class="challengeContent">
 
 <div class="challengeTag">
 🧠 سؤال رياضيات
 </div>
 
-
 <h3>
 هل تستطيع حل هذه المسألة؟
 </h3>
-
 
 <div class="question">
 8 × 7 + 4 = ؟
 </div>
 
-
-<button
-onclick="challengeAnswer()">
-
+<button onclick="challengeAnswer()">
 عرض الإجابة
-
 </button>
-
-
-</div>
 
 </div>
 
 </section>
 
-
-<!-- =====================================================
-     STUDENT PROGRESS
-     ===================================================== -->
+<!-- =========================
+     STATS
+========================= -->
 
 <section class="section">
 
@@ -2024,14 +1115,12 @@ onclick="challengeAnswer()">
 </h2>
 
 <span>
-تقدمك في المنصة
+تقدمك
 </span>
 
 </div>
 
-
 <div class="stats">
-
 
 <div class="stat points">
 
@@ -2045,7 +1134,6 @@ onclick="challengeAnswer()">
 
 </div>
 
-
 <div class="stat progress">
 
 <strong>
@@ -2057,7 +1145,6 @@ onclick="challengeAnswer()">
 </span>
 
 </div>
-
 
 <div class="stat rank">
 
@@ -2071,15 +1158,13 @@ onclick="challengeAnswer()">
 
 </div>
 
-
 </div>
 
 </section>
 
-
-<!-- =====================================================
+<!-- =========================
      LESSONS
-     ===================================================== -->
+========================= -->
 
 <section
 class="section"
@@ -2097,27 +1182,21 @@ id="lessons">
 
 </div>
 
-
 <div
 id="lessonsContainer"
 class="lessonList">
 
-
 <div class="empty">
-
 جاري تحميل الحصص... ⏳
-
 </div>
-
 
 </div>
 
 </section>
 
-
-<!-- =====================================================
+<!-- =========================
      SUMMARIES
-     ===================================================== -->
+========================= -->
 
 <section
 class="section"
@@ -2129,15 +1208,9 @@ id="summaries">
 📚 الملخصات
 </h2>
 
-<span>
-راجع أهم المعلومات
-</span>
-
 </div>
 
-
 <div class="futureGrid">
-
 
 <div class="future">
 
@@ -2155,7 +1228,6 @@ id="summaries">
 
 </div>
 
-
 <div class="future">
 
 <div class="futureIcon">
@@ -2167,11 +1239,10 @@ id="summaries">
 </h3>
 
 <p>
-معلومات مختصرة للمراجعة
+معلومات مهمة
 </p>
 
 </div>
-
 
 <div class="future">
 
@@ -2184,20 +1255,18 @@ id="summaries">
 </h3>
 
 <p>
-الدروس التي تريد الرجوع إليها
+للدراسة لاحقًا
 </p>
 
 </div>
-
 
 </div>
 
 </section>
 
-
-<!-- =====================================================
+<!-- =========================
      TESTS
-     ===================================================== -->
+========================= -->
 
 <section
 class="section"
@@ -2209,25 +1278,17 @@ id="tests">
 📝 الاختبارات
 </h2>
 
-<span>
-اختبر نفسك
-</span>
-
 </div>
 
-
 <div class="empty">
-
 الاختبارات التفاعلية ستظهر هنا 🚀
-
 </div>
 
 </section>
 
-
-<!-- =====================================================
+<!-- =========================
      ROOMS
-     ===================================================== -->
+========================= -->
 
 <section
 class="section"
@@ -2239,106 +1300,628 @@ id="rooms">
 💬 الرومات
 </h2>
 
-<span>
-تعلّم مع الآخرين
-</span>
-
 </div>
 
-
 <div class="empty">
-
 رومات الدراسة ستظهر هنا 👥
-
 </div>
 
 </section>
 
-
-<!-- =====================================================
-     FOOTER
-     ===================================================== -->
-
 <footer>
-
 منبر ون • منصة الرياضيات 🎓
-
-<br><br>
-
-جميع الحقوق محفوظة © 2026
-
 </footer>
-
 
 </div>
 
-
-<!-- =====================================================
-     STUDENT LOGIN MODAL
-     ===================================================== -->
+<!-- =========================
+     STUDENT LOGIN
+========================= -->
 
 <div
 id="studentModal"
 class="modal">
 
-
 <div class="loginBox">
-
 
 <button
 class="close"
 onclick="closeStudentLogin()">
-
 ×
-
 </button>
-
 
 <h2>
 👨‍🎓 دخول الطالب
 </h2>
 
-
 <p>
-
-سجّل دخولك للوصول إلى حسابك
-ومتابعة تقدمك الدراسي.
-
+تسجيل دخول الطلاب سيكون متاحًا قريبًا
 </p>
-
 
 <div
 id="studentMessage"
 class="message">
 </div>
 
-
 <input
 id="studentEmail"
 type="email"
 placeholder="📧 البريد الإلكتروني">
-
 
 <input
 id="studentPassword"
 type="password"
 placeholder="🔐 كلمة المرور">
 
-
 <button
 class="main"
-onclick="studentLogin()">
+onclick="studentLoginComingSoon()">
 
 تسجيل الدخول
 
 </button>
 
+<div class="switch">
+
+ليس لديك حساب؟
+
+<button
+onclick="studentSignupComingSoon()">
+
+إنشاء حساب
+
+</button>
 
 </div>
 
 </div>
 
+</div>
 
-<!-- =====================================================
-     PART 1 END
-     ===================================================== -->
+<script>
+
+/* ===============================
+   SUPABASE
+================================ */
+
+const SUPABASE_URL =
+"https://vugnptbvkitokwqxulla.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable__WJDSewc6JN6XTM6czk11Q_lgON6Chj";
+
+let allContent=[];
+
+/* ===============================
+   STUDENT LOGIN
+================================ */
+
+function openStudentLogin(){
+
+document
+.getElementById("studentModal")
+.classList
+.add("show");
+
+}
+
+function closeStudentLogin(){
+
+document
+.getElementById("studentModal")
+.classList
+.remove("show");
+
+}
+
+function studentLoginComingSoon(){
+
+document
+.getElementById("studentMessage")
+innerText =
+"تسجيل الدخول سيتم تفعيله في المرحلة القادمة 🔐";
+
+}
+
+function studentSignupComingSoon(){
+
+document
+.getElementById("studentMessage")
+innerText =
+"إنشاء حساب الطالب سيتم تفعيله في المرحلة القادمة 🧑‍🎓";
+
+}
+
+/* ===============================
+   GET TABLE
+================================ */
+
+async function getTable(table){
+
+try{
+
+const response =
+await fetch(
+
+SUPABASE_URL+
+"/rest/v1/"+
+table+
+"?select=*",
+
+{
+
+headers:{
+
+"apikey":
+SUPABASE_KEY,
+
+"Authorization":
+"Bearer "+SUPABASE_KEY
+
+}
+
+}
+
+);
+
+if(!response.ok){
+
+console.log(
+"خطأ في جدول:",
+table,
+response.status
+);
+
+return [];
+
+}
+
+const data =
+await response.json();
+
+return Array.isArray(data)
+? data
+: [];
+
+}catch(error){
+
+console.error(error);
+
+return [];
+
+}
+
+}
+
+/* ===============================
+   LOAD EVERYTHING
+================================ */
+
+async function loadEverything(){
+
+allContent=[];
+
+const [
+lessons,
+summaries,
+tests,
+rooms
+]=await Promise.all([
+
+getTable("lessons"),
+getTable("summaries"),
+getTable("tests"),
+getTable("rooms")
+
+]);
+
+/* LESSONS */
+
+lessons.forEach(item=>{
+
+allContent.push({
+
+typeName:"فيديو",
+
+icon:"🎥",
+
+className:"type-video",
+
+title:
+item.title ||
+"حصة رياضيات",
+
+description:
+item.description ||
+item.unit ||
+"حصة تعليمية",
+
+url:
+item.video_url ||
+"#"
+
+});
+
+});
+
+/* SUMMARIES */
+
+summaries.forEach(item=>{
+
+allContent.push({
+
+typeName:"ملخص",
+
+icon:"📚",
+
+className:"type-summary",
+
+title:
+item.title ||
+"ملخص",
+
+description:
+item.description ||
+item.unit ||
+"ملخص رياضيات",
+
+url:
+item.url ||
+item.file_url ||
+"#"
+
+});
+
+});
+
+/* TESTS */
+
+tests.forEach(item=>{
+
+allContent.push({
+
+typeName:"اختبار",
+
+icon:"📝",
+
+className:"type-test",
+
+title:
+item.title ||
+"اختبار",
+
+description:
+item.description ||
+item.unit ||
+"اختبار رياضيات",
+
+url:
+item.url ||
+item.link ||
+"#"
+
+});
+
+});
+
+/* ROOMS */
+
+rooms.forEach(item=>{
+
+allContent.push({
+
+typeName:"روم",
+
+icon:"💬",
+
+className:"type-room",
+
+title:
+item.title ||
+item.name ||
+"روم دراسة",
+
+description:
+item.description ||
+"روم للدراسة",
+
+url:
+item.url ||
+item.link ||
+"#"
+
+});
+
+});
+
+}
+
+/* ===============================
+   SEARCH
+================================ */
+
+function searchEverything(){
+
+const text =
+document
+.getElementById("search")
+.value
+.toLowerCase()
+.trim();
+
+const resultsBox =
+document.getElementById("searchResults");
+
+const list =
+document.getElementById("resultList");
+
+if(!text){
+
+resultsBox
+.classList
+.remove("show");
+
+list.innerHTML="";
+
+return;
+
+}
+
+resultsBox
+.classList
+.add("show");
+
+const results =
+allContent.filter(item=>{
+
+const title =
+String(item.title || "")
+.toLowerCase();
+
+const description =
+String(item.description || "")
+.toLowerCase();
+
+const type =
+String(item.typeName || "")
+.toLowerCase();
+
+return(
+title.includes(text) ||
+description.includes(text) ||
+type.includes(text)
+);
+
+});
+
+if(!results.length){
+
+list.innerHTML=`
+
+<div class="empty">
+لم نجد شيئًا مطابقًا لبحثك 🔍
+</div>
+
+`;
+
+return;
+
+}
+
+list.innerHTML="";
+
+results.forEach(item=>{
+
+const result =
+document.createElement("a");
+
+result.className="result";
+
+result.href =
+item.url || "#";
+
+if(item.url && item.url !== "#"){
+
+result.target="_blank";
+
+}
+
+result.innerHTML=`
+
+<div class="resultIcon ${item.className}">
+${item.icon}
+</div>
+
+<div class="resultInfo">
+
+<h3>
+${safe(item.title)}
+</h3>
+
+<p>
+${item.typeName}
+•
+${safe(item.description)}
+</p>
+
+</div>
+
+`;
+
+list.appendChild(result);
+
+});
+
+}
+
+/* ===============================
+   LOAD LESSONS
+================================ */
+
+async function loadLessons(){
+
+const box =
+document.getElementById(
+"lessonsContainer"
+);
+
+const lessons =
+await getTable("lessons");
+
+if(!lessons.length){
+
+box.innerHTML=`
+
+<div class="empty">
+لا توجد حصص حتى الآن 📚
+</div>
+
+`;
+
+return;
+
+}
+
+box.innerHTML="";
+
+lessons
+.sort(
+
+(a,b)=>
+
+new Date(
+b.created_at || 0
+)
+
+-
+
+new Date(
+a.created_at || 0
+)
+
+)
+.forEach(lesson=>{
+
+const item =
+document.createElement("div");
+
+item.className="lesson";
+
+const videoUrl =
+lesson.video_url || "";
+
+item.innerHTML=`
+
+<div class="lessonIcon">
+🎥
+</div>
+
+<div class="lessonInfo">
+
+<h3>
+${safe(
+lesson.title ||
+"حصة رياضيات"
+)}
+</h3>
+
+<p>
+${safe(
+lesson.unit ||
+"رياضيات"
+)}
+
+${
+lesson.duration
+?
+" • "+
+safe(lesson.duration)
+:
+""
+}
+
+</p>
+
+</div>
+
+${
+videoUrl
+?
+`
+<a
+class="watch"
+href="${safe(videoUrl)}"
+target="_blank">
+مشاهدة
+</a>
+`
+:
+`
+<span class="watch">
+لا يوجد فيديو
+</span>
+`
+}
+
+`;
+
+box.appendChild(item);
+
+});
+
+}
+
+/* ===============================
+   CHALLENGE
+================================ */
+
+function challengeAnswer(){
+
+alert(
+"الإجابة الصحيحة هي: 60 🎉"
+);
+
+}
+
+/* ===============================
+   SAFE HTML
+================================ */
+
+function safe(text){
+
+return String(text ?? "")
+
+.replace(/&/g,"&amp;")
+
+.replace(/</g,"&lt;")
+
+.replace(/>/g,"&gt;")
+
+.replace(/"/g,"&quot;")
+
+.replace(/'/g,"&#039;");
+
+}
+
+/* ===============================
+   START
+================================ */
+
+async function startApp(){
+
+await Promise.all([
+
+loadEverything(),
+
+loadLessons()
+
+]);
+
+}
+
+startApp();
+
+</script>
+
+</body>
+</html>
