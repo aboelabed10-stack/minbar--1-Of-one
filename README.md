@@ -8,340 +8,855 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+
 body{
 font-family:Tahoma,Arial,sans-serif;
 background:
-radial-gradient(circle at 85% 5%,#172b63 0,transparent 28%),
-radial-gradient(circle at 10% 70%,#27174f 0,transparent 28%),#050b1d;
-color:#fff;min-height:100vh
+radial-gradient(circle at 85% 5%,#351020 0,transparent 25%),
+radial-gradient(circle at 10% 55%,#21114a 0,transparent 28%),
+radial-gradient(circle at 70% 90%,#3a1018 0,transparent 25%),
+#050817;
+color:#fff;
+min-height:100vh;
+overflow-x:hidden
 }
+
 button,input{font-family:inherit}
 button{cursor:pointer}
+
 .page{position:relative;z-index:2}
 
-header{
-height:70px;background:rgba(5,13,32,.9);
-backdrop-filter:blur(15px);
-border-bottom:1px solid #ffffff14;
-position:sticky;top:0;z-index:50
-}
-.header{
-width:92%;max-width:1100px;height:100%;margin:auto;
-display:flex;align-items:center;justify-content:space-between
-}
-.logo{display:flex;align-items:center;gap:9px}
-.logoIcon,.userIcon{
-display:flex;align-items:center;justify-content:center;
-background:linear-gradient(135deg,#12c9ff,#855cff)
-}
-.logoIcon{width:39px;height:39px;border-radius:12px;font-size:19px}
-.logoText{font-size:15px;font-weight:bold}
-.logoText small{
-display:block;color:#7187a7;font-size:6px;margin-top:3px
+/* ===== الخلفية المتحركة ===== */
+
+.math-bg{
+position:fixed;
+inset:0;
+overflow:hidden;
+pointer-events:none;
+z-index:0
 }
 
-.loginButtons{display:flex;gap:7px;align-items:center}
+.math-item{
+position:absolute;
+top:-80px;
+font-size:25px;
+font-weight:bold;
+color:#ff334f;
+opacity:.18;
+animation:fall linear infinite;
+text-shadow:0 0 15px #ff193d
+}
+
+.math-item:nth-child(1){left:5%;animation-duration:12s;animation-delay:0s}
+.math-item:nth-child(2){left:15%;animation-duration:16s;animation-delay:3s}
+.math-item:nth-child(3){left:27%;animation-duration:13s;animation-delay:6s}
+.math-item:nth-child(4){left:39%;animation-duration:18s;animation-delay:1s}
+.math-item:nth-child(5){left:52%;animation-duration:14s;animation-delay:4s}
+.math-item:nth-child(6){left:65%;animation-duration:17s;animation-delay:2s}
+.math-item:nth-child(7){left:76%;animation-duration:12s;animation-delay:7s}
+.math-item:nth-child(8){left:88%;animation-duration:19s;animation-delay:5s}
+.math-item:nth-child(9){left:95%;animation-duration:15s;animation-delay:8s}
+
+@keyframes fall{
+0%{transform:translateY(-100px) rotate(0deg);opacity:0}
+10%{opacity:.2}
+50%{opacity:.3}
+90%{opacity:.15}
+100%{transform:translateY(110vh) rotate(360deg);opacity:0}
+}
+
+/* ===== الهيدر ===== */
+
+header{
+height:70px;
+background:rgba(5,8,23,.88);
+backdrop-filter:blur(16px);
+border-bottom:1px solid #ff334f26;
+position:sticky;
+top:0;
+z-index:50
+}
+
+.header{
+width:92%;
+max-width:1100px;
+height:100%;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:space-between
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:9px
+}
+
+.logoIcon{
+width:39px;
+height:39px;
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:19px;
+background:linear-gradient(135deg,#ff1744,#a50025);
+box-shadow:0 0 22px #ff174455
+}
+
+.logoText{
+font-size:15px;
+font-weight:bold
+}
+
+.logoText small{
+display:block;
+color:#a98690;
+font-size:6px;
+margin-top:3px
+}
+
+.loginButtons{
+display:flex;
+gap:7px;
+align-items:center
+}
+
 .studentBtn,.teacherBtn,.logoutBtn{
-border:0;color:#fff;font-size:8px;padding:9px 11px;
-border-radius:10px;display:flex;align-items:center;gap:5px;
+border:0;
+color:#fff;
+font-size:8px;
+padding:9px 11px;
+border-radius:10px;
+display:flex;
+align-items:center;
+gap:5px;
 transition:.25s
 }
-.studentBtn{background:linear-gradient(135deg,#087fb5,#7450d8)}
+
+.studentBtn{
+background:linear-gradient(135deg,#d50935,#8d0c30)
+}
+
 .teacherBtn{
-background:linear-gradient(135deg,#a65a17,#d38b20);
+background:linear-gradient(135deg,#f04a22,#9e2416);
 text-decoration:none
 }
+
 .logoutBtn{
 background:linear-gradient(135deg,#8f3048,#b84b62);
 display:none
 }
-.userBox{
-display:none;align-items:center;gap:7px;
-background:#0b1b36;border:1px solid #ffffff17;
-padding:5px 8px;border-radius:10px;
-font-size:7px;color:#a9bdd5
+
+.studentBtn:hover,.teacherBtn:hover,.logoutBtn:hover{
+transform:translateY(-2px);
+box-shadow:0 8px 25px #ff174433
 }
-.userIcon{width:27px;height:27px;border-radius:8px}
+
+.userBox{
+display:none;
+align-items:center;
+gap:7px;
+background:#101226;
+border:1px solid #ff334f24;
+padding:5px 8px;
+border-radius:10px;
+font-size:7px;
+color:#d9aeb7
+}
+
+.userIcon{
+width:27px;
+height:27px;
+border-radius:8px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg,#ff1744,#7d0b29)
+}
+
+/* ===== Hero ===== */
 
 .hero,.search,.section{
-width:92%;max-width:1100px;
-margin-left:auto;margin-right:auto
+width:92%;
+max-width:1100px;
+margin-left:auto;
+margin-right:auto
 }
+
 .hero{
-margin-top:22px;padding:30px 23px;border-radius:24px;
-background:linear-gradient(135deg,rgba(11,49,88,.96),rgba(42,23,76,.94));
-border:1px solid #5abfff2e;
-box-shadow:0 18px 55px #0003
+margin-top:22px;
+padding:32px 23px;
+border-radius:25px;
+background:
+linear-gradient(135deg,rgba(74,13,36,.96),rgba(34,17,69,.95)),
+linear-gradient(135deg,#ff1744,#7c19b8);
+border:1px solid #ff536d3d;
+box-shadow:0 20px 65px #0005;
+position:relative;
+overflow:hidden
 }
+
+.hero:after{
+content:"π   √   ∑   △   ○";
+position:absolute;
+left:20px;
+bottom:10px;
+font-size:35px;
+letter-spacing:14px;
+color:#ff4963;
+opacity:.08;
+transform:rotate(-5deg)
+}
+
 .heroBadge{
-display:inline-block;padding:6px 9px;border-radius:20px;
-background:#23caff1a;border:1px solid #23caff30;
-color:#5cdcff;font-size:8px
+display:inline-block;
+padding:7px 10px;
+border-radius:20px;
+background:#ff24451a;
+border:1px solid #ff496330;
+color:#ff7185;
+font-size:8px
 }
-.hero h1{font-size:25px;line-height:1.5;margin-top:10px}
-.hero h1 span{color:#54d8ff}
+
+.hero h1{
+font-size:25px;
+line-height:1.5;
+margin-top:10px
+}
+
+.hero h1 span{
+color:#ff526d;
+text-shadow:0 0 20px #ff174433
+}
+
 .hero p{
-color:#9aafc9;font-size:9px;line-height:1.9;margin-top:5px
+color:#c2aeb5;
+font-size:9px;
+line-height:1.9;
+margin-top:5px
 }
 
-.search{margin-top:14px;position:relative}
+/* ===== البحث ===== */
+
+.search{
+margin-top:14px;
+position:relative
+}
+
 .search input{
-width:100%;height:45px;border:1px solid #ffffff1f;
-border-radius:13px;background:#0b1b36;color:#fff;
-padding:0 43px 0 15px;outline:none;font-size:10px
-}
-.searchIcon{
-position:absolute;right:14px;top:13px;font-size:15px
-}
-
-.section{margin-top:23px}
-.sectionHead{
-display:flex;justify-content:space-between;
-align-items:center;margin-bottom:11px
-}
-.sectionHead h2{font-size:15px}
-.sectionHead span{font-size:7px;color:#7188a6}
-
-.options,.stats,.lessonList,.contentGrid{
-display:grid;gap:8px
-}
-.options{grid-template-columns:repeat(4,1fr)}
-
-.option{
-color:#fff;text-decoration:none;border-radius:15px;
-padding:13px 8px;border:1px solid #ffffff17;
+width:100%;
+height:45px;
+border:1px solid #ff334f2b;
+border-radius:13px;
+background:#0d1025;
+color:#fff;
+padding:0 43px 0 15px;
+outline:none;
+font-size:10px;
 transition:.25s
 }
-.option:hover{transform:translateY(-2px)}
-.optionIcon{
-width:30px;height:30px;border-radius:9px;
-display:flex;justify-content:center;align-items:center;
-font-size:14px;margin-bottom:7px
-}
-.option h3{font-size:9px}
-.option p{color:#ffffff9e;font-size:6px;margin-top:4px}
 
-.c1{background:linear-gradient(135deg,#073b67,#087aa2)}
-.c2{background:linear-gradient(135deg,#36205e,#69358b)}
-.c3{background:linear-gradient(135deg,#694218,#a86616)}
-.c4{background:linear-gradient(135deg,#104a43,#147660)}
-.c1 .optionIcon{background:#079ed3}
-.c2 .optionIcon{background:#9856d8}
-.c3 .optionIcon{background:#eaa52e}
-.c4 .optionIcon{background:#1ac29f}
+.search input:focus{
+border-color:#ff405c;
+box-shadow:0 0 20px #ff17441c
+}
+
+.searchIcon{
+position:absolute;
+right:14px;
+top:13px;
+font-size:15px;
+color:#ff405c
+}
+
+/* ===== الأقسام ===== */
+
+.section{
+margin-top:23px
+}
+
+.sectionHead{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:11px
+}
+
+.sectionHead h2{
+font-size:15px
+}
+
+.sectionHead span{
+font-size:7px;
+color:#9d7780
+}
+
+.options,.stats,.lessonList,.contentGrid{
+display:grid;
+gap:9px
+}
+
+.options{
+grid-template-columns:repeat(4,1fr)
+}
+
+.option{
+color:#fff;
+text-decoration:none;
+border-radius:16px;
+padding:14px 8px;
+border:1px solid #ffffff15;
+transition:.25s;
+position:relative;
+overflow:hidden
+}
+
+.option:hover{
+transform:translateY(-4px);
+box-shadow:0 12px 30px #0006
+}
+
+.optionIcon{
+width:31px;
+height:31px;
+border-radius:9px;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:14px;
+margin-bottom:7px;
+background:linear-gradient(135deg,#ff1744,#a9002b)!important;
+box-shadow:0 0 15px #ff174433
+}
+
+.option h3{
+font-size:9px
+}
+
+.option p{
+color:#ffffffa8;
+font-size:6px;
+margin-top:4px
+}
+
+.c1{background:linear-gradient(135deg,#41101e,#701b35)}
+.c2{background:linear-gradient(135deg,#27134c,#552070)}
+.c3{background:linear-gradient(135deg,#4b2116,#79251a)}
+.c4{background:linear-gradient(135deg,#111d42,#24315e)}
+
+/* ===== التحدي ===== */
 
 .challenge{
-padding:17px;border-radius:17px;
-background:linear-gradient(135deg,#30205d,#151e4b);
-border:1px solid #b478ff2e
+padding:17px;
+border-radius:17px;
+background:linear-gradient(135deg,#30113d,#17183f);
+border:1px solid #ff426033;
+box-shadow:0 12px 40px #0003
 }
-.challengeTag{color:#d49aff;font-size:8px}
-.challenge h3{font-size:12px;margin-top:8px}
+
+.challengeTag{
+color:#ff7890;
+font-size:8px
+}
+
+.challenge h3{
+font-size:12px;
+margin-top:8px
+}
 
 .question{
-margin-top:10px;background:#0003;padding:14px;
-border-radius:11px;font-size:15px;text-align:center;
-line-height:1.8
+margin-top:10px;
+background:#0004;
+padding:14px;
+border-radius:11px;
+font-size:15px;
+text-align:center;
+line-height:1.8;
+border:1px solid #ffffff0c
 }
 
 .challenge button,.quizBtn{
-margin-top:10px;width:100%;border:0;padding:10px;
-border-radius:9px;color:#fff;
-background:linear-gradient(135deg,#8b54ff,#c247a6);
+margin-top:10px;
+width:100%;
+border:0;
+padding:10px;
+border-radius:9px;
+color:#fff;
+background:linear-gradient(135deg,#ff1744,#a70c42);
 font-size:9px
 }
-.challenge button:disabled{opacity:.7;cursor:default}
 
-.quizArea{display:none;margin-top:10px}
+.quizArea{
+display:none;
+margin-top:10px
+}
+
 .answers{
-display:grid;grid-template-columns:repeat(2,1fr);gap:7px
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:7px
 }
+
 .answer{
-border:1px solid #ffffff1c;background:#0a1832;
-color:#fff;padding:10px;border-radius:9px;
-font-size:9px;cursor:pointer
+border:1px solid #ffffff1c;
+background:#0c1028;
+color:#fff;
+padding:10px;
+border-radius:9px;
+font-size:9px
 }
-.answer:hover{background:#172b4e}
-.answer input{margin-left:5px}
-.feedback{text-align:center;font-size:9px;margin-top:8px;min-height:20px}
 
-.stats{grid-template-columns:repeat(3,1fr)}
+.answer:hover{
+background:#24152d;
+border-color:#ff405c
+}
+
+.feedback{
+text-align:center;
+font-size:9px;
+margin-top:8px;
+min-height:20px
+}
+
+/* ===== الإحصائيات ===== */
+
+.stats{
+grid-template-columns:repeat(3,1fr)
+}
+
 .stat{
-padding:13px 8px;border-radius:13px;background:#0a1b35;
-border:1px solid #ffffff12;text-align:center
+padding:13px 8px;
+border-radius:13px;
+background:#0d1128;
+border:1px solid #ffffff12;
+text-align:center
 }
-.stat strong{display:block;font-size:17px}
-.stat span{
-display:block;color:#728aa8;font-size:7px;margin-top:5px
-}
-.points strong{color:#ffd34e}
-.progress strong{color:#45d8ff}
-.rank strong{color:#b87cff}
 
-.lessonList{grid-template-columns:repeat(2,1fr)}
-.lesson{
-display:flex;align-items:center;gap:9px;padding:12px;
-border-radius:14px;background:#0a1b36;
-border:1px solid #64aae61a;min-width:0
+.stat strong{
+display:block;
+font-size:17px
 }
+
+.stat span{
+display:block;
+color:#8f7480;
+font-size:7px;
+margin-top:5px
+}
+
+.points strong{color:#ffcc4d}
+.progress strong{color:#ff536d}
+.rank strong{color:#d27cff}
+
+/* ===== الحصص ===== */
+
+.lessonList{
+grid-template-columns:repeat(2,1fr)
+}
+
+.lesson{
+display:flex;
+align-items:center;
+gap:9px;
+padding:12px;
+border-radius:14px;
+background:#0c1129;
+border:1px solid #ff334f14;
+min-width:0;
+transition:.25s
+}
+
+.lesson:hover{
+transform:translateY(-2px);
+border-color:#ff334f33
+}
+
 .lessonIcon{
-width:38px;height:38px;border-radius:10px;
-display:flex;align-items:center;justify-content:center;
-font-size:15px;background:linear-gradient(135deg,#00aeea,#5b51dc);
+width:38px;
+height:38px;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:15px;
+background:linear-gradient(135deg,#ff1744,#7d0b2a);
 flex-shrink:0
 }
-.noVideoIcon{background:linear-gradient(135deg,#765016,#a86c1e)}
-.lessonInfo{min-width:0;flex:1}
+
+.noVideoIcon{
+background:linear-gradient(135deg,#765016,#a86c1e)
+}
+
+.lessonInfo{
+min-width:0;
+flex:1
+}
+
 .lessonInfo h3{
-font-size:9px;white-space:nowrap;
-overflow:hidden;text-overflow:ellipsis
+font-size:9px;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis
 }
+
 .lessonInfo p{
-color:#728aa6;font-size:7px;margin-top:5px;
-white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+color:#8f7480;
+font-size:7px;
+margin-top:5px;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis
 }
+
 .watch,.noVideo{
-margin-right:auto;font-size:7px;padding:7px 8px;
-border-radius:7px;white-space:nowrap
+margin-right:auto;
+font-size:7px;
+padding:7px 8px;
+border-radius:7px;
+white-space:nowrap
 }
+
 .watch{
-color:#4fdcff;text-decoration:none;background:#28c8ff14
+color:#ff7084;
+text-decoration:none;
+background:#ff174414
 }
-.noVideo{color:#ffca66;background:#dc96281a}
 
-.contentGrid{grid-template-columns:repeat(3,1fr)}
+.noVideo{
+color:#ffca66;
+background:#dc96281a
+}
+
+/* ===== البطاقات ===== */
+
+.contentGrid{
+grid-template-columns:repeat(3,1fr)
+}
+
 .contentCard{
-padding:15px 10px;border-radius:14px;background:#0a1b36;
-border:1px solid #ffffff12;min-width:0
+padding:15px 10px;
+border-radius:14px;
+background:#0c1129;
+border:1px solid #ffffff12;
+min-width:0;
+transition:.25s
 }
-.contentIcon{
-width:36px;height:36px;border-radius:10px;
-display:flex;align-items:center;justify-content:center;
-font-size:17px;margin-bottom:9px
-}
-.summaryIcon{background:linear-gradient(135deg,#6d3fc0,#a457d8)}
-.testIcon{background:linear-gradient(135deg,#a95f18,#e0a32c)}
-.roomIcon{background:linear-gradient(135deg,#087b69,#19b394)}
 
-.contentCard h3{font-size:10px;line-height:1.6}
-.contentCard p{
-color:#7189a5;font-size:7px;line-height:1.7;margin-top:5px
+.contentCard:hover{
+transform:translateY(-3px);
+border-color:#ff334f30;
+box-shadow:0 12px 35px #0005
 }
+
+.contentIcon{
+width:36px;
+height:36px;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:17px;
+margin-bottom:9px
+}
+
+.summaryIcon{
+background:linear-gradient(135deg,#ff1744,#8d174f)
+}
+
+.testIcon{
+background:linear-gradient(135deg,#ff5b24,#a72c18)
+}
+
+.roomIcon{
+background:linear-gradient(135deg,#d71948,#721b62)
+}
+
+.contentCard h3{
+font-size:10px;
+line-height:1.6
+}
+
+.contentCard p{
+color:#8f7480;
+font-size:7px;
+line-height:1.7;
+margin-top:5px
+}
+
 .contentButton{
-display:block;margin-top:10px;padding:8px;
-border-radius:8px;text-align:center;text-decoration:none;
-color:#fff;font-size:7px;background:#ffffff14
+display:block;
+margin-top:10px;
+padding:8px;
+border-radius:8px;
+text-align:center;
+text-decoration:none;
+color:#fff;
+font-size:7px;
+background:#ff17441a;
+border:1px solid #ff334f14
 }
 
 .empty,.loading{
-padding:22px;border-radius:14px;text-align:center;
-color:#7188a4;font-size:8px;line-height:2;
-background:#091931;border:1px dashed #294563
+padding:22px;
+border-radius:14px;
+text-align:center;
+color:#907985;
+font-size:8px;
+line-height:2;
+background:#0a1024;
+border:1px dashed #ff334f25
 }
-.loading{border:0;color:#65d8ff}
+
+.loading{
+border:0;
+color:#ff6078
+}
+
+/* ===== نتائج البحث ===== */
 
 .searchResults{
-width:92%;max-width:1100px;margin:9px auto 0;display:none
+width:92%;
+max-width:1100px;
+margin:9px auto 0;
+display:none
 }
-.searchResults.show{display:block}
-.resultList{display:grid;gap:7px}
+
+.searchResults.show{
+display:block
+}
+
+.resultList{
+display:grid;
+gap:7px
+}
+
 .result{
-display:flex;align-items:center;gap:9px;padding:10px;
-border-radius:12px;background:#0a1b36;
-border:1px solid #ffffff14;text-decoration:none;color:#fff
+display:flex;
+align-items:center;
+gap:9px;
+padding:10px;
+border-radius:12px;
+background:#0c1129;
+border:1px solid #ffffff14;
+text-decoration:none;
+color:#fff
 }
+
 .resultIcon{
-width:33px;height:33px;border-radius:9px;
-display:flex;align-items:center;justify-content:center;
+width:33px;
+height:33px;
+border-radius:9px;
+display:flex;
+align-items:center;
+justify-content:center;
 flex-shrink:0
 }
-.type-video{background:#087db5}
-.type-summary{background:#7547bd}
-.type-test{background:#b26b18}
-.type-room{background:#16806d}
-.resultInfo{min-width:0;flex:1}
-.resultInfo h3{
-font-size:9px;white-space:nowrap;
-overflow:hidden;text-overflow:ellipsis
+
+.type-video{background:#b80e35}
+.type-summary{background:#7b1b65}
+.type-test{background:#b53b18}
+.type-room{background:#8d174f}
+
+.resultInfo{
+min-width:0;
+flex:1
 }
-.resultInfo p{font-size:7px;color:#7189a6;margin-top:4px}
+
+.resultInfo h3{
+font-size:9px;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis
+}
+
+.resultInfo p{
+font-size:7px;
+color:#8f7480;
+margin-top:4px
+}
+
+/* ===== الفوتر ===== */
 
 footer{
-text-align:center;padding:28px 0 18px;
-color:#4e6682;font-size:7px
+text-align:center;
+padding:28px 0 18px;
+color:#674f5c;
+font-size:7px
 }
+
+/* ===== تسجيل الدخول ===== */
 
 .modal{
-position:fixed;inset:0;background:#000b;
-backdrop-filter:blur(7px);display:none;
-align-items:center;justify-content:center;
-z-index:100;padding:20px
+position:fixed;
+inset:0;
+background:#000c;
+backdrop-filter:blur(7px);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:100;
+padding:20px
 }
-.modal.show{display:flex}
+
+.modal.show{
+display:flex
+}
+
 .loginBox{
-width:100%;max-width:390px;
-background:linear-gradient(145deg,#101f42,#1d1740);
-border:1px solid #64c8ff2e;border-radius:22px;
-padding:23px;box-shadow:0 25px 80px #0008
+width:100%;
+max-width:390px;
+background:linear-gradient(145deg,#17102c,#281020);
+border:1px solid #ff526d38;
+border-radius:22px;
+padding:23px;
+box-shadow:0 25px 80px #0008
 }
+
 .close{
-float:left;border:0;background:none;
-color:#8297b3;font-size:22px
+float:left;
+border:0;
+background:none;
+color:#a28b96;
+font-size:22px
 }
-.loginBox h2{font-size:18px;margin-bottom:6px}
+
+.loginBox h2{
+font-size:18px;
+margin-bottom:6px
+}
+
 .loginBox p{
-font-size:8px;color:#8195b1;
-margin-bottom:18px;line-height:1.8
+font-size:8px;
+color:#9c8590;
+margin-bottom:18px;
+line-height:1.8
 }
+
 .loginBox input{
-width:100%;height:42px;margin-bottom:9px;
-border:1px solid #ffffff1a;border-radius:10px;
-background:#08152e;color:#fff;padding:0 12px;
-outline:none;font-size:10px
-}
-.loginBox button.main{
-width:100%;height:42px;border:0;border-radius:10px;
-color:#fff;background:linear-gradient(135deg,#09a9df,#7650e5);
+width:100%;
+height:42px;
+margin-bottom:9px;
+border:1px solid #ffffff1a;
+border-radius:10px;
+background:#0b0e20;
+color:#fff;
+padding:0 12px;
+outline:none;
 font-size:10px
 }
+
+.loginBox input:focus{
+border-color:#ff405c
+}
+
+.loginBox button.main{
+width:100%;
+height:42px;
+border:0;
+border-radius:10px;
+color:#fff;
+background:linear-gradient(135deg,#ff1744,#8d0d3a);
+font-size:10px
+}
+
 .switch{
-margin-top:13px;text-align:center;
-font-size:8px;color:#8498b4
+margin-top:13px;
+text-align:center;
+font-size:8px;
+color:#9b8791
 }
+
 .switch button{
-border:0;background:none;color:#4dd7ff
+border:0;
+background:none;
+color:#ff5c74
 }
+
 .message{
-min-height:22px;margin-bottom:7px;
-text-align:center;font-size:8px;line-height:1.7
+min-height:22px;
+margin-bottom:7px;
+text-align:center;
+font-size:8px;
+line-height:1.7
 }
+
 .successMessage{color:#67e8b1}
 .errorMessage{color:#ff8f9d}
-.infoMessage{color:#64d9ff}
+.infoMessage{color:#ff7187}
+
+/* ===== الهاتف ===== */
 
 @media(max-width:750px){
-.hero,.search,.section,.searchResults{width:94%}
-.lessonList{grid-template-columns:1fr}
+.hero,.search,.section,.searchResults{
+width:94%
 }
+
+.lessonList{
+grid-template-columns:1fr
+}
+}
+
 @media(max-width:650px){
-.options{grid-template-columns:repeat(4,1fr);gap:5px}
-.contentGrid{grid-template-columns:1fr}
-.hero h1{font-size:21px}
-.option p{display:none}
+.options{
+grid-template-columns:repeat(4,1fr);
+gap:5px
 }
+
+.contentGrid{
+grid-template-columns:1fr
+}
+
+.hero h1{
+font-size:21px
+}
+
+.option p{
+display:none
+}
+}
+
 @media(max-width:430px){
-.logoIcon{width:34px;height:34px}
-.logoText{font-size:11px}
-.studentBtn,.teacherBtn{
-padding:7px 5px;font-size:6px
+.logoIcon{
+width:34px;
+height:34px
 }
-.hero h1{font-size:19px}
-.answers{grid-template-columns:1fr}
+
+.logoText{
+font-size:11px
+}
+
+.studentBtn,.teacherBtn{
+padding:7px 5px;
+font-size:6px
+}
+
+.hero h1{
+font-size:19px
+}
+
+.answers{
+grid-template-columns:1fr
+}
 }
 </style>
 </head>
 
 <body>
+
+<!-- عناصر الرياضيات المتساقطة -->
+<div class="math-bg">
+<div class="math-item">★</div>
+<div class="math-item">π</div>
+<div class="math-item">√</div>
+<div class="math-item">△</div>
+<div class="math-item">∑</div>
+<div class="math-item">✦</div>
+<div class="math-item">○</div>
+<div class="math-item">×</div>
+<div class="math-item">★</div>
+</div>
 
 <header>
 <div class="header">
@@ -380,17 +895,24 @@ padding:7px 5px;font-size:6px
 <div class="page">
 
 <section class="hero">
+
 <div class="heroBadge">🧮 منصة الرياضيات</div>
-<h1>مرحبًا بك في <span>منبر ون</span> 🚀</h1>
+
+<h1>
+مرحبًا بك في <span>منبر ون</span> 🚀
+</h1>
+
 <p>
-تعلّم الرياضيات، شاهد الحصص، راجع الملخصات،
-حل الاختبارات وادخل إلى رومات الدراسة.
+تعلّم الرياضيات، شاهد الحصص، راجع الملخصات، حل الاختبارات وادخل إلى رومات الدراسة.
 </p>
+
 </section>
 
 <div class="search">
 <span class="searchIcon">🔎</span>
-<input id="search" type="text"
+<input
+id="search"
+type="text"
 placeholder="ابحث عن حصة أو ملخص أو اختبار أو روم..."
 oninput="searchEverything()">
 </div>
@@ -462,7 +984,7 @@ oninput="searchEverything()">
 <div id="feedback" class="feedback"></div>
 </div>
 
-<button id="challengeButton">
+<button id="challengeButton" onclick="startOrAnswerChallenge()">
 ابدأ التحدي
 </button>
 
@@ -497,43 +1019,55 @@ oninput="searchEverything()">
 </section>
 
 <section class="section" id="lessons">
+
 <div class="sectionHead">
 <h2>🎥 أحدث الحصص</h2>
 <span>من الأستاذ</span>
 </div>
+
 <div id="lessonsContainer" class="lessonList">
 <div class="loading">⏳ جاري تحميل الحصص...</div>
 </div>
+
 </section>
 
 <section class="section" id="summaries">
+
 <div class="sectionHead">
 <h2>📚 الملخصات</h2>
 <span>من الأستاذ</span>
 </div>
+
 <div id="summariesContainer" class="contentGrid">
 <div class="loading">⏳ جاري تحميل الملخصات...</div>
 </div>
+
 </section>
 
 <section class="section" id="tests">
+
 <div class="sectionHead">
 <h2>📝 الاختبارات</h2>
 <span>من الأستاذ</span>
 </div>
+
 <div id="testsContainer" class="contentGrid">
 <div class="loading">⏳ جاري تحميل الاختبارات...</div>
 </div>
+
 </section>
 
 <section class="section" id="rooms">
+
 <div class="sectionHead">
 <h2>💬 الرومات</h2>
 <span>من الأستاذ</span>
 </div>
+
 <div id="roomsContainer" class="contentGrid">
 <div class="loading">⏳ جاري تحميل الرومات...</div>
 </div>
+
 </section>
 
 <footer>
@@ -542,13 +1076,17 @@ oninput="searchEverything()">
 
 </div>
 
+<!-- نافذة تسجيل الطالب -->
+
 <div id="studentModal" class="modal">
 
 <div class="loginBox">
 
 <button class="close" onclick="closeStudentLogin()">×</button>
 
-<h2 id="authTitle">👨‍🎓 دخول الطالب</h2>
+<h2 id="authTitle">
+👨‍🎓 دخول الطالب
+</h2>
 
 <p id="authDescription">
 سجّل الدخول لمتابعة رحلتك التعليمية.
@@ -556,25 +1094,35 @@ oninput="searchEverything()">
 
 <div id="studentMessage" class="message"></div>
 
-<input id="studentEmail"
+<input
+id="studentEmail"
 type="email"
 autocomplete="email"
 placeholder="📧 البريد الإلكتروني">
 
-<input id="studentPassword"
+<input
+id="studentPassword"
 type="password"
 autocomplete="current-password"
 placeholder="🔐 كلمة المرور">
 
-<button id="authMainButton" class="main" onclick="studentAuth()">
+<button
+id="authMainButton"
+class="main"
+onclick="studentAuth()">
 تسجيل الدخول
 </button>
 
 <div class="switch">
-<span id="switchText">ليس لديك حساب؟</span>
+
+<span id="switchText">
+ليس لديك حساب؟
+</span>
+
 <button id="switchButton" onclick="switchAuthMode()">
 إنشاء حساب
 </button>
+
 </div>
 
 </div>
@@ -582,11 +1130,13 @@ placeholder="🔐 كلمة المرور">
 
 <script>
 
-const SUPABASE_URL =
-"https://vugnptbvkitokwqxulla.supabase.co";
+/* ================================
+   SUPABASE
+================================ */
 
-const SUPABASE_KEY =
-"sb_publishable__WJDSewc6JN6XTM6czk11Q_lgON6Chj";
+const SUPABASE_URL="https://vugnptbvkitokwqxulla.supabase.co";
+
+const SUPABASE_KEY="sb_publishable__WJDSewc6JN6XTM6czk11Q_lgON6Chj";
 
 let allLessons=[];
 let allSummaries=[];
@@ -599,55 +1149,80 @@ let challengeIndex=0;
 let challengeStarted=false;
 let challengeAnswered=false;
 
+
+/* ================================
+   تحديات الرياضيات
+================================ */
+
 const challenges=[
+
 {
 q:"8 × 7 + 4 = ؟",
 a:["60","56","64","68"],
 c:0,
 p:10
 },
+
 {
 q:"(18 ÷ 3) × 5 − 7 = ؟",
 a:["23","25","17","27"],
 c:0,
 p:15
 },
+
 {
 q:"إذا كان 3x + 6 = 21، فما قيمة x؟",
 a:["5","6","7","9"],
 c:0,
 p:20
 },
+
 {
 q:"ما ناتج 2³ + 4²؟",
 a:["24","20","16","32"],
 c:0,
 p:25
 },
+
 {
 q:"إذا كان 2x − 5 = 3x − 17، فما قيمة x؟",
 a:["12","10","14","8"],
 c:0,
 p:30
 },
+
 {
 q:"إذا كان a=3 و b=−2، فما قيمة a² − 2ab + b²؟",
 a:["25","13","17","9"],
 c:0,
 p:40
 }
+
 ];
 
+
+/* ================================
+   حماية النصوص
+================================ */
+
 function safe(t){
-return String(t ?? "")
+
+return String(t??"")
 .replaceAll("&","&amp;")
 .replaceAll("<","&lt;")
 .replaceAll(">","&gt;")
 .replaceAll('"',"&quot;")
 .replaceAll("'","&#039;");
+
 }
 
+
+/* ================================
+   اتصال Supabase
+================================ */
+
 async function supabaseRequest(url,options={}){
+
 return fetch(url,{
 ...options,
 headers:{
@@ -656,7 +1231,13 @@ apikey:SUPABASE_KEY,
 ...(options.headers||{})
 }
 });
+
 }
+
+
+/* ================================
+   جلب الجداول
+================================ */
 
 async function getTable(table){
 
@@ -666,10 +1247,7 @@ const r=await supabaseRequest(
 `${SUPABASE_URL}/rest/v1/${table}?select=*`
 );
 
-if(!r.ok){
-console.error("Supabase error:",table,r.status);
-return [];
-}
+if(!r.ok)return[];
 
 const d=await r.json();
 
@@ -678,16 +1256,23 @@ return Array.isArray(d)?d:[];
 }catch(e){
 
 console.error(e);
-return [];
+return[];
 
 }
 
 }
+
 
 function sortNew(a,b){
-return new Date(b.created_at||0)-
-new Date(a.created_at||0);
+
+return new Date(b.created_at||0)-new Date(a.created_at||0);
+
 }
+
+
+/* ================================
+   الحصص
+================================ */
 
 async function loadLessons(){
 
@@ -725,29 +1310,27 @@ ${url?'🎥':'⚠️'}
 <div class="lessonInfo">
 
 <h3>
-${safe(x.title||"حصة رياضيات")}
+${safe(x.title||'حصة رياضيات')}
 </h3>
 
 <p>
-${safe(x.unit||"رياضيات")}
+${safe(x.unit||'رياضيات')}
 ${x.duration?' • '+safe(x.duration):''}
 </p>
 
 </div>
 
-${url?
-
+${
+url
+?
 `<a class="watch"
 href="${safe(url)}"
 target="_blank"
 rel="noopener">
 ▶️ مشاهدة
 </a>`
-
 :
-
 '<span class="noVideo">⚠️ لا يوجد فيديو</span>'
-
 }
 
 `;
@@ -757,6 +1340,83 @@ box.appendChild(d);
 });
 
 }
+
+
+/* ================================
+   الملخصات
+================================ */
+
+async function loadSummaries(){
+
+const d=await getTable("summaries");
+
+allSummaries=d.sort(sortNew);
+
+renderCards(
+"summariesContainer",
+d,
+"📚",
+"summaryIcon",
+["description","content"],
+["file_url","url","link"],
+"ملخص درس",
+"📖 فتح الملخص"
+);
+
+}
+
+
+/* ================================
+   الاختبارات
+================================ */
+
+async function loadTests(){
+
+const d=await getTable("tests");
+
+allTests=d.sort(sortNew);
+
+renderCards(
+"testsContainer",
+d,
+"📝",
+"testIcon",
+["description"],
+["test_url","url","link"],
+"اختبار رياضيات",
+"📝 بدء الاختبار"
+);
+
+}
+
+
+/* ================================
+   الرومات
+================================ */
+
+async function loadRooms(){
+
+const d=await getTable("rooms");
+
+allRooms=d.sort(sortNew);
+
+renderCards(
+"roomsContainer",
+d,
+"💬",
+"roomIcon",
+["description"],
+["room_url","url","link"],
+"روم الدراسة",
+"💬 دخول الروم"
+);
+
+}
+
+
+/* ================================
+   عرض البطاقات
+================================ */
 
 function renderCards(
 id,
@@ -787,8 +1447,8 @@ box.innerHTML="";
 data.forEach(x=>{
 
 const desc=
-descFields.map(k=>x[k]).find(v=>v)||
-fallback;
+descFields.map(k=>x[k]).find(v=>v)
+||fallback;
 
 const url=
 String(
@@ -796,9 +1456,7 @@ urlFields.map(k=>x[k]).find(v=>v)||""
 ).trim();
 
 const title=
-x.title||
-x.name||
-fallback;
+x.title||x.name||fallback;
 
 const d=document.createElement("div");
 
@@ -816,18 +1474,15 @@ ${icon}
 
 ${
 url
-
 ?
-
-`<a class="contentButton"
+`<a
+class="contentButton"
 href="${safe(url)}"
 target="_blank"
 rel="noopener">
 ${button}
 </a>`
-
 :
-
 `<span class="contentButton">
 ${button}
 </span>`
@@ -841,62 +1496,10 @@ box.appendChild(d);
 
 }
 
-async function loadSummaries(){
 
-const d=await getTable("summaries");
-
-allSummaries=d.sort(sortNew);
-
-renderCards(
-"summariesContainer",
-allSummaries,
-"📚",
-"summaryIcon",
-["description","content"],
-["file_url","url","link"],
-"ملخص درس",
-"📖 فتح الملخص"
-);
-
-}
-
-async function loadTests(){
-
-const d=await getTable("tests");
-
-allTests=d.sort(sortNew);
-
-renderCards(
-"testsContainer",
-allTests,
-"📝",
-"testIcon",
-["description"],
-["test_url","url","link"],
-"اختبار رياضيات",
-"📝 بدء الاختبار"
-);
-
-}
-
-async function loadRooms(){
-
-const d=await getTable("rooms");
-
-allRooms=d.sort(sortNew);
-
-renderCards(
-"roomsContainer",
-allRooms,
-"💬",
-"roomIcon",
-["description"],
-["room_url","url","link"],
-"روم الدراسة",
-"💬 دخول الروم"
-);
-
-}
+/* ================================
+   البحث
+================================ */
 
 function searchEverything(){
 
@@ -906,15 +1509,14 @@ document.getElementById("search")
 .toLowerCase()
 .trim();
 
-const box=
-document.getElementById("searchResults");
+const box=document.getElementById("searchResults");
 
-const list=
-document.getElementById("resultList");
+const list=document.getElementById("resultList");
 
 if(!text){
 
 box.classList.remove("show");
+
 return;
 
 }
@@ -924,12 +1526,13 @@ box.classList.add("show");
 let r=[];
 
 [
-[allLessons,"lesson","🎥","حصة"],
-[allSummaries,"summary","📚","ملخص"],
-[allTests,"test","📝","اختبار"],
-[allRooms,"room","💬","روم"]
-]
-.forEach(([arr,type,icon,name])=>{
+[allLessons,"lesson","🎥","حصة","video_url"],
+[allSummaries,"summary","📚","ملخص","file_url"],
+[allTests,"test","📝","اختبار","test_url"],
+[allRooms,"room","💬","روم","room_url"]
+
+].forEach(
+([arr,type,icon,name,urlKey])=>{
 
 arr.forEach(x=>{
 
@@ -940,27 +1543,19 @@ JSON.stringify(x)
 if(s.includes(text)){
 
 r.push({
-
 type,
 icon,
 name,
 title:x.title||x.name||name,
-url:
-x.video_url||
-x.file_url||
-x.test_url||
-x.room_url||
-x.url||
-x.link||
-""
-
+url:x[urlKey]||x.url||x.link||""
 });
 
 }
 
 });
 
-});
+}
+);
 
 if(!r.length){
 
@@ -976,7 +1571,7 @@ list.innerHTML="";
 r.forEach(x=>{
 
 const d=
-document.createElement(x.url?"a":"div");
+document.createElement(x.url?'a':'div');
 
 d.className="result";
 
@@ -996,9 +1591,11 @@ ${x.icon}
 
 <div class="resultInfo">
 
-<h3>${safe(x.title)}</h3>
+<h3>
+${safe(x.title)}
+</h3>
 
-<p>${safe(x.name)}</p>
+<p>${x.name}</p>
 
 </div>
 
@@ -1009,6 +1606,11 @@ list.appendChild(d);
 });
 
 }
+
+
+/* ================================
+   المستخدم
+================================ */
 
 function getSavedUser(){
 
@@ -1026,6 +1628,7 @@ return null;
 
 }
 
+
 function updateUserInterface(user){
 
 document.getElementById("studentLoginButton")
@@ -1041,6 +1644,11 @@ document.getElementById("userEmail")
 .textContent=user?.email||"الطالب";
 
 }
+
+
+/* ================================
+   رسائل الدخول
+================================ */
 
 function showAuthMessage(t,type="info"){
 
@@ -1063,15 +1671,22 @@ b.textContent=t;
 
 }
 
+
 function clearAuthMessage(){
 
 const b=
 document.getElementById("studentMessage");
 
 b.className="message";
+
 b.textContent="";
 
 }
+
+
+/* ================================
+   نافذة الدخول
+================================ */
 
 function openStudentLogin(){
 
@@ -1079,19 +1694,23 @@ isSignupMode=false;
 
 updateAuthWindow();
 
-document.getElementById("studentModal")
+document
+.getElementById("studentModal")
 .classList.add("show");
 
 }
 
+
 function closeStudentLogin(){
 
-document.getElementById("studentModal")
+document
+.getElementById("studentModal")
 .classList.remove("show");
 
 clearAuthMessage();
 
 }
+
 
 function switchAuthMode(){
 
@@ -1100,6 +1719,7 @@ isSignupMode=!isSignupMode;
 updateAuthWindow();
 
 }
+
 
 function updateAuthWindow(){
 
@@ -1120,24 +1740,35 @@ isSignupMode
 document.getElementById("authMainButton")
 .textContent=
 isSignupMode
-?"إنشاء الحساب"
-:"تسجيل الدخول";
+?
+"إنشاء الحساب"
+:
+"تسجيل الدخول";
 
 document.getElementById("switchText")
 .textContent=
 isSignupMode
-?"لديك حساب بالفعل؟"
-:"ليس لديك حساب؟";
+?
+"لديك حساب بالفعل؟"
+:
+"ليس لديك حساب؟";
 
 document.getElementById("switchButton")
 .textContent=
 isSignupMode
-?"تسجيل الدخول"
-:"إنشاء حساب";
+?
+"تسجيل الدخول"
+:
+"إنشاء حساب";
 
 clearAuthMessage();
 
 }
+
+
+/* ================================
+   تسجيل الطالب
+================================ */
 
 async function studentAuth(){
 
@@ -1217,6 +1848,7 @@ d.message||
 );
 
 }
+
 else if(d.access_token){
 
 saveSession(d);
@@ -1232,16 +1864,18 @@ closeStudentLogin,
 );
 
 }
+
 else{
 
 showAuthMessage(
-"✅ تم إنشاء الحساب. افتح رسالة Gmail لتأكيد البريد الإلكتروني، ثم ارجع وسجّل الدخول.",
+"✅ تم إنشاء الحساب. افتح رسالة Gmail للتأكيد، ثم ارجع وسجّل الدخول.",
 "success"
 );
 
 }
 
 }
+
 else{
 
 showAuthMessage(
@@ -1276,6 +1910,7 @@ d.msg||
 );
 
 }
+
 else{
 
 saveSession(d);
@@ -1309,34 +1944,30 @@ btn.disabled=false;
 
 }
 
+
+/* ================================
+   حفظ الجلسة
+================================ */
+
 function saveSession(d){
 
-if(d.access_token){
-
+if(d.access_token)
 localStorage.setItem(
 "minbar_access_token",
 d.access_token
 );
 
-}
-
-if(d.refresh_token){
-
+if(d.refresh_token)
 localStorage.setItem(
 "minbar_refresh_token",
 d.refresh_token
 );
 
-}
-
-if(d.user){
-
+if(d.user)
 localStorage.setItem(
 "minbar_user",
 JSON.stringify(d.user)
 );
-
-}
 
 updateUserInterface(
 d.user||getSavedUser()
@@ -1344,10 +1975,17 @@ d.user||getSavedUser()
 
 }
 
+
+/* ================================
+   استعادة الجلسة
+================================ */
+
 async function restoreSession(){
 
 const token=
-localStorage.getItem("minbar_access_token");
+localStorage.getItem(
+"minbar_access_token"
+);
 
 const saved=getSavedUser();
 
@@ -1383,19 +2021,8 @@ JSON.stringify(u)
 updateUserInterface(u);
 
 }
+
 else{
-
-localStorage.removeItem(
-"minbar_access_token"
-);
-
-localStorage.removeItem(
-"minbar_refresh_token"
-);
-
-localStorage.removeItem(
-"minbar_user"
-);
 
 updateUserInterface(null);
 
@@ -1409,10 +2036,17 @@ updateUserInterface(saved);
 
 }
 
+
+/* ================================
+   تسجيل الخروج
+================================ */
+
 async function logoutStudent(){
 
 const token=
-localStorage.getItem("minbar_access_token");
+localStorage.getItem(
+"minbar_access_token"
+);
 
 try{
 
@@ -1436,8 +2070,10 @@ Authorization:`Bearer ${token}`
 "minbar_access_token",
 "minbar_refresh_token",
 "minbar_user"
-]
-.forEach(k=>localStorage.removeItem(k));
+
+].forEach(
+k=>localStorage.removeItem(k)
+);
 
 updateUserInterface(null);
 
@@ -1445,11 +2081,17 @@ alert("تم تسجيل الخروج 👋");
 
 }
 
+
+/* ================================
+   الإحصائيات
+================================ */
+
 function loadStats(){
 
 const s=
 JSON.parse(
-localStorage.getItem("minbar_stats")||
+localStorage.getItem("minbar_stats")
+||
 '{"points":0,"answered":0}'
 );
 
@@ -1478,11 +2120,13 @@ s.points>=30
 
 }
 
+
 function addPoints(p){
 
 const s=
 JSON.parse(
-localStorage.getItem("minbar_stats")||
+localStorage.getItem("minbar_stats")
+||
 '{"points":0,"answered":0}'
 );
 
@@ -1503,10 +2147,81 @@ loadStats();
 
 }
 
+
+/* ================================
+   التحدي
+================================ */
+
+function startOrAnswerChallenge(){
+
+if(!challengeStarted){
+
+challengeStarted=true;
+
+showChallenge();
+
+return;
+
+}
+
+if(challengeAnswered)return;
+
+const correct=
+challenges[challengeIndex].c;
+
+const chosen=
+Number(
+document.querySelector(
+'input[name="answer"]:checked'
+)?.value
+);
+
+if(Number.isNaN(chosen)){
+
+document.getElementById("feedback")
+.textContent=
+"اختر إجابة أولًا 🙂";
+
+return;
+
+}
+
+challengeAnswered=true;
+
+if(chosen===correct){
+
+document.getElementById("feedback")
+.textContent=
+`✅ إجابة صحيحة! +${challenges[challengeIndex].p} نقطة 🎉`;
+
+addPoints(
+challenges[challengeIndex].p
+);
+
+}
+
+else{
+
+document.getElementById("feedback")
+.textContent=
+`❌ ليست صحيحة. الإجابة: ${challenges[challengeIndex].a[correct]}`;
+
+}
+
+document.getElementById("challengeButton")
+.textContent=
+challengeIndex<5
+?
+"السؤال التالي"
+:
+"إنهاء التحدي";
+
+}
+
+
 function showChallenge(){
 
-const x=
-challenges[challengeIndex];
+const x=challenges[challengeIndex];
 
 document.getElementById("challengeProgress")
 .textContent=
@@ -1540,22 +2255,21 @@ challengeAnswered=false;
 
 }
 
-function handleChallenge(){
 
-const button=
-document.getElementById("challengeButton");
+/* ================================
+   الانتقال بين الأسئلة
+================================ */
 
-if(!challengeStarted){
+document
+.getElementById("challengeButton")
+.addEventListener(
+"click",
+()=>{
 
-challengeStarted=true;
-
-showChallenge();
-
-return;
-
-}
-
-if(challengeAnswered){
+if(
+challengeStarted&&
+challengeAnswered
+){
 
 if(challengeIndex<5){
 
@@ -1563,82 +2277,57 @@ challengeIndex++;
 
 showChallenge();
 
-}else{
+}
 
-button.disabled=true;
+else{
 
-button.textContent="🎉 أكملت تحدي اليوم";
+document.getElementById(
+"challengeButton"
+).disabled=true;
 
-document.getElementById("challengeTitle")
-.textContent=
+document.getElementById(
+"challengeButton"
+).textContent=
+"🎉 أكملت تحدي اليوم";
+
+document.getElementById(
+"challengeTitle"
+).textContent=
 "أحسنت! أكملت تحدي اليوم كاملًا.";
 
 }
 
-return;
-
 }
 
-const selected=
-document.querySelector(
-'input[name="answer"]:checked'
+}
 );
 
-if(!selected){
 
-document.getElementById("feedback")
-.textContent=
-"اختر إجابة أولًا 🙂";
+/* ================================
+   إغلاق النافذة بالنقر خارجها
+================================ */
 
-return;
-
-}
-
-const chosen=
-Number(selected.value);
-
-const current=
-challenges[challengeIndex];
-
-challengeAnswered=true;
-
-if(chosen===current.c){
-
-document.getElementById("feedback")
-.textContent=
-`✅ إجابة صحيحة! +${current.p} نقطة 🎉`;
-
-addPoints(current.p);
-
-}else{
-
-document.getElementById("feedback")
-.textContent=
-`❌ ليست صحيحة. الإجابة: ${current.a[current.c]}`;
-
-}
-
-button.textContent=
-challengeIndex<5
-?"السؤال التالي"
-:"إنهاء التحدي";
-
-}
-
-document.getElementById("challengeButton")
-.addEventListener(
-"click",
-handleChallenge
-);
-
-document.getElementById("studentModal")
+document
+.getElementById("studentModal")
 .addEventListener(
 "click",
 e=>{
-if(e.target===e.currentTarget)
+
+if(
+e.target===e.currentTarget
+){
+
 closeStudentLogin();
+
+}
+
 }
 );
+
+
+/* ================================
+   تشغيل الموقع
+================================ */
 
 async function startSite(){
 
