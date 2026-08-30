@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>منبر ون | منصة الرياضيات</title>
@@ -9,1541 +12,1070 @@
 <style>
 
 *{
-box-sizing:border-box;ض
-margin:0;
-padding:0;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 html{
-scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-font-family:Tahoma,Arial,sans-serif;
 
-background:
-radial-gradient(circle at 85% 5%,#172b63 0,transparent 28%),
-radial-gradient(circle at 10% 70%,#27174f 0,transparent 28%),
-#050b1d;
+    font-family:Tahoma,Arial,sans-serif;
 
-color:white;
-min-height:100vh;
-overflow-x:hidden;
+    background:
+    radial-gradient(circle at 85% 5%,#172b63 0,transparent 28%),
+    radial-gradient(circle at 10% 70%,#27174f 0,transparent 28%),
+    #050b1d;
+
+    color:white;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
 }
 
-button,input{
-font-family:inherit;
+button,
+input{
+    font-family:inherit;
 }
 
 button{
-cursor:pointer;
+    cursor:pointer;
 }
 
 .page{
-position:relative;
-z-index:2;
+    position:relative;
+    z-index:2;
 }
 
-header{
-height:70px;
-background:rgba(5,13,32,.88);
-backdrop-filter:blur(15px);
-border-bottom:1px solid rgba(255,255,255,.08);
 
-position:sticky;
-top:0;
-z-index:50;
+/* =========================
+   الهيدر
+========================= */
+
+header{
+
+    height:70px;
+
+    background:rgba(5,13,32,.88);
+
+    backdrop-filter:blur(15px);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:50;
 }
 
 .header{
-width:92%;
-max-width:1100px;
-height:100%;
-margin:auto;
 
-display:flex;
-align-items:center;
-justify-content:space-between;
+    width:92%;
+
+    max-width:1100px;
+
+    height:100%;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
 }
 
 .logo{
-display:flex;
-align-items:center;
-gap:9px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
 }
 
 .logoIcon{
-width:39px;
-height:39px;
-border-radius:12px;
 
-background:linear-gradient(135deg,#12c9ff,#855cff);
+    width:39px;
 
-display:flex;
-align-items:center;
-justify-content:center;
+    height:39px;
 
-font-size:19px;
+    border-radius:12px;
 
-box-shadow:0 0 25px rgba(30,190,255,.25);
+    background:linear-gradient(
+        135deg,
+        #12c9ff,
+        #855cff
+    );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:19px;
+
+    box-shadow:
+        0 0 25px
+        rgba(30,190,255,.25);
 }
 
 .logoText{
-font-size:15px;
-font-weight:bold;
+
+    font-size:15px;
+
+    font-weight:bold;
 }
 
 .logoText small{
-display:block;
-color:#7187a7;
-font-size:6px;
-margin-top:3px;
+
+    display:block;
+
+    color:#7187a7;
+
+    font-size:6px;
+
+    margin-top:3px;
 }
 
+
+/* =========================
+   أزرار الهيدر
+========================= */
+
 .loginButtons{
-display:flex;
-gap:7px;
-align-items:center;
+
+    display:flex;
+
+    gap:7px;
+
+    align-items:center;
 }
 
 .studentBtn,
 .teacherBtn,
 .logoutBtn{
 
-border:0;
-color:white;
+    border:0;
 
-font-size:8px;
+    color:white;
 
-padding:9px 11px;
+    font-size:8px;
 
-border-radius:10px;
+    padding:9px 11px;
 
-display:flex;
-align-items:center;
+    border-radius:10px;
 
-gap:5px;
+    display:flex;
 
-transition:.25s;
+    align-items:center;
+
+    gap:5px;
+
+    transition:.25s;
 }
 
 .studentBtn{
-background:linear-gradient(135deg,#087fb5,#7450d8);
+
+    background:
+    linear-gradient(
+        135deg,
+        #087fb5,
+        #7450d8
+    );
 }
 
 .teacherBtn{
-background:linear-gradient(135deg,#a65a17,#d38b20);
-text-decoration:none;
+
+    background:
+    linear-gradient(
+        135deg,
+        #a65a17,
+        #d38b20
+    );
+
+    text-decoration:none;
 }
 
 .logoutBtn{
-background:linear-gradient(135deg,#8f3048,#b84b62);
-display:none;
+
+    background:
+    linear-gradient(
+        135deg,
+        #8f3048,
+        #b84b62
+    );
+
+    display:none;
 }
 
 .studentBtn:hover,
 .teacherBtn:hover,
 .logoutBtn:hover{
 
-transform:translateY(-2px);
+    transform:translateY(-2px);
 
-box-shadow:0 8px 20px rgba(0,0,0,.25);
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,.25);
 }
 
 .userBox{
 
-display:none;
+    display:none;
 
-align-items:center;
+    align-items:center;
 
-gap:7px;
+    gap:7px;
 
-background:#0b1b36;
+    background:#0b1b36;
 
-border:1px solid rgba(255,255,255,.09);
+    border:
+        1px solid
+        rgba(255,255,255,.09);
 
-padding:5px 8px;
+    padding:5px 8px;
 
-border-radius:10px;
+    border-radius:10px;
 
-font-size:7px;
+    font-size:7px;
 
-color:#a9bdd5;
+    color:#a9bdd5;
 }
 
 .userIcon{
 
-width:27px;
-height:27px;
+    width:27px;
 
-border-radius:8px;
+    height:27px;
 
-background:linear-gradient(135deg,#12c9ff,#855cff);
+    border-radius:8px;
 
-display:flex;
+    background:
+    linear-gradient(
+        135deg,
+        #12c9ff,
+        #855cff
+    );
 
-align-items:center;
-justify-content:center;
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
 }
+
+
+/* =========================
+   الزخارف
+========================= */
 
 .float{
 
-position:fixed;
+    position:fixed;
 
-top:-60px;
+    top:-60px;
 
-font-size:19px;
+    font-size:19px;
 
-opacity:.25;
+    opacity:.25;
 
-pointer-events:none;
+    pointer-events:none;
 
-z-index:0;
+    z-index:0;
 
-animation:fall linear infinite;
+    animation:
+        fall linear infinite;
 }
 
 .f1{
-right:8%;
-animation-duration:11s;
+    right:8%;
+    animation-duration:11s;
 }
 
 .f2{
-right:27%;
-animation-duration:15s;
-animation-delay:2s;
+    right:27%;
+    animation-duration:15s;
+    animation-delay:2s;
 }
 
 .f3{
-right:47%;
-animation-duration:12s;
-animation-delay:4s;
+    right:47%;
+    animation-duration:12s;
+    animation-delay:4s;
 }
 
 .f4{
-right:68%;
-animation-duration:16s;
-animation-delay:1s;
+    right:68%;
+    animation-duration:16s;
+    animation-delay:1s;
 }
 
 .f5{
-right:89%;
-animation-duration:13s;
-animation-delay:5s;
+    right:89%;
+    animation-duration:13s;
+    animation-delay:5s;
 }
 
 @keyframes fall{
 
-from{
-transform:translateY(-70px) rotate(0deg);
-}
+    from{
+        transform:
+            translateY(-70px)
+            rotate(0deg);
+    }
 
-to{
-transform:translateY(110vh) rotate(180deg);
-}
-
+    to{
+        transform:
+            translateY(110vh)
+            rotate(180deg);
+    }
 }
 
 .star{
 
-position:fixed;
+    position:fixed;
 
-color:#ffe36b;
+    color:#ffe36b;
 
-font-size:15px;
+    font-size:15px;
 
-animation:shine 1.8s infinite alternate;
+    animation:
+        shine 1.8s infinite alternate;
 
-z-index:0;
+    z-index:0;
 }
 
 .s1{
-top:14%;
-right:18%;
+    top:14%;
+    right:18%;
 }
 
 .s2{
-top:34%;
-right:80%;
-animation-delay:.5s;
+    top:34%;
+    right:80%;
+    animation-delay:.5s;
 }
 
 .s3{
-top:60%;
-right:13%;
-animation-delay:1s;
+    top:60%;
+    right:13%;
+    animation-delay:1s;
 }
 
 .s4{
-top:76%;
-right:73%;
-animation-delay:.7s;
+    top:76%;
+    right:73%;
+    animation-delay:.7s;
 }
 
 @keyframes shine{
 
-from{
-opacity:.15;
-transform:scale(.7);
+    from{
+        opacity:.15;
+        transform:scale(.7);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1.2);
+    }
 }
 
-to{
-opacity:1;
-transform:scale(1.2);
-}
 
-}
+/* =========================
+   البطل
+========================= */
 
 .hero{
 
-width:92%;
+    width:92%;
 
-max-width:1100px;
+    max-width:1100px;
 
-margin:22px auto 0;
+    margin:22px auto 0;
 
-padding:30px 23px;
+    padding:30px 23px;
 
-border-radius:24px;
+    border-radius:24px;
 
-background:
-linear-gradient(
-135deg,
-rgba(11,49,88,.96),
-rgba(42,23,76,.94)
-);
+    background:
+    linear-gradient(
+        135deg,
+        rgba(11,49,88,.96),
+        rgba(42,23,76,.94)
+    );
 
-border:1px solid rgba(90,190,255,.18);
+    border:
+        1px solid
+        rgba(90,190,255,.18);
 
-box-shadow:
-0 18px 55px rgba(0,0,0,.22);
+    box-shadow:
+        0 18px 55px
+        rgba(0,0,0,.22);
 }
 
 .heroBadge{
 
-display:inline-block;
+    display:inline-block;
 
-padding:6px 9px;
+    padding:6px 9px;
 
-border-radius:20px;
+    border-radius:20px;
 
-background:rgba(35,202,255,.1);
+    background:
+        rgba(35,202,255,.1);
 
-border:1px solid rgba(35,202,255,.18);
+    border:
+        1px solid
+        rgba(35,202,255,.18);
 
-color:#5cdcff;
+    color:#5cdcff;
 
-font-size:8px;
+    font-size:8px;
 }
 
 .hero h1{
 
-font-size:25px;
+    font-size:25px;
 
-line-height:1.5;
+    line-height:1.5;
 
-margin-top:10px;
+    margin-top:10px;
 }
 
 .hero h1 span{
-color:#54d8ff;
+    color:#54d8ff;
 }
 
 .hero p{
 
-color:#9aafc9;
+    color:#9aafc9;
 
-font-size:9px;
+    font-size:9px;
 
-line-height:1.9;
+    line-height:1.9;
 
-margin-top:5px;
+    margin-top:5px;
 }
+
+
+/* =========================
+   البحث
+========================= */
 
 .search{
 
-width:92%;
+    width:92%;
 
-max-width:1100px;
+    max-width:1100px;
 
-margin:14px auto 0;
+    margin:14px auto 0;
 
-position:relative;
+    position:relative;
 }
 
 .search input{
 
-width:100%;
+    width:100%;
 
-height:45px;
+    height:45px;
 
-border:1px solid rgba(255,255,255,.12);
+    border:
+        1px solid
+        rgba(255,255,255,.12);
 
-border-radius:13px;
+    border-radius:13px;
 
-background:#0b1b36;
+    background:#0b1b36;
 
-color:white;
+    color:white;
 
-padding:0 43px 0 15px;
+    padding:
+        0 43px 0 15px;
 
-outline:none;
+    outline:none;
 
-font-size:10px;
+    font-size:10px;
 }
 
 .search input::placeholder{
-color:#7189a6;
+    color:#7189a6;
 }
 
 .search input:focus{
 
-border-color:#2acbff;
+    border-color:#2acbff;
 
-box-shadow:
-0 0 20px rgba(42,203,255,.08);
+    box-shadow:
+        0 0 20px
+        rgba(42,203,255,.08);
 }
 
 .searchIcon{
 
-position:absolute;
+    position:absolute;
 
-right:14px;
+    right:14px;
 
-top:13px;
+    top:13px;
 
-font-size:15px;
+    font-size:15px;
 }
+
+
+/* =========================
+   نتائج البحث
+========================= */
 
 .searchResults{
 
-width:92%;
+    width:92%;
 
-max-width:1100px;
+    max-width:1100px;
 
-margin:9px auto 0;
+    margin:9px auto 0;
 
-display:none;
+    display:none;
 }
 
 .searchResults.show{
-display:block;
+    display:block;
 }
 
 .resultTitle{
 
-font-size:10px;
+    font-size:10px;
 
-color:#9eb3ce;
+    color:#9eb3ce;
 
-margin-bottom:7px;
+    margin-bottom:7px;
 }
 
 .resultList{
 
-display:grid;
+    display:grid;
 
-gap:7px;
+    gap:7px;
 }
 
 .result{
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    align-items:center;
 
-gap:9px;
+    gap:9px;
 
-padding:10px;
+    padding:10px;
 
-border-radius:12px;
+    border-radius:12px;
 
-background:#0a1b36;
+    background:#0a1b36;
 
-border:1px solid rgba(255,255,255,.08);
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 
-text-decoration:none;
+    text-decoration:none;
 
-color:white;
+    color:white;
 
-transition:.2s;
+    transition:.2s;
 }
 
 .result:hover{
 
-transform:translateX(-3px);
+    transform:translateX(-3px);
 
-border-color:rgba(255,255,255,.2);
+    border-color:
+        rgba(255,255,255,.2);
 }
 
 .resultIcon{
 
-width:33px;
-height:33px;
+    width:33px;
 
-border-radius:9px;
+    height:33px;
 
-display:flex;
+    border-radius:9px;
 
-align-items:center;
+    display:flex;
 
-justify-content:center;
+    align-items:center;
 
-flex-shrink:0;
+    justify-content:center;
+
+    flex-shrink:0;
 }
 
 .type-video{
-background:#087db5;
+    background:#087db5;
+}
+
+.type-no-video{
+    background:#7c4d17;
 }
 
 .type-summary{
-background:#7547bd;
+    background:#7547bd;
 }
 
 .type-test{
-background:#b26b18;
+    background:#b26b18;
 }
 
 .type-room{
-background:#16806d;
+    background:#16806d;
 }
 
 .resultInfo{
 
-min-width:0;
+    min-width:0;
 
-flex:1;
+    flex:1;
 }
 
 .resultInfo h3{
 
-font-size:9px;
+    font-size:9px;
 
-white-space:nowrap;
+    white-space:nowrap;
 
-overflow:hidden;
+    overflow:hidden;
 
-text-overflow:ellipsis;
+    text-overflow:ellipsis;
 }
 
 .resultInfo p{
 
-font-size:7px;
+    font-size:7px;
 
-color:#7189a6;
+    color:#7189a6;
 
-margin-top:4px;
+    margin-top:4px;
 }
+
+
+/* =========================
+   الأقسام
+========================= */
 
 .section{
 
-width:92%;
+    width:92%;
 
-max-width:1100px;
+    max-width:1100px;
 
-margin:23px auto 0;
+    margin:23px auto 0;
 }
 
 .sectionHead{
 
-display:flex;
+    display:flex;
 
-justify-content:space-between;
+    justify-content:space-between;
 
-align-items:center;
+    align-items:center;
 
-margin-bottom:11px;
+    margin-bottom:11px;
 }
 
 .sectionHead h2{
-font-size:15px;
+    font-size:15px;
 }
 
 .sectionHead span{
 
-font-size:7px;
+    font-size:7px;
 
-color:#7188a6;
+    color:#7188a6;
 }
+
+
+/* =========================
+   الخيارات
+========================= */
 
 .options{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:
-repeat(4,1fr);
+    grid-template-columns:
+        repeat(4,1fr);
 
-gap:8px;
+    gap:8px;
 }
 
 .option{
 
-color:white;
+    color:white;
 
-text-decoration:none;
+    text-decoration:none;
 
-border-radius:15px;
+    border-radius:15px;
 
-padding:13px 8px;
+    padding:13px 8px;
 
-border:1px solid rgba(255,255,255,.09);
+    border:
+        1px solid
+        rgba(255,255,255,.09);
 
-transition:.25s;
+    transition:.25s;
 }
 
 .option:hover{
-transform:translateY(-4px);
+    transform:translateY(-4px);
 }
 
 .optionIcon{
 
-width:30px;
-height:30px;
+    width:30px;
 
-border-radius:9px;
+    height:30px;
 
-display:flex;
+    border-radius:9px;
 
-justify-content:center;
+    display:flex;
 
-align-items:center;
+    justify-content:center;
 
-font-size:14px;
+    align-items:center;
 
-margin-bottom:7px;
+    font-size:14px;
+
+    margin-bottom:7px;
 }
 
 .option h3{
-font-size:9px;
+    font-size:9px;
 }
 
 .option p{
 
-color:rgba(255,255,255,.62);
+    color:
+        rgba(255,255,255,.62);
 
-font-size:6px;
+    font-size:6px;
 
-margin-top:4px;
+    margin-top:4px;
 }
 
 .c1{
-background:linear-gradient(135deg,#073b67,#087aa2);
+
+    background:
+    linear-gradient(
+        135deg,
+        #073b67,
+        #087aa2
+    );
 }
 
 .c1 .optionIcon{
-background:#079ed3;
+    background:#079ed3;
 }
 
 .c2{
-background:linear-gradient(135deg,#36205e,#69358b);
+
+    background:
+    linear-gradient(
+        135deg,
+        #36205e,
+        #69358b
+    );
 }
 
 .c2 .optionIcon{
-background:#9856d8;
+    background:#9856d8;
 }
 
 .c3{
-background:linear-gradient(135deg,#694218,#a86616);
+
+    background:
+    linear-gradient(
+        135deg,
+        #694218,
+        #a86616
+    );
 }
 
 .c3 .optionIcon{
-background:#eaa52e;
+    background:#eaa52e;
 }
 
 .c4{
-background:linear-gradient(135deg,#104a43,#147660);
+
+    background:
+    linear-gradient(
+        135deg,
+        #104a43,
+        #147660
+    );
 }
 
 .c4 .optionIcon{
-background:#1ac29f;
+    background:#1ac29f;
 }
+
+
+/* =========================
+   التحدي
+========================= */
 
 .challenge{
 
-padding:17px;
+    padding:17px;
 
-border-radius:17px;
+    border-radius:17px;
 
-background:
-linear-gradient(
-135deg,
-#30205d,
-#151e4b
-);
+    background:
+    linear-gradient(
+        135deg,
+        #30205d,
+        #151e4b
+    );
 
-border:1px solid rgba(180,120,255,.18);
+    border:
+        1px solid
+        rgba(180,120,255,.18);
 }
 
 .challengeTag{
 
-color:#d49aff;
+    color:#d49aff;
 
-font-size:8px;
+    font-size:8px;
 }
 
 .challenge h3{
 
-font-size:12px;
+    font-size:12px;
 
-margin-top:8px;
-}
-
-.challengeProgress{
-
-font-size:8px;
-
-color:#9fb0d0;
-
-margin-top:8px;
-
-text-align:center;
+    margin-top:8px;
 }
 
 .question{
 
-margin-top:10px;
+    margin-top:10px;
 
-background:rgba(0,0,0,.18);
+    background:
+        rgba(0,0,0,.18);
 
-padding:16px;
+    padding:12px;
 
-border-radius:11px;
+    border-radius:11px;
 
-font-size:17px;
+    font-size:13px;
 
-text-align:center;
-
-min-height:54px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
+    text-align:center;
 }
 
-.answerGrid{
+.challenge button{
 
-display:grid;
+    margin-top:10px;
 
-grid-template-columns:
-repeat(2,1fr);
+    width:100%;
 
-gap:7px;
+    border:0;
 
-margin-top:10px;
+    padding:9px;
+
+    border-radius:9px;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #8b54ff,
+        #c247a6
+    );
+
+    font-size:9px;
 }
 
-.answerBtn{
 
-border:1px solid rgba(255,255,255,.12);
-
-padding:10px;
-
-border-radius:9px;
-
-color:white;
-
-background:rgba(255,255,255,.07);
-
-font-size:9px;
-
-transition:.2s;
-}
-
-.answerBtn:hover{
-
-background:rgba(255,255,255,.14);
-
-transform:translateY(-1px);
-}
-
-.answerBtn.correct{
-
-background:rgba(30,180,110,.25);
-
-border-color:#45d69d;
-}
-
-.answerBtn.wrong{
-
-background:rgba(220,60,80,.22);
-
-border-color:#ff8797;
-}
-
-.answerBtn:disabled{
-
-cursor:default;
-
-opacity:.9;
-}
-
-.challengeResult{
-
-text-align:center;
-
-font-size:10px;
-
-line-height:1.8;
-
-margin-top:9px;
-
-min-height:18px;
-}
-
-.nextBtn{
-
-display:none;
-
-width:100%;
-
-border:0;
-
-padding:9px;
-
-border-radius:9px;
-
-color:white;
-
-background:
-linear-gradient(
-135deg,
-#8b54ff,
-#c247a6
-);
-
-font-size:9px;
-
-margin-top:8px;
-}
-
-.challengeStart{
-
-width:100%;
-
-border:0;
-
-padding:9px;
-
-border-radius:9px;
-
-color:white;
-
-background:
-linear-gradient(
-135deg,
-#8b54ff,
-#c247a6
-);
-
-font-size:9px;
-
-margin-top:10px;
-}
+/* =========================
+   الإحصائيات
+========================= */
 
 .stats{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:
-repeat(3,1fr);
+    grid-template-columns:
+        repeat(3,1fr);
 
-gap:8px;
+    gap:8px;
 }
 
 .stat{
 
-padding:13px 8px;
+    padding:13px 8px;
 
-border-radius:13px;
+    border-radius:13px;
 
-background:#0a1b35;
+    background:#0a1b35;
 
-border:1px solid rgba(255,255,255,.07);
+    border:
+        1px solid
+        rgba(255,255,255,.07);
 
-text-align:center;
+    text-align:center;
 }
 
 .stat strong{
 
-display:block;
+    display:block;
 
-font-size:17px;
+    font-size:17px;
 }
 
 .stat span{
 
-display:block;
+    display:block;
 
-color:#728aa8;
+    color:#728aa8;
 
-font-size:7px;
+    font-size:7px;
 
-margin-top:5px;
+    margin-top:5px;
 }
 
 .points strong{
-color:#ffd34e;
-}
+    color
+    <!-- =========================
+     نافذة تسجيل الدخول
+========================= -->
 
-.progress strong{
-color:#45d8ff;
-}
+<div id="studentModal" class="modal">
 
-.rank strong{
-color:#b87cff;
-}
+    <div class="loginBox">
 
-.lessonList{
+        <button class="close" onclick="closeStudentLogin()">×</button>
 
-display:grid;
+        <h2 id="authTitle">👨‍🎓 دخول الطالب</h2>
 
-grid-template-columns:
-repeat(2,1fr);
+        <p id="authDescription">
+            سجّل الدخول لمتابعة رحلتك التعليمية.
+        </p>
 
-gap:9px;
-}
+        <div id="studentMessage" class="message"></div>
 
-.lesson{
+        <input
+            id="studentEmail"
+            type="email"
+            autocomplete="email"
+            placeholder="📧 البريد الإلكتروني">
 
-display:flex;
+        <input
+            id="studentPassword"
+            type="password"
+            autocomplete="current-password"
+            placeholder="🔐 كلمة المرور">
 
-align-items:center;
+        <button
+            id="authMainButton"
+            class="main"
+            onclick="studentLogin()">
 
-gap:9px;
+            تسجيل الدخول
 
-padding:12px;
+        </button>
 
-border-radius:14px;
+        <div class="switch">
 
-background:#0a1b36;
+            <span id="switchText">
+                ليس لديك حساب؟
+            </span>
 
-border:1px solid rgba(100,170,230,.1);
+            <button
+                id="switchButton"
+                onclick="switchAuthMode()">
 
-min-width:0;
-}
+                إنشاء حساب
 
-.lessonIcon{
+            </button>
 
-width:38px;
-height:38px;
+        </div>
 
-border-radius:10px;
+    </div>
 
-display:flex;
+</div>
 
-align-items:center;
 
-justify-content:center;
+<!-- =========================
+     نافذة الأسئلة
+========================= -->
 
-font-size:15px;
+<div id="quizModal" class="modal">
 
-background:
-linear-gradient(
-135deg,
-#00aeea,
-#5b51dc
-);
+    <div class="loginBox quizBox">
 
-flex-shrink:0;
-}
+        <button
+            class="close"
+            onclick="closeQuiz()">
 
-.noVideoIcon{
+            ×
 
-background:
-linear-gradient(
-135deg,
-#765016,
-#a86c1e
-);
-}
+        </button>
 
-.lessonInfo{
+        <div class="challengeTag">
+            🧠 تحدي الرياضيات
+        </div>
 
-min-width:0;
+        <h2 id="quizTitle">
+            تحدي اليوم
+        </h2>
 
-flex:1;
-}
+        <p id="quizProgress">
+            السؤال 1 من 6
+        </p>
 
-.lessonInfo h3{
+        <div
+            id="quizQuestion"
+            class="question">
 
-font-size:9px;
+            جاري تحميل السؤال...
 
-white-space:nowrap;
+        </div>
 
-overflow:hidden;
+        <div
+            id="quizOptions"
+            class="quizOptions">
+        </div>
 
-text-overflow:ellipsis;
-}
+        <div
+            id="quizMessage"
+            class="message">
+        </div>
 
-.lessonInfo p{
+        <button
+            id="nextQuestionButton"
+            class="main"
+            onclick="nextQuestion()"
+            style="display:none;">
 
-color:#728aa6;
+            السؤال التالي ➡️
 
-font-size:7px;
+        </button>
 
-margin-top:5px;
+    </div>
 
-white-space:nowrap;
+</div>
 
-overflow:hidden;
 
-text-overflow:ellipsis;
-}
-
-.watch{
-
-margin-right:auto;
-
-color:#4fdcff;
-
-text-decoration:none;
-
-font-size:7px;
-
-padding:7px 8px;
-
-border-radius:7px;
-
-background:rgba(40,200,255,.08);
-
-white-space:nowrap;
-}
-
-.noVideo{
-
-margin-right:auto;
-
-color:#ffca66;
-
-font-size:7px;
-
-padding:7px 8px;
-
-border-radius:7px;
-
-background:rgba(220,150,40,.1);
-
-white-space:nowrap;
-}
-
-.contentGrid{
-
-display:grid;
-
-grid-template-columns:
-repeat(3,1fr);
-
-gap:8px;
-}
-
-.contentCard{
-
-padding:15px 10px;
-
-border-radius:14px;
-
-background:#0a1b36;
-
-border:1px solid rgba(255,255,255,.07);
-
-transition:.25s;
-
-min-width:0;
-}
-
-.contentCard:hover{
-
-transform:translateY(-3px);
-
-border-color:
-rgba(100,210,255,.25);
-}
-
-.contentIcon{
-
-width:36px;
-height:36px;
-
-border-radius:10px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-font-size:17px;
-
-margin-bottom:9px;
-}
-
-.summaryIcon{
-
-background:
-linear-gradient(
-135deg,
-#6d3fc0,
-#a457d8
-);
-}
-
-.testIcon{
-
-background:
-linear-gradient(
-135deg,
-#a95f18,
-#e0a32c
-);
-}
-
-.roomIcon{
-
-background:
-linear-gradient(
-135deg,
-#087b69,
-#19b394
-);
-}
-
-.contentCard h3{
-
-font-size:10px;
-
-line-height:1.6;
-}
-
-.contentCard p{
-
-color:#7189a5;
-
-font-size:7px;
-
-line-height:1.7;
-
-margin-top:5px;
-}
-
-.contentButton{
-
-display:block;
-
-margin-top:10px;
-
-padding:8px;
-
-border-radius:8px;
-
-text-align:center;
-
-text-decoration:none;
-
-color:white;
-
-font-size:7px;
-
-background:rgba(255,255,255,.08);
-
-transition:.2s;
-}
-
-.contentButton:hover{
-background:rgba(255,255,255,.15);
-}
-
-.summaryButton{
-color:#d39aff;
-}
-
-.testButton{
-color:#ffd064;
-}
-
-.roomButton{
-color:#58e0c3;
-}
-
-.empty{
-
-padding:22px;
-
-border-radius:14px;
-
-text-align:center;
-
-color:#7188a4;
-
-font-size:8px;
-
-line-height:2;
-
-background:#091931;
-
-border:1px dashed #294563;
-}
-
-.loading{
-
-padding:25px;
-
-text-align:center;
-
-color:#65d8ff;
-
-font-size:9px;
-}
-
-footer{
-
-text-align:center;
-
-padding:28px 0 18px;
-
-color:#4e6682;
-
-font-size:7px;
-}
-
-.modal{
-
-position:fixed;
-
-inset:0;
-
-background:rgba(0,0,0,.72);
-
-backdrop-filter:blur(7px);
-
-display:none;
-
-align-items:center;
-
-justify-content:center;
-
-z-index:100;
-
-padding:20px;
-}
-
-.modal.show{
-display:flex;
-}
-
-.loginBox{
-
-width:100%;
-
-max-width:390px;
-
-background:
-linear-gradient(
-145deg,
-#101f42,
-#1d1740
-);
-
-border:1px solid rgba(100,200,255,.18);
-
-border-radius:22px;
-
-padding:23px;
-
-box-shadow:
-0 25px 80px rgba(0,0,0,.5);
-}
-
-.close{
-
-float:left;
-
-border:0;
-
-background:none;
-
-color:#8297b3;
-
-font-size:22px;
-}
-
-.loginBox h2{
-
-font-size:18px;
-
-margin-bottom:6px;
-}
-
-.loginBox p{
-
-font-size:8px;
-
-color:#8195b1;
-
-margin-bottom:18px;
-
-line-height:1.8;
-}
-
-.loginBox input{
-
-width:100%;
-
-height:42px;
-
-margin-bottom:9px;
-
-border:1px solid rgba(255,255,255,.1);
-
-border-radius:10px;
-
-background:#08152e;
-
-color:white;
-
-padding:0 12px;
-
-outline:none;
-
-font-size:10px;
-}
-
-.loginBox input:focus{
-
-border-color:#27c9ff;
-}
-
-.loginBox button.main{
-
-width:100%;
-
-height:42px;
-
-border:0;
-
-border-radius:10px;
-
-color:white;
-
-background:
-linear-gradient(
-135deg,
-#09a9df,
-#7650e5
-);
-
-font-size:10px;
-}
-
-.loginBox button.main:disabled{
-
-opacity:.6;
-
-cursor:wait;
-}
-
-.switch{
-
-margin-top:13px;
-
-text-align:center;
-
-font-size:8px;
-
-color:#8498b4;
-}
-
-.switch button{
-
-border:0;
-
-background:none;
-
-color:#4dd7ff;
-
-font-family:inherit;
-}
-
-.message{
-
-min-height:22px;
-
-margin-bottom:7px;
-
-text-align:center;
-
-font-size:8px;
-
-line-height:1.7;
-}
-
-.successMessage{
-color:#67e8b1;
-}
-
-.errorMessage{
-color:#ff8f9d;
-}
-
-.infoMessage{
-color:#64d9ff;
-}
-
-@media(max-width:750px){
-
-.header{
-width:94%;
-}
-
-.hero{
-
-width:94%;
-
-padding:24px 18px;
-}
-
-.search,
-.section,
-.searchResults{
-
-width:94%;
-}
-
-.lessonList{
-
-grid-template-columns:1fr;
-}
-
-}
-
-@media(max-width:650px){
-
-header{
-
-height:auto;
-
-min-height:66px;
-}
-
-.header{
-
-padding:9px 0;
-
-gap:7px;
-}
-
-.logoText{
-font-size:13px;
-}
-
-.loginButtons{
-gap:4px;
-}
-
-.studentBtn,
-.teacherBtn,
-.logoutBtn{
-
-padding:8px 7px;
-
-font-size:7px;
-}
-
-.userBox{
-display:none !important;
-}
-
-.hero h1{
-font-size:21px;
-}
-
-.options{
-
-grid-template-columns:
-repeat(4,1fr);
-
-gap:5px;
-}
-
-.option{
-padding:10px 4px;
-}
-
-.option p{
-display:none;
-}
-
-.contentGrid{
-grid-template-columns:1fr;
-}
-
-.stats{
-gap:5px;
-}
-
-.stat{
-padding:11px 5px;
-}
-
-.stat strong{
-font-size:15px;
-}
-
-}
-
-@media(max-width:430px){
-
-.logoIcon{
-
-width:34px;
-height:34px;
-
-font-size:16px;
-}
-
-.logoText{
-font-size:11px;
-}
-
-.logoText small{
-font-size:5px;
-}
-
-.studentBtn,
-.teacherBtn{
-
-padding:7px 5px;
-
-font-size:6px;
-}
-
-.hero h1{
-font-size:19px;
-}
-
-.lesson{
-padding:10px;
-}
-
-.watch,
-.noVideo{
-
-font-size:6px;
-
-padding:6px;
-}
-
-}
-
-</style>
-</head>
-<body>
 <script>
 
-/* =========================
-   إعداد Supabase
-========================= */
+/* =====================================================
+   Supabase
+===================================================== */
 
 const SUPABASE_URL =
 "https://vugnptbvkitokwqxulla.supabase.co";
@@ -1552,226 +1084,409 @@ const SUPABASE_KEY =
 "sb_publishable__WJDSewc6JN6XTM6czk11Q_lgON6Chj";
 
 
-/* =========================
+/* =====================================================
    المتغيرات
-========================= */
+===================================================== */
 
 let allLessons = [];
+
 let allSummaries = [];
+
 let allTests = [];
+
 let allRooms = [];
 
 let isSignupMode = false;
 
 
-/* =========================
-   الاتصال بـ Supabase
-========================= */
+/* =====================================================
+   التحدي
+===================================================== */
+
+let currentQuestion = 0;
+
+let dailyScore = 0;
+
+let challengeFinished = false;
+
+
+/* =====================================================
+   الأسئلة
+=============================/
+
+const challengeQuestions = [
+
+    {
+        question: "8 × 7 + 4 = ؟",
+        options: ["56", "60", "64", "68"],
+        answer: 1
+    },
+
+    {
+        question: "15 + 6 × 2 = ؟",
+        options: ["42", "27", "36", "21"],
+        answer: 1
+    },
+
+    {
+        question: "48 ÷ 6 + 7 = ؟",
+        options: ["13", "15", "14", "16"],
+        answer: 0
+    },
+
+    {
+        question: "9² - 5² = ؟",
+        options: ["46", "56", "64", "81"],
+        answer: 1
+    },
+
+    {
+        question: "3 × (8 + 4) - 7 = ؟",
+        options: ["29", "31", "36", "25"],
+        answer: 1
+    },
+
+    {
+        question: "إذا كان 2x + 6 = 20، فما قيمة x؟",
+        options: ["5", "6", "7", "8"],
+        answer: 2
+    }
+
+];
+
+
+/* =====================================================
+   طلب Supabase
+===================================================== */
 
 async function supabaseRequest(url, options = {}) {
 
     const headers = {
+
         "apikey": SUPABASE_KEY,
+
         "Content-Type": "application/json",
+
         ...(options.headers || {})
+
     };
 
-    return fetch(url, {
-        ...options,
-        headers
-    });
+    return fetch(
+
+        url,
+
+        {
+            ...options,
+            headers: headers
+        }
+
+    );
+
 }
 
 
-/* =========================
-   جلب البيانات
-========================= */
+/* =====================================================
+   جلب جدول
+===================================================== */
 
 async function getTable(table) {
 
     try {
 
-        const response = await supabaseRequest(
-            SUPABASE_URL + "/rest/v1/" + table + "?select=*"
+        const response =
+        await supabaseRequest(
+
+            SUPABASE_URL +
+            "/rest/v1/" +
+            table +
+            "?select=*"
+
         );
 
         if (!response.ok) {
-            console.error("Supabase error:", table, response.status);
+
+            console.error(
+                "Supabase error:",
+                table,
+                response.status
+            );
+
             return [];
+
         }
 
-        const data = await response.json();
+        const data =
+        await response.json();
 
-        return Array.isArray(data) ? data : [];
+        return Array.isArray(data)
+            ? data
+            : [];
 
-    } catch (error) {
+    }
+
+    catch (error) {
 
         console.error(error);
+
         return [];
 
     }
+
 }
 
 
-/* =========================
+/* =====================================================
    حماية النص
-========================= */
+===================================================== */
 
 function safe(text) {
 
     return String(text ?? "")
+
         .replaceAll("&", "&amp;")
+
         .replaceAll("<", "&lt;")
+
         .replaceAll(">", "&gt;")
+
         .replaceAll('"', "&quot;")
+
         .replaceAll("'", "&#039;");
 
 }
 
 
-/* =========================
-   تحميل الحصص
-========================= */
+/* =====================================================
+   الحصص
+===================================================== */
 
 async function loadLessons() {
 
     const box =
-        document.getElementById("lessonsContainer");
+    document.getElementById(
+        "lessonsContainer"
+    );
 
-    box.innerHTML =
-        `<div class="loading">⏳ جاري تحميل الحصص...</div>`;
+    const lessons =
+    await getTable("lessons");
 
-    allLessons = await getTable("lessons");
+    allLessons =
+    Array.isArray(lessons)
+    ? lessons
+    : [];
 
-    allLessons.sort((a, b) =>
-        new Date(b.created_at || 0) -
-        new Date(a.created_at || 0)
+    allLessons.sort(
+
+        (a, b) =>
+
+        new Date(
+            b.created_at || 0
+        )
+
+        -
+
+        new Date(
+            a.created_at || 0
+        )
+
     );
 
     if (!allLessons.length) {
 
         box.innerHTML = `
+
             <div class="empty">
+
                 📚 لا توجد حصص حتى الآن.
+
                 <br>
-                عندما يضيف الأستاذ حصة ستظهر هنا تلقائيًا.
+
+                عندما يضيف الأستاذ حصة
+                ستظهر هنا تلقائيًا.
+
             </div>
+
         `;
 
         return;
+
     }
 
     box.innerHTML = "";
 
-    allLessons.forEach(lesson => {
+    allLessons.forEach(
 
-        const title =
-            lesson.title || "حصة رياضيات";
+        function(lesson) {
 
-        const unit =
-            lesson.unit || "رياضيات";
+            const title =
+            lesson.title ||
+            "حصة رياضيات";
 
-        const videoUrl =
-            String(lesson.video_url || "").trim();
+            const unit =
+            lesson.unit ||
+            "رياضيات";
 
-        const hasVideo =
+            const duration =
+            lesson.duration
+            ? " • " + lesson.duration
+            : "";
+
+            const videoUrl =
+            String(
+                lesson.video_url || ""
+            ).trim();
+
+            const hasVideo =
             videoUrl !== "";
 
-        const item =
-            document.createElement("div");
+            const item =
+            document.createElement(
+                "div"
+            );
 
-        item.className = "lesson";
+            item.className =
+            "lesson";
 
-        item.innerHTML = `
+            item.innerHTML = `
 
-            <div class="lessonIcon ${hasVideo ? "" : "noVideoIcon"}">
-                ${hasVideo ? "🎥" : "⚠️"}
-            </div>
+                <div class="lessonIcon ${
+                    hasVideo
+                    ? ""
+                    : "noVideoIcon"
+                }">
 
-            <div class="lessonInfo">
+                    ${hasVideo ? "🎥" : "⚠️"}
 
-                <h3>
-                    ${safe(title)}
-                </h3>
+                </div>
 
-                <p>
-                    ${safe(unit)}
-                </p>
+                <div class="lessonInfo">
 
-            </div>
+                    <h3>
+                        ${safe(title)}
+                    </h3>
 
-            ${
-                hasVideo
-                ?
-                `
-                <a
-                    class="watch"
-                    href="${safe(videoUrl)}"
-                    target="_blank"
-                    rel="noopener noreferrer">
+                    <p>
+                        ${safe(unit)}
+                        ${safe(duration)}
+                    </p>
 
-                    ▶️ مشاهدة
+                </div>
 
-                </a>
-                `
-                :
-                `
-                <span class="noVideo">
-                    ⚠️ لا يوجد فيديو
-                </span>
-                `
-            }
+                ${
+                    hasVideo
 
-        `;
+                    ?
 
-        box.appendChild(item);
+                    `
 
-    });
+                    <a
+                        class="watch"
+                        href="${safe(videoUrl)}"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        ▶️ مشاهدة
+
+                    </a>
+
+                    `
+
+                    :
+
+                    `
+
+                    <span class="noVideo">
+
+                        ⚠️ لا يوجد فيديو
+
+                    </span>
+
+                    `
+                }
+
+            `;
+
+            box.appendChild(item);
+
+        }
+
+    );
 
 }
 
 
-/* =========================
-   تحميل الملخصات
-========================= */
+/* =====================================================
+   الملخصات
+===================================================== */
 
 async function loadSummaries() {
 
     const box =
-        document.getElementById("summariesContainer");
+    document.getElementById(
+        "summariesContainer"
+    );
+
+    const summaries =
+    await getTable("summaries");
 
     allSummaries =
-        await getTable("summaries");
+    Array.isArray(summaries)
+    ? summaries
+    : [];
 
-    allSummaries.sort((a, b) =>
-        new Date(b.created_at || 0) -
-        new Date(a.created_at || 0)
+    allSummaries.sort(
+
+        (a, b) =>
+
+        new Date(
+            b.created_at || 0
+        )
+
+        -
+
+        new Date(
+            a.created_at || 0
+        )
+
     );
 
     if (!allSummaries.length) {
 
         box.innerHTML = `
+
             <div class="empty">
+
                 📚 لا توجد ملخصات حتى الآن.
+
+                <br>
+
+                عندما يضيف الأستاذ ملخصًا
+                سيظهر هنا تلقائيًا.
+
             </div>
+
         `;
 
         return;
+
     }
 
     box.innerHTML = "";
 
-    allSummaries.forEach(summary => {
+    allSummaries.forEach(
 
-        const title =
-            summary.title || "ملخص درس";
+        function(summary) {
 
-        const description =
+            const title =
+            summary.title ||
+            "ملخص درس";
+
+            const description =
             summary.description ||
             summary.content ||
             "ملخص رياضيات";
 
-        const fileUrl =
+            const fileUrl =
             String(
                 summary.file_url ||
                 summary.url ||
@@ -1779,96 +1494,146 @@ async function loadSummaries() {
                 ""
             ).trim();
 
-        const card =
-            document.createElement("div");
+            const card =
+            document.createElement(
+                "div"
+            );
 
-        card.className = "contentCard";
+            card.className =
+            "contentCard";
 
-        card.innerHTML = `
+            let button = "";
 
-            <div class="contentIcon summaryIcon">
-                📚
-            </div>
+            if (fileUrl) {
 
-            <h3>
-                ${safe(title)}
-            </h3>
+                button = `
 
-            <p>
-                ${safe(description)}
-            </p>
+                    <a
+                        class="contentButton summaryButton"
+                        href="${safe(fileUrl)}"
+                        target="_blank"
+                        rel="noopener noreferrer">
 
-            ${
-                fileUrl
-                ?
-                `
-                <a
-                    class="contentButton summaryButton"
-                    href="${safe(fileUrl)}"
-                    target="_blank"
-                    rel="noopener noreferrer">
+                        📖 فتح الملخص
 
-                    📖 فتح الملخص
+                    </a>
 
-                </a>
-                `
-                :
-                `
-                <span class="contentButton">
-                    📖 الملخص متاح
-                </span>
-                `
+                `;
+
             }
 
-        `;
+            else {
 
-        box.appendChild(card);
+                button = `
 
-    });
+                    <span class="contentButton">
+
+                        📖 الملخص متاح
+
+                    </span>
+
+                `;
+
+            }
+
+            card.innerHTML = `
+
+                <div class="contentIcon summaryIcon">
+                    📚
+                </div>
+
+                <h3>
+                    ${safe(title)}
+                </h3>
+
+                <p>
+                    ${safe(description)}
+                </p>
+
+                ${button}
+
+            `;
+
+            box.appendChild(card);
+
+        }
+
+    );
 
 }
 
 
-/* =========================
-   تحميل الاختبارات
-========================= */
+/* =====================================================
+   الاختبارات
+===================================================== */
 
 async function loadTests() {
 
     const box =
-        document.getElementById("testsContainer");
+    document.getElementById(
+        "testsContainer"
+    );
+
+    const tests =
+    await getTable("tests");
 
     allTests =
-        await getTable("tests");
+    Array.isArray(tests)
+    ? tests
+    : [];
 
-    allTests.sort((a, b) =>
-        new Date(b.created_at || 0) -
-        new Date(a.created_at || 0)
+    allTests.sort(
+
+        (a, b) =>
+
+        new Date(
+            b.created_at || 0
+        )
+
+        -
+
+        new Date(
+            a.created_at || 0
+        )
+
     );
 
     if (!allTests.length) {
 
         box.innerHTML = `
+
             <div class="empty">
+
                 📝 لا توجد اختبارات حتى الآن.
+
+                <br>
+
+                عندما يضيف الأستاذ اختبارًا
+                سيظهر هنا تلقائيًا.
+
             </div>
+
         `;
 
         return;
+
     }
 
     box.innerHTML = "";
 
-    allTests.forEach(test => {
+    allTests.forEach(
 
-        const title =
-            test.title || "اختبار رياضيات";
+        function(test) {
 
-        const description =
+            const title =
+            test.title ||
+            "اختبار رياضيات";
+
+            const description =
             test.description ||
             "اختبار جديد من الأستاذ";
 
-        const testUrl =
+            const testUrl =
             String(
                 test.test_url ||
                 test.url ||
@@ -1876,98 +1641,147 @@ async function loadTests() {
                 ""
             ).trim();
 
-        const card =
-            document.createElement("div");
+            const card =
+            document.createElement(
+                "div"
+            );
 
-        card.className = "contentCard";
+            card.className =
+            "contentCard";
 
-        card.innerHTML = `
+            let button = "";
 
-            <div class="contentIcon testIcon">
-                📝
-            </div>
+            if (testUrl) {
 
-            <h3>
-                ${safe(title)}
-            </h3>
+                button = `
 
-            <p>
-                ${safe(description)}
-            </p>
+                    <a
+                        class="contentButton testButton"
+                        href="${safe(testUrl)}"
+                        target="_blank"
+                        rel="noopener noreferrer">
 
-            ${
-                testUrl
-                ?
-                `
-                <a
-                    class="contentButton testButton"
-                    href="${safe(testUrl)}"
-                    target="_blank"
-                    rel="noopener noreferrer">
+                        📝 بدء الاختبار
 
-                    📝 بدء الاختبار
+                    </a>
 
-                </a>
-                `
-                :
-                `
-                <span class="contentButton">
-                    📝 الاختبار متاح
-                </span>
-                `
+                `;
+
             }
 
-        `;
+            else {
 
-        box.appendChild(card);
+                button = `
 
-    });
+                    <span class="contentButton">
+
+                        📝 الاختبار متاح
+
+                    </span>
+
+                `;
+
+            }
+
+            card.innerHTML = `
+
+                <div class="contentIcon testIcon">
+                    📝
+                </div>
+
+                <h3>
+                    ${safe(title)}
+                </h3>
+
+                <p>
+                    ${safe(description)}
+                </p>
+
+                ${button}
+
+            `;
+
+            box.appendChild(card);
+
+        }
+
+    );
 
 }
 
 
-/* =========================
-   تحميل الرومات
-========================= */
+/* =====================================================
+   الرومات
+===================================================== */
 
 async function loadRooms() {
 
     const box =
-        document.getElementById("roomsContainer");
+    document.getElementById(
+        "roomsContainer"
+    );
+
+    const rooms =
+    await getTable("rooms");
 
     allRooms =
-        await getTable("rooms");
+    Array.isArray(rooms)
+    ? rooms
+    : [];
 
-    allRooms.sort((a, b) =>
-        new Date(b.created_at || 0) -
-        new Date(a.created_at || 0)
+    allRooms.sort(
+
+        (a, b) =>
+
+        new Date(
+            b.created_at || 0
+        )
+
+        -
+
+        new Date(
+            a.created_at || 0
+        )
+
     );
 
     if (!allRooms.length) {
 
         box.innerHTML = `
+
             <div class="empty">
+
                 💬 لا توجد رومات حتى الآن.
+
+                <br>
+
+                عندما يضيف الأستاذ رومًا
+                سيظهر هنا تلقائيًا.
+
             </div>
+
         `;
 
         return;
+
     }
 
     box.innerHTML = "";
 
-    allRooms.forEach(room => {
+    allRooms.forEach(
 
-        const title =
+        function(room) {
+
+            const title =
             room.title ||
             room.name ||
             "روم الدراسة";
 
-        const description =
+            const description =
             room.description ||
             "روم للدراسة والتعاون مع الطلاب";
 
-        const roomUrl =
+            const roomUrl =
             String(
                 room.room_url ||
                 room.url ||
@@ -1975,293 +1789,730 @@ async function loadRooms() {
                 ""
             ).trim();
 
-        const card =
-            document.createElement("div");
+            const card =
+            document.createElement(
+                "div"
+            );
 
-        card.className = "contentCard";
+            card.className =
+            "contentCard";
 
-        card.innerHTML = `
+            let button = "";
 
-            <div class="contentIcon roomIcon">
-                💬
-            </div>
+            if (roomUrl) {
 
-            <h3>
-                ${safe(title)}
-            </h3>
+                button = `
 
-            <p>
-                ${safe(description)}
-            </p>
+                    <a
+                        class="contentButton roomButton"
+                        href="${safe(roomUrl)}"
+                        target="_blank"
+                        rel="noopener noreferrer">
 
-            ${
-                roomUrl
-                ?
-                `
-                <a
-                    class="contentButton roomButton"
-                    href="${safe(roomUrl)}"
-                    target="_blank"
-                    rel="noopener noreferrer">
+                        💬 دخول الروم
 
-                    💬 دخول الروم
+                    </a>
 
-                </a>
-                `
-                :
-                `
-                <span class="contentButton">
-                    💬 الروم متاح
-                </span>
-                `
+                `;
+
             }
 
-        `;
+            else {
 
-        box.appendChild(card);
+                button = `
 
-    });
+                    <span class="contentButton">
+
+                        💬 الروم متاح
+
+                    </span>
+
+                `;
+
+            }
+
+            card.innerHTML = `
+
+                <div class="contentIcon roomIcon">
+                    💬
+                </div>
+
+                <h3>
+                    ${safe(title)}
+                </h3>
+
+                <p>
+                    ${safe(description)}
+                </p>
+
+                ${button}
+
+            `;
+
+            box.appendChild(card);
+
+        }
+
+    );
 
 }
 
 
-/* =========================
-   🔥 تحدي اليوم
-   6 أسئلة - الصعوبة تزداد
-========================= */
+/* =====================================================
+   البحث
+===================================================== */
 
-const dailyQuestions = [
+function searchEverything() {
 
-    {
-        question: "8 × 7 + 4 = ؟",
-        answer: "60",
-        points: 10
-    },
+    const input =
+    document.getElementById(
+        "search"
+    );
 
-    {
-        question: "15 × 6 − 20 = ؟",
-        answer: "70",
-        points: 15
-    },
+    const text =
+    input.value
+    .toLowerCase()
+    .trim();
 
-    {
-        question: "144 ÷ 12 + 8 = ؟",
-        answer: "20",
-        points: 20
-    },
+    const resultsBox =
+    document.getElementById(
+        "searchResults"
+    );
 
-    {
-        question: "3² + 4² = ؟",
-        answer: "25",
-        points: 25
-    },
+    const list =
+    document.getElementById(
+        "resultList"
+    );
 
-    {
-        question: "إذا كان 3x + 6 = 21، فما قيمة x؟",
-        answer: "5",
-        points: 30
-    },
+    if (!text) {
 
-    {
-        question: "ما قيمة 2³ × 3² − 10؟",
-        answer: "62",
-        points: 40
+        resultsBox
+        .classList
+        .remove("show");
+
+        return;
+
     }
 
-];
+    resultsBox
+    .classList
+    .add("show");
 
-let currentQuestion = 0;
-let challengeScore = 0;
+    const results = [];
 
 
-/* =========================
-   بدء التحدي
-========================= */
+    allLessons.forEach(
+
+        function(item) {
+
+            const title =
+            String(
+                item.title || ""
+            ).toLowerCase();
+
+            const description =
+            String(
+                item.description || ""
+            ).toLowerCase();
+
+            const unit =
+            String(
+                item.unit || ""
+            ).toLowerCase();
+
+            if (
+
+                title.includes(text) ||
+                description.includes(text) ||
+                unit.includes(text)
+
+            ) {
+
+                results.push({
+
+                    type: "lesson",
+
+                    title:
+                    item.title ||
+                    "حصة رياضيات",
+
+                    description:
+                    item.unit ||
+                    "حصة",
+
+                    url:
+                    item.video_url ||
+                    ""
+
+                });
+
+            }
+
+        }
+
+    );
+
+
+    allSummaries.forEach(
+
+        function(item) {
+
+            const title =
+            String(
+                item.title || ""
+            ).toLowerCase();
+
+            const description =
+            String(
+                item.description ||
+                item.content ||
+                ""
+            ).toLowerCase();
+
+            if (
+
+                title.includes(text) ||
+                description.includes(text)
+
+            ) {
+
+                results.push({
+
+                    type: "summary",
+
+                    title:
+                    item.title ||
+                    "ملخص",
+
+                    description:
+                    item.description ||
+                    "ملخص درس",
+
+                    url:
+                    item.file_url ||
+                    item.url ||
+                    item.link ||
+                    ""
+
+                });
+
+            }
+
+        }
+
+    );
+
+
+    allTests.forEach(
+
+        function(item) {
+
+            const title =
+            String(
+                item.title || ""
+            ).toLowerCase();
+
+            const description =
+            String(
+                item.description || ""
+            ).toLowerCase();
+
+            if (
+
+                title.includes(text) ||
+                description.includes(text)
+
+            ) {
+
+                results.push({
+
+                    type: "test",
+
+                    title:
+                    item.title ||
+                    "اختبار",
+
+                    description:
+                    item.description ||
+                    "اختبار",
+
+                    url:
+                    item.test_url ||
+                    item.url ||
+                    item.link ||
+                    ""
+
+                });
+
+            }
+
+        }
+
+    );
+
+
+    allRooms.forEach(
+
+        function(item) {
+
+            const title =
+            String(
+                item.title ||
+                item.name ||
+                ""
+            ).toLowerCase();
+
+            const description =
+            String(
+                item.description || ""
+            ).toLowerCase();
+
+            if (
+
+                title.includes(text) ||
+                description.includes(text)
+
+            ) {
+
+                results.push({
+
+                    type: "room",
+
+                    title:
+                    item.title ||
+                    item.name ||
+                    "روم",
+
+                    description:
+                    item.description ||
+                    "روم دراسة",
+
+                    url:
+                    item.room_url ||
+                    item.url ||
+                    item.link ||
+                    ""
+
+                });
+
+            }
+
+        }
+
+    );
+
+
+    if (!results.length) {
+
+        list.innerHTML = `
+
+            <div class="empty">
+
+                🔍 لم نجد شيئًا مطابقًا لبحثك.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    list.innerHTML = "";
+
+
+    results.forEach(
+
+        function(item) {
+
+            const hasUrl =
+            String(
+                item.url || ""
+            ).trim() !== "";
+
+            const result =
+            document.createElement(
+                hasUrl ? "a" : "div"
+            );
+
+            result.className =
+            "result";
+
+            if (hasUrl) {
+
+                result.href =
+                item.url;
+
+                result.target =
+                "_blank";
+
+                result.rel =
+                "noopener noreferrer";
+
+            }
+
+            let icon = "📚";
+
+            let iconClass =
+            "type-summary";
+
+            let typeName =
+            "ملخص";
+
+            if (item.type === "lesson") {
+
+                icon = "🎥";
+                iconClass = "type-video";
+                typeName = "حصة";
+
+            }
+
+            if (item.type === "test") {
+
+                icon = "📝";
+                iconClass = "type-test";
+                typeName = "اختبار";
+
+            }
+
+            if (item.type === "room") {
+
+                icon = "💬";
+                iconClass = "type-room";
+                typeName = "روم";
+
+            }
+
+            result.innerHTML = `
+
+                <div
+                    class="resultIcon ${iconClass}">
+
+                    ${icon}
+
+                </div>
+
+                <div class="resultInfo">
+
+                    <h3>
+                        ${safe(item.title)}
+                    </h3>
+
+                    <p>
+
+                        ${typeName}
+
+                        •
+
+                        ${safe(item.description)}
+
+                    </p>
+
+                </div>
+
+            `;
+
+            list.appendChild(result);
+
+        }
+
+    );
+
+}
+
+
+/* =====================================================
+   تحدي اليوم
+===================================================== */
 
 function startDailyChallenge() {
 
     currentQuestion = 0;
-    challengeScore = 0;
 
-    showChallengeQuestion();
+    dailyScore = 0;
 
-}
-
-
-/* =========================
-   عرض السؤال
-========================= */
-
-function showChallengeQuestion() {
-
-    const challenge =
-        document.querySelector(".challenge");
-
-    const q =
-        dailyQuestions[currentQuestion];
-
-    challenge.innerHTML = `
-
-        <div class="challengeTag">
-            🧠 السؤال ${currentQuestion + 1} من 6
-        </div>
-
-        <h3>
-            ${
-                currentQuestion === 0
-                ? "ابدأ التحدي! 🚀"
-                : "أحسنت! السؤال التالي أصعب 🔥"
-            }
-        </h3>
-
-        <div class="question">
-            ${safe(q.question)}
-        </div>
-
-        <input
-            id="challengeInput"
-            type="number"
-            placeholder="اكتب إجابتك هنا"
-            style="
-                width:100%;
-                margin-top:10px;
-                padding:10px;
-                border-radius:9px;
-                border:1px solid rgba(255,255,255,.12);
-                background:#08152e;
-                color:white;
-                text-align:center;
-                outline:none;
-            "
-        >
-
-        <button onclick="checkChallengeAnswer()">
-            ✅ تأكيد الإجابة
-        </button>
-
-    `;
-
-    const input =
-        document.getElementById("challengeInput");
-
-    input.focus();
+    challengeFinished = false;
 
 }
 
 
-/* =========================
-   فحص الإجابة
-========================= */
+function challengeAnswer() {
 
-function checkChallengeAnswer() {
+    const modal =
+    document.getElementById(
+        "quizModal"
+    );
 
-    const input =
-        document.getElementById("challengeInput");
+    modal.classList.add("show");
 
-    const answer =
-        input.value.trim();
+    currentQuestion = 0;
 
-    if (!answer) {
+    dailyScore = 0;
 
-        alert("✏️ اكتب الإجابة أولًا.");
+    challengeFinished = false;
 
-        return;
-    }
+    showQuestion();
+
+}
+
+
+function showQuestion() {
 
     const q =
-        dailyQuestions[currentQuestion];
+    challengeQuestions[currentQuestion];
 
-    if (answer === q.answer) {
-
-        challengeScore += q.points;
-
-        addPoints(q.points);
-
-        alert(
-            "🎉 إجابة صحيحة!\n+" +
-            q.points +
-            " نقطة"
-        );
-
-    } else {
-
-        alert(
-            "❌ إجابة غير صحيحة.\n" +
-            "الإجابة الصحيحة هي: " +
-            q.answer
-        );
-
-    }
-
-
-    currentQuestion++;
-
-
-    if (currentQuestion >= dailyQuestions.length) {
+    if (!q) {
 
         finishChallenge();
 
-    } else {
-
-        showChallengeQuestion();
+        return;
 
     }
 
+    document.getElementById(
+        "quizTitle"
+    ).innerText =
+    currentQuestion === 0
+    ? "🔥 تحدي اليوم"
+    : "🧠 السؤال الإضافي";
+
+
+    document.getElementById(
+        "quizProgress"
+    ).innerText =
+
+    "السؤال " +
+    (currentQuestion + 1) +
+    " من " +
+    challengeQuestions.length;
+
+
+    document.getElementById(
+        "quizQuestion"
+    ).innerText =
+    q.question;
+
+
+    const options =
+    document.getElementById(
+        "quizOptions"
+    );
+
+    options.innerHTML = "";
+
+
+    q.options.forEach(
+
+        function(option, index) {
+
+            const button =
+            document.createElement(
+                "button"
+            );
+
+            button.className =
+            "quizOption";
+
+            button.innerText =
+            option;
+
+            button.onclick =
+            function() {
+
+                answerQuestion(
+                    index
+                );
+
+            };
+
+            options.appendChild(
+                button
+            );
+
+        }
+
+    );
+
+
+    document.getElementById(
+        "nextQuestionButton"
+    ).style.display =
+    "none";
+
+
+    document.getElementById(
+        "quizMessage"
+    ).innerText = "";
+
 }
 
 
-/* =========================
-   نهاية التحدي
-========================= */
+function answerQuestion(selected) {
+
+    const q =
+    challengeQuestions[currentQuestion];
+
+    const buttons =
+    document.querySelectorAll(
+        ".quizOption"
+    );
+
+
+    buttons.forEach(
+        function(button) {
+
+            button.disabled =
+            true;
+
+        }
+    );
+
+
+    if(selected === q.answer) {
+
+        dailyScore++;
+
+        document.getElementById(
+            "quizMessage"
+        ).innerText =
+        "✅ إجابة صحيحة! أحسنت 🎉";
+
+        document.getElementById(
+            "quizMessage"
+        ).className =
+        "message successMessage";
+
+    }
+
+    else {
+
+        document.getElementById(
+            "quizMessage"
+        ).innerText =
+        "❌ ليست الإجابة الصحيحة.";
+
+        document.getElementById(
+            "quizMessage"
+        ).className =
+        "message errorMessage";
+
+    }
+
+
+    document.getElementById(
+        "nextQuestionButton"
+    ).style.display =
+    "block";
+
+}
+
+
+function nextQuestion() {
+
+    currentQuestion++;
+
+    showQuestion();
+
+}
+
 
 function finishChallenge() {
 
-    const challenge =
-        document.querySelector(".challenge");
+    challengeFinished = true;
 
-    challenge.innerHTML = `
+    const points =
+    dailyScore * 10;
 
-        <div class="challengeTag">
-            🏆 انتهى تحدي اليوم
+
+    savePoints(points);
+
+
+    document.getElementById(
+        "quizTitle"
+    ).innerText =
+    "🏆 انتهى التحدي!";
+
+
+    document.getElementById(
+        "quizProgress"
+    ).innerText =
+    "نتيجتك";
+
+
+    document.getElementById(
+        "quizQuestion"
+    ).innerText =
+
+    "أجبت بشكل صحيح على " +
+    dailyScore +
+    " من " +
+    challengeQuestions.length +
+    " أسئلة 🎉";
+
+
+    document.getElementById(
+        "quizOptions"
+    ).innerHTML = `
+
+        <div class="empty">
+
+            ⭐ حصلت على ${points} نقطة
+
         </div>
-
-        <h3>
-            أحسنت! أكملت الأسئلة الستة 🎉
-        </h3>
-
-        <div class="question">
-            مجموع نقاطك:
-            <strong>
-                ${challengeScore}
-            </strong>
-            ⭐
-        </div>
-
-        <button onclick="startDailyChallenge()">
-            🔄 إعادة التحدي
-        </button>
 
     `;
+
+
+    document.getElementById(
+        "nextQuestionButton"
+    ).style.display =
+    "none";
+
+
+    document.getElementById(
+        "quizMessage"
+    ).innerText =
+    "👏 أحسنت! عد غدًا لتحدٍ جديد.";
 
 }
 
 
-/* =========================
+function closeQuiz() {
+
+    document
+    .getElementById(
+        "quizModal"
+    )
+    .classList
+    .remove("show");
+
+}
+
+
+/* =====================================================
    النقاط
-========================= */
+===================================================== */
 
-function addPoints(points) {
+function getPoints() {
 
-    let current =
-        Number(
-            localStorage.getItem("minbar_points") || 0
-        );
+    return Number(
+        localStorage.getItem(
+            "minbar_points"
+        ) || 0
+    );
 
-    current += points;
+}
+
+
+function savePoints(points) {
+
+    const total =
+    getPoints() + Number(points || 0);
 
     localStorage.setItem(
         "minbar_points",
-        current
+        total
     );
 
     updateStats();
@@ -2272,38 +2523,45 @@ function addPoints(points) {
 function updateStats() {
 
     const points =
-        Number(
-            localStorage.getItem("minbar_points") || 0
-        );
+    getPoints();
+
 
     const pointElement =
-        document.querySelector(".points strong");
+    document.querySelector(
+        ".points strong"
+    );
+
 
     const progressElement =
-        document.querySelector(".progress strong");
+    document.querySelector(
+        ".progress strong"
+    );
+
 
     const rankElement =
-        document.querySelector(".rank strong");
+    document.querySelector(
+        ".rank strong"
+    );
 
 
     if(pointElement) {
 
         pointElement.innerText =
-            points;
+        points;
 
     }
 
 
-    let progress =
-        Math.min(
-            100,
-            Math.round(points / 5)
-        );
-
     if(progressElement) {
 
+        const progress =
+        Math.min(
+            100,
+            points
+        );
+
         progressElement.innerText =
-            progress + "%";
+        progress + "%";
 
     }
 
@@ -2312,19 +2570,22 @@ function updateStats() {
 
         if(points >= 100) {
 
-            rankElement.innerText = "🏆";
+            rankElement.innerText =
+            "🥇";
 
-        } else if(points >= 50) {
+        }
 
-            rankElement.innerText = "🥇";
+        else if(points >= 50) {
 
-        } else if(points >= 25) {
+            rankElement.innerText =
+            "🥈";
 
-            rankElement.innerText = "🥈";
+        }
 
-        } else {
+        else {
 
-            rankElement.innerText = "🥉";
+            rankElement.innerText =
+            "🥉";
 
         }
 
@@ -2333,260 +2594,9 @@ function updateStats() {
 }
 
 
-/* =========================
-   البحث
-========================= */
-
-function searchEverything() {
-
-    const input =
-        document.getElementById("search");
-
-    const text =
-        input.value.toLowerCase().trim();
-
-    const resultsBox =
-        document.getElementById("searchResults");
-
-    const list =
-        document.getElementById("resultList");
-
-
-    if (!text) {
-
-        resultsBox.classList.remove("show");
-
-        return;
-    }
-
-
-    resultsBox.classList.add("show");
-
-    const results = [];
-
-
-    allLessons.forEach(item => {
-
-        const title =
-            String(item.title || "").toLowerCase();
-
-        const unit =
-            String(item.unit || "").toLowerCase();
-
-        if (
-            title.includes(text) ||
-            unit.includes(text)
-        ) {
-
-            results.push({
-                type: "lesson",
-                title: item.title || "حصة",
-                description: item.unit || "حصة",
-                url: item.video_url || ""
-            });
-
-        }
-
-    });
-
-
-    allSummaries.forEach(item => {
-
-        const title =
-            String(item.title || "").toLowerCase();
-
-        const description =
-            String(
-                item.description ||
-                item.content ||
-                ""
-            ).toLowerCase();
-
-        if (
-            title.includes(text) ||
-            description.includes(text)
-        ) {
-
-            results.push({
-                type: "summary",
-                title: item.title || "ملخص",
-                description: item.description || "ملخص",
-                url:
-                    item.file_url ||
-                    item.url ||
-                    item.link ||
-                    ""
-            });
-
-        }
-
-    });
-
-
-    allTests.forEach(item => {
-
-        const title =
-            String(item.title || "").toLowerCase();
-
-        const description =
-            String(item.description || "").toLowerCase();
-
-        if (
-            title.includes(text) ||
-            description.includes(text)
-        ) {
-
-            results.push({
-                type: "test",
-                title: item.title || "اختبار",
-                description: item.description || "اختبار",
-                url:
-                    item.test_url ||
-                    item.url ||
-                    item.link ||
-                    ""
-            });
-
-        }
-
-    });
-
-
-    allRooms.forEach(item => {
-
-        const title =
-            String(
-                item.title ||
-                item.name ||
-                ""
-            ).toLowerCase();
-
-        const description =
-            String(item.description || "").toLowerCase();
-
-        if (
-            title.includes(text) ||
-            description.includes(text)
-        ) {
-
-            results.push({
-                type: "room",
-                title:
-                    item.title ||
-                    item.name ||
-                    "روم",
-                description:
-                    item.description ||
-                    "روم",
-                url:
-                    item.room_url ||
-                    item.url ||
-                    item.link ||
-                    ""
-            });
-
-        }
-
-    });
-
-
-    if (!results.length) {
-
-        list.innerHTML = `
-            <div class="empty">
-                🔍 لم نجد شيئًا مطابقًا لبحثك.
-            </div>
-        `;
-
-        return;
-    }
-
-
-    list.innerHTML = "";
-
-
-    results.forEach(item => {
-
-        const result =
-            document.createElement(
-                item.url ? "a" : "div"
-            );
-
-        result.className = "result";
-
-
-        if (item.url) {
-
-            result.href = item.url;
-            result.target = "_blank";
-            result.rel = "noopener noreferrer";
-
-        }
-
-
-        let icon = "📚";
-        let iconClass = "type-summary";
-        let typeName = "ملخص";
-
-
-        if (item.type === "lesson") {
-
-            icon = "🎥";
-            iconClass = "type-video";
-            typeName = "حصة";
-
-        }
-
-
-        if (item.type === "test") {
-
-            icon = "📝";
-            iconClass = "type-test";
-            typeName = "اختبار";
-
-        }
-
-
-        if (item.type === "room") {
-
-            icon = "💬";
-            iconClass = "type-room";
-            typeName = "روم";
-
-        }
-
-
-        result.innerHTML = `
-
-            <div class="resultIcon ${iconClass}">
-                ${icon}
-            </div>
-
-            <div class="resultInfo">
-
-                <h3>
-                    ${safe(item.title)}
-                </h3>
-
-                <p>
-                    ${typeName} •
-                    ${safe(item.description)}
-                </p>
-
-            </div>
-
-        `;
-
-        list.appendChild(result);
-
-    });
-
-}
-
-
-/* =========================
+/* =====================================================
    تسجيل الدخول
-========================= */
+===================================================== */
 
 function openStudentLogin() {
 
@@ -2595,8 +2605,11 @@ function openStudentLogin() {
     updateAuthWindow();
 
     document
-        .getElementById("studentModal")
-        .classList.add("show");
+    .getElementById(
+        "studentModal"
+    )
+    .classList
+    .add("show");
 
 }
 
@@ -2604,8 +2617,11 @@ function openStudentLogin() {
 function closeStudentLogin() {
 
     document
-        .getElementById("studentModal")
-        .classList.remove("show");
+    .getElementById(
+        "studentModal"
+    )
+    .classList
+    .remove("show");
 
     clearAuthMessage();
 
@@ -2614,7 +2630,8 @@ function closeStudentLogin() {
 
 function switchAuthMode() {
 
-    isSignupMode = !isSignupMode;
+    isSignupMode =
+    !isSignupMode;
 
     updateAuthWindow();
 
@@ -2624,85 +2641,106 @@ function switchAuthMode() {
 function updateAuthWindow() {
 
     const title =
-        document.getElementById("authTitle");
+    document.getElementById(
+        "authTitle"
+    );
 
     const description =
-        document.getElementById("authDescription");
+    document.getElementById(
+        "authDescription"
+    );
 
     const button =
-        document.getElementById("authMainButton");
+    document.getElementById(
+        "authMainButton"
+    );
 
     const switchText =
-        document.getElementById("switchText");
+    document.getElementById(
+        "switchText"
+    );
 
     const switchButton =
-        document.getElementById("switchButton");
+    document.getElementById(
+        "switchButton"
+    );
 
 
     clearAuthMessage();
 
 
-    if (isSignupMode) {
+    if(isSignupMode) {
 
         title.innerText =
-            "🧑‍🎓 إنشاء حساب طالب";
+        "🧑‍🎓 إنشاء حساب طالب";
 
         description.innerText =
-            "أنشئ حسابك باستخدام البريد الإلكتروني وكلمة المرور.";
+        "أنشئ حسابك باستخدام البريد الإلكتروني وكلمة المرور.";
 
         button.innerText =
-            "إنشاء الحساب";
+        "إنشاء الحساب";
 
         switchText.innerText =
-            "لديك حساب بالفعل؟";
+        "لديك حساب بالفعل؟";
 
         switchButton.innerText =
-            "تسجيل الدخول";
+        "تسجيل الدخول";
 
-    } else {
+    }
+
+    else {
 
         title.innerText =
-            "👨‍🎓 دخول الطالب";
+        "👨‍🎓 دخول الطالب";
 
         description.innerText =
-            "سجّل الدخول لمتابعة رحلتك التعليمية.";
+        "سجّل الدخول لمتابعة رحلتك التعليمية.";
 
         button.innerText =
-            "تسجيل الدخول";
+        "تسجيل الدخول";
 
         switchText.innerText =
-            "ليس لديك حساب؟";
+        "ليس لديك حساب؟";
 
         switchButton.innerText =
-            "إنشاء حساب";
+        "إنشاء حساب";
 
     }
 
 }
 
 
-/* =========================
-   رسائل الدخول
-========================= */
-
-function showAuthMessage(text, type = "info") {
+function showAuthMessage(
+    text,
+    type = "info"
+) {
 
     const box =
-        document.getElementById("studentMessage");
+    document.getElementById(
+        "studentMessage"
+    );
 
     box.className =
-        "message " +
-        (
-            type === "success"
-            ? "successMessage"
-            :
-            type === "error"
-            ? "errorMessage"
-            :
-            "infoMessage"
-        );
+    "message " +
 
-    box.innerText = text;
+    (
+
+        type === "success"
+        ? "successMessage"
+
+        :
+
+        type === "error"
+        ? "errorMessage"
+
+        :
+
+        "infoMessage"
+
+    );
+
+    box.innerText =
+    text;
 
 }
 
@@ -2710,40 +2748,49 @@ function showAuthMessage(text, type = "info") {
 function clearAuthMessage() {
 
     const box =
-        document.getElementById("studentMessage");
+    document.getElementById(
+        "studentMessage"
+    );
 
-    box.className = "message";
+    box.className =
+    "message";
 
-    box.innerText = "";
+    box.innerText =
+    "";
 
 }
-
-
-/* =========================
-   تسجيل الدخول / إنشاء حساب
-========================= */
+/* =====================================================
+   تسجيل الطالب / إنشاء الحساب
+===================================================== */
 
 async function studentLogin() {
 
-    const email =
-        document
-            .getElementById("studentEmail")
-            .value
-            .trim();
+    const emailInput =
+    document.getElementById(
+        "studentEmail"
+    );
 
-    const password =
-        document
-            .getElementById("studentPassword")
-            .value;
+    const passwordInput =
+    document.getElementById(
+        "studentPassword"
+    );
 
     const button =
-        document.getElementById("authMainButton");
+    document.getElementById(
+        "authMainButton"
+    );
+
+    const email =
+    emailInput.value.trim();
+
+    const password =
+    passwordInput.value;
 
 
     clearAuthMessage();
 
 
-    if (!email) {
+    if(!email) {
 
         showAuthMessage(
             "📧 اكتب البريد الإلكتروني أولًا.",
@@ -2751,10 +2798,11 @@ async function studentLogin() {
         );
 
         return;
+
     }
 
 
-    if (!password) {
+    if(!password) {
 
         showAuthMessage(
             "🔐 اكتب كلمة المرور أولًا.",
@@ -2762,10 +2810,11 @@ async function studentLogin() {
         );
 
         return;
+
     }
 
 
-    if (password.length < 6) {
+    if(password.length < 6) {
 
         showAuthMessage(
             "🔐 كلمة المرور يجب أن تكون 6 أحرف على الأقل.",
@@ -2773,6 +2822,7 @@ async function studentLogin() {
         );
 
         return;
+
     }
 
 
@@ -2781,7 +2831,11 @@ async function studentLogin() {
 
     try {
 
-        if (isSignupMode) {
+        /* =========================
+           إنشاء حساب
+        ========================= */
+
+        if(isSignupMode) {
 
             showAuthMessage(
                 "⏳ جاري إنشاء الحساب...",
@@ -2790,122 +2844,207 @@ async function studentLogin() {
 
 
             const response =
-                await supabaseRequest(
-                    SUPABASE_URL +
-                    "/auth/v1/signup",
-                    {
-                        method: "POST",
+            await supabaseRequest(
 
-                        body: JSON.stringify({
-                            email,
-                            password
-                        })
-                    }
-                );
+                SUPABASE_URL +
+                "/auth/v1/signup",
+
+                {
+
+                    method:"POST",
+
+                    body:
+                    JSON.stringify({
+
+                        email: email,
+
+                        password: password
+
+                    })
+
+                }
+
+            );
 
 
             const data =
-                await response.json();
+            await response.json();
 
 
-            if (!response.ok) {
+            if(!response.ok) {
+
+                let message =
+                "تعذر إنشاء الحساب.";
+
+
+                if(data && data.msg) {
+
+                    message =
+                    data.msg;
+
+                }
+
+                else if(
+                    data &&
+                    data.error_description
+                ) {
+
+                    message =
+                    data.error_description;
+
+                }
+
+                else if(
+                    data &&
+                    data.message
+                ) {
+
+                    message =
+                    data.message;
+
+                }
+
 
                 showAuthMessage(
-                    "❌ " +
-                    (
-                        data.msg ||
-                        data.error_description ||
-                        data.message ||
-                        "تعذر إنشاء الحساب."
-                    ),
+                    "❌ " + message,
                     "error"
                 );
 
-                button.disabled = false;
+                button.disabled =
+                false;
 
                 return;
+
             }
 
 
-            if (data.access_token) {
+            if(data.access_token) {
 
                 saveSession(data);
 
                 showAuthMessage(
-                    "✅ تم إنشاء الحساب وتسجيل الدخول بنجاح.",
+                    "✅ تم إنشاء الحساب وتسجيل الدخول بنجاح 🎉",
                     "success"
                 );
 
+
                 setTimeout(
-                    closeStudentLogin,
+                    function() {
+
+                        closeStudentLogin();
+
+                    },
                     1000
                 );
 
-            } else {
+            }
+
+            else {
 
                 showAuthMessage(
-                    "✅ تم إنشاء الحساب. افتح Gmail واضغط رابط تأكيد البريد، ثم ارجع للموقع وسجّل الدخول.",
+                    "✅ تم إنشاء الحساب. افتح Gmail واضغط رابط تأكيد البريد، ثم ارجع وسجّل الدخول.",
                     "success"
                 );
 
             }
 
-        } else {
 
-            showAuthMessage(
-                "⏳ جاري تسجيل الدخول...",
-                "info"
-            );
+            button.disabled =
+            false;
 
-
-            const response =
-                await supabaseRequest(
-                    SUPABASE_URL +
-                    "/auth/v1/token?grant_type=password",
-                    {
-                        method: "POST",
-
-                        body: JSON.stringify({
-                            email,
-                            password
-                        })
-                    }
-                );
-
-
-            const data =
-                await response.json();
-
-
-            if (!response.ok) {
-
-                showAuthMessage(
-                    "❌ البريد الإلكتروني أو كلمة المرور غير صحيحة، أو لم يتم تأكيد البريد.",
-                    "error"
-                );
-
-                button.disabled = false;
-
-                return;
-            }
-
-
-            saveSession(data);
-
-            showAuthMessage(
-                "✅ تم تسجيل الدخول بنجاح 🎉",
-                "success"
-            );
-
-
-            setTimeout(
-                closeStudentLogin,
-                800
-            );
+            return;
 
         }
 
-    } catch (error) {
+
+        /* =========================
+           تسجيل الدخول
+        ========================= */
+
+        showAuthMessage(
+            "⏳ جاري تسجيل الدخول...",
+            "info"
+        );
+
+
+        const response =
+        await supabaseRequest(
+
+            SUPABASE_URL +
+            "/auth/v1/token?grant_type=password",
+
+            {
+
+                method:"POST",
+
+                body:
+                JSON.stringify({
+
+                    email: email,
+
+                    password: password
+
+                })
+
+            }
+
+        );
+
+
+        const data =
+        await response.json();
+
+
+        if(!response.ok) {
+
+            let message =
+            "البريد الإلكتروني أو كلمة المرور غير صحيحة.";
+
+
+            if(data && data.error_description) {
+
+                message =
+                data.error_description;
+
+            }
+
+
+            showAuthMessage(
+                "❌ " + message,
+                "error"
+            );
+
+
+            button.disabled =
+            false;
+
+            return;
+
+        }
+
+
+        saveSession(data);
+
+
+        showAuthMessage(
+            "✅ تم تسجيل الدخول بنجاح 🎉",
+            "success"
+        );
+
+
+        setTimeout(
+            function() {
+
+                closeStudentLogin();
+
+            },
+            800
+        );
+
+
+    }
+
+    catch(error) {
 
         console.error(error);
 
@@ -2917,21 +3056,26 @@ async function studentLogin() {
     }
 
 
-    button.disabled = false;
+    button.disabled =
+    false;
 
 }
 
 
-/* =========================
+/* =====================================================
    حفظ الجلسة
-========================= */
+===================================================== */
 
 function saveSession(data) {
 
-    if (!data) return;
+    if(!data) {
+
+        return;
+
+    }
 
 
-    if (data.access_token) {
+    if(data.access_token) {
 
         localStorage.setItem(
             "minbar_access_token",
@@ -2941,7 +3085,7 @@ function saveSession(data) {
     }
 
 
-    if (data.refresh_token) {
+    if(data.refresh_token) {
 
         localStorage.setItem(
             "minbar_refresh_token",
@@ -2951,7 +3095,7 @@ function saveSession(data) {
     }
 
 
-    if (data.user) {
+    if(data.user) {
 
         localStorage.setItem(
             "minbar_user",
@@ -2968,24 +3112,32 @@ function saveSession(data) {
 }
 
 
-/* =========================
-   استرجاع المستخدم
-========================= */
+/* =====================================================
+   جلب الطالب المحفوظ
+===================================================== */
 
 function getSavedUser() {
 
     try {
 
         const user =
-            localStorage.getItem(
-                "minbar_user"
-            );
+        localStorage.getItem(
+            "minbar_user"
+        );
 
-        return user
-            ? JSON.parse(user)
-            : null;
 
-    } catch {
+        if(!user) {
+
+            return null;
+
+        }
+
+
+        return JSON.parse(user);
+
+    }
+
+    catch(error) {
 
         return null;
 
@@ -2994,89 +3146,108 @@ function getSavedUser() {
 }
 
 
-/* =========================
-   واجهة المستخدم
-========================= */
+/* =====================================================
+   واجهة الطالب
+===================================================== */
 
 function updateUserInterface(user) {
 
     const loginButton =
-        document.getElementById(
-            "studentLoginButton"
-        );
+    document.getElementById(
+        "studentLoginButton"
+    );
 
     const userBox =
-        document.getElementById(
-            "userBox"
-        );
+    document.getElementById(
+        "userBox"
+    );
 
     const userEmail =
-        document.getElementById(
-            "userEmail"
-        );
+    document.getElementById(
+        "userEmail"
+    );
 
     const logoutButton =
-        document.getElementById(
-            "logoutButton"
-        );
+    document.getElementById(
+        "logoutButton"
+    );
 
 
-    if (user) {
+    if(user) {
 
-        loginButton.style.display = "none";
+        loginButton.style.display =
+        "none";
 
-        userBox.style.display = "flex";
+        userBox.style.display =
+        "flex";
 
-        logoutButton.style.display = "flex";
+        logoutButton.style.display =
+        "flex";
 
         userEmail.innerText =
-            user.email || "الطالب";
+        user.email ||
+        "الطالب";
 
-    } else {
+    }
 
-        loginButton.style.display = "flex";
+    else {
 
-        userBox.style.display = "none";
+        loginButton.style.display =
+        "flex";
 
-        logoutButton.style.display = "none";
+        userBox.style.display =
+        "none";
+
+        logoutButton.style.display =
+        "none";
 
     }
 
 }
 
 
-/* =========================
+/* =====================================================
    تسجيل الخروج
-========================= */
+===================================================== */
 
 async function logoutStudent() {
 
-    const token =
-        localStorage.getItem(
-            "minbar_access_token"
-        );
+    const accessToken =
+    localStorage.getItem(
+        "minbar_access_token"
+    );
 
 
     try {
 
-        if (token) {
+        if(accessToken) {
 
             await supabaseRequest(
+
                 SUPABASE_URL +
                 "/auth/v1/logout",
+
                 {
-                    method: "POST",
+
+                    method:"POST",
 
                     headers: {
+
                         "Authorization":
-                            "Bearer " + token
+                        "Bearer " +
+                        accessToken
+
                     }
+
                 }
+
             );
 
         }
 
-    } catch (error) {
+    }
+
+    catch(error) {
 
         console.error(error);
 
@@ -3098,29 +3269,35 @@ async function logoutStudent() {
 
     updateUserInterface(null);
 
-    alert("تم تسجيل الخروج 👋");
+
+    alert(
+        "تم تسجيل الخروج 👋"
+    );
 
 }
 
 
-/* =========================
+/* =====================================================
    استعادة الجلسة
-========================= */
+===================================================== */
 
 async function restoreSession() {
 
-    const token =
-        localStorage.getItem(
-            "minbar_access_token"
-        );
+    const accessToken =
+    localStorage.getItem(
+        "minbar_access_token"
+    );
+
 
     const savedUser =
-        getSavedUser();
+    getSavedUser();
 
 
-    if (!token) {
+    if(!accessToken) {
 
-        updateUserInterface(savedUser);
+        updateUserInterface(
+            savedUser
+        );
 
         return;
 
@@ -3130,66 +3307,115 @@ async function restoreSession() {
     try {
 
         const response =
-            await supabaseRequest(
-                SUPABASE_URL +
-                "/auth/v1/user",
-                {
-                    headers: {
-                        "Authorization":
-                            "Bearer " + token
-                    }
+        await supabaseRequest(
+
+            SUPABASE_URL +
+            "/auth/v1/user",
+
+            {
+
+                method:"GET",
+
+                headers: {
+
+                    "Authorization":
+                    "Bearer " +
+                    accessToken
+
                 }
-            );
+
+            }
+
+        );
 
 
-        if (response.ok) {
+        if(response.ok) {
 
             const user =
-                await response.json();
+            await response.json();
+
 
             localStorage.setItem(
+
                 "minbar_user",
+
                 JSON.stringify(user)
+
             );
 
-            updateUserInterface(user);
 
-        } else {
-
-            updateUserInterface(null);
+            updateUserInterface(
+                user
+            );
 
         }
 
-    } catch {
+        else {
 
-        updateUserInterface(savedUser);
+            updateUserInterface(
+                savedUser
+            );
+
+        }
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        updateUserInterface(
+            savedUser
+        );
 
     }
 
 }
 
 
-/* =========================
-   إغلاق النافذة
-========================= */
+/* =====================================================
+   إغلاق النوافذ عند الضغط خارجها
+===================================================== */
 
 document
-    .getElementById("studentModal")
-    .addEventListener(
-        "click",
-        function(event) {
+.getElementById(
+    "studentModal"
+)
+.addEventListener(
+    "click",
+    function(event) {
 
-            if (event.target === this) {
-                closeStudentLogin();
-            }
+        if(event.target === this) {
+
+            closeStudentLogin();
 
         }
-    );
+
+    }
+);
 
 
-/* =========================
+document
+.getElementById(
+    "quizModal"
+)
+.addEventListener(
+    "click",
+    function(event) {
+
+        if(event.target === this) {
+
+            closeQuiz();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
    تشغيل الموقع
-========================= */
+===================================================== */
 
 async function startSite() {
 
@@ -3197,16 +3423,25 @@ async function startSite() {
         getSavedUser()
     );
 
+
     updateStats();
+
 
     startDailyChallenge();
 
+
     await Promise.all([
+
         loadLessons(),
+
         loadSummaries(),
+
         loadTests(),
+
         loadRooms(),
+
         restoreSession()
+
     ]);
 
 }
@@ -3214,7 +3449,8 @@ async function startSite() {
 
 startSite();
 
-</script>ض
+</script>
+
 </body>
 
 </html>
