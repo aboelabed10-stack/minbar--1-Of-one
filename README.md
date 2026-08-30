@@ -167,7 +167,8 @@ top:-40px;
 z-index:1;
 pointer-events:none;
 animation:fall linear infinite;
-opacity:.7
+opacity:.7;
+font-weight:bold
 }
 
 .falling.star{
@@ -176,6 +177,10 @@ color:#80dfff
 
 .falling.math{
 color:#a77cff
+}
+
+.falling.tool{
+color:#6fe8c8
 }
 
 @keyframes fall{
@@ -572,6 +577,11 @@ background:#28c8ff14;
 border:1px solid #28c8ff20
 }
 
+.watch:hover{
+background:#28c8ff25;
+transform:scale(1.03)
+}
+
 /* ================= CONTENT ================= */
 
 .contentGrid{
@@ -667,6 +677,11 @@ text-decoration:none;
 color:#fff
 }
 
+.result:hover{
+background:#0e2344;
+border-color:#35cfff38
+}
+
 .resultIcon{
 width:33px;
 height:33px;
@@ -716,8 +731,8 @@ margin-top:4px
 .videoModal{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,.88);
-backdrop-filter:blur(9px);
+background:rgba(0,0,0,.90);
+backdrop-filter:blur(10px);
 display:none;
 align-items:center;
 justify-content:center;
@@ -732,11 +747,23 @@ display:flex
 .videoBox{
 width:100%;
 max-width:850px;
-background:#08152d;
-border:1px solid #3ecfff38;
+background:linear-gradient(145deg,#08152d,#111b3c);
+border:1px solid #3ecfff45;
 border-radius:20px;
 padding:12px;
-box-shadow:0 25px 100px #000b
+box-shadow:0 25px 100px #000b;
+animation:videoOpen .25s ease
+}
+
+@keyframes videoOpen{
+from{
+transform:scale(.94);
+opacity:0
+}
+to{
+transform:scale(1);
+opacity:1
+}
 }
 
 .videoHeader{
@@ -749,7 +776,10 @@ padding:4px 5px 12px
 
 .videoTitle{
 font-size:13px;
-font-weight:bold
+font-weight:bold;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap
 }
 
 .videoClose{
@@ -759,7 +789,12 @@ color:#fff;
 width:34px;
 height:34px;
 border-radius:9px;
-font-size:21px
+font-size:21px;
+flex-shrink:0
+}
+
+.videoClose:hover{
+background:#ff526522
 }
 
 .videoFrame{
@@ -774,7 +809,8 @@ overflow:hidden
 .videoFrame iframe{
 width:100%;
 height:100%;
-border:0
+border:0;
+display:block
 }
 
 .videoDescription{
@@ -782,6 +818,28 @@ padding:12px 5px 4px;
 font-size:8px;
 color:#8196b2;
 line-height:1.8
+}
+
+.youtubeFallback{
+display:none;
+text-align:center;
+padding:15px 5px 5px
+}
+
+.youtubeFallback p{
+font-size:8px;
+color:#8296b2;
+margin-bottom:9px
+}
+
+.youtubeFallback a{
+display:inline-block;
+background:linear-gradient(135deg,#087fb5,#7450d8);
+color:#fff;
+text-decoration:none;
+padding:9px 15px;
+border-radius:9px;
+font-size:8px
 }
 
 /* ================= EMPTY ================= */
@@ -983,13 +1041,33 @@ grid-template-columns:1fr
 gap:4px
 }
 
+.videoModal{
+padding:8px
+}
+
+.videoBox{
+border-radius:15px;
+padding:8px
+}
+
+.videoTitle{
+font-size:10px
+}
+
+.videoClose{
+width:30px;
+height:30px;
+font-size:18px
+}
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- نجوم وأدوات رياضية متحركة -->
+<!-- ================= FALLING OBJECTS ================= -->
+
 <div class="falling star" style="left:5%;animation-duration:9s;animation-delay:0s">★</div>
 <div class="falling math" style="left:14%;animation-duration:12s;animation-delay:2s">∑</div>
 <div class="falling star" style="left:25%;animation-duration:10s;animation-delay:4s">✦</div>
@@ -999,43 +1077,67 @@ gap:4px
 <div class="falling star" style="left:76%;animation-duration:10s;animation-delay:1s">✦</div>
 <div class="falling math" style="left:88%;animation-duration:15s;animation-delay:4s">△</div>
 <div class="falling star" style="left:94%;animation-duration:9s;animation-delay:6s">★</div>
+<div class="falling tool" style="left:31%;animation-duration:16s;animation-delay:7s">📐</div>
+<div class="falling tool" style="left:58%;animation-duration:17s;animation-delay:2s">📏</div>
+<div class="falling tool" style="left:82%;animation-duration:18s;animation-delay:8s">✏️</div>
 
 <header>
+
 <div class="header">
 
 <div class="logo">
+
 <div class="logoIcon">∑</div>
+
 <div class="logoText">
 منبر ون
 <small>MINBAR ONE • MATH</small>
 </div>
+
 </div>
 
 <div class="loginButtons">
 
-<button class="studentBtn"
+<button
+class="studentBtn"
 id="studentLoginButton"
 onclick="openStudentLogin()">
+
 👨‍🎓 دخول الطالب
+
 </button>
 
-<a class="teacherBtn" href="teacher.html">
+<a
+class="teacherBtn"
+href="teacher.html">
+
 👨‍🏫 دخول الأستاذ
+
 </a>
 
-<div class="userBox" id="userBox">
+<div
+class="userBox"
+id="userBox">
+
 <div class="userIcon">👨‍🎓</div>
+
 <span id="userEmail">طالب</span>
+
 </div>
 
-<button class="logoutBtn"
+<button
+class="logoutBtn"
 id="logoutButton"
 onclick="logoutStudent()">
+
 🚪 خروج
+
 </button>
 
 </div>
+
 </div>
+
 </header>
 
 <div class="page">
@@ -1081,44 +1183,69 @@ oninput="searchEverything()">
 <section class="section">
 
 <div class="sectionHead">
+
 <h2>🎯 ماذا تريد اليوم؟</h2>
+
 <span>أقسام المنصة</span>
+
 </div>
 
 <div class="options">
 
 <a href="#lessons" class="option c1">
+
 <div class="optionIcon">🎥</div>
+
 <h3>الحصص</h3>
+
 <p>شاهد الدروس</p>
+
 </a>
 
 <a href="#summaries" class="option c2">
+
 <div class="optionIcon">📚</div>
+
 <h3>الملخصات</h3>
+
 <p>راجع القوانين</p>
+
 </a>
 
 <a href="#tests" class="option c3">
+
 <div class="optionIcon">📝</div>
+
 <h3>الاختبارات</h3>
+
 <p>اختبر نفسك</p>
+
 </a>
 
 <a href="#rooms" class="option c4">
+
 <div class="optionIcon">💬</div>
+
 <h3>الرومات</h3>
+
 <p>تعلّم مع الآخرين</p>
+
 </a>
 
 </div>
+
 </section>
 
 <section class="section">
 
 <div class="sectionHead">
+
 <h2>🔥 تحدي اليوم</h2>
-<span id="challengeProgress">السؤال 1 من 6</span>
+
+<span id="challengeProgress">
+السؤال 1 من 6
+</span>
+
 </div>
 
 <div class="challenge">
@@ -1146,48 +1273,71 @@ oninput="searchEverything()">
 <button
 id="challengeButton"
 onclick="startOrAnswerChallenge()">
+
 ابدأ التحدي
+
 </button>
 
 </div>
+
 </section>
 
 <section class="section">
 
 <div class="sectionHead">
+
 <h2>🏆 مستواك</h2>
+
 <span>تقدمك</span>
+
 </div>
 
 <div class="stats">
 
 <div class="stat points">
+
 <strong id="pointsStat">0</strong>
+
 <span>⭐ النقاط</span>
+
 </div>
 
 <div class="stat progress">
+
 <strong id="progressStat">0%</strong>
+
 <span>📊 التقدم</span>
+
 </div>
 
 <div class="stat rank">
+
 <strong id="rankStat">🥉</strong>
+
 <span>المستوى</span>
+
 </div>
 
 </div>
+
 </section>
 
 <section class="section" id="lessons">
 
 <div class="sectionHead">
+
 <h2>🎥 أحدث الحصص</h2>
+
 <span>من الأستاذ</span>
+
 </div>
 
 <div id="lessonsContainer" class="lessonList">
-<div class="loading">⏳ جاري تحميل الحصص...</div>
+
+<div class="loading">
+⏳ جاري تحميل الحصص...
+</div>
+
 </div>
 
 </section>
@@ -1195,12 +1345,19 @@ onclick="startOrAnswerChallenge()">
 <section class="section" id="summaries">
 
 <div class="sectionHead">
+
 <h2>📚 الملخصات</h2>
+
 <span>من الأستاذ</span>
+
 </div>
 
 <div id="summariesContainer" class="contentGrid">
-<div class="loading">⏳ جاري تحميل الملخصات...</div>
+
+<div class="loading">
+⏳ جاري تحميل الملخصات...
+</div>
+
 </div>
 
 </section>
@@ -1208,12 +1365,19 @@ onclick="startOrAnswerChallenge()">
 <section class="section" id="tests">
 
 <div class="sectionHead">
+
 <h2>📝 الاختبارات</h2>
+
 <span>من الأستاذ</span>
+
 </div>
 
 <div id="testsContainer" class="contentGrid">
-<div class="loading">⏳ جاري تحميل الاختبارات...</div>
+
+<div class="loading">
+⏳ جاري تحميل الاختبارات...
+</div>
+
 </div>
 
 </section>
@@ -1221,12 +1385,19 @@ onclick="startOrAnswerChallenge()">
 <section class="section" id="rooms">
 
 <div class="sectionHead">
+
 <h2>💬 الرومات</h2>
+
 <span>من الأستاذ</span>
+
 </div>
 
 <div id="roomsContainer" class="contentGrid">
-<div class="loading">⏳ جاري تحميل الرومات...</div>
+
+<div class="loading">
+⏳ جاري تحميل الرومات...
+</div>
+
 </div>
 
 </section>
@@ -1237,22 +1408,33 @@ onclick="startOrAnswerChallenge()">
 
 </div>
 
-<!-- ================= VIDEO MODAL ================= -->
 
-<div id="videoModal" class="videoModal">
+<!-- =====================================================
+     VIDEO MODAL
+===================================================== -->
+
+<div
+id="videoModal"
+class="videoModal">
 
 <div class="videoBox">
 
 <div class="videoHeader">
 
-<div class="videoTitle" id="videoTitle">
+<div
+class="videoTitle"
+id="videoTitle">
+
 🎥 مشاهدة الحصة
+
 </div>
 
 <button
 class="videoClose"
 onclick="closeVideo()">
+
 ×
+
 </button>
 
 </div>
@@ -1262,25 +1444,60 @@ onclick="closeVideo()">
 <iframe
 id="youtubeFrame"
 src=""
+title="YouTube video player"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 allowfullscreen>
 </iframe>
 
 </div>
 
-<div class="videoDescription" id="videoDescription"></div>
+<div
+class="youtubeFallback"
+id="youtubeFallback">
 
+<p>
+إذا رفض YouTube تشغيل الفيديو داخل الموقع، يمكنك فتحه مباشرة من YouTube.
+</p>
+
+<a
+id="youtubeFallbackLink"
+href="#"
+target="_blank"
+rel="noopener">
+
+▶️ فتح الفيديو في YouTube
+
+</a>
+
+</div>
+
+<div
+class="videoDescription"
+id="videoDescription">
 </div>
 
 </div>
 
-<!-- ================= LOGIN ================= -->
+</div>
 
-<div id="studentModal" class="modal">
+
+<!-- =====================================================
+     STUDENT LOGIN
+===================================================== -->
+
+<div
+id="studentModal"
+class="modal">
 
 <div class="loginBox">
 
-<button class="close" onclick="closeStudentLogin()">×</button>
+<button
+class="close"
+onclick="closeStudentLogin()">
+
+×
+
+</button>
 
 <h2 id="authTitle">
 👨‍🎓 دخول الطالب
@@ -1290,7 +1507,10 @@ allowfullscreen>
 سجّل الدخول لمتابعة رحلتك التعليمية.
 </p>
 
-<div id="studentMessage" class="message"></div>
+<div
+id="studentMessage"
+class="message">
+</div>
 
 <input
 id="studentEmail"
@@ -1308,7 +1528,9 @@ placeholder="🔐 كلمة المرور">
 id="authMainButton"
 class="main"
 onclick="studentAuth()">
+
 تسجيل الدخول
+
 </button>
 
 <div class="switch">
@@ -1320,13 +1542,17 @@ onclick="studentAuth()">
 <button
 id="switchButton"
 onclick="switchAuthMode()">
+
 إنشاء حساب
+
 </button>
 
 </div>
 
 </div>
+
 </div>
+
 
 <script>
 
@@ -1334,9 +1560,12 @@ onclick="switchAuthMode()">
    SUPABASE
 ===================================================== */
 
-const SUPABASE_URL="https://vugnptbvkitokwqxulla.supabase.co";
+const SUPABASE_URL =
+"https://vugnptbvkitokwqxulla.supabase.co";
 
-const SUPABASE_KEY="sb_publishable__WJDSewc6JN6XTM6czk11Q_lgON6Chj";
+const SUPABASE_KEY =
+"sb_publishable__WJDSewc6JN6XTM6czk11Q_lgON6Chj";
+
 
 let allLessons=[];
 let allSummaries=[];
@@ -1402,7 +1631,7 @@ p:40
 
 
 /* =====================================================
-   SECURITY
+   SAFE TEXT
 ===================================================== */
 
 function safe(t){
@@ -1450,7 +1679,17 @@ const r=await supabaseRequest(
 `${SUPABASE_URL}/rest/v1/${table}?select=*`
 );
 
-if(!r.ok)return [];
+if(!r.ok){
+
+console.error(
+"Supabase error:",
+table,
+r.status
+);
+
+return [];
+
+}
 
 const d=await r.json();
 
@@ -1473,7 +1712,8 @@ return [];
 
 function sortNew(a,b){
 
-return new Date(b.created_at||0)-new Date(a.created_at||0);
+return new Date(b.created_at||0) -
+new Date(a.created_at||0);
 
 }
 
@@ -1488,13 +1728,34 @@ if(!url)return null;
 
 url=String(url).trim();
 
+
+/* إذا تم وضع ID فقط */
+
+if(/^[a-zA-Z0-9_-]{11}$/.test(url)){
+
+return url;
+
+}
+
+
 try{
 
 const u=new URL(url);
 
+const host=u.hostname.toLowerCase();
+
+const path=u.pathname;
+
+
 /* youtube.com/watch?v= */
+
 if(
-u.hostname.includes("youtube.com") &&
+(
+host==="youtube.com" ||
+host==="www.youtube.com" ||
+host==="m.youtube.com"
+)
+&&
 u.searchParams.get("v")
 ){
 
@@ -1502,39 +1763,63 @@ return u.searchParams.get("v");
 
 }
 
-/* youtu.be/VIDEO_ID */
-if(u.hostname==="youtu.be"){
 
-return u.pathname.replace("/","").split("?")[0];
+/* youtu.be/VIDEO_ID */
+
+if(
+host==="youtu.be" ||
+host==="www.youtu.be"
+){
+
+return path
+.replace(/^\/+/,"")
+.split("/")[0]
+.split("?")[0];
 
 }
+
 
 /* youtube.com/embed/VIDEO_ID */
-if(u.hostname.includes("youtube.com") &&
-u.pathname.startsWith("/embed/")
-){
 
-return u.pathname.split("/embed/")[1].split("?")[0];
+if(path.startsWith("/embed/")){
+
+return path
+.split("/embed/")[1]
+.split("/")[0]
+.split("?")[0];
 
 }
+
 
 /* youtube.com/shorts/VIDEO_ID */
-if(u.hostname.includes("youtube.com") &&
-u.pathname.startsWith("/shorts/")
-){
 
-return u.pathname.split("/shorts/")[1].split("?")[0];
+if(path.startsWith("/shorts/")){
+
+return path
+.split("/shorts/")[1]
+.split("/")[0]
+.split("?")[0];
+
+}
+
+
+/* youtube.com/live/VIDEO_ID */
+
+if(path.startsWith("/live/")){
+
+return path
+.split("/live/")[1]
+.split("/")[0]
+.split("?")[0];
 
 }
 
-}catch(e){
+}catch(error){
 
-/* إذا كان المدخل ID فقط */
-if(/^[a-zA-Z0-9_-]{8,15}$/.test(url)){
-
-return url;
-
-}
+console.log(
+"YouTube URL Error:",
+error
+);
 
 }
 
@@ -1553,26 +1838,76 @@ const id=getYoutubeId(url);
 
 if(!id){
 
-alert("⚠️ رابط الفيديو غير صالح أو ليس رابط YouTube.");
+alert(
+"⚠️ رابط الفيديو غير صالح.\n\n"+
+"تأكد أن الرابط من YouTube."
+);
 
 return;
 
 }
 
-const frame=document.getElementById("youtubeFrame");
 
-frame.src=
-"https://www.youtube.com/embed/"
-+encodeURIComponent(id)
-+"?rel=0&modestbranding=1";
+const frame=
+document.getElementById("youtubeFrame");
 
-document.getElementById("videoTitle").textContent=
+const modal=
+document.getElementById("videoModal");
+
+const titleBox=
+document.getElementById("videoTitle");
+
+const descriptionBox=
+document.getElementById("videoDescription");
+
+const fallback=
+document.getElementById("youtubeFallback");
+
+const fallbackLink=
+document.getElementById("youtubeFallbackLink");
+
+
+/* العنوان */
+
+titleBox.textContent=
 "🎥 "+(title||"مشاهدة الحصة");
 
-document.getElementById("videoDescription").textContent=
-description||"";
 
-document.getElementById("videoModal").classList.add("show");
+/* الوصف */
+
+descriptionBox.textContent=
+description||
+"شاهد الحصة مباشرة من داخل منصة منبر ون.";
+
+
+/* رابط YouTube الاحتياطي */
+
+fallbackLink.href=
+"https://www.youtube.com/watch?v="+
+encodeURIComponent(id);
+
+
+/*
+   تشغيل الفيديو داخل الموقع
+   باستخدام YouTube Privacy Enhanced Mode
+*/
+
+frame.src=
+"https://www.youtube-nocookie.com/embed/"+
+encodeURIComponent(id)+
+"?rel=0"+
+"&modestbranding=1"+
+"&playsinline=1";
+
+
+/* إخفاء رابط الاحتياطية في البداية */
+
+fallback.style.display="none";
+
+
+/* إظهار النافذة */
+
+modal.classList.add("show");
 
 document.body.style.overflow="hidden";
 
@@ -1585,11 +1920,21 @@ document.body.style.overflow="hidden";
 
 function closeVideo(){
 
-const modal=document.getElementById("videoModal");
+const modal=
+document.getElementById("videoModal");
+
+const frame=
+document.getElementById("youtubeFrame");
+
+
+/* إيقاف الفيديو */
+
+frame.src="";
+
+
+/* إغلاق النافذة */
 
 modal.classList.remove("show");
-
-document.getElementById("youtubeFrame").src="";
 
 document.body.style.overflow="";
 
@@ -1602,11 +1947,15 @@ document.body.style.overflow="";
 
 async function loadLessons(){
 
-const box=document.getElementById("lessonsContainer");
+const box=
+document.getElementById("lessonsContainer");
 
-const data=await getTable("lessons");
+const data=
+await getTable("lessons");
 
-allLessons=data.sort(sortNew);
+allLessons=
+data.sort(sortNew);
+
 
 if(!data.length){
 
@@ -1617,15 +1966,20 @@ return;
 
 }
 
+
 box.innerHTML="";
+
 
 data.forEach(x=>{
 
-const url=String(x.video_url||"").trim();
+const url=
+String(x.video_url||"").trim();
 
-const d=document.createElement("div");
+const d=
+document.createElement("div");
 
 d.className="lesson";
+
 
 if(url){
 
@@ -1650,18 +2004,30 @@ ${x.duration?" • "+safe(x.duration):""}
 
 <button
 class="watch"
-type="button"
-onclick='openVideo(
-${JSON.stringify(url)},
-${JSON.stringify(x.title||"حصة رياضيات")},
-${JSON.stringify(x.description||"")}
-)'>
+type="button">
 
 ▶️ مشاهدة
 
 </button>
 
 `;
+
+
+const watchButton=
+d.querySelector(".watch");
+
+
+watchButton.addEventListener(
+"click",
+function(){
+
+openVideo(
+url,
+x.title||"حصة رياضيات",
+x.description||""
+);
+
+});
 
 }else{
 
@@ -1691,6 +2057,7 @@ ${safe(x.unit||"رياضيات")}
 
 }
 
+
 box.appendChild(d);
 
 });
@@ -1704,9 +2071,12 @@ box.appendChild(d);
 
 async function loadSummaries(){
 
-const data=await getTable("summaries");
+const data=
+await getTable("summaries");
 
-allSummaries=data.sort(sortNew);
+allSummaries=
+data.sort(sortNew);
+
 
 renderCards(
 "summariesContainer",
@@ -1728,9 +2098,12 @@ data,
 
 async function loadTests(){
 
-const data=await getTable("tests");
+const data=
+await getTable("tests");
 
-allTests=data.sort(sortNew);
+allTests=
+data.sort(sortNew);
+
 
 renderCards(
 "testsContainer",
@@ -1752,9 +2125,12 @@ data,
 
 async function loadRooms(){
 
-const data=await getTable("rooms");
+const data=
+await getTable("rooms");
 
-allRooms=data.sort(sortNew);
+allRooms=
+data.sort(sortNew);
+
 
 renderCards(
 "roomsContainer",
@@ -1785,7 +2161,9 @@ fallback,
 button
 ){
 
-const box=document.getElementById(id);
+const box=
+document.getElementById(id);
+
 
 if(!data.length){
 
@@ -1796,7 +2174,9 @@ return;
 
 }
 
+
 box.innerHTML="";
+
 
 data.forEach(x=>{
 
@@ -1806,6 +2186,7 @@ descFields
 .find(v=>v)
 ||fallback;
 
+
 const url=
 String(
 urlFields
@@ -1814,12 +2195,18 @@ urlFields
 ||""
 ).trim();
 
-const title=
-x.title||x.name||fallback;
 
-const d=document.createElement("div");
+const title=
+x.title||
+x.name||
+fallback;
+
+
+const d=
+document.createElement("div");
 
 d.className="contentCard";
+
 
 d.innerHTML=`
 
@@ -1853,6 +2240,7 @@ ${button}
 
 `;
 
+
 box.appendChild(d);
 
 });
@@ -1873,11 +2261,13 @@ document
 .toLowerCase()
 .trim();
 
+
 const box=
 document.getElementById("searchResults");
 
 const list=
 document.getElementById("resultList");
+
 
 if(!text){
 
@@ -1887,9 +2277,12 @@ return;
 
 }
 
+
 box.classList.add("show");
 
+
 let r=[];
+
 
 [
 [allLessons,"lesson","🎥","حصة","video_url"],
@@ -1897,11 +2290,14 @@ let r=[];
 [allTests,"test","📝","اختبار","test_url"],
 [allRooms,"room","💬","روم","room_link"]
 
-].forEach(([arr,type,icon,name,urlKey])=>{
+].forEach(
+([arr,type,icon,name,urlKey])=>{
 
 arr.forEach(x=>{
 
-const s=JSON.stringify(x).toLowerCase();
+const s=
+JSON.stringify(x).toLowerCase();
+
 
 if(s.includes(text)){
 
@@ -1921,6 +2317,7 @@ url:x[urlKey]||x.url||x.link||""
 
 });
 
+
 if(!r.length){
 
 list.innerHTML=
@@ -1930,13 +2327,17 @@ return;
 
 }
 
+
 list.innerHTML="";
+
 
 r.forEach(x=>{
 
-const d=document.createElement("div");
+const d=
+document.createElement("div");
 
 d.className="result";
+
 
 d.innerHTML=`
 
@@ -1951,34 +2352,48 @@ ${safe(x.title)}
 </h3>
 
 <p>
-${x.name}
+${safe(x.name)}
 </p>
 
 </div>
 
 `;
 
-if(x.type==="lesson" && x.url){
+
+if(
+x.type==="lesson" &&
+x.url
+){
 
 d.style.cursor="pointer";
 
-d.onclick=()=>openVideo(
+
+d.onclick=()=>{
+
+openVideo(
 x.url,
 x.title,
 ""
 );
 
+};
+
 }else if(x.url){
 
-d.onclick=()=>window.open(
+d.onclick=()=>{
+
+window.open(
 x.url,
 "_blank",
 "noopener"
 );
 
+};
+
 d.style.cursor="pointer";
 
 }
+
 
 list.appendChild(d);
 
@@ -1996,7 +2411,9 @@ function getSavedUser(){
 try{
 
 return JSON.parse(
-localStorage.getItem("minbar_user")||"null"
+localStorage.getItem(
+"minbar_user"
+)||"null"
 );
 
 }catch{
@@ -2008,40 +2425,64 @@ return null;
 }
 
 
+/* =====================================================
+   UPDATE USER UI
+===================================================== */
+
 function updateUserInterface(user){
 
-document.getElementById("studentLoginButton").style.display=
+document.getElementById(
+"studentLoginButton"
+).style.display=
 user?"none":"flex";
 
-document.getElementById("userBox").style.display=
+
+document.getElementById(
+"userBox"
+).style.display=
 user?"flex":"none";
 
-document.getElementById("logoutButton").style.display=
+
+document.getElementById(
+"logoutButton"
+).style.display=
 user?"flex":"none";
 
-document.getElementById("userEmail").textContent=
+
+document.getElementById(
+"userEmail"
+).textContent=
 user?.email||"الطالب";
 
 }
 
 
 /* =====================================================
-   LOGIN
+   AUTH MESSAGE
 ===================================================== */
 
-function showAuthMessage(t,type="info"){
+function showAuthMessage(
+t,
+type="info"
+){
 
-const b=document.getElementById("studentMessage");
+const b=
+document.getElementById(
+"studentMessage"
+);
 
 b.className=
 "message "+
 (
 type==="success"
-?"successMessage"
+?
+"successMessage"
 :
 type==="error"
-?"errorMessage"
-:"infoMessage"
+?
+"errorMessage"
+:
+"infoMessage"
 );
 
 b.textContent=t;
@@ -2051,7 +2492,10 @@ b.textContent=t;
 
 function clearAuthMessage(){
 
-const b=document.getElementById("studentMessage");
+const b=
+document.getElementById(
+"studentMessage"
+);
 
 b.className="message";
 
@@ -2059,6 +2503,10 @@ b.textContent="";
 
 }
 
+
+/* =====================================================
+   OPEN LOGIN
+===================================================== */
 
 function openStudentLogin(){
 
@@ -2073,6 +2521,10 @@ document
 }
 
 
+/* =====================================================
+   CLOSE LOGIN
+===================================================== */
+
 function closeStudentLogin(){
 
 document
@@ -2084,6 +2536,10 @@ clearAuthMessage();
 }
 
 
+/* =====================================================
+   SWITCH AUTH
+===================================================== */
+
 function switchAuthMode(){
 
 isSignupMode=!isSignupMode;
@@ -2093,32 +2549,61 @@ updateAuthWindow();
 }
 
 
+/* =====================================================
+   UPDATE AUTH WINDOW
+===================================================== */
+
 function updateAuthWindow(){
 
-document.getElementById("authTitle").textContent=
+document.getElementById(
+"authTitle"
+).textContent=
 isSignupMode
-?"🧑‍🎓 إنشاء حساب طالب"
-:"👨‍🎓 دخول الطالب";
+?
+"🧑‍🎓 إنشاء حساب طالب"
+:
+"👨‍🎓 دخول الطالب";
 
-document.getElementById("authDescription").textContent=
-isSignupMode
-?"أنشئ حسابك باستخدام البريد الإلكتروني وكلمة المرور."
-:"سجّل الدخول لمتابعة رحلتك التعليمية.";
 
-document.getElementById("authMainButton").textContent=
+document.getElementById(
+"authDescription"
+).textContent=
 isSignupMode
-?"إنشاء الحساب"
-:"تسجيل الدخول";
+?
+"أنشئ حسابك باستخدام البريد الإلكتروني وكلمة المرور."
+:
+"سجّل الدخول لمتابعة رحلتك التعليمية.";
 
-document.getElementById("switchText").textContent=
-isSignupMode
-?"لديك حساب بالفعل؟"
-:"ليس لديك حساب؟";
 
-document.getElementById("switchButton").textContent=
+document.getElementById(
+"authMainButton"
+).textContent=
 isSignupMode
-?"تسجيل الدخول"
-:"إنشاء حساب";
+?
+"إنشاء الحساب"
+:
+"تسجيل الدخول";
+
+
+document.getElementById(
+"switchText"
+).textContent=
+isSignupMode
+?
+"لديك حساب بالفعل؟"
+:
+"ليس لديك حساب؟";
+
+
+document.getElementById(
+"switchButton"
+).textContent=
+isSignupMode
+?
+"تسجيل الدخول"
+:
+"إنشاء حساب";
+
 
 clearAuthMessage();
 
@@ -2137,15 +2622,20 @@ document
 .value
 .trim();
 
+
 const password=
 document
 .getElementById("studentPassword")
 .value;
 
+
 const btn=
-document.getElementById("authMainButton");
+document
+.getElementById("authMainButton");
+
 
 clearAuthMessage();
+
 
 if(!email||!password){
 
@@ -2158,6 +2648,7 @@ return;
 
 }
 
+
 if(password.length<6){
 
 showAuthMessage(
@@ -2169,9 +2660,12 @@ return;
 
 }
 
+
 btn.disabled=true;
 
+
 try{
+
 
 if(isSignupMode){
 
@@ -2180,7 +2674,9 @@ showAuthMessage(
 "info"
 );
 
-const r=await supabaseRequest(
+
+const r=
+await supabaseRequest(
 `${SUPABASE_URL}/auth/v1/signup`,
 {
 method:"POST",
@@ -2192,7 +2688,10 @@ data:{role:"student"}
 }
 );
 
-const d=await r.json();
+
+const d=
+await r.json();
+
 
 if(!r.ok){
 
@@ -2211,15 +2710,18 @@ d.message||
 
 saveSession(d);
 
+
 showAuthMessage(
 "✅ تم إنشاء الحساب وتسجيل الدخول.",
 "success"
 );
 
+
 setTimeout(
 closeStudentLogin,
 700
 );
+
 
 }else{
 
@@ -2230,14 +2732,18 @@ showAuthMessage(
 
 }
 
+
 }else{
+
 
 showAuthMessage(
 "⏳ جاري تسجيل الدخول...",
 "info"
 );
 
-const r=await supabaseRequest(
+
+const r=
+await supabaseRequest(
 `${SUPABASE_URL}/auth/v1/token?grant_type=password`,
 {
 method:"POST",
@@ -2248,7 +2754,10 @@ password
 }
 );
 
-const d=await r.json();
+
+const d=
+await r.json();
+
 
 if(!r.ok){
 
@@ -2266,10 +2775,12 @@ d.msg||
 
 saveSession(d);
 
+
 showAuthMessage(
 "✅ تم تسجيل الدخول بنجاح 🎉",
 "success"
 );
+
 
 setTimeout(
 closeStudentLogin,
@@ -2280,9 +2791,11 @@ closeStudentLogin,
 
 }
 
+
 }catch(e){
 
 console.error(e);
+
 
 showAuthMessage(
 "❌ حدث خطأ في الاتصال. حاول مرة أخرى.",
@@ -2290,6 +2803,7 @@ showAuthMessage(
 );
 
 }
+
 
 btn.disabled=false;
 
@@ -2311,6 +2825,7 @@ d.access_token
 
 }
 
+
 if(d.refresh_token){
 
 localStorage.setItem(
@@ -2319,6 +2834,7 @@ d.refresh_token
 );
 
 }
+
 
 if(d.user){
 
@@ -2329,6 +2845,7 @@ JSON.stringify(d.user)
 
 }
 
+
 updateUserInterface(
 d.user||getSavedUser()
 );
@@ -2336,12 +2853,20 @@ d.user||getSavedUser()
 }
 
 
+/* =====================================================
+   RESTORE SESSION
+===================================================== */
+
 async function restoreSession(){
 
 const token=
-localStorage.getItem("minbar_access_token");
+localStorage.getItem(
+"minbar_access_token"
+);
 
-const saved=getSavedUser();
+const saved=
+getSavedUser();
+
 
 if(!token){
 
@@ -2351,25 +2876,32 @@ return;
 
 }
 
+
 try{
 
-const r=await supabaseRequest(
+const r=
+await supabaseRequest(
 `${SUPABASE_URL}/auth/v1/user`,
 {
 headers:{
-Authorization:`Bearer ${token}`
+Authorization:
+`Bearer ${token}`
 }
 }
 );
 
+
 if(r.ok){
 
-const u=await r.json();
+const u=
+await r.json();
+
 
 localStorage.setItem(
 "minbar_user",
 JSON.stringify(u)
 );
+
 
 updateUserInterface(u);
 
@@ -2395,7 +2927,10 @@ updateUserInterface(saved);
 async function logoutStudent(){
 
 const token=
-localStorage.getItem("minbar_access_token");
+localStorage.getItem(
+"minbar_access_token"
+);
+
 
 try{
 
@@ -2406,7 +2941,8 @@ await supabaseRequest(
 {
 method:"POST",
 headers:{
-Authorization:`Bearer ${token}`
+Authorization:
+`Bearer ${token}`
 }
 }
 );
@@ -2414,6 +2950,7 @@ Authorization:`Bearer ${token}`
 }
 
 }catch{}
+
 
 [
 "minbar_access_token",
@@ -2424,9 +2961,13 @@ Authorization:`Bearer ${token}`
 k=>localStorage.removeItem(k)
 );
 
+
 updateUserInterface(null);
 
-alert("تم تسجيل الخروج 👋");
+
+alert(
+"تم تسجيل الخروج 👋"
+);
 
 }
 
@@ -2444,28 +2985,46 @@ localStorage.getItem("minbar_stats")
 '{"points":0,"answered":0}'
 );
 
-document.getElementById("pointsStat").textContent=
-s.points;
 
-document.getElementById("progressStat").textContent=
+document.getElementById(
+"pointsStat"
+).textContent=s.points;
+
+
+document.getElementById(
+"progressStat"
+).textContent=
 Math.min(
 100,
-Math.round(s.answered/6*100)
+Math.round(
+s.answered/6*100
+)
 )+"%";
 
-document.getElementById("rankStat").textContent=
+
+document.getElementById(
+"rankStat"
+).textContent=
 s.points>=100
-?"🏆"
+?
+"🏆"
 :
 s.points>=60
-?"🥇"
+?
+"🥇"
 :
 s.points>=30
-?"🥈"
-:"🥉";
+?
+"🥈"
+:
+"🥉";
 
 }
 
+
+/* =====================================================
+   ADD POINTS
+===================================================== */
 
 function addPoints(p){
 
@@ -2476,7 +3035,9 @@ localStorage.getItem("minbar_stats")
 '{"points":0,"answered":0}'
 );
 
+
 s.points+=p;
+
 
 s.answered=
 Math.min(
@@ -2484,10 +3045,12 @@ Math.min(
 s.answered+1
 );
 
+
 localStorage.setItem(
 "minbar_stats",
 JSON.stringify(s)
 );
+
 
 loadStats();
 
@@ -2510,34 +3073,44 @@ return;
 
 }
 
+
 if(challengeAnswered)return;
+
 
 const correct=
 challenges[challengeIndex].c;
 
+
 const chosen=
 Number(
-document
-.querySelector(
+document.querySelector(
 'input[name="answer"]:checked'
 )?.value
 );
 
+
 if(Number.isNaN(chosen)){
 
-document.getElementById("feedback").textContent=
+document.getElementById(
+"feedback"
+).textContent=
 "اختر إجابة أولًا 🙂";
 
 return;
 
 }
 
+
 challengeAnswered=true;
+
 
 if(chosen===correct){
 
-document.getElementById("feedback").textContent=
+document.getElementById(
+"feedback"
+).textContent=
 `✅ إجابة صحيحة! +${challenges[challengeIndex].p} نقطة 🎉`;
+
 
 addPoints(
 challenges[challengeIndex].p
@@ -2545,49 +3118,84 @@ challenges[challengeIndex].p
 
 }else{
 
-document.getElementById("feedback").textContent=
+document.getElementById(
+"feedback"
+).textContent=
 `❌ ليست صحيحة. الإجابة: ${
 challenges[challengeIndex].a[correct]
 }`;
 
 }
 
-document.getElementById("challengeButton").textContent=
+
+document.getElementById(
+"challengeButton"
+).textContent=
 challengeIndex<5
-?"السؤال التالي"
-:"إنهاء التحدي";
+?
+"السؤال التالي"
+:
+"إنهاء التحدي";
 
 }
 
 
+/* =====================================================
+   SHOW CHALLENGE
+===================================================== */
+
 function showChallenge(){
 
-const x=challenges[challengeIndex];
+const x=
+challenges[challengeIndex];
 
-document.getElementById("challengeProgress").textContent=
+
+document.getElementById(
+"challengeProgress"
+).textContent=
 `السؤال ${challengeIndex+1} من 6`;
 
-document.getElementById("challengeQuestion").textContent=
-x.q;
 
-document.getElementById("feedback").textContent="";
+document.getElementById(
+"challengeQuestion"
+).textContent=x.q;
 
-document.getElementById("answers").innerHTML=
+
+document.getElementById(
+"feedback"
+).textContent="";
+
+
+document.getElementById(
+"answers"
+).innerHTML=
 x.a.map(
 (v,i)=>
 `
 <label class="answer">
-<input type="radio" name="answer" value="${i}">
+
+<input
+type="radio"
+name="answer"
+value="${i}">
+
 ${safe(v)}
+
 </label>
 `
 ).join("");
 
-document.getElementById("quizArea").style.display=
-"block";
 
-document.getElementById("challengeButton").textContent=
+document.getElementById(
+"quizArea"
+).style.display="block";
+
+
+document.getElementById(
+"challengeButton"
+).textContent=
 "تأكيد الإجابة";
+
 
 challengeAnswered=false;
 
@@ -2595,7 +3203,7 @@ challengeAnswered=false;
 
 
 /* =====================================================
-   CHALLENGE NEXT BUTTON
+   CHALLENGE NEXT
 ===================================================== */
 
 document
@@ -2618,17 +3226,22 @@ showChallenge();
 }else{
 
 document
-.getElementById("challengeButton")
-.disabled=true;
+.getElementById(
+"challengeButton"
+).disabled=true;
+
 
 document
-.getElementById("challengeButton")
-.textContent=
+.getElementById(
+"challengeButton"
+).textContent=
 "🎉 أكملت تحدي اليوم";
 
+
 document
-.getElementById("challengeTitle")
-.textContent=
+.getElementById(
+"challengeTitle"
+).textContent=
 "أحسنت! أكملت تحدي اليوم كاملًا.";
 
 }
@@ -2640,7 +3253,7 @@ document
 
 
 /* =====================================================
-   MODAL CLICK OUTSIDE
+   CLICK OUTSIDE LOGIN
 ===================================================== */
 
 document
@@ -2661,6 +3274,10 @@ closeStudentLogin();
 );
 
 
+/* =====================================================
+   CLICK OUTSIDE VIDEO
+===================================================== */
+
 document
 .getElementById("videoModal")
 .addEventListener(
@@ -2680,7 +3297,7 @@ closeVideo();
 
 
 /* =====================================================
-   ESC KEY
+   ESC
 ===================================================== */
 
 document.addEventListener(
@@ -2690,6 +3307,7 @@ e=>{
 if(e.key==="Escape"){
 
 closeVideo();
+
 closeStudentLogin();
 
 }
@@ -2710,15 +3328,23 @@ getSavedUser()
 
 loadStats();
 
+
 await Promise.all([
+
 loadLessons(),
+
 loadSummaries(),
+
 loadTests(),
+
 loadRooms(),
+
 restoreSession()
+
 ]);
 
 }
+
 
 startSite();
 
