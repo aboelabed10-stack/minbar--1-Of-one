@@ -35,6 +35,10 @@ button{
 cursor:pointer
 }
 
+a{
+-webkit-tap-highlight-color:transparent
+}
+
 .page{
 position:relative;
 z-index:2
@@ -43,7 +47,7 @@ z-index:2
 /* ================= HEADER ================= */
 
 header{
-height:88px;
+height:82px;
 background:rgba(5,13,32,.96);
 backdrop-filter:blur(15px);
 border-bottom:1px solid #ffffff18;
@@ -60,36 +64,38 @@ margin:auto;
 display:flex;
 align-items:center;
 justify-content:space-between;
-gap:15px
+gap:12px
 }
 
 .logo{
 display:flex;
 align-items:center;
-gap:10px
+gap:9px;
+min-width:0
 }
 
 .logoIcon{
-width:46px;
-height:46px;
+width:45px;
+height:45px;
 border-radius:14px;
 display:flex;
 align-items:center;
 justify-content:center;
 background:linear-gradient(135deg,#12c9ff,#855cff);
 font-size:23px;
-box-shadow:0 0 25px #268dff44
+box-shadow:0 0 25px #268dff44;
+flex-shrink:0
 }
 
 .logoText{
-font-size:16px;
+font-size:15px;
 font-weight:bold
 }
 
 .logoText small{
 display:block;
 color:#7187a7;
-font-size:7px;
+font-size:6px;
 margin-top:3px
 }
 
@@ -99,39 +105,35 @@ gap:10px;
 align-items:center
 }
 
-/* أزرار الدخول أكبر */
-
 .studentBtn,
 .teacherBtn,
 .logoutBtn{
-border:1px solid #ffffff25;
+border:0;
 color:#fff;
-font-size:11px;
-padding:14px 17px;
-min-height:48px;
-border-radius:14px;
+font-size:10px;
+min-height:44px;
+padding:11px 16px;
+border-radius:13px;
 display:flex;
 align-items:center;
 justify-content:center;
-gap:8px;
+gap:7px;
 transition:.25s;
 font-weight:bold;
-box-shadow:0 7px 25px #0004
+white-space:nowrap
 }
 
 .studentBtn{
 background:linear-gradient(135deg,#087fb5,#7450d8);
-box-shadow:
-0 7px 25px #087fb544,
-inset 0 1px #ffffff25
+box-shadow:0 6px 24px #087fb544;
+border:1px solid #71ddff35
 }
 
 .teacherBtn{
 background:linear-gradient(135deg,#6346a7,#287eb8);
 text-decoration:none;
-box-shadow:
-0 7px 25px #287eb844,
-inset 0 1px #ffffff25
+box-shadow:0 6px 24px #287eb844;
+border:1px solid #8cd8ff30
 }
 
 .logoutBtn{
@@ -142,7 +144,7 @@ display:none
 .studentBtn:hover,
 .teacherBtn:hover,
 .logoutBtn:hover{
-transform:translateY(-3px) scale(1.02);
+transform:translateY(-2px);
 filter:brightness(1.12)
 }
 
@@ -153,14 +155,14 @@ gap:7px;
 background:#0b1b36;
 border:1px solid #ffffff17;
 padding:6px 9px;
-border-radius:12px;
+border-radius:11px;
 font-size:8px;
 color:#a9bdd5
 }
 
 .userIcon{
-width:32px;
-height:32px;
+width:31px;
+height:31px;
 border-radius:9px;
 display:flex;
 align-items:center;
@@ -176,15 +178,18 @@ top:-40px;
 z-index:1;
 pointer-events:none;
 animation:fall linear infinite;
-opacity:.7
+opacity:.7;
+font-weight:bold
 }
 
 .falling.star{
-color:#80dfff
+color:#80dfff;
+text-shadow:0 0 12px #48cfff
 }
 
 .falling.math{
-color:#a77cff
+color:#a77cff;
+text-shadow:0 0 12px #9b68ff
 }
 
 @keyframes fall{
@@ -204,7 +209,7 @@ opacity:0
 }
 }
 
-/* ================= HERO ================= */
+/* ================= MAIN ================= */
 
 .hero,
 .search,
@@ -218,7 +223,7 @@ margin-right:auto
 
 .hero{
 margin-top:22px;
-padding:32px 25px;
+padding:34px 26px;
 border-radius:24px;
 background:
 linear-gradient(135deg,rgba(11,49,88,.96),rgba(42,23,76,.94));
@@ -241,16 +246,16 @@ bottom:-80px
 
 .heroBadge{
 display:inline-block;
-padding:7px 10px;
+padding:8px 12px;
 border-radius:20px;
 background:#23caff1a;
 border:1px solid #23caff30;
 color:#5cdcff;
-font-size:8px
+font-size:9px
 }
 
 .hero h1{
-font-size:25px;
+font-size:26px;
 line-height:1.5;
 margin-top:10px
 }
@@ -261,9 +266,10 @@ color:#54d8ff
 
 .hero p{
 color:#9aafc9;
-font-size:9px;
+font-size:10px;
 line-height:1.9;
-margin-top:5px
+margin-top:5px;
+max-width:750px
 }
 
 /* ================= SEARCH ================= */
@@ -275,12 +281,12 @@ position:relative
 
 .search input{
 width:100%;
-height:47px;
+height:50px;
 border:1px solid #ffffff1f;
-border-radius:13px;
+border-radius:14px;
 background:#0b1b36;
 color:#fff;
-padding:0 43px 0 15px;
+padding:0 45px 0 15px;
 outline:none;
 font-size:10px
 }
@@ -292,22 +298,22 @@ box-shadow:0 0 20px #159bff12
 
 .searchIcon{
 position:absolute;
-right:14px;
-top:14px;
-font-size:15px
+right:15px;
+top:15px;
+font-size:16px
 }
 
 /* ================= SECTIONS ================= */
 
 .section{
-margin-top:23px
+margin-top:24px
 }
 
 .sectionHead{
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-bottom:11px
+margin-bottom:12px
 }
 
 .sectionHead h2{
@@ -315,7 +321,7 @@ font-size:15px
 }
 
 .sectionHead span{
-font-size:7px;
+font-size:8px;
 color:#7188a6
 }
 
@@ -326,7 +332,7 @@ color:#7188a6
 .lessonList,
 .contentGrid{
 display:grid;
-gap:8px
+gap:9px
 }
 
 .options{
@@ -336,8 +342,8 @@ grid-template-columns:repeat(4,1fr)
 .option{
 color:#fff;
 text-decoration:none;
-border-radius:15px;
-padding:14px 9px;
+border-radius:16px;
+padding:15px 10px;
 border:1px solid #ffffff17;
 transition:.25s
 }
@@ -348,14 +354,14 @@ box-shadow:0 12px 30px #0005
 }
 
 .optionIcon{
-width:31px;
-height:31px;
-border-radius:9px;
+width:34px;
+height:34px;
+border-radius:10px;
 display:flex;
 justify-content:center;
 align-items:center;
-font-size:14px;
-margin-bottom:7px
+font-size:15px;
+margin-bottom:8px
 }
 
 .option h3{
@@ -364,7 +370,7 @@ font-size:9px
 
 .option p{
 color:#ffffff9e;
-font-size:6px;
+font-size:7px;
 margin-top:4px
 }
 
@@ -403,8 +409,8 @@ background:#1ac29f
 /* ================= CHALLENGE ================= */
 
 .challenge{
-padding:17px;
-border-radius:17px;
+padding:18px;
+border-radius:18px;
 background:linear-gradient(135deg,#30205d,#151e4b);
 border:1px solid #b478ff2e
 }
@@ -434,8 +440,8 @@ line-height:1.8
 margin-top:10px;
 width:100%;
 border:0;
-padding:10px;
-border-radius:9px;
+padding:11px;
+border-radius:10px;
 color:#fff;
 background:linear-gradient(135deg,#8b54ff,#c247a6);
 font-size:9px
@@ -456,7 +462,7 @@ gap:7px
 border:1px solid #ffffff1c;
 background:#0a1832;
 color:#fff;
-padding:10px;
+padding:11px;
 border-radius:9px;
 font-size:9px
 }
@@ -479,7 +485,7 @@ grid-template-columns:repeat(3,1fr)
 }
 
 .stat{
-padding:13px 8px;
+padding:14px 8px;
 border-radius:13px;
 background:#0a1b35;
 border:1px solid #ffffff12;
@@ -488,7 +494,7 @@ text-align:center
 
 .stat strong{
 display:block;
-font-size:17px
+font-size:18px
 }
 
 .stat span{
@@ -534,13 +540,13 @@ transform:translateY(-2px)
 }
 
 .lessonIcon{
-width:43px;
-height:43px;
+width:42px;
+height:42px;
 border-radius:11px;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:18px;
+font-size:17px;
 background:linear-gradient(135deg,#00aeea,#5b51dc);
 flex-shrink:0
 }
@@ -555,7 +561,7 @@ flex:1
 }
 
 .lessonInfo h3{
-font-size:10px;
+font-size:9px;
 white-space:nowrap;
 overflow:hidden;
 text-overflow:ellipsis
@@ -570,25 +576,22 @@ overflow:hidden;
 text-overflow:ellipsis
 }
 
-/* زر المشاهدة أكبر */
-
 .watch{
 margin-right:auto;
 font-size:9px;
-font-weight:bold;
-padding:11px 13px;
-border-radius:10px;
+padding:9px 12px;
+border-radius:9px;
 white-space:nowrap;
-color:#fff;
-background:linear-gradient(135deg,#079fd3,#5b51dc);
-border:1px solid #ffffff25;
-box-shadow:0 5px 18px #087fb544;
-transition:.25s
+color:#4fdcff;
+background:#28c8ff14;
+border:1px solid #28c8ff30;
+font-weight:bold;
+cursor:pointer
 }
 
 .watch:hover{
-transform:scale(1.05);
-filter:brightness(1.15)
+background:#28c8ff25;
+transform:scale(1.03)
 }
 
 /* ================= CONTENT ================= */
@@ -598,23 +601,17 @@ grid-template-columns:repeat(3,1fr)
 }
 
 .contentCard{
-padding:15px 10px;
+padding:16px 11px;
 border-radius:14px;
 background:#0a1b36;
 border:1px solid #ffffff12;
-min-width:0;
-transition:.2s
-}
-
-.contentCard:hover{
-transform:translateY(-2px);
-border-color:#ffffff25
+min-width:0
 }
 
 .contentIcon{
-width:40px;
-height:40px;
-border-radius:11px;
+width:39px;
+height:39px;
+border-radius:10px;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -646,10 +643,9 @@ line-height:1.7;
 margin-top:5px
 }
 
-/* أزرار الملخصات والاختبارات والرومات */
-
 .contentButton{
 display:block;
+width:100%;
 margin-top:10px;
 padding:10px;
 border-radius:9px;
@@ -657,16 +653,14 @@ text-align:center;
 text-decoration:none;
 color:#fff;
 font-size:8px;
-font-weight:bold;
-background:linear-gradient(135deg,#174b73,#6241a5);
-border:1px solid #ffffff18;
+background:#ffffff14;
+border:1px solid #ffffff0e;
 cursor:pointer;
-transition:.2s
+font-family:inherit
 }
 
 .contentButton:hover{
-background:linear-gradient(135deg,#226a9b,#7b50c5);
-transform:translateY(-2px)
+background:#ffffff20
 }
 
 /* ================= SEARCH RESULTS ================= */
@@ -689,17 +683,23 @@ gap:7px
 display:flex;
 align-items:center;
 gap:9px;
-padding:10px;
+padding:11px;
 border-radius:12px;
 background:#0a1b36;
 border:1px solid #ffffff14;
 text-decoration:none;
-color:#fff
+color:#fff;
+transition:.2s
+}
+
+.result:hover{
+background:#0e2342;
+border-color:#48cfff30
 }
 
 .resultIcon{
-width:33px;
-height:33px;
+width:35px;
+height:35px;
 border-radius:9px;
 display:flex;
 align-items:center;
@@ -707,7 +707,7 @@ justify-content:center;
 flex-shrink:0
 }
 
-.type-video{
+.type-lesson{
 background:#087db5
 }
 
@@ -741,10 +741,9 @@ color:#7189a6;
 margin-top:4px
 }
 
-/* ================= VIDEO MODAL ================= */
+/* ================= MODALS ================= */
 
-.videoModal,
-.contentModal{
+.modalOverlay{
 position:fixed;
 inset:0;
 background:rgba(0,0,0,.88);
@@ -756,67 +755,63 @@ z-index:200;
 padding:15px
 }
 
-.videoModal.show,
-.contentModal.show{
+.modalOverlay.show{
 display:flex
 }
 
-.videoBox,
-.contentBox{
+.modalBox{
 width:100%;
 max-width:850px;
 max-height:92vh;
-overflow:auto;
+overflow:hidden;
 background:#08152d;
 border:1px solid #3ecfff38;
 border-radius:20px;
-padding:12px;
-box-shadow:0 25px 100px #000b
+box-shadow:0 25px 100px #000b;
+display:flex;
+flex-direction:column
 }
 
-.contentBox{
-max-width:700px
-}
-
-.videoHeader,
-.contentHeader{
+.modalHeader{
 display:flex;
 align-items:center;
 justify-content:space-between;
 gap:10px;
-padding:4px 5px 12px
+padding:13px 14px;
+border-bottom:1px solid #ffffff12;
+flex-shrink:0
 }
 
-.videoTitle,
-.contentTitle{
-font-size:14px;
-font-weight:bold
+.modalTitle{
+font-size:13px;
+font-weight:bold;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap
 }
 
-.videoClose,
-.contentClose{
+.modalClose{
 border:0;
 background:#ffffff12;
 color:#fff;
-width:38px;
-height:38px;
-border-radius:10px;
-font-size:22px;
-transition:.2s
+width:36px;
+height:36px;
+border-radius:9px;
+font-size:21px;
+flex-shrink:0
 }
 
-.videoClose:hover,
-.contentClose:hover{
-background:#ff4e681f;
-transform:rotate(90deg)
+.modalClose:hover{
+background:#ffffff20
 }
+
+/* VIDEO */
 
 .videoFrame{
 position:relative;
 width:100%;
 aspect-ratio:16/9;
 background:#000;
-border-radius:13px;
 overflow:hidden
 }
 
@@ -826,52 +821,122 @@ height:100%;
 border:0
 }
 
-.videoDescription,
-.contentDescription{
-padding:12px 5px 4px;
-font-size:9px;
+.videoDescription{
+padding:12px 15px 15px;
+font-size:8px;
 color:#8196b2;
-line-height:1.9
+line-height:1.8;
+overflow-y:auto;
+max-height:110px
 }
 
-/* عرض PDF داخل الموقع */
+/* SUMMARY */
 
-.pdfFrame{
+.summaryFrame{
 width:100%;
-height:65vh;
+height:70vh;
 min-height:400px;
 border:0;
-border-radius:12px;
 background:#fff
 }
 
-.contentInfo{
-background:#0c1b35;
-border:1px solid #ffffff12;
-border-radius:13px;
-padding:15px;
-margin-top:8px;
-line-height:2;
-font-size:9px;
-color:#9bb0c9
+.summaryOpenExternal{
+padding:10px 15px;
+border-top:1px solid #ffffff12;
+display:flex;
+gap:8px
 }
 
-.contentBigIcon{
-width:55px;
-height:55px;
-border-radius:15px;
+.summaryOpenExternal a{
+display:block;
+width:100%;
+text-align:center;
+padding:10px;
+border-radius:9px;
+background:#ffffff12;
+color:#fff;
+text-decoration:none;
+font-size:8px
+}
+
+/* TEST */
+
+.testContent{
+padding:25px 18px;
+overflow-y:auto
+}
+
+.testBigIcon{
+width:70px;
+height:70px;
+border-radius:20px;
+margin:0 auto 15px;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:25px;
-margin-bottom:12px
+font-size:32px;
+background:linear-gradient(135deg,#a95f18,#e0a32c);
+box-shadow:0 12px 35px #e0a32c22
+}
+
+.testContent h2{
+font-size:17px;
+text-align:center
+}
+
+.testDescription{
+font-size:9px;
+color:#879ab4;
+line-height:1.9;
+text-align:center;
+margin-top:8px
+}
+
+.testInfoGrid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:8px;
+margin-top:18px
+}
+
+.testInfo{
+padding:13px;
+border-radius:12px;
+background:#ffffff09;
+border:1px solid #ffffff10;
+text-align:center
+}
+
+.testInfo strong{
+display:block;
+font-size:17px;
+color:#ffd34e
+}
+
+.testInfo span{
+font-size:7px;
+color:#7189a6;
+display:block;
+margin-top:4px
+}
+
+.testNotice{
+margin-top:14px;
+padding:13px;
+border-radius:11px;
+background:#16304b;
+border:1px solid #43cfff25;
+color:#8fdfff;
+font-size:8px;
+line-height:1.8;
+text-align:center
 }
 
 /* ================= EMPTY ================= */
 
 .empty,
 .loading{
-padding:22px;
+padding:23px;
 border-radius:14px;
 text-align:center;
 color:#7188a4;
@@ -890,28 +955,12 @@ color:#65d8ff
 
 footer{
 text-align:center;
-padding:28px 0 18px;
+padding:30px 0 18px;
 color:#4e6682;
 font-size:7px
 }
 
-/* ================= LOGIN MODAL ================= */
-
-.modal{
-position:fixed;
-inset:0;
-background:#000b;
-backdrop-filter:blur(7px);
-display:none;
-align-items:center;
-justify-content:center;
-z-index:100;
-padding:20px
-}
-
-.modal.show{
-display:flex
-}
+/* ================= LOGIN ================= */
 
 .loginBox{
 width:100%;
@@ -945,7 +994,7 @@ line-height:1.8
 
 .loginBox input{
 width:100%;
-height:42px;
+height:43px;
 margin-bottom:9px;
 border:1px solid #ffffff1a;
 border-radius:10px;
@@ -956,9 +1005,13 @@ outline:none;
 font-size:10px
 }
 
+.loginBox input:focus{
+border-color:#43cfff55
+}
+
 .loginBox button.main{
 width:100%;
-height:42px;
+height:44px;
 border:0;
 border-radius:10px;
 color:#fff;
@@ -1014,9 +1067,21 @@ width:94%
 grid-template-columns:1fr
 }
 
+.contentGrid{
+grid-template-columns:repeat(2,1fr)
+}
+
 }
 
 @media(max-width:650px){
+
+header{
+height:78px
+}
+
+.header{
+width:94%
+}
 
 .options{
 grid-template-columns:repeat(4,1fr);
@@ -1027,6 +1092,10 @@ gap:5px
 grid-template-columns:1fr
 }
 
+.hero{
+padding:27px 20px
+}
+
 .hero h1{
 font-size:21px
 }
@@ -1035,31 +1104,25 @@ font-size:21px
 display:none
 }
 
+.studentBtn,
+.teacherBtn{
+min-height:45px;
+padding:10px 12px;
+font-size:9px
 }
 
-@media(max-width:520px){
-
-header{
-height:96px
 }
 
-.header{
-width:94%;
-gap:7px
-}
-
-.logo{
-gap:6px
-}
+@media(max-width:500px){
 
 .logoIcon{
-width:38px;
-height:38px;
+width:37px;
+height:37px;
 font-size:19px
 }
 
 .logoText{
-font-size:12px
+font-size:11px
 }
 
 .logoText small{
@@ -1072,15 +1135,54 @@ gap:5px
 
 .studentBtn,
 .teacherBtn{
-min-height:44px;
-padding:10px 9px;
-font-size:8px;
+min-height:43px;
+padding:8px 8px;
+font-size:7px;
 border-radius:11px
 }
 
+.userBox{
+padding:4px
 }
 
-@media(max-width:430px){
+.userBox span{
+display:none
+}
+
+.hero h1{
+font-size:19px
+}
+
+.hero p{
+font-size:8px
+}
+
+.answers{
+grid-template-columns:1fr
+}
+
+.lesson{
+padding:10px
+}
+
+.lessonIcon{
+width:39px;
+height:39px
+}
+
+.watch{
+font-size:8px;
+padding:8px 9px
+}
+
+.summaryFrame{
+height:65vh;
+min-height:350px
+}
+
+}
+
+@media(max-width:370px){
 
 .logoText{
 display:none
@@ -1088,30 +1190,26 @@ display:none
 
 .studentBtn,
 .teacherBtn{
-padding:10px 8px;
-font-size:7px
+padding:8px 6px;
+font-size:6px
 }
 
-.hero h1{
-font-size:19px
+.options{
+gap:4px
 }
 
-.answers{
-grid-template-columns:1fr
+.option{
+padding:12px 6px
 }
 
-.watch{
-font-size:8px;
-padding:10px 9px
+.optionIcon{
+width:29px;
+height:29px;
+font-size:12px
 }
 
-.lesson{
-gap:7px
-}
-
-.lessonIcon{
-width:40px;
-height:40px
+.option h3{
+font-size:8px
 }
 
 }
@@ -1120,7 +1218,7 @@ height:40px
 
 <body>
 
-<!-- ================= FALLING OBJECTS ================= -->
+<!-- ================= FALLING STARS & MATH ================= -->
 
 <div class="falling star" style="left:5%;animation-duration:9s;animation-delay:0s">★</div>
 <div class="falling math" style="left:14%;animation-duration:12s;animation-delay:2s">∑</div>
@@ -1131,6 +1229,8 @@ height:40px
 <div class="falling star" style="left:76%;animation-duration:10s;animation-delay:1s">✦</div>
 <div class="falling math" style="left:88%;animation-duration:15s;animation-delay:4s">△</div>
 <div class="falling star" style="left:94%;animation-duration:9s;animation-delay:6s">★</div>
+<div class="falling math" style="left:31%;animation-duration:16s;animation-delay:7s">∞</div>
+<div class="falling math" style="left:70%;animation-duration:17s;animation-delay:8s">x²</div>
 
 <header>
 
@@ -1138,7 +1238,9 @@ height:40px
 
 <div class="logo">
 
-<div class="logoIcon">∑</div>
+<div class="logoIcon">
+∑
+</div>
 
 <div class="logoText">
 منبر ون
@@ -1166,7 +1268,9 @@ href="teacher.html">
 class="userBox"
 id="userBox">
 
-<div class="userIcon">👨‍🎓</div>
+<div class="userIcon">
+👨‍🎓
+</div>
 
 <span id="userEmail">
 طالب
@@ -1189,6 +1293,8 @@ onclick="logoutStudent()">
 
 <div class="page">
 
+<!-- ================= HERO ================= -->
+
 <section class="hero">
 
 <div class="heroBadge">
@@ -1205,15 +1311,19 @@ onclick="logoutStudent()">
 
 </section>
 
+<!-- ================= SEARCH ================= -->
+
 <div class="search">
 
-<span class="searchIcon">🔎</span>
+<span class="searchIcon">
+🔎
+</span>
 
 <input
 id="search"
 type="text"
 placeholder="ابحث عن حصة أو ملخص أو اختبار أو روم..."
-oninput="searchEverything">
+oninput="searchEverything()">
 
 </div>
 
@@ -1227,50 +1337,106 @@ oninput="searchEverything">
 
 </div>
 
+<!-- ================= OPTIONS ================= -->
+
 <section class="section">
 
 <div class="sectionHead">
-<h2>🎯 ماذا تريد اليوم؟</h2>
-<span>أقسام المنصة</span>
+
+<h2>
+🎯 ماذا تريد اليوم؟
+</h2>
+
+<span>
+أقسام المنصة
+</span>
+
 </div>
 
 <div class="options">
 
 <a href="#lessons" class="option c1">
-<div class="optionIcon">🎥</div>
-<h3>الحصص</h3>
-<p>شاهد الدروس</p>
+
+<div class="optionIcon">
+🎥
+</div>
+
+<h3>
+الحصص
+</h3>
+
+<p>
+شاهد الدروس
+</p>
+
 </a>
 
 <a href="#summaries" class="option c2">
-<div class="optionIcon">📚</div>
-<h3>الملخصات</h3>
-<p>راجع القوانين</p>
+
+<div class="optionIcon">
+📚
+</div>
+
+<h3>
+الملخصات
+</h3>
+
+<p>
+راجع القوانين
+</p>
+
 </a>
 
 <a href="#tests" class="option c3">
-<div class="optionIcon">📝</div>
-<h3>الاختبارات</h3>
-<p>اختبر نفسك</p>
+
+<div class="optionIcon">
+📝
+</div>
+
+<h3>
+الاختبارات
+</h3>
+
+<p>
+اختبر نفسك
+</p>
+
 </a>
 
 <a href="#rooms" class="option c4">
-<div class="optionIcon">💬</div>
-<h3>الرومات</h3>
-<p>تعلّم مع الآخرين</p>
+
+<div class="optionIcon">
+💬
+</div>
+
+<h3>
+الرومات
+</h3>
+
+<p>
+تعلّم مع الآخرين
+</p>
+
 </a>
 
 </div>
 
 </section>
 
+<!-- ================= CHALLENGE ================= -->
+
 <section class="section">
 
 <div class="sectionHead">
-<h2>🔥 تحدي اليوم</h2>
+
+<h2>
+🔥 تحدي اليوم
+</h2>
+
 <span id="challengeProgress">
 السؤال 1 من 6
 </span>
+
 </div>
 
 <div class="challenge">
@@ -1283,15 +1449,25 @@ oninput="searchEverything">
 ابدأ بتحدي اليوم، ثم ستظهر 5 أسئلة أصعب تدريجيًا.
 </h3>
 
-<div id="challengeQuestion" class="question">
+<div
+id="challengeQuestion"
+class="question">
 8 × 7 + 4 = ؟
 </div>
 
-<div id="quizArea" class="quizArea">
+<div
+id="quizArea"
+class="quizArea">
 
-<div id="answers" class="answers"></div>
+<div
+id="answers"
+class="answers">
+</div>
 
-<div id="feedback" class="feedback"></div>
+<div
+id="feedback"
+class="feedback">
+</div>
 
 </div>
 
@@ -1305,28 +1481,58 @@ onclick="startOrAnswerChallenge()">
 
 </section>
 
+<!-- ================= STATS ================= -->
+
 <section class="section">
 
 <div class="sectionHead">
-<h2>🏆 مستواك</h2>
-<span>تقدمك</span>
+
+<h2>
+🏆 مستواك
+</h2>
+
+<span>
+تقدمك
+</span>
+
 </div>
 
 <div class="stats">
 
 <div class="stat points">
-<strong id="pointsStat">0</strong>
-<span>⭐ النقاط</span>
+
+<strong id="pointsStat">
+0
+</strong>
+
+<span>
+⭐ النقاط
+</span>
+
 </div>
 
 <div class="stat progress">
-<strong id="progressStat">0%</strong>
-<span>📊 التقدم</span>
+
+<strong id="progressStat">
+0%
+</strong>
+
+<span>
+📊 التقدم
+</span>
+
 </div>
 
 <div class="stat rank">
-<strong id="rankStat">🥉</strong>
-<span>المستوى</span>
+
+<strong id="rankStat">
+🥉
+</strong>
+
+<span>
+المستوى
+</span>
+
 </div>
 
 </div>
@@ -1335,68 +1541,120 @@ onclick="startOrAnswerChallenge()">
 
 <!-- ================= LESSONS ================= -->
 
-<section class="section" id="lessons">
+<section
+class="section"
+id="lessons">
 
 <div class="sectionHead">
-<h2>🎥 أحدث الحصص</h2>
-<span>من الأستاذ</span>
+
+<h2>
+🎥 أحدث الحصص
+</h2>
+
+<span>
+من الأستاذ
+</span>
+
 </div>
 
-<div id="lessonsContainer" class="lessonList">
+<div
+id="lessonsContainer"
+class="lessonList">
+
 <div class="loading">
 ⏳ جاري تحميل الحصص...
 </div>
+
 </div>
 
 </section>
 
 <!-- ================= SUMMARIES ================= -->
 
-<section class="section" id="summaries">
+<section
+class="section"
+id="summaries">
 
 <div class="sectionHead">
-<h2>📚 الملخصات</h2>
-<span>من الأستاذ</span>
+
+<h2>
+📚 الملخصات
+</h2>
+
+<span>
+من الأستاذ
+</span>
+
 </div>
 
-<div id="summariesContainer" class="contentGrid">
+<div
+id="summariesContainer"
+class="contentGrid">
+
 <div class="loading">
 ⏳ جاري تحميل الملخصات...
 </div>
+
 </div>
 
 </section>
 
 <!-- ================= TESTS ================= -->
 
-<section class="section" id="tests">
+<section
+class="section"
+id="tests">
 
 <div class="sectionHead">
-<h2>📝 الاختبارات</h2>
-<span>من الأستاذ</span>
+
+<h2>
+📝 الاختبارات
+</h2>
+
+<span>
+من الأستاذ
+</span>
+
 </div>
 
-<div id="testsContainer" class="contentGrid">
+<div
+id="testsContainer"
+class="contentGrid">
+
 <div class="loading">
 ⏳ جاري تحميل الاختبارات...
 </div>
+
 </div>
 
 </section>
 
 <!-- ================= ROOMS ================= -->
 
-<section class="section" id="rooms">
+<section
+class="section"
+id="rooms">
 
 <div class="sectionHead">
-<h2>💬 الرومات</h2>
-<span>من الأستاذ</span>
+
+<h2>
+💬 الرومات
+</h2>
+
+<span>
+من الأستاذ
+</span>
+
 </div>
 
-<div id="roomsContainer" class="contentGrid">
+<div
+id="roomsContainer"
+class="contentGrid">
+
 <div class="loading">
 ⏳ جاري تحميل الرومات...
 </div>
+
 </div>
 
 </section>
@@ -1407,25 +1665,26 @@ onclick="startOrAnswerChallenge()">
 
 </div>
 
-
 <!-- =====================================================
-VIDEO MODAL
+     VIDEO MODAL
 ===================================================== -->
 
-<div id="videoModal" class="videoModal">
+<div
+id="videoModal"
+class="modalOverlay">
 
-<div class="videoBox">
+<div class="modalBox">
 
-<div class="videoHeader">
+<div class="modalHeader">
 
 <div
-class="videoTitle"
+class="modalTitle"
 id="videoTitle">
 🎥 مشاهدة الحصة
 </div>
 
 <button
-class="videoClose"
+class="modalClose"
 onclick="closeVideo()">
 ×
 </button>
@@ -1452,44 +1711,141 @@ id="videoDescription">
 
 </div>
 
-
 <!-- =====================================================
-CONTENT MODAL
-للملخصات والاختبارات
+     SUMMARY MODAL
 ===================================================== -->
 
-<div id="contentModal" class="contentModal">
+<div
+id="summaryModal"
+class="modalOverlay">
 
-<div class="contentBox">
+<div class="modalBox">
 
-<div class="contentHeader">
+<div class="modalHeader">
 
 <div
-class="contentTitle"
-id="contentTitle">
-📚 المحتوى
+class="modalTitle"
+id="summaryTitle">
+📚 الملخص
 </div>
 
 <button
-class="contentClose"
-onclick="closeContent()">
+class="modalClose"
+onclick="closeSummary()">
 ×
 </button>
 
 </div>
 
-<div id="contentBody"></div>
+<iframe
+id="summaryFrame"
+class="summaryFrame"
+src=""
+title="عرض الملخص">
+</iframe>
+
+<div class="summaryOpenExternal">
+
+<a
+id="summaryExternalLink"
+href="#"
+target="_blank"
+rel="noopener noreferrer">
+↗️ فتح الملف في نافذة جديدة
+</a>
 
 </div>
 
 </div>
 
+</div>
 
 <!-- =====================================================
-LOGIN MODAL
+     TEST MODAL
 ===================================================== -->
 
-<div id="studentModal" class="modal">
+<div
+id="testModal"
+class="modalOverlay">
+
+<div class="modalBox">
+
+<div class="modalHeader">
+
+<div
+class="modalTitle"
+id="testModalTitle">
+📝 الاختبار
+</div>
+
+<button
+class="modalClose"
+onclick="closeTest()">
+×
+</button>
+
+</div>
+
+<div class="testContent">
+
+<div class="testBigIcon">
+📝
+</div>
+
+<h2 id="testBigTitle">
+اختبار رياضيات
+</h2>
+
+<p
+id="testDescription"
+class="testDescription">
+</p>
+
+<div class="testInfoGrid">
+
+<div class="testInfo">
+
+<strong id="testQuestionCount">
+0
+</strong>
+
+<span>
+عدد الأسئلة
+</span>
+
+</div>
+
+<div class="testInfo">
+
+<strong>
+📝
+</strong>
+
+<span>
+اختبار رياضيات
+</span>
+
+</div>
+
+</div>
+
+<div class="testNotice">
+ℹ️ تم تجهيز نافذة الاختبار داخل الموقع. لإظهار الأسئلة والإجابات نفسها، يجب أن نضيف جدول الأسئلة إلى Supabase لأن جدول <b>tests</b> الحالي يحتوي فقط على بيانات الاختبار الأساسية.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =====================================================
+     STUDENT LOGIN MODAL
+===================================================== -->
+
+<div
+id="studentModal"
+class="modalOverlay">
 
 <div class="loginBox">
 
@@ -1549,11 +1905,10 @@ onclick="switchAuthMode()">
 
 </div>
 
-
 <script>
 
 /* =====================================================
-SUPABASE
+   SUPABASE
 ===================================================== */
 
 const SUPABASE_URL =
@@ -1575,7 +1930,7 @@ let challengeAnswered=false;
 
 
 /* =====================================================
-CHALLENGES
+   CHALLENGES
 ===================================================== */
 
 const challenges=[
@@ -1626,12 +1981,12 @@ p:40
 
 
 /* =====================================================
-SAFE
+   SAFE TEXT
 ===================================================== */
 
 function safe(t){
 
-return String(t??"")
+return String(t ?? "")
 .replaceAll("&","&amp;")
 .replaceAll("<","&lt;")
 .replaceAll(">","&gt;")
@@ -1642,7 +1997,33 @@ return String(t??"")
 
 
 /* =====================================================
-SUPABASE REQUEST
+   SAFE URL
+===================================================== */
+
+function safeUrl(url){
+
+try{
+
+const u=new URL(String(url).trim());
+
+if(
+u.protocol==="http:" ||
+u.protocol==="https:"
+){
+
+return u.href;
+
+}
+
+}catch(e){}
+
+return "";
+
+}
+
+
+/* =====================================================
+   SUPABASE REQUEST
 ===================================================== */
 
 async function supabaseRequest(url,options={}){
@@ -1663,7 +2044,7 @@ apikey:SUPABASE_KEY,
 
 
 /* =====================================================
-GET TABLE
+   GET TABLE
 ===================================================== */
 
 async function getTable(table){
@@ -1674,7 +2055,18 @@ const r=await supabaseRequest(
 `${SUPABASE_URL}/rest/v1/${table}?select=*`
 );
 
-if(!r.ok)return [];
+if(!r.ok){
+
+console.error(
+"Supabase error:",
+table,
+r.status,
+await r.text()
+);
+
+return [];
+
+}
 
 const d=await r.json();
 
@@ -1682,7 +2074,11 @@ return Array.isArray(d)?d:[];
 
 }catch(e){
 
-console.error(e);
+console.error(
+"Connection error:",
+table,
+e
+);
 
 return [];
 
@@ -1692,19 +2088,19 @@ return [];
 
 
 /* =====================================================
-SORT
+   SORT
 ===================================================== */
 
 function sortNew(a,b){
 
-return new Date(b.created_at||0) -
+return new Date(b.created_at||0)-
 new Date(a.created_at||0);
 
 }
 
 
 /* =====================================================
-YOUTUBE ID
+   YOUTUBE ID
 ===================================================== */
 
 function getYoutubeId(url){
@@ -1713,12 +2109,24 @@ if(!url)return null;
 
 url=String(url).trim();
 
+if(
+/^[a-zA-Z0-9_-]{8,15}$/.test(url)
+){
+
+return url;
+
+}
+
 try{
 
 const u=new URL(url);
 
+const host=u.hostname.toLowerCase();
+
 if(
-u.hostname.includes("youtube.com") &&
+(host==="youtube.com" ||
+host==="www.youtube.com" ||
+host.endsWith(".youtube.com")) &&
 u.searchParams.get("v")
 ){
 
@@ -1726,43 +2134,44 @@ return u.searchParams.get("v");
 
 }
 
-if(u.hostname==="youtu.be"){
+if(
+host==="youtu.be"
+){
 
 return u.pathname
-.replace("/","")
+.replace(/^\/+/,"")
+.split("/")[0]
 .split("?")[0];
 
 }
 
 if(
-u.hostname.includes("youtube.com") &&
+host.includes("youtube.com") &&
 u.pathname.startsWith("/embed/")
 ){
 
 return u.pathname
 .split("/embed/")[1]
+.split("/")[0]
 .split("?")[0];
 
 }
 
 if(
-u.hostname.includes("youtube.com") &&
+host.includes("youtube.com") &&
 u.pathname.startsWith("/shorts/")
 ){
 
 return u.pathname
 .split("/shorts/")[1]
+.split("/")[0]
 .split("?")[0];
 
 }
 
 }catch(e){
 
-if(/^[a-zA-Z0-9_-]{8,15}$/.test(url)){
-
-return url;
-
-}
+console.error(e);
 
 }
 
@@ -1772,16 +2181,19 @@ return null;
 
 
 /* =====================================================
-OPEN VIDEO
+   OPEN VIDEO
 ===================================================== */
 
 function openVideo(url,title,description){
 
-const id=getYoutubeId(url);
+const cleanUrl=safeUrl(url);
+const id=getYoutubeId(cleanUrl);
 
 if(!id){
 
-alert("⚠️ رابط الفيديو غير صالح أو ليس رابط YouTube.");
+alert(
+"⚠️ رابط الفيديو غير صالح أو ليس رابط YouTube."
+);
 
 return;
 
@@ -1795,12 +2207,10 @@ frame.src=
 +encodeURIComponent(id)
 +"?rel=0&modestbranding=1";
 
-document.getElementById("videoTitle")
-.textContent=
+document.getElementById("videoTitle").textContent=
 "🎥 "+(title||"مشاهدة الحصة");
 
-document.getElementById("videoDescription")
-.textContent=
+document.getElementById("videoDescription").textContent=
 description||"";
 
 document
@@ -1813,7 +2223,7 @@ document.body.style.overflow="hidden";
 
 
 /* =====================================================
-CLOSE VIDEO
+   CLOSE VIDEO
 ===================================================== */
 
 function closeVideo(){
@@ -1822,9 +2232,7 @@ document
 .getElementById("videoModal")
 .classList.remove("show");
 
-document
-.getElementById("youtubeFrame")
-.src="";
+document.getElementById("youtubeFrame").src="";
 
 document.body.style.overflow="";
 
@@ -1832,76 +2240,38 @@ document.body.style.overflow="";
 
 
 /* =====================================================
-OPEN SUMMARY
+   OPEN SUMMARY
 ===================================================== */
 
 function openSummary(url,title,description){
 
-if(!url){
+const cleanUrl=safeUrl(url);
 
-alert("⚠️ لا يوجد ملف لهذا الملخص.");
+if(!cleanUrl){
+
+alert(
+"⚠️ رابط الملخص غير موجود أو غير صالح."
+);
 
 return;
 
 }
 
-const body=
-document.getElementById("contentBody");
-
-document.getElementById("contentTitle")
-.textContent=
+document.getElementById("summaryTitle").textContent=
 "📚 "+(title||"الملخص");
 
-const isPdf=
-/\.pdf($|\?)/i.test(url);
+const frame=
+document.getElementById("summaryFrame");
 
-if(isPdf){
+frame.src=cleanUrl;
 
-body.innerHTML=`
+const external=
+document.getElementById("summaryExternalLink");
 
-<iframe
-class="pdfFrame"
-src="${safe(url)}"
-title="الملخص">
-</iframe>
-
-<div class="contentDescription">
-${safe(description||"")}
-</div>
-
-`;
-
-}else{
-
-body.innerHTML=`
-
-<div class="contentInfo">
-
-<div
-class="contentBigIcon summaryIcon">
-📚
-</div>
-
-<div>
-${safe(description||"يمكنك فتح الملخص من هنا.")}
-</div>
-
-<a
-class="contentButton"
-href="${safe(url)}"
-target="_blank"
-rel="noopener">
-📖 فتح الملف
-</a>
-
-</div>
-
-`;
-
-}
+external.href=cleanUrl;
 
 document
-.getElementById("contentModal")
+.getElementById("summaryModal")
 .classList.add("show");
 
 document.body.style.overflow="hidden";
@@ -1910,99 +2280,16 @@ document.body.style.overflow="hidden";
 
 
 /* =====================================================
-OPEN TEST
+   CLOSE SUMMARY
 ===================================================== */
 
-function openTest(url,title,description,count){
-
-document.getElementById("contentTitle")
-.textContent=
-"📝 "+(title||"الاختبار");
-
-const body=
-document.getElementById("contentBody");
-
-if(url){
-
-body.innerHTML=`
-
-<iframe
-class="pdfFrame"
-src="${safe(url)}"
-title="الاختبار">
-</iframe>
-
-<div class="contentDescription">
-${safe(description||"")}
-</div>
-
-`;
-
-}else{
-
-body.innerHTML=`
-
-<div class="contentInfo">
-
-<div
-class="contentBigIcon testIcon">
-📝
-</div>
-
-<h3 style="font-size:13px;margin-bottom:8px">
-${safe(title||"اختبار رياضيات")}
-</h3>
-
-<p style="line-height:2;color:#8196b2">
-${safe(description||"اختبار رياضيات")}
-</p>
-
-<p style="margin-top:10px;color:#d9b34c">
-🔢 عدد الأسئلة:
-${count||"غير محدد"}
-</p>
-
-<div
-style="
-margin-top:12px;
-padding:12px;
-border-radius:10px;
-background:#ffffff08;
-color:#8196b2;
-font-size:8px;
-line-height:2">
-ℹ️ هذا الاختبار لا يحتوي حاليًا على رابط اختبار في قاعدة البيانات.
-<br>
-يمكننا لاحقًا إضافة رابط أو نظام أسئلة كامل داخل الموقع.
-</div>
-
-</div>
-
-`;
-
-}
+function closeSummary(){
 
 document
-.getElementById("contentModal")
-.classList.add("show");
-
-document.body.style.overflow="hidden";
-
-}
-
-
-/* =====================================================
-CLOSE CONTENT
-===================================================== */
-
-function closeContent(){
-
-document
-.getElementById("contentModal")
+.getElementById("summaryModal")
 .classList.remove("show");
 
-document.getElementById("contentBody")
-.innerHTML="";
+document.getElementById("summaryFrame").src="";
 
 document.body.style.overflow="";
 
@@ -2010,7 +2297,49 @@ document.body.style.overflow="";
 
 
 /* =====================================================
-LESSONS
+   OPEN TEST
+===================================================== */
+
+function openTest(title,description,count){
+
+document.getElementById("testModalTitle").textContent=
+"📝 "+(title||"الاختبار");
+
+document.getElementById("testBigTitle").textContent=
+title||"اختبار رياضيات";
+
+document.getElementById("testDescription").textContent=
+description||"اختبار رياضيات";
+
+document.getElementById("testQuestionCount").textContent=
+Number(count)||0;
+
+document
+.getElementById("testModal")
+.classList.add("show");
+
+document.body.style.overflow="hidden";
+
+}
+
+
+/* =====================================================
+   CLOSE TEST
+===================================================== */
+
+function closeTest(){
+
+document
+.getElementById("testModal")
+.classList.remove("show");
+
+document.body.style.overflow="";
+
+}
+
+
+/* =====================================================
+   LESSONS
 ===================================================== */
 
 async function loadLessons(){
@@ -2018,11 +2347,9 @@ async function loadLessons(){
 const box=
 document.getElementById("lessonsContainer");
 
-const data=
-await getTable("lessons");
+const data=await getTable("lessons");
 
-allLessons=
-data.sort(sortNew);
+allLessons=data.sort(sortNew);
 
 if(!data.length){
 
@@ -2077,15 +2404,14 @@ type="button">
 const btn=
 d.querySelector(".watch");
 
-btn.onclick=()=>{
-
-openVideo(
+btn.addEventListener(
+"click",
+()=>openVideo(
 url,
 x.title||"حصة رياضيات",
 x.description||""
+)
 );
-
-};
 
 }else{
 
@@ -2123,7 +2449,7 @@ box.appendChild(d);
 
 
 /* =====================================================
-SUMMARIES
+   SUMMARIES
 ===================================================== */
 
 async function loadSummaries(){
@@ -2131,8 +2457,7 @@ async function loadSummaries(){
 const data=
 await getTable("summaries");
 
-allSummaries=
-data.sort(sortNew);
+allSummaries=data.sort(sortNew);
 
 const box=
 document.getElementById("summariesContainer");
@@ -2140,7 +2465,7 @@ document.getElementById("summariesContainer");
 if(!data.length){
 
 box.innerHTML=
-'<div class="empty">📚 لا يوجد محتوى حتى الآن.</div>';
+'<div class="empty">📚 لا توجد ملخصات حتى الآن.</div>';
 
 return;
 
@@ -2150,8 +2475,14 @@ box.innerHTML="";
 
 data.forEach(x=>{
 
+const title=
+x.title||"ملخص درس";
+
+const description=
+x.description||"ملخص رياضيات";
+
 const url=
-String(x.file_url||"").trim();
+safeUrl(x.file_url||"");
 
 const d=
 document.createElement("div");
@@ -2165,31 +2496,40 @@ d.innerHTML=`
 </div>
 
 <h3>
-${safe(x.title||"ملخص درس")}
+${safe(title)}
 </h3>
 
 <p>
-${safe(x.description||"مراجعة الدرس")}
+${safe(description)}
 </p>
 
 <button
 class="contentButton"
 type="button">
-📖 فتح الملخص
+${url?"📖 فتح الملخص":"⚠️ لا يوجد ملف"}
 </button>
 
 `;
 
-d.querySelector(".contentButton")
-.onclick=()=>{
+const btn=
+d.querySelector(".contentButton");
 
-openSummary(
+if(url){
+
+btn.addEventListener(
+"click",
+()=>openSummary(
 url,
-x.title||"ملخص درس",
-x.description||""
+title,
+description
+)
 );
 
-};
+}else{
+
+btn.disabled=true;
+
+}
 
 box.appendChild(d);
 
@@ -2199,7 +2539,7 @@ box.appendChild(d);
 
 
 /* =====================================================
-TESTS
+   TESTS
 ===================================================== */
 
 async function loadTests(){
@@ -2207,8 +2547,7 @@ async function loadTests(){
 const data=
 await getTable("tests");
 
-allTests=
-data.sort(sortNew);
+allTests=data.sort(sortNew);
 
 const box=
 document.getElementById("testsContainer");
@@ -2226,18 +2565,14 @@ box.innerHTML="";
 
 data.forEach(x=>{
 
-/*
-يدعم test_url مستقبلًا
-حتى لو أضفته لجدول tests
-*/
+const title=
+x.title||"اختبار رياضيات";
 
-const url=
-String(
-x.test_url||
-x.url||
-x.link||
-""
-).trim();
+const description=
+x.description||"اختبار رياضيات";
+
+const count=
+Number(x.questions_count)||0;
 
 const d=
 document.createElement("div");
@@ -2251,13 +2586,13 @@ d.innerHTML=`
 </div>
 
 <h3>
-${safe(x.title||"اختبار رياضيات")}
+${safe(title)}
 </h3>
 
 <p>
-${safe(x.description||"اختبر نفسك")}
+${safe(description)}
 <br>
-🔢 ${safe(x.questions_count||"؟")} سؤال
+عدد الأسئلة: ${count}
 </p>
 
 <button
@@ -2269,16 +2604,14 @@ type="button">
 `;
 
 d.querySelector(".contentButton")
-.onclick=()=>{
-
-openTest(
-url,
-x.title||"اختبار رياضيات",
-x.description||"",
-x.questions_count
+.addEventListener(
+"click",
+()=>openTest(
+title,
+description,
+count
+)
 );
-
-};
 
 box.appendChild(d);
 
@@ -2288,7 +2621,7 @@ box.appendChild(d);
 
 
 /* =====================================================
-ROOMS
+   ROOMS
 ===================================================== */
 
 async function loadRooms(){
@@ -2296,8 +2629,7 @@ async function loadRooms(){
 const data=
 await getTable("rooms");
 
-allRooms=
-data.sort(sortNew);
+allRooms=data.sort(sortNew);
 
 const box=
 document.getElementById("roomsContainer");
@@ -2315,8 +2647,14 @@ box.innerHTML="";
 
 data.forEach(x=>{
 
+const title=
+x.name||x.title||"روم الدراسة";
+
+const description=
+x.description||"روم دراسي";
+
 const url=
-String(x.room_link||"").trim();
+safeUrl(x.room_link||"");
 
 const d=
 document.createElement("div");
@@ -2330,11 +2668,11 @@ d.innerHTML=`
 </div>
 
 <h3>
-${safe(x.name||"روم الدراسة")}
+${safe(title)}
 </h3>
 
 <p>
-${safe(x.description||"انضم إلى روم الدراسة")}
+${safe(description)}
 </p>
 
 ${
@@ -2344,7 +2682,7 @@ url
 class="contentButton"
 href="${safe(url)}"
 target="_blank"
-rel="noopener">
+rel="noopener noreferrer">
 💬 دخول الروم
 </a>`
 :
@@ -2363,7 +2701,7 @@ box.appendChild(d);
 
 
 /* =====================================================
-SEARCH
+   SEARCH
 ===================================================== */
 
 function searchEverything(){
@@ -2384,109 +2722,122 @@ document.getElementById("resultList");
 if(!text){
 
 box.classList.remove("show");
-
+list.innerHTML="";
 return;
 
 }
 
 box.classList.add("show");
 
-let r=[];
+let results=[];
+
+/* LESSONS */
 
 allLessons.forEach(x=>{
 
-if(
-JSON.stringify(x)
-.toLowerCase()
-.includes(text)
-){
+const searchable=[
+x.title,
+x.description,
+x.unit,
+x.duration
+]
+.join(" ")
+.toLowerCase();
 
-r.push({
+if(searchable.includes(text)){
 
+results.push({
 type:"lesson",
 icon:"🎥",
 name:"حصة",
 title:x.title||"حصة رياضيات",
 url:x.video_url||"",
 description:x.description||""
-
 });
 
 }
 
 });
+
+/* SUMMARIES */
 
 allSummaries.forEach(x=>{
 
-if(
-JSON.stringify(x)
-.toLowerCase()
-.includes(text)
-){
+const searchable=[
+x.title,
+x.description
+]
+.join(" ")
+.toLowerCase();
 
-r.push({
+if(searchable.includes(text)){
 
+results.push({
 type:"summary",
 icon:"📚",
 name:"ملخص",
-title:x.title||"ملخص",
+title:x.title||"ملخص درس",
 url:x.file_url||"",
 description:x.description||""
-
 });
 
 }
 
 });
+
+/* TESTS */
 
 allTests.forEach(x=>{
 
-if(
-JSON.stringify(x)
-.toLowerCase()
-.includes(text)
-){
+const searchable=[
+x.title,
+x.description,
+x.questions_count
+]
+.join(" ")
+.toLowerCase();
 
-r.push({
+if(searchable.includes(text)){
 
+results.push({
 type:"test",
 icon:"📝",
 name:"اختبار",
-title:x.title||"اختبار",
-url:x.test_url||x.url||x.link||"",
+title:x.title||"اختبار رياضيات",
 description:x.description||"",
-count:x.questions_count
-
+count:x.questions_count||0
 });
 
 }
 
 });
 
+/* ROOMS */
+
 allRooms.forEach(x=>{
 
-if(
-JSON.stringify(x)
-.toLowerCase()
-.includes(text)
-){
+const searchable=[
+x.name,
+x.description
+]
+.join(" ")
+.toLowerCase();
 
-r.push({
+if(searchable.includes(text)){
 
+results.push({
 type:"room",
 icon:"💬",
 name:"روم",
 title:x.name||"روم الدراسة",
-url:x.room_link||"",
-description:x.description||""
-
+url:x.room_link||""
 });
 
 }
 
 });
 
-if(!r.length){
+if(!results.length){
 
 list.innerHTML=
 '<div class="empty">🔍 لم نجد شيئًا مطابقًا.</div>';
@@ -2497,7 +2848,7 @@ return;
 
 list.innerHTML="";
 
-r.forEach(x=>{
+results.forEach(x=>{
 
 const d=
 document.createElement("div");
@@ -2528,50 +2879,49 @@ d.style.cursor="pointer";
 
 if(x.type==="lesson" && x.url){
 
-d.onclick=()=>{
-
-openVideo(
+d.onclick=()=>openVideo(
 x.url,
 x.title,
-x.description
+x.description||""
 );
 
-};
+}
 
-}else if(x.type==="summary"){
+else if(x.type==="summary" && x.url){
 
-d.onclick=()=>{
-
-openSummary(
+d.onclick=()=>openSummary(
 x.url,
 x.title,
-x.description
+x.description||""
 );
 
-};
+}
 
-}else if(x.type==="test"){
+else if(x.type==="test"){
 
-d.onclick=()=>{
-
-openTest(
-x.url,
+d.onclick=()=>openTest(
 x.title,
-x.description,
-x.count
+x.description||"",
+x.count||0
 );
 
-};
+}
 
-}else if(x.type==="room" && x.url){
+else if(x.type==="room" && x.url){
 
 d.onclick=()=>{
+
+const url=safeUrl(x.url);
+
+if(url){
 
 window.open(
-x.url,
+url,
 "_blank",
-"noopener"
+"noopener,noreferrer"
 );
+
+}
 
 };
 
@@ -2585,7 +2935,7 @@ list.appendChild(d);
 
 
 /* =====================================================
-USER
+   USER
 ===================================================== */
 
 function getSavedUser(){
@@ -2607,33 +2957,42 @@ return null;
 
 function updateUserInterface(user){
 
-document.getElementById("studentLoginButton")
-.style.display=
+document.getElementById(
+"studentLoginButton"
+).style.display=
 user?"none":"flex";
 
-document.getElementById("userBox")
-.style.display=
+document.getElementById(
+"userBox"
+).style.display=
 user?"flex":"none";
 
-document.getElementById("logoutButton")
-.style.display=
+document.getElementById(
+"logoutButton"
+).style.display=
 user?"flex":"none";
 
-document.getElementById("userEmail")
-.textContent=
+document.getElementById(
+"userEmail"
+).textContent=
 user?.email||"الطالب";
 
 }
 
 
 /* =====================================================
-LOGIN
+   LOGIN MESSAGE
 ===================================================== */
 
-function showAuthMessage(t,type="info"){
+function showAuthMessage(
+t,
+type="info"
+){
 
 const b=
-document.getElementById("studentMessage");
+document.getElementById(
+"studentMessage"
+);
 
 b.className=
 "message "+
@@ -2654,7 +3013,9 @@ b.textContent=t;
 function clearAuthMessage(){
 
 const b=
-document.getElementById("studentMessage");
+document.getElementById(
+"studentMessage"
+);
 
 b.className="message";
 
@@ -2662,6 +3023,10 @@ b.textContent="";
 
 }
 
+
+/* =====================================================
+   LOGIN MODAL
+===================================================== */
 
 function openStudentLogin(){
 
@@ -2698,32 +3063,37 @@ updateAuthWindow();
 
 function updateAuthWindow(){
 
-document.getElementById("authTitle")
-.textContent=
+document.getElementById(
+"authTitle"
+).textContent=
 isSignupMode
 ?"🧑‍🎓 إنشاء حساب طالب"
 :"👨‍🎓 دخول الطالب";
 
-document.getElementById("authDescription")
-.textContent=
+document.getElementById(
+"authDescription"
+).textContent=
 isSignupMode
 ?"أنشئ حسابك باستخدام البريد الإلكتروني وكلمة المرور."
 :"سجّل الدخول لمتابعة رحلتك التعليمية.";
 
-document.getElementById("authMainButton")
-.textContent=
+document.getElementById(
+"authMainButton"
+).textContent=
 isSignupMode
 ?"إنشاء الحساب"
 :"تسجيل الدخول";
 
-document.getElementById("switchText")
-.textContent=
+document.getElementById(
+"switchText"
+).textContent=
 isSignupMode
 ?"لديك حساب بالفعل؟"
 :"ليس لديك حساب؟";
 
-document.getElementById("switchButton")
-.textContent=
+document.getElementById(
+"switchButton"
+).textContent=
 isSignupMode
 ?"تسجيل الدخول"
 :"إنشاء حساب";
@@ -2734,7 +3104,7 @@ clearAuthMessage();
 
 
 /* =====================================================
-STUDENT AUTH
+   STUDENT AUTH
 ===================================================== */
 
 async function studentAuth(){
@@ -2751,8 +3121,9 @@ document
 .value;
 
 const btn=
-document
-.getElementById("authMainButton");
+document.getElementById(
+"authMainButton"
+);
 
 clearAuthMessage();
 
@@ -2797,7 +3168,9 @@ method:"POST",
 body:JSON.stringify({
 email,
 password,
-data:{role:"student"}
+data:{
+role:"student"
+}
 })
 }
 );
@@ -2817,7 +3190,9 @@ d.message||
 "error"
 );
 
-}else if(d.access_token){
+}
+
+else if(d.access_token){
 
 saveSession(d);
 
@@ -2831,7 +3206,9 @@ closeStudentLogin,
 700
 );
 
-}else{
+}
+
+else{
 
 showAuthMessage(
 "✅ تم إنشاء الحساب. افتح رسالة البريد للتأكيد ثم سجّل الدخول.",
@@ -2840,7 +3217,9 @@ showAuthMessage(
 
 }
 
-}else{
+}
+
+else{
 
 showAuthMessage(
 "⏳ جاري تسجيل الدخول...",
@@ -2868,12 +3247,15 @@ showAuthMessage(
 (
 d.error_description||
 d.msg||
+d.message||
 "البريد أو كلمة المرور غير صحيحة."
 ),
 "error"
 );
 
-}else{
+}
+
+else{
 
 saveSession(d);
 
@@ -2908,7 +3290,7 @@ btn.disabled=false;
 
 
 /* =====================================================
-SESSION
+   SESSION
 ===================================================== */
 
 function saveSession(d){
@@ -2947,13 +3329,18 @@ d.user||getSavedUser()
 }
 
 
+/* =====================================================
+   RESTORE SESSION
+===================================================== */
+
 async function restoreSession(){
 
 const token=
-localStorage.getItem("minbar_access_token");
+localStorage.getItem(
+"minbar_access_token"
+);
 
-const saved=
-getSavedUser();
+const saved=getSavedUser();
 
 if(!token){
 
@@ -2970,15 +3357,15 @@ await supabaseRequest(
 `${SUPABASE_URL}/auth/v1/user`,
 {
 headers:{
-Authorization:`Bearer ${token}`
+Authorization:
+`Bearer ${token}`
 }
 }
 );
 
 if(r.ok){
 
-const u=
-await r.json();
+const u=await r.json();
 
 localStorage.setItem(
 "minbar_user",
@@ -2987,7 +3374,21 @@ JSON.stringify(u)
 
 updateUserInterface(u);
 
-}else{
+}
+
+else{
+
+localStorage.removeItem(
+"minbar_access_token"
+);
+
+localStorage.removeItem(
+"minbar_refresh_token"
+);
+
+localStorage.removeItem(
+"minbar_user"
+);
 
 updateUserInterface(null);
 
@@ -3003,13 +3404,15 @@ updateUserInterface(saved);
 
 
 /* =====================================================
-LOGOUT
+   LOGOUT
 ===================================================== */
 
 async function logoutStudent(){
 
 const token=
-localStorage.getItem("minbar_access_token");
+localStorage.getItem(
+"minbar_access_token"
+);
 
 try{
 
@@ -3020,14 +3423,19 @@ await supabaseRequest(
 {
 method:"POST",
 headers:{
-Authorization:`Bearer ${token}`
+Authorization:
+`Bearer ${token}`
 }
 }
 );
 
 }
 
-}catch{}
+}catch(e){
+
+console.error(e);
+
+}
 
 [
 "minbar_access_token",
@@ -3040,64 +3448,104 @@ k=>localStorage.removeItem(k)
 
 updateUserInterface(null);
 
-alert("تم تسجيل الخروج 👋");
+alert(
+"تم تسجيل الخروج 👋"
+);
 
 }
 
 
 /* =====================================================
-STATS
+   STATS
 ===================================================== */
 
 function loadStats(){
 
-const s=
-JSON.parse(
+let s;
+
+try{
+
+s=JSON.parse(
 localStorage.getItem("minbar_stats")
 ||
 '{"points":0,"answered":0}'
 );
 
-document.getElementById("pointsStat")
-.textContent=s.points;
+}catch{
 
-document.getElementById("progressStat")
-.textContent=
+s={
+points:0,
+answered:0
+};
+
+}
+
+const points=
+Number(s.points)||0;
+
+const answered=
+Number(s.answered)||0;
+
+document.getElementById(
+"pointsStat"
+).textContent=points;
+
+document.getElementById(
+"progressStat"
+).textContent=
 Math.min(
 100,
-Math.round(s.answered/6*100)
+Math.round(answered/6*100)
 )+"%";
 
-document.getElementById("rankStat")
-.textContent=
-s.points>=100
+document.getElementById(
+"rankStat"
+).textContent=
+points>=100
 ?"🏆"
 :
-s.points>=60
+points>=60
 ?"🥇"
 :
-s.points>=30
+points>=30
 ?"🥈"
 :"🥉";
 
 }
 
 
+/* =====================================================
+   ADD POINTS
+===================================================== */
+
 function addPoints(p){
 
-const s=
-JSON.parse(
+let s;
+
+try{
+
+s=JSON.parse(
 localStorage.getItem("minbar_stats")
 ||
 '{"points":0,"answered":0}'
 );
 
-s.points+=p;
+}catch{
+
+s={
+points:0,
+answered:0
+};
+
+}
+
+s.points=
+(Number(s.points)||0)+Number(p||0);
 
 s.answered=
 Math.min(
 6,
-s.answered+1
+(Number(s.answered)||0)+1
 );
 
 localStorage.setItem(
@@ -3111,7 +3559,7 @@ loadStats();
 
 
 /* =====================================================
-CHALLENGE
+   CHALLENGE
 ===================================================== */
 
 function startOrAnswerChallenge(){
@@ -3128,30 +3576,6 @@ return;
 
 if(challengeAnswered){
 
-if(challengeIndex<5){
-
-challengeIndex++;
-
-showChallenge();
-
-}else{
-
-document
-.getElementById("challengeButton")
-.disabled=true;
-
-document
-.getElementById("challengeButton")
-.textContent=
-"🎉 أكملت تحدي اليوم";
-
-document
-.getElementById("challengeTitle")
-.textContent=
-"أحسنت! أكملت تحدي اليوم كاملًا.";
-
-}
-
 return;
 
 }
@@ -3159,51 +3583,54 @@ return;
 const correct=
 challenges[challengeIndex].c;
 
-const chosen=
-Number(
+const selected=
 document.querySelector(
 'input[name="answer"]:checked'
-)?.value
 );
 
-if(Number.isNaN(chosen)){
+if(!selected){
 
-document
-.getElementById("feedback")
-.textContent=
+document.getElementById(
+"feedback"
+).textContent=
 "اختر إجابة أولًا 🙂";
 
 return;
 
 }
 
+const chosen=
+Number(selected.value);
+
 challengeAnswered=true;
 
 if(chosen===correct){
 
-document
-.getElementById("feedback")
-.textContent=
+document.getElementById(
+"feedback"
+).textContent=
 `✅ إجابة صحيحة! +${challenges[challengeIndex].p} نقطة 🎉`;
 
 addPoints(
 challenges[challengeIndex].p
 );
 
-}else{
+}
 
-document
-.getElementById("feedback")
-.textContent=
+else{
+
+document.getElementById(
+"feedback"
+).textContent=
 `❌ ليست صحيحة. الإجابة: ${
 challenges[challengeIndex].a[correct]
 }`;
 
 }
 
-document
-.getElementById("challengeButton")
-.textContent=
+document.getElementById(
+"challengeButton"
+).textContent=
 challengeIndex<5
 ?"السؤال التالي"
 :"إنهاء التحدي";
@@ -3211,27 +3638,32 @@ challengeIndex<5
 }
 
 
+/* =====================================================
+   SHOW CHALLENGE
+===================================================== */
+
 function showChallenge(){
 
 const x=
 challenges[challengeIndex];
 
-document
-.getElementById("challengeProgress")
-.textContent=
+document.getElementById(
+"challengeProgress"
+).textContent=
 `السؤال ${challengeIndex+1} من 6`;
 
-document
-.getElementById("challengeQuestion")
-.textContent=x.q;
+document.getElementById(
+"challengeQuestion"
+).textContent=
+x.q;
 
-document
-.getElementById("feedback")
-.textContent="";
+document.getElementById(
+"feedback"
+).textContent="";
 
-document
-.getElementById("answers")
-.innerHTML=
+document.getElementById(
+"answers"
+).innerHTML=
 x.a.map(
 (v,i)=>
 `
@@ -3245,13 +3677,13 @@ ${safe(v)}
 `
 ).join("");
 
-document
-.getElementById("quizArea")
-.style.display="block";
+document.getElementById(
+"quizArea"
+).style.display="block";
 
-document
-.getElementById("challengeButton")
-.textContent=
+document.getElementById(
+"challengeButton"
+).textContent=
 "تأكيد الإجابة";
 
 challengeAnswered=false;
@@ -3260,50 +3692,46 @@ challengeAnswered=false;
 
 
 /* =====================================================
-MODAL CLICK OUTSIDE
+   CHALLENGE BUTTON FIX
 ===================================================== */
 
 document
-.getElementById("studentModal")
+.getElementById("challengeButton")
 .addEventListener(
 "click",
-e=>{
+()=>{
 
-if(e.target===e.currentTarget){
+if(
+challengeStarted &&
+challengeAnswered
+){
 
-closeStudentLogin();
+if(challengeIndex<5){
+
+challengeIndex++;
+
+showChallenge();
 
 }
 
-}
+else{
+
+const button=
+document.getElementById(
+"challengeButton"
 );
 
+button.disabled=true;
 
-document
-.getElementById("videoModal")
-.addEventListener(
-"click",
-e=>{
+button.textContent=
+"🎉 أكملت تحدي اليوم";
 
-if(e.target===e.currentTarget){
-
-closeVideo();
-
-}
+document.getElementById(
+"challengeTitle"
+).textContent=
+"أحسنت! أكملت تحدي اليوم كاملًا.";
 
 }
-);
-
-
-document
-.getElementById("contentModal")
-.addEventListener(
-"click",
-e=>{
-
-if(e.target===e.currentTarget){
-
-closeContent();
 
 }
 
@@ -3312,7 +3740,49 @@ closeContent();
 
 
 /* =====================================================
-ESC
+   MODAL OUTSIDE CLICK
+===================================================== */
+
+[
+"studentModal",
+"videoModal",
+"summaryModal",
+"testModal"
+
+].forEach(id=>{
+
+document
+.getElementById(id)
+.addEventListener(
+"click",
+e=>{
+
+if(
+e.target===e.currentTarget
+){
+
+if(id==="studentModal")
+closeStudentLogin();
+
+if(id==="videoModal")
+closeVideo();
+
+if(id==="summaryModal")
+closeSummary();
+
+if(id==="testModal")
+closeTest();
+
+}
+
+}
+);
+
+});
+
+
+/* =====================================================
+   ESC KEY
 ===================================================== */
 
 document.addEventListener(
@@ -3322,7 +3792,8 @@ e=>{
 if(e.key==="Escape"){
 
 closeVideo();
-closeContent();
+closeSummary();
+closeTest();
 closeStudentLogin();
 
 }
@@ -3332,7 +3803,7 @@ closeStudentLogin();
 
 
 /* =====================================================
-START
+   START SITE
 ===================================================== */
 
 async function startSite(){
