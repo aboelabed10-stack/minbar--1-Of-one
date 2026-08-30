@@ -43,8 +43,8 @@ z-index:2
 /* ================= HEADER ================= */
 
 header{
-height:78px;
-background:rgba(5,13,32,.94);
+height:88px;
+background:rgba(5,13,32,.96);
 backdrop-filter:blur(15px);
 border-bottom:1px solid #ffffff18;
 position:sticky;
@@ -60,69 +60,78 @@ margin:auto;
 display:flex;
 align-items:center;
 justify-content:space-between;
-gap:10px
+gap:15px
 }
 
 .logo{
 display:flex;
 align-items:center;
-gap:9px
+gap:10px
 }
 
 .logoIcon{
-width:42px;
-height:42px;
-border-radius:13px;
+width:46px;
+height:46px;
+border-radius:14px;
 display:flex;
 align-items:center;
 justify-content:center;
 background:linear-gradient(135deg,#12c9ff,#855cff);
-font-size:21px;
+font-size:23px;
 box-shadow:0 0 25px #268dff44
 }
 
 .logoText{
-font-size:15px;
+font-size:16px;
 font-weight:bold
 }
 
 .logoText small{
 display:block;
 color:#7187a7;
-font-size:6px;
+font-size:7px;
 margin-top:3px
 }
 
 .loginButtons{
 display:flex;
-gap:8px;
+gap:10px;
 align-items:center
 }
+
+/* أزرار الدخول أكبر */
 
 .studentBtn,
 .teacherBtn,
 .logoutBtn{
-border:0;
+border:1px solid #ffffff25;
 color:#fff;
-font-size:9px;
-padding:11px 13px;
-border-radius:11px;
+font-size:11px;
+padding:14px 17px;
+min-height:48px;
+border-radius:14px;
 display:flex;
 align-items:center;
-gap:6px;
+justify-content:center;
+gap:8px;
 transition:.25s;
-font-weight:bold
+font-weight:bold;
+box-shadow:0 7px 25px #0004
 }
 
 .studentBtn{
 background:linear-gradient(135deg,#087fb5,#7450d8);
-box-shadow:0 5px 20px #087fb544
+box-shadow:
+0 7px 25px #087fb544,
+inset 0 1px #ffffff25
 }
 
 .teacherBtn{
 background:linear-gradient(135deg,#6346a7,#287eb8);
 text-decoration:none;
-box-shadow:0 5px 20px #287eb844
+box-shadow:
+0 7px 25px #287eb844,
+inset 0 1px #ffffff25
 }
 
 .logoutBtn{
@@ -133,7 +142,7 @@ display:none
 .studentBtn:hover,
 .teacherBtn:hover,
 .logoutBtn:hover{
-transform:translateY(-2px);
+transform:translateY(-3px) scale(1.02);
 filter:brightness(1.12)
 }
 
@@ -143,23 +152,23 @@ align-items:center;
 gap:7px;
 background:#0b1b36;
 border:1px solid #ffffff17;
-padding:5px 8px;
-border-radius:10px;
-font-size:7px;
+padding:6px 9px;
+border-radius:12px;
+font-size:8px;
 color:#a9bdd5
 }
 
 .userIcon{
-width:29px;
-height:29px;
-border-radius:8px;
+width:32px;
+height:32px;
+border-radius:9px;
 display:flex;
 align-items:center;
 justify-content:center;
 background:linear-gradient(135deg,#12c9ff,#855cff)
 }
 
-/* ================= FALLING STARS ================= */
+/* ================= FALLING ================= */
 
 .falling{
 position:fixed;
@@ -167,8 +176,7 @@ top:-40px;
 z-index:1;
 pointer-events:none;
 animation:fall linear infinite;
-opacity:.7;
-font-weight:bold
+opacity:.7
 }
 
 .falling.star{
@@ -177,10 +185,6 @@ color:#80dfff
 
 .falling.math{
 color:#a77cff
-}
-
-.falling.tool{
-color:#6fe8c8
 }
 
 @keyframes fall{
@@ -515,8 +519,8 @@ grid-template-columns:repeat(2,1fr)
 .lesson{
 display:flex;
 align-items:center;
-gap:9px;
-padding:12px;
+gap:10px;
+padding:13px;
 border-radius:14px;
 background:#0a1b36;
 border:1px solid #64aae61a;
@@ -530,13 +534,13 @@ transform:translateY(-2px)
 }
 
 .lessonIcon{
-width:38px;
-height:38px;
-border-radius:10px;
+width:43px;
+height:43px;
+border-radius:11px;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:15px;
+font-size:18px;
 background:linear-gradient(135deg,#00aeea,#5b51dc);
 flex-shrink:0
 }
@@ -551,7 +555,7 @@ flex:1
 }
 
 .lessonInfo h3{
-font-size:9px;
+font-size:10px;
 white-space:nowrap;
 overflow:hidden;
 text-overflow:ellipsis
@@ -566,20 +570,25 @@ overflow:hidden;
 text-overflow:ellipsis
 }
 
+/* زر المشاهدة أكبر */
+
 .watch{
 margin-right:auto;
-font-size:7px;
-padding:7px 9px;
-border-radius:7px;
+font-size:9px;
+font-weight:bold;
+padding:11px 13px;
+border-radius:10px;
 white-space:nowrap;
-color:#4fdcff;
-background:#28c8ff14;
-border:1px solid #28c8ff20
+color:#fff;
+background:linear-gradient(135deg,#079fd3,#5b51dc);
+border:1px solid #ffffff25;
+box-shadow:0 5px 18px #087fb544;
+transition:.25s
 }
 
 .watch:hover{
-background:#28c8ff25;
-transform:scale(1.03)
+transform:scale(1.05);
+filter:brightness(1.15)
 }
 
 /* ================= CONTENT ================= */
@@ -593,17 +602,23 @@ padding:15px 10px;
 border-radius:14px;
 background:#0a1b36;
 border:1px solid #ffffff12;
-min-width:0
+min-width:0;
+transition:.2s
+}
+
+.contentCard:hover{
+transform:translateY(-2px);
+border-color:#ffffff25
 }
 
 .contentIcon{
-width:36px;
-height:36px;
-border-radius:10px;
+width:40px;
+height:40px;
+border-radius:11px;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:17px;
+font-size:18px;
 margin-bottom:9px
 }
 
@@ -631,22 +646,27 @@ line-height:1.7;
 margin-top:5px
 }
 
+/* أزرار الملخصات والاختبارات والرومات */
+
 .contentButton{
 display:block;
 margin-top:10px;
-padding:8px;
-border-radius:8px;
+padding:10px;
+border-radius:9px;
 text-align:center;
 text-decoration:none;
 color:#fff;
-font-size:7px;
-background:#ffffff14;
-border:0;
-cursor:pointer
+font-size:8px;
+font-weight:bold;
+background:linear-gradient(135deg,#174b73,#6241a5);
+border:1px solid #ffffff18;
+cursor:pointer;
+transition:.2s
 }
 
 .contentButton:hover{
-background:#ffffff20
+background:linear-gradient(135deg,#226a9b,#7b50c5);
+transform:translateY(-2px)
 }
 
 /* ================= SEARCH RESULTS ================= */
@@ -675,11 +695,6 @@ background:#0a1b36;
 border:1px solid #ffffff14;
 text-decoration:none;
 color:#fff
-}
-
-.result:hover{
-background:#0e2344;
-border-color:#35cfff38
 }
 
 .resultIcon{
@@ -728,11 +743,12 @@ margin-top:4px
 
 /* ================= VIDEO MODAL ================= */
 
-.videoModal{
+.videoModal,
+.contentModal{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,.90);
-backdrop-filter:blur(10px);
+background:rgba(0,0,0,.88);
+backdrop-filter:blur(9px);
 display:none;
 align-items:center;
 justify-content:center;
@@ -740,33 +756,30 @@ z-index:200;
 padding:15px
 }
 
-.videoModal.show{
+.videoModal.show,
+.contentModal.show{
 display:flex
 }
 
-.videoBox{
+.videoBox,
+.contentBox{
 width:100%;
 max-width:850px;
-background:linear-gradient(145deg,#08152d,#111b3c);
-border:1px solid #3ecfff45;
+max-height:92vh;
+overflow:auto;
+background:#08152d;
+border:1px solid #3ecfff38;
 border-radius:20px;
 padding:12px;
-box-shadow:0 25px 100px #000b;
-animation:videoOpen .25s ease
+box-shadow:0 25px 100px #000b
 }
 
-@keyframes videoOpen{
-from{
-transform:scale(.94);
-opacity:0
-}
-to{
-transform:scale(1);
-opacity:1
-}
+.contentBox{
+max-width:700px
 }
 
-.videoHeader{
+.videoHeader,
+.contentHeader{
 display:flex;
 align-items:center;
 justify-content:space-between;
@@ -774,27 +787,28 @@ gap:10px;
 padding:4px 5px 12px
 }
 
-.videoTitle{
-font-size:13px;
-font-weight:bold;
-overflow:hidden;
-text-overflow:ellipsis;
-white-space:nowrap
+.videoTitle,
+.contentTitle{
+font-size:14px;
+font-weight:bold
 }
 
-.videoClose{
+.videoClose,
+.contentClose{
 border:0;
 background:#ffffff12;
 color:#fff;
-width:34px;
-height:34px;
-border-radius:9px;
-font-size:21px;
-flex-shrink:0
+width:38px;
+height:38px;
+border-radius:10px;
+font-size:22px;
+transition:.2s
 }
 
-.videoClose:hover{
-background:#ff526522
+.videoClose:hover,
+.contentClose:hover{
+background:#ff4e681f;
+transform:rotate(90deg)
 }
 
 .videoFrame{
@@ -809,37 +823,48 @@ overflow:hidden
 .videoFrame iframe{
 width:100%;
 height:100%;
-border:0;
-display:block
+border:0
 }
 
-.videoDescription{
+.videoDescription,
+.contentDescription{
 padding:12px 5px 4px;
-font-size:8px;
+font-size:9px;
 color:#8196b2;
-line-height:1.8
+line-height:1.9
 }
 
-.youtubeFallback{
-display:none;
-text-align:center;
-padding:15px 5px 5px
+/* عرض PDF داخل الموقع */
+
+.pdfFrame{
+width:100%;
+height:65vh;
+min-height:400px;
+border:0;
+border-radius:12px;
+background:#fff
 }
 
-.youtubeFallback p{
-font-size:8px;
-color:#8296b2;
-margin-bottom:9px
+.contentInfo{
+background:#0c1b35;
+border:1px solid #ffffff12;
+border-radius:13px;
+padding:15px;
+margin-top:8px;
+line-height:2;
+font-size:9px;
+color:#9bb0c9
 }
 
-.youtubeFallback a{
-display:inline-block;
-background:linear-gradient(135deg,#087fb5,#7450d8);
-color:#fff;
-text-decoration:none;
-padding:9px 15px;
-border-radius:9px;
-font-size:8px
+.contentBigIcon{
+width:55px;
+height:55px;
+border-radius:15px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:25px;
+margin-bottom:12px
 }
 
 /* ================= EMPTY ================= */
@@ -1012,21 +1037,59 @@ display:none
 
 }
 
-@media(max-width:430px){
+@media(max-width:520px){
+
+header{
+height:96px
+}
+
+.header{
+width:94%;
+gap:7px
+}
+
+.logo{
+gap:6px
+}
 
 .logoIcon{
-width:35px;
-height:35px
+width:38px;
+height:38px;
+font-size:19px
 }
 
 .logoText{
-font-size:11px
+font-size:12px
+}
+
+.logoText small{
+font-size:5px
+}
+
+.loginButtons{
+gap:5px
 }
 
 .studentBtn,
 .teacherBtn{
-padding:8px 7px;
-font-size:6px
+min-height:44px;
+padding:10px 9px;
+font-size:8px;
+border-radius:11px
+}
+
+}
+
+@media(max-width:430px){
+
+.logoText{
+display:none
+}
+
+.studentBtn,
+.teacherBtn{
+padding:10px 8px;
+font-size:7px
 }
 
 .hero h1{
@@ -1037,27 +1100,18 @@ font-size:19px
 grid-template-columns:1fr
 }
 
-.loginButtons{
-gap:4px
+.watch{
+font-size:8px;
+padding:10px 9px
 }
 
-.videoModal{
-padding:8px
+.lesson{
+gap:7px
 }
 
-.videoBox{
-border-radius:15px;
-padding:8px
-}
-
-.videoTitle{
-font-size:10px
-}
-
-.videoClose{
-width:30px;
-height:30px;
-font-size:18px
+.lessonIcon{
+width:40px;
+height:40px
 }
 
 }
@@ -1077,9 +1131,6 @@ font-size:18px
 <div class="falling star" style="left:76%;animation-duration:10s;animation-delay:1s">✦</div>
 <div class="falling math" style="left:88%;animation-duration:15s;animation-delay:4s">△</div>
 <div class="falling star" style="left:94%;animation-duration:9s;animation-delay:6s">★</div>
-<div class="falling tool" style="left:31%;animation-duration:16s;animation-delay:7s">📐</div>
-<div class="falling tool" style="left:58%;animation-duration:17s;animation-delay:2s">📏</div>
-<div class="falling tool" style="left:82%;animation-duration:18s;animation-delay:8s">✏️</div>
 
 <header>
 
@@ -1102,17 +1153,13 @@ font-size:18px
 class="studentBtn"
 id="studentLoginButton"
 onclick="openStudentLogin()">
-
 👨‍🎓 دخول الطالب
-
 </button>
 
 <a
 class="teacherBtn"
 href="teacher.html">
-
 👨‍🏫 دخول الأستاذ
-
 </a>
 
 <div
@@ -1121,7 +1168,9 @@ id="userBox">
 
 <div class="userIcon">👨‍🎓</div>
 
-<span id="userEmail">طالب</span>
+<span id="userEmail">
+طالب
+</span>
 
 </div>
 
@@ -1129,9 +1178,7 @@ id="userBox">
 class="logoutBtn"
 id="logoutButton"
 onclick="logoutStudent()">
-
 🚪 خروج
-
 </button>
 
 </div>
@@ -1166,7 +1213,7 @@ onclick="logoutStudent()">
 id="search"
 type="text"
 placeholder="ابحث عن حصة أو ملخص أو اختبار أو روم..."
-oninput="searchEverything()">
+oninput="searchEverything">
 
 </div>
 
@@ -1183,53 +1230,34 @@ oninput="searchEverything()">
 <section class="section">
 
 <div class="sectionHead">
-
 <h2>🎯 ماذا تريد اليوم؟</h2>
-
 <span>أقسام المنصة</span>
-
 </div>
 
 <div class="options">
 
 <a href="#lessons" class="option c1">
-
 <div class="optionIcon">🎥</div>
-
 <h3>الحصص</h3>
-
 <p>شاهد الدروس</p>
-
 </a>
 
 <a href="#summaries" class="option c2">
-
 <div class="optionIcon">📚</div>
-
 <h3>الملخصات</h3>
-
 <p>راجع القوانين</p>
-
 </a>
 
 <a href="#tests" class="option c3">
-
 <div class="optionIcon">📝</div>
-
 <h3>الاختبارات</h3>
-
 <p>اختبر نفسك</p>
-
 </a>
 
 <a href="#rooms" class="option c4">
-
 <div class="optionIcon">💬</div>
-
 <h3>الرومات</h3>
-
 <p>تعلّم مع الآخرين</p>
-
 </a>
 
 </div>
@@ -1239,13 +1267,10 @@ oninput="searchEverything()">
 <section class="section">
 
 <div class="sectionHead">
-
 <h2>🔥 تحدي اليوم</h2>
-
 <span id="challengeProgress">
 السؤال 1 من 6
 </span>
-
 </div>
 
 <div class="challenge">
@@ -1273,9 +1298,7 @@ oninput="searchEverything()">
 <button
 id="challengeButton"
 onclick="startOrAnswerChallenge()">
-
 ابدأ التحدي
-
 </button>
 
 </div>
@@ -1285,119 +1308,95 @@ onclick="startOrAnswerChallenge()">
 <section class="section">
 
 <div class="sectionHead">
-
 <h2>🏆 مستواك</h2>
-
 <span>تقدمك</span>
-
 </div>
 
 <div class="stats">
 
 <div class="stat points">
-
 <strong id="pointsStat">0</strong>
-
 <span>⭐ النقاط</span>
-
 </div>
 
 <div class="stat progress">
-
 <strong id="progressStat">0%</strong>
-
 <span>📊 التقدم</span>
-
 </div>
 
 <div class="stat rank">
-
 <strong id="rankStat">🥉</strong>
-
 <span>المستوى</span>
-
 </div>
 
 </div>
 
 </section>
+
+<!-- ================= LESSONS ================= -->
 
 <section class="section" id="lessons">
 
 <div class="sectionHead">
-
 <h2>🎥 أحدث الحصص</h2>
-
 <span>من الأستاذ</span>
-
 </div>
 
 <div id="lessonsContainer" class="lessonList">
-
 <div class="loading">
 ⏳ جاري تحميل الحصص...
 </div>
-
 </div>
 
 </section>
+
+<!-- ================= SUMMARIES ================= -->
 
 <section class="section" id="summaries">
 
 <div class="sectionHead">
-
 <h2>📚 الملخصات</h2>
-
 <span>من الأستاذ</span>
-
 </div>
 
 <div id="summariesContainer" class="contentGrid">
-
 <div class="loading">
 ⏳ جاري تحميل الملخصات...
 </div>
-
 </div>
 
 </section>
+
+<!-- ================= TESTS ================= -->
 
 <section class="section" id="tests">
 
 <div class="sectionHead">
-
 <h2>📝 الاختبارات</h2>
-
 <span>من الأستاذ</span>
-
 </div>
 
 <div id="testsContainer" class="contentGrid">
-
 <div class="loading">
 ⏳ جاري تحميل الاختبارات...
 </div>
-
 </div>
 
 </section>
 
+<!-- ================= ROOMS ================= -->
+
 <section class="section" id="rooms">
 
 <div class="sectionHead">
-
 <h2>💬 الرومات</h2>
-
 <span>من الأستاذ</span>
-
 </div>
 
 <div id="roomsContainer" class="contentGrid">
-
 <div class="loading">
 ⏳ جاري تحميل الرومات...
 </div>
-
 </div>
 
 </section>
@@ -1410,12 +1409,10 @@ onclick="startOrAnswerChallenge()">
 
 
 <!-- =====================================================
-     VIDEO MODAL
+VIDEO MODAL
 ===================================================== -->
 
-<div
-id="videoModal"
-class="videoModal">
+<div id="videoModal" class="videoModal">
 
 <div class="videoBox">
 
@@ -1424,17 +1421,13 @@ class="videoModal">
 <div
 class="videoTitle"
 id="videoTitle">
-
 🎥 مشاهدة الحصة
-
 </div>
 
 <button
 class="videoClose"
 onclick="closeVideo()">
-
 ×
-
 </button>
 
 </div>
@@ -1444,30 +1437,9 @@ onclick="closeVideo()">
 <iframe
 id="youtubeFrame"
 src=""
-title="YouTube video player"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 allowfullscreen>
 </iframe>
-
-</div>
-
-<div
-class="youtubeFallback"
-id="youtubeFallback">
-
-<p>
-إذا رفض YouTube تشغيل الفيديو داخل الموقع، يمكنك فتحه مباشرة من YouTube.
-</p>
-
-<a
-id="youtubeFallbackLink"
-href="#"
-target="_blank"
-rel="noopener">
-
-▶️ فتح الفيديو في YouTube
-
-</a>
 
 </div>
 
@@ -1482,21 +1454,49 @@ id="videoDescription">
 
 
 <!-- =====================================================
-     STUDENT LOGIN
+CONTENT MODAL
+للملخصات والاختبارات
 ===================================================== -->
 
+<div id="contentModal" class="contentModal">
+
+<div class="contentBox">
+
+<div class="contentHeader">
+
 <div
-id="studentModal"
-class="modal">
+class="contentTitle"
+id="contentTitle">
+📚 المحتوى
+</div>
+
+<button
+class="contentClose"
+onclick="closeContent()">
+×
+</button>
+
+</div>
+
+<div id="contentBody"></div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+LOGIN MODAL
+===================================================== -->
+
+<div id="studentModal" class="modal">
 
 <div class="loginBox">
 
 <button
 class="close"
 onclick="closeStudentLogin()">
-
 ×
-
 </button>
 
 <h2 id="authTitle">
@@ -1528,9 +1528,7 @@ placeholder="🔐 كلمة المرور">
 id="authMainButton"
 class="main"
 onclick="studentAuth()">
-
 تسجيل الدخول
-
 </button>
 
 <div class="switch">
@@ -1542,9 +1540,7 @@ onclick="studentAuth()">
 <button
 id="switchButton"
 onclick="switchAuthMode()">
-
 إنشاء حساب
-
 </button>
 
 </div>
@@ -1557,7 +1553,7 @@ onclick="switchAuthMode()">
 <script>
 
 /* =====================================================
-   SUPABASE
+SUPABASE
 ===================================================== */
 
 const SUPABASE_URL =
@@ -1565,7 +1561,6 @@ const SUPABASE_URL =
 
 const SUPABASE_KEY =
 "sb_publishable__WJDSewc6JN6XTM6czk11Q_lgON6Chj";
-
 
 let allLessons=[];
 let allSummaries=[];
@@ -1580,7 +1575,7 @@ let challengeAnswered=false;
 
 
 /* =====================================================
-   CHALLENGES
+CHALLENGES
 ===================================================== */
 
 const challenges=[
@@ -1631,7 +1626,7 @@ p:40
 
 
 /* =====================================================
-   SAFE TEXT
+SAFE
 ===================================================== */
 
 function safe(t){
@@ -1647,7 +1642,7 @@ return String(t??"")
 
 
 /* =====================================================
-   SUPABASE REQUEST
+SUPABASE REQUEST
 ===================================================== */
 
 async function supabaseRequest(url,options={}){
@@ -1668,7 +1663,7 @@ apikey:SUPABASE_KEY,
 
 
 /* =====================================================
-   GET TABLE
+GET TABLE
 ===================================================== */
 
 async function getTable(table){
@@ -1679,17 +1674,7 @@ const r=await supabaseRequest(
 `${SUPABASE_URL}/rest/v1/${table}?select=*`
 );
 
-if(!r.ok){
-
-console.error(
-"Supabase error:",
-table,
-r.status
-);
-
-return [];
-
-}
+if(!r.ok)return [];
 
 const d=await r.json();
 
@@ -1707,7 +1692,7 @@ return [];
 
 
 /* =====================================================
-   SORT
+SORT
 ===================================================== */
 
 function sortNew(a,b){
@@ -1719,7 +1704,7 @@ new Date(a.created_at||0);
 
 
 /* =====================================================
-   YOUTUBE URL CONVERTER
+YOUTUBE ID
 ===================================================== */
 
 function getYoutubeId(url){
@@ -1728,34 +1713,12 @@ if(!url)return null;
 
 url=String(url).trim();
 
-
-/* إذا تم وضع ID فقط */
-
-if(/^[a-zA-Z0-9_-]{11}$/.test(url)){
-
-return url;
-
-}
-
-
 try{
 
 const u=new URL(url);
 
-const host=u.hostname.toLowerCase();
-
-const path=u.pathname;
-
-
-/* youtube.com/watch?v= */
-
 if(
-(
-host==="youtube.com" ||
-host==="www.youtube.com" ||
-host==="m.youtube.com"
-)
-&&
+u.hostname.includes("youtube.com") &&
 u.searchParams.get("v")
 ){
 
@@ -1763,63 +1726,43 @@ return u.searchParams.get("v");
 
 }
 
+if(u.hostname==="youtu.be"){
 
-/* youtu.be/VIDEO_ID */
+return u.pathname
+.replace("/","")
+.split("?")[0];
+
+}
 
 if(
-host==="youtu.be" ||
-host==="www.youtu.be"
+u.hostname.includes("youtube.com") &&
+u.pathname.startsWith("/embed/")
 ){
 
-return path
-.replace(/^\/+/,"")
-.split("/")[0]
-.split("?")[0];
-
-}
-
-
-/* youtube.com/embed/VIDEO_ID */
-
-if(path.startsWith("/embed/")){
-
-return path
+return u.pathname
 .split("/embed/")[1]
-.split("/")[0]
 .split("?")[0];
 
 }
 
+if(
+u.hostname.includes("youtube.com") &&
+u.pathname.startsWith("/shorts/")
+){
 
-/* youtube.com/shorts/VIDEO_ID */
-
-if(path.startsWith("/shorts/")){
-
-return path
+return u.pathname
 .split("/shorts/")[1]
-.split("/")[0]
 .split("?")[0];
 
 }
 
+}catch(e){
 
-/* youtube.com/live/VIDEO_ID */
+if(/^[a-zA-Z0-9_-]{8,15}$/.test(url)){
 
-if(path.startsWith("/live/")){
-
-return path
-.split("/live/")[1]
-.split("/")[0]
-.split("?")[0];
+return url;
 
 }
-
-}catch(error){
-
-console.log(
-"YouTube URL Error:",
-error
-);
 
 }
 
@@ -1829,7 +1772,7 @@ return null;
 
 
 /* =====================================================
-   OPEN VIDEO INSIDE WEBSITE
+OPEN VIDEO
 ===================================================== */
 
 function openVideo(url,title,description){
@@ -1838,76 +1781,31 @@ const id=getYoutubeId(url);
 
 if(!id){
 
-alert(
-"⚠️ رابط الفيديو غير صالح.\n\n"+
-"تأكد أن الرابط من YouTube."
-);
+alert("⚠️ رابط الفيديو غير صالح أو ليس رابط YouTube.");
 
 return;
 
 }
 
-
 const frame=
 document.getElementById("youtubeFrame");
 
-const modal=
-document.getElementById("videoModal");
+frame.src=
+"https://www.youtube.com/embed/"
++encodeURIComponent(id)
++"?rel=0&modestbranding=1";
 
-const titleBox=
-document.getElementById("videoTitle");
-
-const descriptionBox=
-document.getElementById("videoDescription");
-
-const fallback=
-document.getElementById("youtubeFallback");
-
-const fallbackLink=
-document.getElementById("youtubeFallbackLink");
-
-
-/* العنوان */
-
-titleBox.textContent=
+document.getElementById("videoTitle")
+.textContent=
 "🎥 "+(title||"مشاهدة الحصة");
 
+document.getElementById("videoDescription")
+.textContent=
+description||"";
 
-/* الوصف */
-
-descriptionBox.textContent=
-description||
-"شاهد الحصة مباشرة من داخل منصة منبر ون.";
-
-
-/* رابط YouTube الاحتياطي */
-
-fallbackLink.href=
-"https://www.youtube.com/watch?v="+
-encodeURIComponent(id);
-
-
-/*
-   تشغيل الفيديو داخل الموقع
-   باستخدام YouTube Privacy Enhanced Mode
-*/
-
-frame.src=
-"https://www.youtube-nocookie.com/embed/"+
-encodeURIComponent(id)+
-"?rel=0"+
-"&modestbranding=1"+
-"&playsinline=1";
-
-
-/* إخفاء رابط الاحتياطية في البداية */
-
-fallback.style.display="none";
-
-
-/* إظهار النافذة */
-
-modal.classList.add("show");
+document
+.getElementById("videoModal")
+.classList.add("show");
 
 document.body.style.overflow="hidden";
 
@@ -1915,26 +1813,18 @@ document.body.style.overflow="hidden";
 
 
 /* =====================================================
-   CLOSE VIDEO
+CLOSE VIDEO
 ===================================================== */
 
 function closeVideo(){
 
-const modal=
-document.getElementById("videoModal");
+document
+.getElementById("videoModal")
+.classList.remove("show");
 
-const frame=
-document.getElementById("youtubeFrame");
-
-
-/* إيقاف الفيديو */
-
-frame.src="";
-
-
-/* إغلاق النافذة */
-
-modal.classList.remove("show");
+document
+.getElementById("youtubeFrame")
+.src="";
 
 document.body.style.overflow="";
 
@@ -1942,7 +1832,185 @@ document.body.style.overflow="";
 
 
 /* =====================================================
-   LESSONS
+OPEN SUMMARY
+===================================================== */
+
+function openSummary(url,title,description){
+
+if(!url){
+
+alert("⚠️ لا يوجد ملف لهذا الملخص.");
+
+return;
+
+}
+
+const body=
+document.getElementById("contentBody");
+
+document.getElementById("contentTitle")
+.textContent=
+"📚 "+(title||"الملخص");
+
+const isPdf=
+/\.pdf($|\?)/i.test(url);
+
+if(isPdf){
+
+body.innerHTML=`
+
+<iframe
+class="pdfFrame"
+src="${safe(url)}"
+title="الملخص">
+</iframe>
+
+<div class="contentDescription">
+${safe(description||"")}
+</div>
+
+`;
+
+}else{
+
+body.innerHTML=`
+
+<div class="contentInfo">
+
+<div
+class="contentBigIcon summaryIcon">
+📚
+</div>
+
+<div>
+${safe(description||"يمكنك فتح الملخص من هنا.")}
+</div>
+
+<a
+class="contentButton"
+href="${safe(url)}"
+target="_blank"
+rel="noopener">
+📖 فتح الملف
+</a>
+
+</div>
+
+`;
+
+}
+
+document
+.getElementById("contentModal")
+.classList.add("show");
+
+document.body.style.overflow="hidden";
+
+}
+
+
+/* =====================================================
+OPEN TEST
+===================================================== */
+
+function openTest(url,title,description,count){
+
+document.getElementById("contentTitle")
+.textContent=
+"📝 "+(title||"الاختبار");
+
+const body=
+document.getElementById("contentBody");
+
+if(url){
+
+body.innerHTML=`
+
+<iframe
+class="pdfFrame"
+src="${safe(url)}"
+title="الاختبار">
+</iframe>
+
+<div class="contentDescription">
+${safe(description||"")}
+</div>
+
+`;
+
+}else{
+
+body.innerHTML=`
+
+<div class="contentInfo">
+
+<div
+class="contentBigIcon testIcon">
+📝
+</div>
+
+<h3 style="font-size:13px;margin-bottom:8px">
+${safe(title||"اختبار رياضيات")}
+</h3>
+
+<p style="line-height:2;color:#8196b2">
+${safe(description||"اختبار رياضيات")}
+</p>
+
+<p style="margin-top:10px;color:#d9b34c">
+🔢 عدد الأسئلة:
+${count||"غير محدد"}
+</p>
+
+<div
+style="
+margin-top:12px;
+padding:12px;
+border-radius:10px;
+background:#ffffff08;
+color:#8196b2;
+font-size:8px;
+line-height:2">
+ℹ️ هذا الاختبار لا يحتوي حاليًا على رابط اختبار في قاعدة البيانات.
+<br>
+يمكننا لاحقًا إضافة رابط أو نظام أسئلة كامل داخل الموقع.
+</div>
+
+</div>
+
+`;
+
+}
+
+document
+.getElementById("contentModal")
+.classList.add("show");
+
+document.body.style.overflow="hidden";
+
+}
+
+
+/* =====================================================
+CLOSE CONTENT
+===================================================== */
+
+function closeContent(){
+
+document
+.getElementById("contentModal")
+.classList.remove("show");
+
+document.getElementById("contentBody")
+.innerHTML="";
+
+document.body.style.overflow="";
+
+}
+
+
+/* =====================================================
+LESSONS
 ===================================================== */
 
 async function loadLessons(){
@@ -1956,7 +2024,6 @@ await getTable("lessons");
 allLessons=
 data.sort(sortNew);
 
-
 if(!data.length){
 
 box.innerHTML=
@@ -1966,9 +2033,7 @@ return;
 
 }
 
-
 box.innerHTML="";
-
 
 data.forEach(x=>{
 
@@ -1979,7 +2044,6 @@ const d=
 document.createElement("div");
 
 d.className="lesson";
-
 
 if(url){
 
@@ -2005,21 +2069,15 @@ ${x.duration?" • "+safe(x.duration):""}
 <button
 class="watch"
 type="button">
-
 ▶️ مشاهدة
-
 </button>
 
 `;
 
-
-const watchButton=
+const btn=
 d.querySelector(".watch");
 
-
-watchButton.addEventListener(
-"click",
-function(){
+btn.onclick=()=>{
 
 openVideo(
 url,
@@ -2027,7 +2085,7 @@ x.title||"حصة رياضيات",
 x.description||""
 );
 
-});
+};
 
 }else{
 
@@ -2057,7 +2115,6 @@ ${safe(x.unit||"رياضيات")}
 
 }
 
-
 box.appendChild(d);
 
 });
@@ -2066,7 +2123,7 @@ box.appendChild(d);
 
 
 /* =====================================================
-   SUMMARIES
+SUMMARIES
 ===================================================== */
 
 async function loadSummaries(){
@@ -2077,23 +2134,72 @@ await getTable("summaries");
 allSummaries=
 data.sort(sortNew);
 
+const box=
+document.getElementById("summariesContainer");
 
-renderCards(
-"summariesContainer",
-data,
-"📚",
-"summaryIcon",
-["description"],
-["file_url","url","link"],
-"ملخص درس",
-"📖 فتح الملخص"
+if(!data.length){
+
+box.innerHTML=
+'<div class="empty">📚 لا يوجد محتوى حتى الآن.</div>';
+
+return;
+
+}
+
+box.innerHTML="";
+
+data.forEach(x=>{
+
+const url=
+String(x.file_url||"").trim();
+
+const d=
+document.createElement("div");
+
+d.className="contentCard";
+
+d.innerHTML=`
+
+<div class="contentIcon summaryIcon">
+📚
+</div>
+
+<h3>
+${safe(x.title||"ملخص درس")}
+</h3>
+
+<p>
+${safe(x.description||"مراجعة الدرس")}
+</p>
+
+<button
+class="contentButton"
+type="button">
+📖 فتح الملخص
+</button>
+
+`;
+
+d.querySelector(".contentButton")
+.onclick=()=>{
+
+openSummary(
+url,
+x.title||"ملخص درس",
+x.description||""
 );
+
+};
+
+box.appendChild(d);
+
+});
 
 }
 
 
 /* =====================================================
-   TESTS
+TESTS
 ===================================================== */
 
 async function loadTests(){
@@ -2104,23 +2210,85 @@ await getTable("tests");
 allTests=
 data.sort(sortNew);
 
+const box=
+document.getElementById("testsContainer");
 
-renderCards(
-"testsContainer",
-data,
-"📝",
-"testIcon",
-["description"],
-["test_url","url","link"],
-"اختبار رياضيات",
-"📝 بدء الاختبار"
+if(!data.length){
+
+box.innerHTML=
+'<div class="empty">📝 لا توجد اختبارات حتى الآن.</div>';
+
+return;
+
+}
+
+box.innerHTML="";
+
+data.forEach(x=>{
+
+/*
+يدعم test_url مستقبلًا
+حتى لو أضفته لجدول tests
+*/
+
+const url=
+String(
+x.test_url||
+x.url||
+x.link||
+""
+).trim();
+
+const d=
+document.createElement("div");
+
+d.className="contentCard";
+
+d.innerHTML=`
+
+<div class="contentIcon testIcon">
+📝
+</div>
+
+<h3>
+${safe(x.title||"اختبار رياضيات")}
+</h3>
+
+<p>
+${safe(x.description||"اختبر نفسك")}
+<br>
+🔢 ${safe(x.questions_count||"؟")} سؤال
+</p>
+
+<button
+class="contentButton"
+type="button">
+📝 بدء الاختبار
+</button>
+
+`;
+
+d.querySelector(".contentButton")
+.onclick=()=>{
+
+openTest(
+url,
+x.title||"اختبار رياضيات",
+x.description||"",
+x.questions_count
 );
+
+};
+
+box.appendChild(d);
+
+});
 
 }
 
 
 /* =====================================================
-   ROOMS
+ROOMS
 ===================================================== */
 
 async function loadRooms(){
@@ -2131,95 +2299,42 @@ await getTable("rooms");
 allRooms=
 data.sort(sortNew);
 
-
-renderCards(
-"roomsContainer",
-data,
-"💬",
-"roomIcon",
-["description"],
-["room_link","url","link"],
-"روم الدراسة",
-"💬 دخول الروم"
-);
-
-}
-
-
-/* =====================================================
-   RENDER CARDS
-===================================================== */
-
-function renderCards(
-id,
-data,
-icon,
-cls,
-descFields,
-urlFields,
-fallback,
-button
-){
-
 const box=
-document.getElementById(id);
-
+document.getElementById("roomsContainer");
 
 if(!data.length){
 
 box.innerHTML=
-`<div class="empty">${icon} لا يوجد محتوى حتى الآن.</div>`;
+'<div class="empty">💬 لا توجد رومات حتى الآن.</div>';
 
 return;
 
 }
 
-
 box.innerHTML="";
-
 
 data.forEach(x=>{
 
-const desc=
-descFields
-.map(k=>x[k])
-.find(v=>v)
-||fallback;
-
-
 const url=
-String(
-urlFields
-.map(k=>x[k])
-.find(v=>v)
-||""
-).trim();
-
-
-const title=
-x.title||
-x.name||
-fallback;
-
+String(x.room_link||"").trim();
 
 const d=
 document.createElement("div");
 
 d.className="contentCard";
 
-
 d.innerHTML=`
 
-<div class="contentIcon ${cls}">
-${icon}
+<div class="contentIcon roomIcon">
+💬
 </div>
 
 <h3>
-${safe(title)}
+${safe(x.name||"روم الدراسة")}
 </h3>
 
 <p>
-${safe(desc)}
+${safe(x.description||"انضم إلى روم الدراسة")}
 </p>
 
 ${
@@ -2230,16 +2345,15 @@ class="contentButton"
 href="${safe(url)}"
 target="_blank"
 rel="noopener">
-${button}
+💬 دخول الروم
 </a>`
 :
 `<span class="contentButton">
-${button}
+⚠️ لا يوجد رابط
 </span>`
 }
 
 `;
-
 
 box.appendChild(d);
 
@@ -2249,7 +2363,7 @@ box.appendChild(d);
 
 
 /* =====================================================
-   SEARCH
+SEARCH
 ===================================================== */
 
 function searchEverything(){
@@ -2261,13 +2375,11 @@ document
 .toLowerCase()
 .trim();
 
-
 const box=
 document.getElementById("searchResults");
 
 const list=
 document.getElementById("resultList");
-
 
 if(!text){
 
@@ -2277,37 +2389,26 @@ return;
 
 }
 
-
 box.classList.add("show");
-
 
 let r=[];
 
+allLessons.forEach(x=>{
 
-[
-[allLessons,"lesson","🎥","حصة","video_url"],
-[allSummaries,"summary","📚","ملخص","file_url"],
-[allTests,"test","📝","اختبار","test_url"],
-[allRooms,"room","💬","روم","room_link"]
-
-].forEach(
-([arr,type,icon,name,urlKey])=>{
-
-arr.forEach(x=>{
-
-const s=
-JSON.stringify(x).toLowerCase();
-
-
-if(s.includes(text)){
+if(
+JSON.stringify(x)
+.toLowerCase()
+.includes(text)
+){
 
 r.push({
 
-type,
-icon,
-name,
-title:x.title||x.name||name,
-url:x[urlKey]||x.url||x.link||""
+type:"lesson",
+icon:"🎥",
+name:"حصة",
+title:x.title||"حصة رياضيات",
+url:x.video_url||"",
+description:x.description||""
 
 });
 
@@ -2315,8 +2416,75 @@ url:x[urlKey]||x.url||x.link||""
 
 });
 
+allSummaries.forEach(x=>{
+
+if(
+JSON.stringify(x)
+.toLowerCase()
+.includes(text)
+){
+
+r.push({
+
+type:"summary",
+icon:"📚",
+name:"ملخص",
+title:x.title||"ملخص",
+url:x.file_url||"",
+description:x.description||""
+
 });
 
+}
+
+});
+
+allTests.forEach(x=>{
+
+if(
+JSON.stringify(x)
+.toLowerCase()
+.includes(text)
+){
+
+r.push({
+
+type:"test",
+icon:"📝",
+name:"اختبار",
+title:x.title||"اختبار",
+url:x.test_url||x.url||x.link||"",
+description:x.description||"",
+count:x.questions_count
+
+});
+
+}
+
+});
+
+allRooms.forEach(x=>{
+
+if(
+JSON.stringify(x)
+.toLowerCase()
+.includes(text)
+){
+
+r.push({
+
+type:"room",
+icon:"💬",
+name:"روم",
+title:x.name||"روم الدراسة",
+url:x.room_link||"",
+description:x.description||""
+
+});
+
+}
+
+});
 
 if(!r.length){
 
@@ -2327,9 +2495,7 @@ return;
 
 }
 
-
 list.innerHTML="";
-
 
 r.forEach(x=>{
 
@@ -2337,7 +2503,6 @@ const d=
 document.createElement("div");
 
 d.className="result";
-
 
 d.innerHTML=`
 
@@ -2359,26 +2524,46 @@ ${safe(x.name)}
 
 `;
 
-
-if(
-x.type==="lesson" &&
-x.url
-){
-
 d.style.cursor="pointer";
 
+if(x.type==="lesson" && x.url){
 
 d.onclick=()=>{
 
 openVideo(
 x.url,
 x.title,
-""
+x.description
 );
 
 };
 
-}else if(x.url){
+}else if(x.type==="summary"){
+
+d.onclick=()=>{
+
+openSummary(
+x.url,
+x.title,
+x.description
+);
+
+};
+
+}else if(x.type==="test"){
+
+d.onclick=()=>{
+
+openTest(
+x.url,
+x.title,
+x.description,
+x.count
+);
+
+};
+
+}else if(x.type==="room" && x.url){
 
 d.onclick=()=>{
 
@@ -2390,10 +2575,7 @@ x.url,
 
 };
 
-d.style.cursor="pointer";
-
 }
-
 
 list.appendChild(d);
 
@@ -2403,7 +2585,7 @@ list.appendChild(d);
 
 
 /* =====================================================
-   USER
+USER
 ===================================================== */
 
 function getSavedUser(){
@@ -2411,9 +2593,7 @@ function getSavedUser(){
 try{
 
 return JSON.parse(
-localStorage.getItem(
-"minbar_user"
-)||"null"
+localStorage.getItem("minbar_user")||"null"
 );
 
 }catch{
@@ -2425,64 +2605,45 @@ return null;
 }
 
 
-/* =====================================================
-   UPDATE USER UI
-===================================================== */
-
 function updateUserInterface(user){
 
-document.getElementById(
-"studentLoginButton"
-).style.display=
+document.getElementById("studentLoginButton")
+.style.display=
 user?"none":"flex";
 
-
-document.getElementById(
-"userBox"
-).style.display=
+document.getElementById("userBox")
+.style.display=
 user?"flex":"none";
 
-
-document.getElementById(
-"logoutButton"
-).style.display=
+document.getElementById("logoutButton")
+.style.display=
 user?"flex":"none";
 
-
-document.getElementById(
-"userEmail"
-).textContent=
+document.getElementById("userEmail")
+.textContent=
 user?.email||"الطالب";
 
 }
 
 
 /* =====================================================
-   AUTH MESSAGE
+LOGIN
 ===================================================== */
 
-function showAuthMessage(
-t,
-type="info"
-){
+function showAuthMessage(t,type="info"){
 
 const b=
-document.getElementById(
-"studentMessage"
-);
+document.getElementById("studentMessage");
 
 b.className=
 "message "+
 (
 type==="success"
-?
-"successMessage"
+?"successMessage"
 :
 type==="error"
-?
-"errorMessage"
-:
-"infoMessage"
+?"errorMessage"
+:"infoMessage"
 );
 
 b.textContent=t;
@@ -2493,9 +2654,7 @@ b.textContent=t;
 function clearAuthMessage(){
 
 const b=
-document.getElementById(
-"studentMessage"
-);
+document.getElementById("studentMessage");
 
 b.className="message";
 
@@ -2503,10 +2662,6 @@ b.textContent="";
 
 }
 
-
-/* =====================================================
-   OPEN LOGIN
-===================================================== */
 
 function openStudentLogin(){
 
@@ -2521,10 +2676,6 @@ document
 }
 
 
-/* =====================================================
-   CLOSE LOGIN
-===================================================== */
-
 function closeStudentLogin(){
 
 document
@@ -2536,10 +2687,6 @@ clearAuthMessage();
 }
 
 
-/* =====================================================
-   SWITCH AUTH
-===================================================== */
-
 function switchAuthMode(){
 
 isSignupMode=!isSignupMode;
@@ -2549,61 +2696,37 @@ updateAuthWindow();
 }
 
 
-/* =====================================================
-   UPDATE AUTH WINDOW
-===================================================== */
-
 function updateAuthWindow(){
 
-document.getElementById(
-"authTitle"
-).textContent=
+document.getElementById("authTitle")
+.textContent=
 isSignupMode
-?
-"🧑‍🎓 إنشاء حساب طالب"
-:
-"👨‍🎓 دخول الطالب";
+?"🧑‍🎓 إنشاء حساب طالب"
+:"👨‍🎓 دخول الطالب";
 
-
-document.getElementById(
-"authDescription"
-).textContent=
+document.getElementById("authDescription")
+.textContent=
 isSignupMode
-?
-"أنشئ حسابك باستخدام البريد الإلكتروني وكلمة المرور."
-:
-"سجّل الدخول لمتابعة رحلتك التعليمية.";
+?"أنشئ حسابك باستخدام البريد الإلكتروني وكلمة المرور."
+:"سجّل الدخول لمتابعة رحلتك التعليمية.";
 
-
-document.getElementById(
-"authMainButton"
-).textContent=
+document.getElementById("authMainButton")
+.textContent=
 isSignupMode
-?
-"إنشاء الحساب"
-:
-"تسجيل الدخول";
+?"إنشاء الحساب"
+:"تسجيل الدخول";
 
-
-document.getElementById(
-"switchText"
-).textContent=
+document.getElementById("switchText")
+.textContent=
 isSignupMode
-?
-"لديك حساب بالفعل؟"
-:
-"ليس لديك حساب؟";
+?"لديك حساب بالفعل؟"
+:"ليس لديك حساب؟";
 
-
-document.getElementById(
-"switchButton"
-).textContent=
+document.getElementById("switchButton")
+.textContent=
 isSignupMode
-?
-"تسجيل الدخول"
-:
-"إنشاء حساب";
-
+?"تسجيل الدخول"
+:"إنشاء حساب";
 
 clearAuthMessage();
 
@@ -2611,7 +2734,7 @@ clearAuthMessage();
 
 
 /* =====================================================
-   STUDENT AUTH
+STUDENT AUTH
 ===================================================== */
 
 async function studentAuth(){
@@ -2622,20 +2745,16 @@ document
 .value
 .trim();
 
-
 const password=
 document
 .getElementById("studentPassword")
 .value;
 
-
 const btn=
 document
 .getElementById("authMainButton");
 
-
 clearAuthMessage();
-
 
 if(!email||!password){
 
@@ -2648,7 +2767,6 @@ return;
 
 }
 
-
 if(password.length<6){
 
 showAuthMessage(
@@ -2660,12 +2778,9 @@ return;
 
 }
 
-
 btn.disabled=true;
 
-
 try{
-
 
 if(isSignupMode){
 
@@ -2673,7 +2788,6 @@ showAuthMessage(
 "⏳ جاري إنشاء الحساب...",
 "info"
 );
-
 
 const r=
 await supabaseRequest(
@@ -2688,10 +2802,7 @@ data:{role:"student"}
 }
 );
 
-
-const d=
-await r.json();
-
+const d=await r.json();
 
 if(!r.ok){
 
@@ -2710,18 +2821,15 @@ d.message||
 
 saveSession(d);
 
-
 showAuthMessage(
 "✅ تم إنشاء الحساب وتسجيل الدخول.",
 "success"
 );
 
-
 setTimeout(
 closeStudentLogin,
 700
 );
-
 
 }else{
 
@@ -2732,15 +2840,12 @@ showAuthMessage(
 
 }
 
-
 }else{
-
 
 showAuthMessage(
 "⏳ جاري تسجيل الدخول...",
 "info"
 );
-
 
 const r=
 await supabaseRequest(
@@ -2754,10 +2859,7 @@ password
 }
 );
 
-
-const d=
-await r.json();
-
+const d=await r.json();
 
 if(!r.ok){
 
@@ -2775,12 +2877,10 @@ d.msg||
 
 saveSession(d);
 
-
 showAuthMessage(
 "✅ تم تسجيل الدخول بنجاح 🎉",
 "success"
 );
-
 
 setTimeout(
 closeStudentLogin,
@@ -2791,11 +2891,9 @@ closeStudentLogin,
 
 }
 
-
 }catch(e){
 
 console.error(e);
-
 
 showAuthMessage(
 "❌ حدث خطأ في الاتصال. حاول مرة أخرى.",
@@ -2804,14 +2902,13 @@ showAuthMessage(
 
 }
 
-
 btn.disabled=false;
 
 }
 
 
 /* =====================================================
-   SESSION
+SESSION
 ===================================================== */
 
 function saveSession(d){
@@ -2825,7 +2922,6 @@ d.access_token
 
 }
 
-
 if(d.refresh_token){
 
 localStorage.setItem(
@@ -2834,7 +2930,6 @@ d.refresh_token
 );
 
 }
-
 
 if(d.user){
 
@@ -2845,7 +2940,6 @@ JSON.stringify(d.user)
 
 }
 
-
 updateUserInterface(
 d.user||getSavedUser()
 );
@@ -2853,20 +2947,13 @@ d.user||getSavedUser()
 }
 
 
-/* =====================================================
-   RESTORE SESSION
-===================================================== */
-
 async function restoreSession(){
 
 const token=
-localStorage.getItem(
-"minbar_access_token"
-);
+localStorage.getItem("minbar_access_token");
 
 const saved=
 getSavedUser();
-
 
 if(!token){
 
@@ -2876,7 +2963,6 @@ return;
 
 }
 
-
 try{
 
 const r=
@@ -2884,24 +2970,20 @@ await supabaseRequest(
 `${SUPABASE_URL}/auth/v1/user`,
 {
 headers:{
-Authorization:
-`Bearer ${token}`
+Authorization:`Bearer ${token}`
 }
 }
 );
-
 
 if(r.ok){
 
 const u=
 await r.json();
 
-
 localStorage.setItem(
 "minbar_user",
 JSON.stringify(u)
 );
-
 
 updateUserInterface(u);
 
@@ -2921,16 +3003,13 @@ updateUserInterface(saved);
 
 
 /* =====================================================
-   LOGOUT
+LOGOUT
 ===================================================== */
 
 async function logoutStudent(){
 
 const token=
-localStorage.getItem(
-"minbar_access_token"
-);
-
+localStorage.getItem("minbar_access_token");
 
 try{
 
@@ -2941,8 +3020,7 @@ await supabaseRequest(
 {
 method:"POST",
 headers:{
-Authorization:
-`Bearer ${token}`
+Authorization:`Bearer ${token}`
 }
 }
 );
@@ -2950,7 +3028,6 @@ Authorization:
 }
 
 }catch{}
-
 
 [
 "minbar_access_token",
@@ -2961,19 +3038,15 @@ Authorization:
 k=>localStorage.removeItem(k)
 );
 
-
 updateUserInterface(null);
 
-
-alert(
-"تم تسجيل الخروج 👋"
-);
+alert("تم تسجيل الخروج 👋");
 
 }
 
 
 /* =====================================================
-   STATS
+STATS
 ===================================================== */
 
 function loadStats(){
@@ -2985,46 +3058,30 @@ localStorage.getItem("minbar_stats")
 '{"points":0,"answered":0}'
 );
 
+document.getElementById("pointsStat")
+.textContent=s.points;
 
-document.getElementById(
-"pointsStat"
-).textContent=s.points;
-
-
-document.getElementById(
-"progressStat"
-).textContent=
+document.getElementById("progressStat")
+.textContent=
 Math.min(
 100,
-Math.round(
-s.answered/6*100
-)
+Math.round(s.answered/6*100)
 )+"%";
 
-
-document.getElementById(
-"rankStat"
-).textContent=
+document.getElementById("rankStat")
+.textContent=
 s.points>=100
-?
-"🏆"
+?"🏆"
 :
 s.points>=60
-?
-"🥇"
+?"🥇"
 :
 s.points>=30
-?
-"🥈"
-:
-"🥉";
+?"🥈"
+:"🥉";
 
 }
 
-
-/* =====================================================
-   ADD POINTS
-===================================================== */
 
 function addPoints(p){
 
@@ -3035,9 +3092,7 @@ localStorage.getItem("minbar_stats")
 '{"points":0,"answered":0}'
 );
 
-
 s.points+=p;
-
 
 s.answered=
 Math.min(
@@ -3045,12 +3100,10 @@ Math.min(
 s.answered+1
 );
 
-
 localStorage.setItem(
 "minbar_stats",
 JSON.stringify(s)
 );
-
 
 loadStats();
 
@@ -3058,7 +3111,7 @@ loadStats();
 
 
 /* =====================================================
-   CHALLENGE
+CHALLENGE
 ===================================================== */
 
 function startOrAnswerChallenge(){
@@ -3073,149 +3126,7 @@ return;
 
 }
 
-
-if(challengeAnswered)return;
-
-
-const correct=
-challenges[challengeIndex].c;
-
-
-const chosen=
-Number(
-document.querySelector(
-'input[name="answer"]:checked'
-)?.value
-);
-
-
-if(Number.isNaN(chosen)){
-
-document.getElementById(
-"feedback"
-).textContent=
-"اختر إجابة أولًا 🙂";
-
-return;
-
-}
-
-
-challengeAnswered=true;
-
-
-if(chosen===correct){
-
-document.getElementById(
-"feedback"
-).textContent=
-`✅ إجابة صحيحة! +${challenges[challengeIndex].p} نقطة 🎉`;
-
-
-addPoints(
-challenges[challengeIndex].p
-);
-
-}else{
-
-document.getElementById(
-"feedback"
-).textContent=
-`❌ ليست صحيحة. الإجابة: ${
-challenges[challengeIndex].a[correct]
-}`;
-
-}
-
-
-document.getElementById(
-"challengeButton"
-).textContent=
-challengeIndex<5
-?
-"السؤال التالي"
-:
-"إنهاء التحدي";
-
-}
-
-
-/* =====================================================
-   SHOW CHALLENGE
-===================================================== */
-
-function showChallenge(){
-
-const x=
-challenges[challengeIndex];
-
-
-document.getElementById(
-"challengeProgress"
-).textContent=
-`السؤال ${challengeIndex+1} من 6`;
-
-
-document.getElementById(
-"challengeQuestion"
-).textContent=x.q;
-
-
-document.getElementById(
-"feedback"
-).textContent="";
-
-
-document.getElementById(
-"answers"
-).innerHTML=
-x.a.map(
-(v,i)=>
-`
-<label class="answer">
-
-<input
-type="radio"
-name="answer"
-value="${i}">
-
-${safe(v)}
-
-</label>
-`
-).join("");
-
-
-document.getElementById(
-"quizArea"
-).style.display="block";
-
-
-document.getElementById(
-"challengeButton"
-).textContent=
-"تأكيد الإجابة";
-
-
-challengeAnswered=false;
-
-}
-
-
-/* =====================================================
-   CHALLENGE NEXT
-===================================================== */
-
-document
-.getElementById("challengeButton")
-.addEventListener(
-"click",
-()=>{
-
-if(
-challengeStarted&&
-challengeAnswered
-){
+if(challengeAnswered){
 
 if(challengeIndex<5){
 
@@ -3226,34 +3137,130 @@ showChallenge();
 }else{
 
 document
-.getElementById(
-"challengeButton"
-).disabled=true;
-
+.getElementById("challengeButton")
+.disabled=true;
 
 document
-.getElementById(
-"challengeButton"
-).textContent=
+.getElementById("challengeButton")
+.textContent=
 "🎉 أكملت تحدي اليوم";
 
-
 document
-.getElementById(
-"challengeTitle"
-).textContent=
+.getElementById("challengeTitle")
+.textContent=
 "أحسنت! أكملت تحدي اليوم كاملًا.";
 
 }
 
-}
+return;
 
 }
+
+const correct=
+challenges[challengeIndex].c;
+
+const chosen=
+Number(
+document.querySelector(
+'input[name="answer"]:checked'
+)?.value
 );
+
+if(Number.isNaN(chosen)){
+
+document
+.getElementById("feedback")
+.textContent=
+"اختر إجابة أولًا 🙂";
+
+return;
+
+}
+
+challengeAnswered=true;
+
+if(chosen===correct){
+
+document
+.getElementById("feedback")
+.textContent=
+`✅ إجابة صحيحة! +${challenges[challengeIndex].p} نقطة 🎉`;
+
+addPoints(
+challenges[challengeIndex].p
+);
+
+}else{
+
+document
+.getElementById("feedback")
+.textContent=
+`❌ ليست صحيحة. الإجابة: ${
+challenges[challengeIndex].a[correct]
+}`;
+
+}
+
+document
+.getElementById("challengeButton")
+.textContent=
+challengeIndex<5
+?"السؤال التالي"
+:"إنهاء التحدي";
+
+}
+
+
+function showChallenge(){
+
+const x=
+challenges[challengeIndex];
+
+document
+.getElementById("challengeProgress")
+.textContent=
+`السؤال ${challengeIndex+1} من 6`;
+
+document
+.getElementById("challengeQuestion")
+.textContent=x.q;
+
+document
+.getElementById("feedback")
+.textContent="";
+
+document
+.getElementById("answers")
+.innerHTML=
+x.a.map(
+(v,i)=>
+`
+<label class="answer">
+<input
+type="radio"
+name="answer"
+value="${i}">
+${safe(v)}
+</label>
+`
+).join("");
+
+document
+.getElementById("quizArea")
+.style.display="block";
+
+document
+.getElementById("challengeButton")
+.textContent=
+"تأكيد الإجابة";
+
+challengeAnswered=false;
+
+}
 
 
 /* =====================================================
-   CLICK OUTSIDE LOGIN
+MODAL CLICK OUTSIDE
 ===================================================== */
 
 document
@@ -3262,9 +3269,7 @@ document
 "click",
 e=>{
 
-if(
-e.target===e.currentTarget
-){
+if(e.target===e.currentTarget){
 
 closeStudentLogin();
 
@@ -3274,19 +3279,13 @@ closeStudentLogin();
 );
 
 
-/* =====================================================
-   CLICK OUTSIDE VIDEO
-===================================================== */
-
 document
 .getElementById("videoModal")
 .addEventListener(
 "click",
 e=>{
 
-if(
-e.target===e.currentTarget
-){
+if(e.target===e.currentTarget){
 
 closeVideo();
 
@@ -3296,8 +3295,24 @@ closeVideo();
 );
 
 
+document
+.getElementById("contentModal")
+.addEventListener(
+"click",
+e=>{
+
+if(e.target===e.currentTarget){
+
+closeContent();
+
+}
+
+}
+);
+
+
 /* =====================================================
-   ESC
+ESC
 ===================================================== */
 
 document.addEventListener(
@@ -3307,7 +3322,7 @@ e=>{
 if(e.key==="Escape"){
 
 closeVideo();
-
+closeContent();
 closeStudentLogin();
 
 }
@@ -3317,7 +3332,7 @@ closeStudentLogin();
 
 
 /* =====================================================
-   START SITE
+START
 ===================================================== */
 
 async function startSite(){
@@ -3328,23 +3343,17 @@ getSavedUser()
 
 loadStats();
 
-
 await Promise.all([
 
 loadLessons(),
-
 loadSummaries(),
-
 loadTests(),
-
 loadRooms(),
-
 restoreSession()
 
 ]);
 
 }
-
 
 startSite();
 
