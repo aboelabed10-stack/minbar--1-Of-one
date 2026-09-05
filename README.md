@@ -68,6 +68,11 @@ header{position:sticky;top:0;z-index:100;background:rgba(5,8,23,.86);backdrop-fi
 .orbit:before,.orbit:after{content:"✦";position:absolute;font-size:17px;color:var(--cyan)}.orbit:before{top:-9px;left:50%}.orbit:after{bottom:18px;right:7px;color:var(--pink)}
 @keyframes spin{to{transform:rotate(360deg)}}
 
+/* لوحة الإعلانات */
+.announcement-box{position:relative;padding:26px 25px;border-radius:25px;background:linear-gradient(145deg,rgba(118,87,255,.18),rgba(24,217,255,.08) 55%,rgba(255,79,208,.10));border:1px solid rgba(255,255,255,.14);box-shadow:0 22px 65px rgba(0,0,0,.22),inset 0 1px rgba(255,255,255,.08);overflow:hidden}
+.announcement-box:before{content:"";position:absolute;width:180px;height:180px;border-radius:50%;left:-80px;top:-95px;background:rgba(24,217,255,.12);filter:blur(4px)}
+.announcement-top{position:relative;display:flex;justify-content:space-between;align-items:center;gap:10px;color:#d9d1ff;font-size:12px;font-weight:800;margin-bottom:16px}
+.announcement-live{color:var(--green);font-size:10px}.announcement-box h2{position:relative;font-size:clamp(32px,5vw,58px);line-height:1.12;margin-bottom:13px}.announcement-box p{position:relative;max-width:700px;color:#d5ddf7;font-size:16px;line-height:1.95;white-space:pre-wrap}
 /* شريط الطالب */
 .student-bar{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:15px 18px;margin:10px 0 35px;border-radius:18px;background:linear-gradient(90deg,rgba(118,87,255,.10),rgba(24,217,255,.06));border:1px solid var(--border)}
 .student-bar strong{font-size:14px}.student-bar span{color:var(--muted);font-size:12px}.level{color:var(--gold)!important;font-weight:bold}
@@ -191,9 +196,12 @@ footer{margin-top:80px;padding:35px 5%;text-align:center;color:var(--muted);font
 <main class="container">
  <section class="hero">
   <div>
-   <div class="badge">✨ منصة رياضيات حديثة للطلاب</div>
-   <h2>تعلّم الرياضيات <span class="gradient">بطريقة أذكى</span></h2>
-   <p>حصص فيديو، ملخصات، اختبارات، خمس تحديات يومية ونظام نقاط يشجعك على الاستمرار.</p>
+   <div class="badge">📢 لوحة إعلانات منبر ون</div>
+   <div id="announcementBox" class="announcement-box">
+    <div class="announcement-top"><span>📢 إعلان المنصة</span><span class="announcement-live">● مباشر</span></div>
+    <h2 id="announcementTitle">مرحبًا بكم في منبر ون</h2>
+    <p id="announcementText">هنا ستظهر إعلانات وتنبيهات المنصة التي يكتبها المعلم من لوحة التحكم.</p>
+   </div>
    <div class="hero-actions">
     <button class="btn btn-primary" onclick="scrollToSection('lessonsSection')">🎥 ابدأ الحصص</button>
     <button class="btn" onclick="scrollToSection('challengeSection')">⚡ تحديات اليوم</button>
@@ -206,6 +214,12 @@ footer{margin-top:80px;padding:35px 5%;text-align:center;color:var(--muted);font
   <div><strong>👋 أهلًا <span id="welcomeName">بالطالب</span></strong><br><span>كل دقيقة مشاهدة تمنحك نقطة ⭐</span></div>
   <div><span class="level" id="levelText">المستوى 1</span></div>
  </div>
+
+ <section class="section" id="challengeSection">
+  <div class="section-title"><div><h2>⚡ خمس تحديات اليوم</h2><p>السؤال الأول ⭐1، الثاني ⭐2، الثالث ⭐3، الرابع ⭐4، والخامس ⭐5 — سؤال واحد في كل مرة</p></div></div>
+  <div class="challenge"><div id="challengeContent"><div class="loading">جاري تجهيز تحديات اليوم...</div></div></div>
+ </section>
+
 
  <div class="search-wrap">
   <span class="search-icon">🔎</span>
@@ -220,11 +234,6 @@ footer{margin-top:80px;padding:35px 5%;text-align:center;color:var(--muted);font
    <div class="category cat-green" onclick="scrollToSection('testsSection')"><div class="category-icon">📝</div><h3>الاختبارات</h3><p>اختبر مستواك</p></div>
    <div class="category cat-orange" onclick="scrollToSection('roomsSection')"><div class="category-icon">💬</div><h3>الغرف</h3><p>تعلم وتواصل</p></div>
   </div>
- </section>
-
- <section class="section" id="challengeSection">
-  <div class="section-title"><div><h2>⚡ خمس تحديات اليوم</h2><p>السؤال الأول ⭐1، الثاني ⭐2، الثالث ⭐3، الرابع ⭐4، والخامس ⭐5 — سؤال واحد في كل مرة</p></div></div>
-  <div class="challenge"><div id="challengeContent"><div class="loading">جاري تجهيز تحديات اليوم...</div></div></div>
  </section>
 
  <section class="section" id="lessonsSection">
@@ -453,7 +462,18 @@ async function loadRooms(){
  try{rooms=await getTable("rooms");if(!Array.isArray(rooms))rooms=[];renderRooms(rooms);$("roomsCount").textContent=rooms.length}
  catch(e){$("roomsContainer").innerHTML=`<div class="error">❌ تعذر تحميل الغرف.<br>${safe(e.message)}<br><small>إذا كان الخطأ 401، شغّل ملف SQL الأخير وتأكد من Publishable Key.</small></div>`}
 }
-async function loadAll(){await Promise.allSettled([loadLessons(),loadSummaries(),loadTests(),loadRooms()])}
+async function loadAnnouncement(){
+ try{
+  const rows=await api("teacher_info","GET",null,"select=announcement_title,announcement_text,announcement_active&order=id.asc&limit=1");
+  const a=rows?.[0];
+  if(a && a.announcement_active!==false && (a.announcement_title||a.announcement_text)){
+   $("announcementTitle").textContent=a.announcement_title||"إعلان من المنصة";
+   $("announcementText").textContent=a.announcement_text||"";
+   $("announcementBox").classList.remove("hidden");
+  }
+ }catch(e){console.warn("announcement",e.message)}
+}
+async function loadAll(){await Promise.allSettled([loadLessons(),loadSummaries(),loadTests(),loadRooms(),loadAnnouncement()])}
 
 function youtubeId(url){
  const s=String(url||"").trim();
