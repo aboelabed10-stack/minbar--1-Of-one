@@ -1,0 +1,5434 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة تحكم منبر ون</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --bg:#070b18;
+  --card:#10172b;
+  --card2:#151e36;
+  --text:#f5f7ff;
+  --muted:#9ba7c2;
+  --red:#ff3d54;
+  --orange:#ff8a30;
+  --purple:#9b6cff;
+  --blue:#4d9cff;
+  --green:#25dfa0;
+  --cyan:#18d9ff;
+  --gold:#ffc857;
+}
+
+body{
+  font-family:Tahoma,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 15% 10%,rgba(155,108,255,.14),transparent 25%),
+    radial-gradient(circle at 90% 20%,rgba(24,217,255,.10),transparent 25%),
+    radial-gradient(circle at 50% 100%,rgba(255,61,84,.08),transparent 30%),
+    var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+.stars{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:0;
+}
+
+.star{
+  position:absolute;
+  color:white;
+  opacity:.5;
+  animation:floatStar linear infinite;
+}
+
+@keyframes floatStar{
+  0%{
+    transform:translateY(-100px) rotate(0);
+    opacity:0;
+  }
+  15%{opacity:.7}
+  85%{opacity:.7}
+  100%{
+    transform:translateY(110vh) rotate(360deg);
+    opacity:0;
+  }
+}
+
+/* ================================
+   LOGIN
+================================ */
+
+#loginScreen{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  z-index:2;
+  padding:25px;
+}
+
+.login-wrapper{
+  width:100%;
+  max-width:460px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:18px;
+}
+
+.login-clock{
+  width:330px;
+  max-width:90vw;
+  padding:20px 25px;
+  border-radius:28px;
+  background:
+    linear-gradient(145deg,rgba(22,31,57,.95),rgba(10,15,30,.96));
+  border:1px solid rgba(155,108,255,.55);
+  box-shadow:
+    0 0 35px rgba(155,108,255,.22),
+    inset 0 0 25px rgba(255,255,255,.025);
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.login-clock:before{
+  content:"";
+  position:absolute;
+  width:170px;
+  height:170px;
+  background:rgba(155,108,255,.12);
+  filter:blur(35px);
+  border-radius:50%;
+  top:-90px;
+  right:-50px;
+}
+
+.clock-icon{
+  font-size:30px;
+  margin-bottom:3px;
+}
+
+#loginClockTime{
+  font-size:42px;
+  line-height:1.15;
+  font-weight:900;
+  letter-spacing:2px;
+  color:#fff;
+  text-shadow:
+    0 0 12px rgba(155,108,255,.8),
+    0 0 30px rgba(77,156,255,.35);
+}
+
+#loginClockDate{
+  color:#b9c3db;
+  font-size:14px;
+  margin-top:7px;
+}
+
+.login-card{
+  width:100%;
+  background:rgba(13,20,39,.88);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:30px;
+  padding:34px 28px;
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.45),
+    0 0 35px rgba(155,108,255,.10);
+  backdrop-filter:blur(18px);
+  text-align:center;
+  position:relative;
+}
+
+.login-card:before{
+  content:"";
+  position:absolute;
+  top:0;
+  right:12%;
+  left:12%;
+  height:3px;
+  border-radius:10px;
+  background:linear-gradient(
+    90deg,
+    var(--red),
+    var(--orange),
+    var(--purple),
+    var(--blue)
+  );
+}
+
+.logo{
+  width:78px;
+  height:78px;
+  margin:4px auto 15px;
+  border-radius:23px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:39px;
+  background:linear-gradient(135deg,#252d52,#11172d);
+  border:1px solid rgba(155,108,255,.5);
+  box-shadow:0 0 28px rgba(155,108,255,.22);
+}
+
+.login-card h1{
+  font-size:28px;
+  margin-bottom:7px;
+}
+
+.login-card p{
+  color:var(--muted);
+  margin-bottom:25px;
+  font-size:14px;
+}
+
+.password-box{
+  position:relative;
+  margin-bottom:15px;
+}
+
+.password-box input{
+  width:100%;
+  height:57px;
+  border-radius:17px;
+  border:1px solid rgba(255,255,255,.1);
+  background:#080e1d;
+  color:white;
+  text-align:center;
+  font-size:20px;
+  letter-spacing:5px;
+  outline:none;
+  transition:.25s;
+}
+
+.password-box input:focus{
+  border-color:var(--purple);
+  box-shadow:0 0 18px rgba(155,108,255,.18);
+}
+
+.main-btn{
+  width:100%;
+  min-height:54px;
+  border:0;
+  border-radius:17px;
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+  background:linear-gradient(135deg,#ff334f,#ff8a30);
+  box-shadow:0 10px 25px rgba(255,61,84,.18);
+  transition:.25s;
+}
+
+.main-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 30px rgba(255,100,50,.25);
+}
+
+/* زر الرجوع في صفحة كلمة المرور */
+
+.student-back-login{
+  width:100%;
+  min-height:50px;
+  margin-top:11px;
+  border-radius:16px;
+  border:1px solid rgba(24,217,255,.25);
+  background:rgba(24,217,255,.07);
+  color:#6eeaff;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.student-back-login:hover{
+  transform:translateY(-2px);
+  background:rgba(24,217,255,.13);
+  border-color:rgba(24,217,255,.45);
+  box-shadow:0 8px 25px rgba(24,217,255,.12);
+}
+
+.login-error{
+  color:#ff7f91;
+  margin-top:12px;
+  min-height:20px;
+  font-size:14px;
+}
+
+.login-icons{
+  display:flex;
+  justify-content:center;
+  gap:16px;
+  margin-top:20px;
+  opacity:.8;
+}
+
+.login-icons span{
+  width:38px;
+  height:38px;
+  border-radius:13px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.07);
+  font-size:20px;
+  animation:iconFloat 3s ease-in-out infinite;
+}
+
+.login-icons span:nth-child(2){animation-delay:.4s}
+.login-icons span:nth-child(3){animation-delay:.8s}
+.login-icons span:nth-child(4){animation-delay:1.2s}
+.login-icons span:nth-child(5){animation-delay:1.6s}
+
+@keyframes iconFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+
+/* ================================
+   APP
+================================ */
+
+#app{
+  display:none;
+  min-height:100vh;
+  position:relative;
+  z-index:2;
+}
+
+.sidebar{
+  position:fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  width:270px;
+  background:rgba(8,13,27,.94);
+  border-left:1px solid rgba(255,255,255,.08);
+  backdrop-filter:blur(20px);
+  z-index:20;
+  padding:22px 15px;
+  overflow-y:auto;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:8px 10px 25px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  margin-bottom:18px;
+}
+
+.brand-logo{
+  width:48px;
+  height:48px;
+  border-radius:15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#252d52,#11172d);
+  border:1px solid rgba(155,108,255,.45);
+  font-size:25px;
+}
+
+.brand h2{
+  font-size:19px;
+}
+
+.brand small{
+  color:#7f8aa5;
+  display:block;
+  margin-top:3px;
+}
+
+.nav-title{
+  color:#66718d;
+  font-size:11px;
+  padding:10px 13px;
+  margin-top:8px;
+}
+
+.nav-btn{
+  width:100%;
+  border:1px solid transparent;
+  background:transparent;
+  color:#c7cee0;
+  padding:13px 14px;
+  border-radius:15px;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font-size:14px;
+  font-weight:bold;
+  cursor:pointer;
+  margin-bottom:7px;
+  transition:.2s;
+  text-align:right;
+}
+
+.nav-btn:hover{
+  background:rgba(255,255,255,.055);
+  color:white;
+}
+
+.nav-btn.active{
+  background:rgba(155,108,255,.13);
+  border-color:rgba(155,108,255,.25);
+  color:white;
+}
+
+.nav-icon{
+  width:34px;
+  height:34px;
+  border-radius:11px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+  background:rgba(255,255,255,.06);
+  flex-shrink:0;
+}
+
+.logout-btn{
+  margin-top:15px;
+  color:#ff8996;
+}
+
+.main{
+  margin-right:270px;
+  min-height:100vh;
+}
+
+/* ================================
+   TOPBAR
+================================ */
+
+.topbar{
+  min-height:78px;
+  position:sticky;
+  top:0;
+  z-index:10;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:10px 30px;
+  background:rgba(7,11,24,.78);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  backdrop-filter:blur(18px);
+}
+
+.mobile-menu{
+  display:none;
+  border:0;
+  background:rgba(255,255,255,.06);
+  color:white;
+  width:43px;
+  height:43px;
+  border-radius:13px;
+  font-size:22px;
+  cursor:pointer;
+}
+
+.top-title{
+  font-weight:bold;
+  font-size:16px;
+  flex:1;
+}
+
+/* زر صفحة الطالب في أعلى لوحة التحكم */
+
+.top-student-btn{
+  border:1px solid rgba(24,217,255,.30);
+  background:linear-gradient(
+    135deg,
+    rgba(24,217,255,.12),
+    rgba(77,156,255,.10)
+  );
+  color:#73eaff;
+  border-radius:14px;
+  padding:11px 17px;
+  cursor:pointer;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:bold;
+  white-space:nowrap;
+  transition:.25s;
+  box-shadow:0 6px 20px rgba(24,217,255,.06);
+}
+
+.top-student-btn:hover{
+  transform:translateY(-2px);
+  background:linear-gradient(
+    135deg,
+    rgba(24,217,255,.18),
+    rgba(77,156,255,.16)
+  );
+  border-color:rgba(24,217,255,.55);
+  box-shadow:0 10px 25px rgba(24,217,255,.12);
+}
+
+.top-clock{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#bac4dc;
+}
+
+.top-clock strong{
+  color:white;
+  font-size:17px;
+}
+
+.content{
+  padding:28px;
+  max-width:1500px;
+  margin:auto;
+}
+
+.section{
+  display:none;
+}
+
+.section.active{
+  display:block;
+  animation:sectionIn .35s ease;
+}
+
+@keyframes sectionIn{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.hero{
+  border-radius:27px;
+  padding:30px;
+  min-height:230px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+  background:
+    radial-gradient(circle at 80% 20%,rgba(155,108,255,.20),transparent 28%),
+    radial-gradient(circle at 10% 90%,rgba(24,217,255,.10),transparent 25%),
+    linear-gradient(145deg,#111a32,#0c1327);
+  border:1px solid rgba(155,108,255,.25);
+  box-shadow:0 20px 50px rgba(0,0,0,.2);
+  overflow:hidden;
+  position:relative;
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  border:1px solid rgba(255,255,255,.05);
+  border-radius:50%;
+  left:-120px;
+  bottom:-180px;
+}
+
+.hero-text{
+  position:relative;
+  z-index:1;
+}
+
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  background:rgba(37,223,160,.09);
+  border:1px solid rgba(37,223,160,.25);
+  color:#65efbd;
+  padding:7px 12px;
+  border-radius:20px;
+  font-size:12px;
+  margin-bottom:15px;
+}
+
+.hero h1{
+  font-size:31px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:#9da8c1;
+  line-height:1.8;
+  max-width:700px;
+}
+
+.hero-symbols{
+  display:grid;
+  grid-template-columns:repeat(2,70px);
+  gap:13px;
+  transform:rotate(-5deg);
+}
+
+.hero-symbols div{
+  width:70px;
+  height:70px;
+  border-radius:21px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.08);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:32px;
+  box-shadow:0 12px 30px rgba(0,0,0,.18);
+}
+
+.quick-title{
+  margin:30px 4px 16px;
+  font-size:20px;
+}
+
+.quick-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:16px;
+}
+
+.quick-card{
+  min-height:170px;
+  border-radius:22px;
+  padding:20px;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+  background:rgba(15,22,42,.9);
+  border:1px solid rgba(255,255,255,.08);
+  transition:.25s;
+}
+
+.quick-card:hover{
+  transform:translateY(-5px);
+}
+
+.quick-card .q-icon{
+  width:46px;
+  height:46px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  margin-bottom:15px;
+}
+
+.quick-card h3{
+  font-size:16px;
+  margin-bottom:7px;
+}
+
+.quick-card p{
+  color:#818ca5;
+  font-size:12px;
+  line-height:1.6;
+}
+
+.quick-card:after{
+  content:"›";
+  position:absolute;
+  left:17px;
+  bottom:12px;
+  font-size:25px;
+  color:#6f7b96;
+}
+
+.q-purple{border-color:rgba(155,108,255,.3)}
+.q-purple .q-icon{background:rgba(155,108,255,.15);color:#b495ff}
+
+.q-blue{border-color:rgba(77,156,255,.3)}
+.q-blue .q-icon{background:rgba(77,156,255,.15);color:#72b5ff}
+
+.q-green{border-color:rgba(37,223,160,.3)}
+.q-green .q-icon{background:rgba(37,223,160,.15);color:#64edba}
+
+.q-orange{border-color:rgba(255,155,56,.3)}
+.q-orange .q-icon{background:rgba(255,155,56,.15);color:#ffb86d}
+
+.q-cyan{border-color:rgba(24,217,255,.3)}
+.q-cyan .q-icon{background:rgba(24,217,255,.15);color:#64e7ff}
+
+.section-head{
+  border-radius:24px;
+  padding:21px 23px;
+  margin-bottom:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  background:rgba(14,21,40,.92);
+  border:1px solid rgba(255,255,255,.08);
+  position:relative;
+}
+
+.section-head:before{
+  content:"";
+  position:absolute;
+  top:0;
+  right:25px;
+  left:25px;
+  height:3px;
+  border-radius:10px;
+}
+
+.head-info{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.head-icon{
+  width:50px;
+  height:50px;
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+}
+
+.head-info h2{
+  font-size:21px;
+}
+
+.head-info p{
+  color:#7f8aa4;
+  font-size:12px;
+  margin-top:5px;
+}
+
+.head-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.back-btn{
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.055);
+  color:#dce2f1;
+  border-radius:13px;
+  padding:10px 13px;
+  cursor:pointer;
+  font-weight:bold;
+  transition:.2s;
+}
+
+.back-btn:hover{
+  background:rgba(255,255,255,.1);
+}
+
+.add-btn{
+  border:0;
+  color:white;
+  border-radius:13px;
+  padding:11px 16px;
+  cursor:pointer;
+  font-weight:bold;
+  transition:.2s;
+}
+
+.add-btn:hover{
+  transform:translateY(-2px);
+}
+
+.theme-purple .section-head{
+  border-color:rgba(155,108,255,.28);
+}
+.theme-purple .section-head:before{background:var(--purple)}
+.theme-purple .head-icon{background:rgba(155,108,255,.14);color:#b69aff}
+.theme-purple .add-btn{background:linear-gradient(135deg,#8055ed,#a37cff)}
+
+.theme-blue .section-head{
+  border-color:rgba(77,156,255,.28);
+}
+.theme-blue .section-head:before{background:var(--blue)}
+.theme-blue .head-icon{background:rgba(77,156,255,.14);color:#75b8ff}
+.theme-blue .add-btn{background:linear-gradient(135deg,#3d88ee,#5ca7ff)}
+
+.theme-green .section-head{
+  border-color:rgba(37,223,160,.28);
+}
+.theme-green .section-head:before{background:var(--green)}
+.theme-green .head-icon{background:rgba(37,223,160,.14);color:#65efbd}
+.theme-green .add-btn{background:linear-gradient(135deg,#15bb82,#30e7aa)}
+
+.theme-orange .section-head{
+  border-color:rgba(255,155,56,.28);
+}
+.theme-orange .section-head:before{background:var(--orange)}
+.theme-orange .head-icon{background:rgba(255,155,56,.14);color:#ffb76c}
+.theme-orange .add-btn{background:linear-gradient(135deg,#ee7624,#ffa34c)}
+
+.theme-cyan .section-head{
+  border-color:rgba(24,217,255,.28);
+}
+.theme-cyan .section-head:before{background:var(--cyan)}
+.theme-cyan .head-icon{background:rgba(24,217,255,.14);color:#62e8ff}
+.theme-cyan .add-btn{background:linear-gradient(135deg,#0bb5d8,#20dfff)}
+
+.search-box{
+  margin-bottom:17px;
+}
+
+.search-box input{
+  width:100%;
+  height:50px;
+  border-radius:15px;
+  border:1px solid rgba(255,255,255,.08);
+  background:#0d152a;
+  color:white;
+  padding:0 17px;
+  outline:none;
+  font-size:14px;
+}
+
+.search-box input:focus{
+  border-color:rgba(155,108,255,.5);
+}
+
+.form-card{
+  display:none;
+  padding:20px;
+  border-radius:21px;
+  background:#0e162b;
+  border:1px solid rgba(255,255,255,.08);
+  margin-bottom:18px;
+}
+
+.form-card.show{
+  display:block;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.form-group.full{
+  grid-column:1/-1;
+}
+
+.form-group label{
+  color:#9ca8c0;
+  font-size:12px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+  width:100%;
+  border:1px solid rgba(255,255,255,.08);
+  background:#080f20;
+  color:white;
+  border-radius:13px;
+  padding:12px;
+  outline:none;
+  font-family:inherit;
+}
+
+.form-group textarea{
+  min-height:95px;
+  resize:vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+  border-color:rgba(155,108,255,.45);
+}
+
+.form-actions{
+  display:flex;
+  gap:9px;
+  margin-top:15px;
+}
+
+.save-btn{
+  border:0;
+  background:linear-gradient(135deg,#ff3d54,#ff8a30);
+  color:white;
+  border-radius:13px;
+  padding:11px 20px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.cancel-btn{
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.05);
+  color:#ddd;
+  border-radius:13px;
+  padding:11px 18px;
+  cursor:pointer;
+}
+
+.items-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.item-card{
+  background:rgba(14,22,41,.92);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:20px;
+  padding:18px;
+  position:relative;
+  overflow:hidden;
+  transition:.2s;
+}
+
+.item-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(255,255,255,.15);
+}
+
+.item-card:before{
+  content:"";
+  position:absolute;
+  top:0;
+  right:0;
+  width:4px;
+  height:100%;
+  background:var(--purple);
+}
+
+.theme-blue .item-card:before{background:var(--blue)}
+.theme-green .item-card:before{background:var(--green)}
+.theme-orange .item-card:before{background:var(--orange)}
+.theme-cyan .item-card:before{background:var(--cyan)}
+
+.item-cover{
+  width:100%;
+  height:175px;
+  border-radius:15px;
+  overflow:hidden;
+  margin-bottom:15px;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(155,108,255,.28),transparent 35%),
+    linear-gradient(135deg,#182444,#0b1123);
+  border:1px solid rgba(255,255,255,.07);
+  position:relative;
+}
+
+.item-cover img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+}
+
+.item-cover-placeholder{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:7px;
+  color:#8894b0;
+  font-size:13px;
+}
+
+.item-cover-placeholder strong{
+  font-size:35px;
+  opacity:.8;
+}
+
+.cover-badge{
+  position:absolute;
+  top:9px;
+  right:9px;
+  z-index:2;
+  padding:6px 9px;
+  border-radius:9px;
+  background:rgba(5,9,18,.75);
+  border:1px solid rgba(255,255,255,.1);
+  color:white;
+  font-size:10px;
+  backdrop-filter:blur(5px);
+}
+
+.item-title{
+  font-size:16px;
+  font-weight:bold;
+  margin-bottom:9px;
+}
+
+.item-desc{
+  color:#8d98b0;
+  font-size:12px;
+  line-height:1.7;
+  min-height:38px;
+}
+
+.item-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin:12px 0;
+}
+
+.tag{
+  font-size:10px;
+  padding:5px 8px;
+  border-radius:8px;
+  background:rgba(255,255,255,.055);
+  color:#aab4ca;
+}
+
+.item-actions{
+  display:flex;
+  gap:7px;
+  margin-top:14px;
+  flex-wrap:wrap;
+}
+
+.edit-btn,
+.delete-btn,
+.question-btn,
+.watch-btn{
+  flex:1;
+  border-radius:10px;
+  padding:8px;
+  cursor:pointer;
+  font-weight:bold;
+  min-width:90px;
+}
+
+.edit-btn{
+  border:1px solid rgba(77,156,255,.2);
+  color:#74b8ff;
+  background:rgba(77,156,255,.08);
+}
+
+.delete-btn{
+  border:1px solid rgba(255,61,84,.2);
+  color:#ff8290;
+  background:rgba(255,61,84,.07);
+}
+
+.question-btn{
+  border:1px solid rgba(37,223,160,.25);
+  color:#65efbd;
+  background:rgba(37,223,160,.08);
+}
+
+.watch-btn{
+  border:1px solid rgba(155,108,255,.28);
+  color:#c0aaff;
+  background:rgba(155,108,255,.10);
+}
+
+.student-status{
+  display:inline-flex;
+  padding:5px 9px;
+  border-radius:8px;
+  font-size:10px;
+}
+
+.status-active{
+  color:#5eebba;
+  background:rgba(37,223,160,.1);
+}
+
+.status-inactive{
+  color:#ff8996;
+  background:rgba(255,61,84,.1);
+}
+
+.announcement-card{
+  background:
+    radial-gradient(circle at 90% 0%,rgba(255,200,87,.12),transparent 25%),
+    radial-gradient(circle at 10% 100%,rgba(255,61,84,.08),transparent 25%),
+    #11192e;
+  border:1px solid rgba(255,200,87,.25);
+  border-radius:25px;
+  padding:25px;
+  margin-bottom:20px;
+}
+
+.announcement-card h3{
+  color:#ffd56c;
+  margin-bottom:8px;
+}
+
+.announcement-card p{
+  color:#aeb8ce;
+  line-height:1.8;
+  font-size:14px;
+}
+
+.announcement-form{
+  background:#0e162b;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:21px;
+  padding:20px;
+}
+
+.switch-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:rgba(255,255,255,.035);
+  padding:13px;
+  border-radius:13px;
+  margin-top:13px;
+}
+
+.switch{
+  width:48px;
+  height:26px;
+  position:relative;
+}
+
+.switch input{
+  display:none;
+}
+
+.slider{
+  position:absolute;
+  inset:0;
+  background:#28334d;
+  border-radius:30px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.slider:before{
+  content:"";
+  position:absolute;
+  width:20px;
+  height:20px;
+  top:3px;
+  right:3px;
+  background:white;
+  border-radius:50%;
+  transition:.2s;
+}
+
+.switch input:checked + .slider{
+  background:#23c98f;
+}
+
+.switch input:checked + .slider:before{
+  transform:translateX(-22px);
+}
+
+.empty{
+  text-align:center;
+  padding:55px 20px;
+  border-radius:20px;
+  border:1px dashed rgba(255,255,255,.09);
+  color:#66718b;
+  grid-column:1/-1;
+}
+
+.empty-icon{
+  font-size:36px;
+  margin-bottom:10px;
+}
+
+#loading{
+  position:fixed;
+  inset:0;
+  background:rgba(5,9,18,.78);
+  backdrop-filter:blur(7px);
+  z-index:100;
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+
+.loader-box{
+  background:#111a31;
+  border:1px solid rgba(155,108,255,.25);
+  padding:25px 35px;
+  border-radius:20px;
+  text-align:center;
+}
+
+.spinner{
+  width:38px;
+  height:38px;
+  border:3px solid rgba(255,255,255,.1);
+  border-top-color:var(--purple);
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+  margin:0 auto 12px;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+#toast{
+  position:fixed;
+  left:25px;
+  bottom:25px;
+  z-index:150;
+  padding:13px 18px;
+  border-radius:14px;
+  background:#151e35;
+  border:1px solid rgba(255,255,255,.1);
+  color:white;
+  box-shadow:0 15px 40px rgba(0,0,0,.3);
+  transform:translateY(100px);
+  opacity:0;
+  transition:.3s;
+}
+
+#toast.show{
+  transform:translateY(0);
+  opacity:1;
+}
+
+#upBtn{
+  position:fixed;
+  left:22px;
+  bottom:22px;
+  width:47px;
+  height:47px;
+  border-radius:15px;
+  border:1px solid rgba(155,108,255,.3);
+  background:rgba(17,25,48,.92);
+  color:white;
+  font-size:22px;
+  cursor:pointer;
+  z-index:90;
+  display:none;
+  box-shadow:0 8px 25px rgba(0,0,0,.3);
+}
+
+#upBtn.show{
+  display:block;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(2,5,12,.78);
+  backdrop-filter:blur(7px);
+  z-index:80;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:100%;
+  max-width:750px;
+  max-height:90vh;
+  overflow:auto;
+  background:#10182d;
+  border:1px solid rgba(155,108,255,.22);
+  border-radius:24px;
+  padding:22px;
+}
+
+.modal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:17px;
+}
+
+.close-btn{
+  border:0;
+  background:rgba(255,255,255,.06);
+  color:white;
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  cursor:pointer;
+  font-size:18px;
+}
+
+.video-modal-box{
+  max-width:900px;
+}
+
+.video-player-wrap{
+  width:100%;
+  aspect-ratio:16/9;
+  background:#050812;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.08);
+  margin-bottom:15px;
+}
+
+.video-player-wrap iframe{
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+}
+
+.video-fallback{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:10px;
+  color:#8d99b3;
+  text-align:center;
+  padding:20px;
+}
+
+.video-fallback-icon{
+  font-size:50px;
+}
+
+.video-actions{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+
+.video-action-btn{
+  border:1px solid rgba(255,255,255,.09);
+  background:rgba(255,255,255,.05);
+  color:white;
+  border-radius:13px;
+  padding:12px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.video-action-btn.student{
+  background:linear-gradient(135deg,#15bb82,#30e7aa);
+  border:0;
+}
+
+.video-action-btn.open{
+  background:linear-gradient(135deg,#3d88ee,#5ca7ff);
+  border:0;
+}
+
+.cover-preview{
+  width:100%;
+  height:180px;
+  border-radius:15px;
+  object-fit:cover;
+  background:#0a1020;
+  border:1px solid rgba(255,255,255,.08);
+  display:block;
+  margin-top:7px;
+}
+
+.cover-preview-empty{
+  width:100%;
+  height:180px;
+  border-radius:15px;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(155,108,255,.18),transparent 35%),
+    #0a1020;
+  border:1px dashed rgba(255,255,255,.1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#65718a;
+  font-size:12px;
+  margin-top:7px;
+}
+
+.cover-note{
+  color:#68748e;
+  font-size:10px;
+  line-height:1.6;
+}
+
+/* QUESTIONS */
+
+.questions-toolbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:12px;
+  margin-bottom:15px;
+  border-radius:15px;
+  background:rgba(37,223,160,.06);
+  border:1px solid rgba(37,223,160,.15);
+}
+
+.questions-count{
+  color:#65efbd;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.question-form{
+  background:#0c1427;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:17px;
+  padding:16px;
+  margin-bottom:15px;
+}
+
+.question-form-title{
+  font-size:15px;
+  font-weight:bold;
+  margin-bottom:14px;
+  color:#fff;
+}
+
+.question-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.question-row{
+  background:#0c1427;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:15px;
+  padding:14px;
+}
+
+.question-number{
+  display:inline-flex;
+  width:31px;
+  height:31px;
+  border-radius:10px;
+  align-items:center;
+  justify-content:center;
+  background:rgba(37,223,160,.12);
+  color:#65efbd;
+  font-weight:bold;
+  margin-left:8px;
+}
+
+.question-text{
+  font-size:14px;
+  font-weight:bold;
+  line-height:1.7;
+  margin-bottom:10px;
+}
+
+.question-options{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:7px;
+  margin-bottom:12px;
+}
+
+.question-option{
+  padding:8px;
+  border-radius:9px;
+  background:rgba(255,255,255,.035);
+  color:#aeb8cc;
+  font-size:11px;
+}
+
+.question-option.correct{
+  border:1px solid rgba(37,223,160,.3);
+  background:rgba(37,223,160,.08);
+  color:#65efbd;
+}
+
+.question-actions{
+  display:flex;
+  gap:7px;
+}
+
+.small-btn{
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.05);
+  color:#ddd;
+  border-radius:9px;
+  padding:7px 12px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.small-edit{
+  color:#74b8ff;
+  border-color:rgba(77,156,255,.2);
+  background:rgba(77,156,255,.07);
+}
+
+.small-delete{
+  color:#ff8290;
+  border-color:rgba(255,61,84,.2);
+  background:rgba(255,61,84,.07);
+}
+
+.correct-select{
+  color:#65efbd !important;
+}
+
+@media(max-width:1100px){
+
+  .quick-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .items-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:800px){
+
+  .sidebar{
+    transform:translateX(110%);
+    transition:.3s;
+    box-shadow:-20px 0 50px rgba(0,0,0,.4);
+  }
+
+  .sidebar.open{
+    transform:translateX(0);
+  }
+
+  .main{
+    margin-right:0;
+  }
+
+  .mobile-menu{
+    display:block;
+  }
+
+  .topbar{
+    padding:10px 15px;
+  }
+
+  .top-title{
+    display:none;
+  }
+
+  .top-student-btn{
+    flex:1;
+    max-width:230px;
+  }
+
+  .content{
+    padding:17px;
+  }
+
+  .hero{
+    padding:23px;
+  }
+
+  .hero h1{
+    font-size:25px;
+  }
+
+  .hero-symbols{
+    display:none;
+  }
+
+  .quick-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .items-grid{
+    grid-template-columns:1fr;
+  }
+
+  .section-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .head-actions{
+    width:100%;
+  }
+
+  .head-actions button{
+    flex:1;
+  }
+
+  .video-actions{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:520px){
+
+  #loginScreen{
+    padding:15px;
+  }
+
+  .login-clock{
+    width:100%;
+  }
+
+  #loginClockTime{
+    font-size:35px;
+  }
+
+  .login-card{
+    padding:28px 19px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .form-group.full{
+    grid-column:auto;
+  }
+
+  .quick-grid{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .quick-card{
+    min-height:150px;
+    padding:15px;
+  }
+
+  .hero{
+    min-height:190px;
+  }
+
+  .top-clock span{
+    display:none;
+  }
+
+  .top-clock strong{
+    font-size:14px;
+  }
+
+  .top-student-btn{
+    padding:10px 11px;
+    font-size:11px;
+  }
+
+  .question-options{
+    grid-template-columns:1fr;
+  }
+
+  .item-cover{
+    height:160px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars" id="stars"></div>
+
+<!-- ================================
+     LOGIN SCREEN
+================================ -->
+
+<div id="loginScreen">
+
+  <div class="login-wrapper">
+
+    <div class="login-clock">
+
+      <div class="clock-icon">🕐</div>
+
+      <div id="loginClockTime">
+        00:00:00
+      </div>
+
+      <div id="loginClockDate">
+        جاري تحميل التاريخ...
+      </div>
+
+    </div>
+
+    <div class="login-card">
+
+      <div class="logo">
+        📚
+      </div>
+
+      <h1>
+        لوحة تحكم منبر ون
+      </h1>
+
+      <p>
+        نظام التحكم والإدارة الخاص بالمنصة
+      </p>
+
+      <div class="password-box">
+
+        <input
+          id="passwordInput"
+          type="password"
+          inputmode="numeric"
+          maxlength="20"
+          placeholder="أدخل كلمة المرور"
+          autocomplete="off"
+          onkeydown="if(event.key==='Enter') login()"
+        >
+
+      </div>
+
+      <button
+        class="main-btn"
+        onclick="login()"
+      >
+        🔐 دخول إلى لوحة التحكم
+      </button>
+
+      <!-- زر الرجوع الجديد في صفحة كلمة المرور -->
+
+      <button
+        class="student-back-login"
+        onclick="goToStudentPage()"
+      >
+        ↩ الرجوع إلى صفحة الطالب
+      </button>
+
+      <div
+        class="login-error"
+        id="loginError"
+      ></div>
+
+      <div class="login-icons">
+
+        <span>📚</span>
+        <span>✏️</span>
+        <span>📐</span>
+        <span>🧮</span>
+        <span>⭐</span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ================================
+     APP
+================================ -->
+
+<div id="app">
+
+  <aside
+    class="sidebar"
+    id="sidebar"
+  >
+
+    <div class="brand">
+
+      <div class="brand-logo">
+        📚
+      </div>
+
+      <div>
+
+        <h2>
+          منبر ون
+        </h2>
+
+        <small>
+          لوحة التحكم
+        </small>
+
+      </div>
+
+    </div>
+
+    <div class="nav-title">
+      الرئيسية
+    </div>
+
+    <button
+      class="nav-btn active"
+      data-section="home"
+      onclick="showSection('home')"
+    >
+      <span class="nav-icon">🏠</span>
+      الرئيسية
+    </button>
+
+    <div class="nav-title">
+      إدارة المنصة
+    </div>
+
+    <button
+      class="nav-btn"
+      data-section="lessons"
+      onclick="showSection('lessons')"
+    >
+      <span class="nav-icon">📚</span>
+      الحصص
+    </button>
+
+    <button
+      class="nav-btn"
+      data-section="summaries"
+      onclick="showSection('summaries')"
+    >
+      <span class="nav-icon">📘</span>
+      الملخصات
+    </button>
+
+    <button
+      class="nav-btn"
+      data-section="tests"
+      onclick="showSection('tests')"
+    >
+      <span class="nav-icon">📝</span>
+      الاختبارات والأعمال
+    </button>
+
+    <button
+      class="nav-btn"
+      data-section="rooms"
+      onclick="showSection('rooms')"
+    >
+      <span class="nav-icon">🚪</span>
+      الغرف
+    </button>
+
+    <button
+      class="nav-btn"
+      data-section="students"
+      onclick="showSection('students')"
+    >
+      <span class="nav-icon">👨‍🎓</span>
+      الطلاب
+    </button>
+
+    <div class="nav-title">
+      الإدارة
+    </div>
+
+    <button
+      class="nav-btn"
+      data-section="announcement"
+      onclick="showSection('announcement')"
+    >
+      <span class="nav-icon">📢</span>
+      لوحة الإعلانات
+    </button>
+
+    <button
+      class="nav-btn logout-btn"
+      onclick="logout()"
+    >
+      <span class="nav-icon">🚪</span>
+      تسجيل الخروج
+    </button>
+
+  </aside>
+
+  <main class="main">
+
+    <!-- ================================
+         TOPBAR
+    ================================= -->
+
+    <header class="topbar">
+
+      <button
+        class="mobile-menu"
+        onclick="toggleSidebar()"
+      >
+        ☰
+      </button>
+
+      <div class="top-title">
+        ⚙️ نظام التحكم في منبر ون
+      </div>
+
+      <!-- زر الرجوع الجديد في أعلى لوحة التحكم -->
+
+      <button
+        class="top-student-btn"
+        onclick="goToStudentPage()"
+      >
+        ↩ الرجوع إلى صفحة الطالب
+      </button>
+
+      <div class="top-clock">
+
+        <span>🕐</span>
+
+        <strong id="appClock">
+          00:00:00
+        </strong>
+
+      </div>
+
+    </header>
+
+    <div class="content">
+
+      <!-- HOME -->
+
+      <section
+        class="section active"
+        id="section-home"
+      >
+
+        <div class="hero">
+
+          <div class="hero-text">
+
+            <div class="hero-badge">
+              <span>●</span>
+              النظام يعمل بشكل طبيعي
+            </div>
+
+            <h1>
+              مرحبًا بك في لوحة تحكم منبر ون 👋
+            </h1>
+
+            <p>
+              من هنا يمكنك إدارة محتوى المنصة بالكامل،
+              وإضافة الحصص والملخصات والاختبارات والغرف،
+              بالإضافة إلى متابعة الطلاب وإدارة الإعلانات.
+            </p>
+
+          </div>
+
+          <div class="hero-symbols">
+
+            <div>📚</div>
+            <div>🧮</div>
+            <div>📐</div>
+            <div>✏️</div>
+
+          </div>
+
+        </div>
+
+        <h2 class="quick-title">
+          ⚡ الوصول السريع
+        </h2>
+
+        <div class="quick-grid">
+
+          <div
+            class="quick-card q-purple"
+            onclick="showSection('lessons')"
+          >
+            <div class="q-icon">📚</div>
+            <h3>الحصص</h3>
+            <p>
+              إضافة وتعديل وإدارة الحصص التعليمية والفيديوهات.
+            </p>
+          </div>
+
+          <div
+            class="quick-card q-blue"
+            onclick="showSection('summaries')"
+          >
+            <div class="q-icon">📘</div>
+            <h3>الملخصات</h3>
+            <p>
+              إدارة الملخصات والملفات التعليمية.
+            </p>
+          </div>
+
+          <div
+            class="quick-card q-green"
+            onclick="showSection('tests')"
+          >
+            <div class="q-icon">📝</div>
+            <h3>الاختبارات والأعمال</h3>
+            <p>
+              إنشاء وإدارة الاختبارات والأسئلة والأعمال.
+            </p>
+          </div>
+
+          <div
+            class="quick-card q-orange"
+            onclick="showSection('rooms')"
+          >
+            <div class="q-icon">🚪</div>
+            <h3>الغرف</h3>
+            <p>
+              إدارة غرف الدراسة والروابط الخاصة بها.
+            </p>
+          </div>
+
+          <div
+            class="quick-card q-cyan"
+            onclick="showSection('students')"
+          >
+            <div class="q-icon">👨‍🎓</div>
+            <h3>الطلاب</h3>
+            <p>
+              متابعة الطلاب وإدارة حالتهم.
+            </p>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- LESSONS -->
+
+      <section
+        class="section theme-purple"
+        id="section-lessons"
+      >
+
+        <div class="section-head">
+
+          <div class="head-info">
+
+            <div class="head-icon">
+              📚
+            </div>
+
+            <div>
+
+              <h2>
+                إدارة الحصص والفيديوهات
+              </h2>
+
+              <p>
+                إضافة وتعديل وحذف الحصص والفيديوهات مع الأغلفة
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="head-actions">
+
+            <button
+              class="back-btn"
+              onclick="goBackSection()"
+            >
+              ↩ رجوع
+            </button>
+
+            <button
+              class="back-btn"
+              onclick="showSection('home')"
+            >
+              🏠 الرئيسية
+            </button>
+
+            <button
+              class="add-btn"
+              onclick="toggleForm('lessonForm')"
+            >
+              ＋ إضافة حصة
+            </button>
+
+          </div>
+
+        </div>
+
+        <div
+          class="form-card"
+          id="lessonForm"
+        >
+
+          <div class="form-grid">
+
+            <div class="form-group">
+
+              <label>
+                عنوان الحصة
+              </label>
+
+              <input
+                id="lessonTitle"
+                placeholder="مثال: قانون نيوتن الثاني"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                الوحدة
+              </label>
+
+              <input
+                id="lessonUnit"
+                placeholder="مثال: الوحدة الأولى"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                رابط الفيديو
+              </label>
+
+              <input
+                id="lessonVideo"
+                placeholder="https://..."
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                مدة الحصة
+              </label>
+
+              <input
+                id="lessonDuration"
+                placeholder="مثال: 25 دقيقة"
+              >
+
+            </div>
+
+            <div class="form-group full">
+
+              <label>
+                🖼️ رابط غلاف الحصة / الفيديو
+              </label>
+
+              <input
+                id="lessonCover"
+                placeholder="https://... رابط صورة الغلاف"
+                oninput="previewCoverInput('lessonCover','lessonCoverPreview')"
+              >
+
+              <div class="cover-note">
+                ضع رابط صورة مباشر للغلاف، وسيظهر الغلاف على بطاقة الحصة.
+              </div>
+
+              <div
+                id="lessonCoverPreview"
+                class="cover-preview-empty"
+              >
+                🖼️ معاينة الغلاف
+              </div>
+
+            </div>
+
+            <div class="form-group full">
+
+              <label>
+                الوصف
+              </label>
+
+              <textarea
+                id="lessonDescription"
+                placeholder="وصف الحصة..."
+              ></textarea>
+
+            </div>
+
+          </div>
+
+          <div class="form-actions">
+
+            <button
+              class="save-btn"
+              onclick="addLesson()"
+            >
+              💾 حفظ الحصة
+            </button>
+
+            <button
+              class="cancel-btn"
+              onclick="toggleForm('lessonForm',false)"
+            >
+              إلغاء
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="search-box">
+
+          <input
+            id="lessonSearch"
+            oninput="filterItems('lessonSearch','lessonsList')"
+            placeholder="🔎 البحث في الحصص..."
+          >
+
+        </div>
+
+        <div
+          class="items-grid"
+          id="lessonsList"
+        ></div>
+
+      </section>
+
+      <!-- SUMMARIES -->
+
+      <section
+        class="section theme-blue"
+        id="section-summaries"
+      >
+
+        <div class="section-head">
+
+          <div class="head-info">
+
+            <div class="head-icon">
+              📘
+            </div>
+
+            <div>
+
+              <h2>
+                إدارة الملخصات
+              </h2>
+
+              <p>
+                إضافة وتعديل وحذف الملخصات التعليمية مع الأغلفة
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="head-actions">
+
+            <button
+              class="back-btn"
+              onclick="goBackSection()"
+            >
+              ↩ رجوع
+            </button>
+
+            <button
+              class="back-btn"
+              onclick="showSection('home')"
+            >
+              🏠 الرئيسية
+            </button>
+
+            <button
+              class="add-btn"
+              onclick="toggleForm('summaryForm')"
+            >
+              ＋ إضافة ملخص
+            </button>
+
+          </div>
+
+        </div>
+
+        <div
+          class="form-card"
+          id="summaryForm"
+        >
+
+          <div class="form-grid">
+
+            <div class="form-group">
+
+              <label>
+                عنوان الملخص
+              </label>
+
+              <input
+                id="summaryTitle"
+                placeholder="عنوان الملخص"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                رابط الملف
+              </label>
+
+              <input
+                id="summaryFile"
+                placeholder="رابط PDF أو الملف"
+              >
+
+            </div>
+
+            <div class="form-group full">
+
+              <label>
+                🖼️ رابط غلاف الملخص
+              </label>
+
+              <input
+                id="summaryCover"
+                placeholder="https://... رابط صورة الغلاف"
+                oninput="previewCoverInput('summaryCover','summaryCoverPreview')"
+              >
+
+              <div
+                id="summaryCoverPreview"
+                class="cover-preview-empty"
+              >
+                🖼️ معاينة الغلاف
+              </div>
+
+            </div>
+
+            <div class="form-group full">
+
+              <label>
+                الوصف
+              </label>
+
+              <textarea
+                id="summaryDescription"
+                placeholder="وصف الملخص..."
+              ></textarea>
+
+            </div>
+
+          </div>
+
+          <div class="form-actions">
+
+            <button
+              class="save-btn"
+              onclick="addSummary()"
+            >
+              💾 حفظ الملخص
+            </button>
+
+            <button
+              class="cancel-btn"
+              onclick="toggleForm('summaryForm',false)"
+            >
+              إلغاء
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="search-box">
+
+          <input
+            id="summarySearch"
+            oninput="filterItems('summarySearch','summariesList')"
+            placeholder="🔎 البحث في الملخصات..."
+          >
+
+        </div>
+
+        <div
+          class="items-grid"
+          id="summariesList"
+        ></div>
+
+      </section>
+
+      <!-- TESTS -->
+
+      <section
+        class="section theme-green"
+        id="section-tests"
+      >
+
+        <div class="section-head">
+
+          <div class="head-info">
+
+            <div class="head-icon">
+              📝
+            </div>
+
+            <div>
+
+              <h2>
+                إدارة الاختبارات والأعمال
+              </h2>
+
+              <p>
+                إضافة وتعديل وحذف الاختبارات والأعمال والأسئلة مع الأغلفة
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="head-actions">
+
+            <button
+              class="back-btn"
+              onclick="goBackSection()"
+            >
+              ↩ رجوع
+            </button>
+
+            <button
+              class="back-btn"
+              onclick="showSection('home')"
+            >
+              🏠 الرئيسية
+            </button>
+
+            <button
+              class="add-btn"
+              onclick="toggleForm('testForm')"
+            >
+              ＋ إضافة اختبار / عمل
+            </button>
+
+          </div>
+
+        </div>
+
+        <div
+          class="form-card"
+          id="testForm"
+        >
+
+          <div class="form-grid">
+
+            <div class="form-group">
+
+              <label>
+                عنوان الاختبار / العمل
+              </label>
+
+              <input
+                id="testTitle"
+                placeholder="عنوان الاختبار أو العمل"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                عدد الأسئلة
+              </label>
+
+              <input
+                id="testQuestions"
+                type="number"
+                min="0"
+                placeholder="عدد الأسئلة"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                ⏱️ مدة الاختبار بالدقائق
+              </label>
+
+              <input
+                id="testDuration"
+                type="number"
+                min="1"
+                value="90"
+                placeholder="مثال: 90"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                معلومة المدة
+              </label>
+
+              <input
+                value="مثال: 90 = ساعة ونصف"
+                readonly
+                style="color:#9ba7c2;cursor:default"
+              >
+
+            </div>
+
+            <div class="form-group full">
+
+              <label>
+                🖼️ رابط غلاف الاختبار / العمل
+              </label>
+
+              <input
+                id="testCover"
+                placeholder="https://... رابط صورة الغلاف"
+                oninput="previewCoverInput('testCover','testCoverPreview')"
+              >
+
+              <div
+                id="testCoverPreview"
+                class="cover-preview-empty"
+              >
+                🖼️ معاينة الغلاف
+              </div>
+
+            </div>
+
+            <div class="form-group full">
+
+              <label>
+                الوصف
+              </label>
+
+              <textarea
+                id="testDescription"
+                placeholder="وصف الاختبار أو العمل..."
+              ></textarea>
+
+            </div>
+
+          </div>
+
+          <div class="form-actions">
+
+            <button
+              class="save-btn"
+              onclick="addTest()"
+            >
+              💾 حفظ الاختبار / العمل
+            </button>
+
+            <button
+              class="cancel-btn"
+              onclick="toggleForm('testForm',false)"
+            >
+              إلغاء
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="search-box">
+
+          <input
+            id="testSearch"
+            oninput="filterItems('testSearch','testsList')"
+            placeholder="🔎 البحث في الاختبارات والأعمال..."
+          >
+
+        </div>
+
+        <div
+          class="items-grid"
+          id="testsList"
+        ></div>
+
+      </section>
+
+      <!-- ROOMS -->
+
+      <section
+        class="section theme-orange"
+        id="section-rooms"
+      >
+
+        <div class="section-head">
+
+          <div class="head-info">
+
+            <div class="head-icon">
+              🚪
+            </div>
+
+            <div>
+
+              <h2>
+                إدارة الغرف
+              </h2>
+
+              <p>
+                إضافة وتعديل وحذف غرف الدراسة
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="head-actions">
+
+            <button
+              class="back-btn"
+              onclick="goBackSection()"
+            >
+              ↩ رجوع
+            </button>
+
+            <button
+              class="back-btn"
+              onclick="showSection('home')"
+            >
+              🏠 الرئيسية
+            </button>
+
+            <button
+              class="add-btn"
+              onclick="toggleForm('roomForm')"
+            >
+              ＋ إضافة غرفة
+            </button>
+
+          </div>
+
+        </div>
+
+        <div
+          class="form-card"
+          id="roomForm"
+        >
+
+          <div class="form-grid">
+
+            <div class="form-group">
+
+              <label>
+                اسم الغرفة
+              </label>
+
+              <input
+                id="roomName"
+                placeholder="اسم الغرفة"
+              >
+
+            </div>
+
+            <div class="form-group">
+
+              <label>
+                رابط الغرفة
+              </label>
+
+              <input
+                id="roomLink"
+                placeholder="رابط الغرفة"
+              >
+
+            </div>
+
+            <div class="form-group full">
+
+              <label>
+                الوصف
+              </label>
+
+              <textarea
+                id="roomDescription"
+                placeholder="وصف الغرفة..."
+              ></textarea>
+
+            </div>
+
+          </div>
+
+          <div class="form-actions">
+
+            <button
+              class="save-btn"
+              onclick="addRoom()"
+            >
+              💾 حفظ الغرفة
+            </button>
+
+            <button
+              class="cancel-btn"
+              onclick="toggleForm('roomForm',false)"
+            >
+              إلغاء
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="search-box">
+
+          <input
+            id="roomSearch"
+            oninput="filterItems('roomSearch','roomsList')"
+            placeholder="🔎 البحث في الغرف..."
+          >
+
+        </div>
+
+        <div
+          class="items-grid"
+          id="roomsList"
+        ></div>
+
+      </section>
+
+      <!-- STUDENTS -->
+
+      <section
+        class="section theme-cyan"
+        id="section-students"
+      >
+
+        <div class="section-head">
+
+          <div class="head-info">
+
+            <div class="head-icon">
+              👨‍🎓
+            </div>
+
+            <div>
+
+              <h2>
+                إدارة الطلاب
+              </h2>
+
+              <p>
+                متابعة الطلاب وإدارة حالتهم
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="head-actions">
+
+            <button
+              class="back-btn"
+              onclick="goBackSection()"
+            >
+              ↩ رجوع
+            </button>
+
+            <button
+              class="back-btn"
+              onclick="showSection('home')"
+            >
+              🏠 الرئيسية
+            </button>
+
+            <button
+              class="add-btn"
+              onclick="loadStudents()"
+            >
+              🔄 تحديث
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="search-box">
+
+          <input
+            id="studentSearch"
+            oninput="filterItems('studentSearch','studentsList')"
+            placeholder="🔎 البحث عن طالب..."
+          >
+
+        </div>
+
+        <div
+          class="items-grid"
+          id="studentsList"
+        ></div>
+
+      </section>
+
+      <!-- ANNOUNCEMENT -->
+
+      <section
+        class="section"
+        id="section-announcement"
+      >
+
+        <div
+          class="section-head"
+          style="border-color:rgba(255,200,87,.28)"
+        >
+
+          <div class="head-info">
+
+            <div
+              class="head-icon"
+              style="background:rgba(255,200,87,.13);color:#ffd56c"
+            >
+              📢
+            </div>
+
+            <div>
+
+              <h2>
+                لوحة الإعلانات
+              </h2>
+
+              <p>
+                إدارة الإعلان الذي يظهر للطلاب
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="head-actions">
+
+            <button
+              class="back-btn"
+              onclick="goBackSection()"
+            >
+              ↩ رجوع
+            </button>
+
+            <button
+              class="back-btn"
+              onclick="showSection('home')"
+            >
+              🏠 الرئيسية
+            </button>
+
+          </div>
+
+        </div>
+
+        <div
+          class="announcement-card"
+          id="announcementPreview"
+        >
+
+          <h3>
+            📢 الإعلان الحالي
+          </h3>
+
+          <p id="announcementPreviewText">
+            جاري تحميل الإعلان...
+          </p>
+
+        </div>
+
+        <div class="announcement-form">
+
+          <div class="form-grid">
+
+            <div class="form-group full">
+
+              <label>
+                عنوان الإعلان
+              </label>
+
+              <input
+                id="announcementTitle"
+                placeholder="عنوان الإعلان"
+              >
+
+            </div>
+
+            <div class="form-group full">
+
+              <label>
+                نص الإعلان
+              </label>
+
+              <textarea
+                id="announcementText"
+                style="min-height:150px"
+                placeholder="اكتب الإعلان هنا..."
+              ></textarea>
+
+            </div>
+
+          </div>
+
+          <div class="switch-row">
+
+            <div>
+
+              <strong>
+                تفعيل الإعلان
+              </strong>
+
+              <div
+                style="color:#7e89a2;font-size:11px;margin-top:4px"
+              >
+                سيظهر الإعلان للطلاب عند تفعيله
+              </div>
+
+            </div>
+
+            <label class="switch">
+
+              <input
+                type="checkbox"
+                id="announcementActive"
+              >
+
+              <span class="slider"></span>
+
+            </label>
+
+          </div>
+
+          <div class="form-actions">
+
+            <button
+              class="save-btn"
+              onclick="saveAnnouncement()"
+            >
+              💾 حفظ الإعلان
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+</div>
+
+<!-- LOADING -->
+
+<div id="loading">
+
+  <div class="loader-box">
+
+    <div class="spinner"></div>
+
+    <div>
+      جاري التنفيذ...
+    </div>
+
+  </div>
+
+</div>
+
+<div id="toast"></div>
+
+<button
+  id="upBtn"
+  onclick="scrollTopPage()"
+>
+  ⬆
+</button>
+
+<!-- EDIT MODAL -->
+
+<div
+  class="modal"
+  id="editModal"
+>
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <h2 id="modalTitle">
+        تعديل
+      </h2>
+
+      <button
+        class="close-btn"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div id="modalBody"></div>
+
+  </div>
+
+</div>
+
+<!-- VIDEO MODAL -->
+
+<div
+  class="modal"
+  id="videoModal"
+>
+
+  <div class="modal-box video-modal-box">
+
+    <div class="modal-head">
+
+      <h2 id="videoModalTitle">
+        ▶ مشاهدة الفيديو
+      </h2>
+
+      <button
+        class="close-btn"
+        onclick="closeVideoModal()"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div
+      class="video-player-wrap"
+      id="videoPlayerWrap"
+    >
+    </div>
+
+    <div class="video-actions">
+
+      <button
+        class="video-action-btn student"
+        onclick="goToStudentPage()"
+      >
+        ↩ صفحة الطالب
+      </button>
+
+      <button
+        class="video-action-btn open"
+        onclick="openCurrentVideoOriginal()"
+      >
+        🔗 فتح الرابط
+      </button>
+
+      <button
+        class="video-action-btn"
+        onclick="closeVideoModal()"
+      >
+        ✕ إغلاق
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+/* ==========================================
+   1. SUPABASE CONFIG
+========================================== */
+
+const SUPABASE_URL =
+  "https://YOUR_SUPABASE_PROJECT_URL.supabase.co";
+
+const SUPABASE_KEY =
+  "YOUR_SUPABASE_ANON_KEY";
+
+const ADMIN_PASSWORD = "123";
+
+
+let lessons = [];
+let summaries = [];
+let tests = [];
+let rooms = [];
+let students = [];
+
+let announcement = {
+  title:"",
+  text:"",
+  active:false
+};
+
+let currentEditItem = null;
+let currentEditType = null;
+let currentVideoUrl = "";
+
+let sectionHistory = ["home"];
+
+
+/* ==========================================
+   2. SUPABASE API
+========================================== */
+
+async function supabaseFetch(
+  endpoint,
+  method = "GET",
+  body = null
+){
+
+  showLoading(true);
+
+  try{
+
+    const options = {
+      method,
+      headers:{
+        "apikey":SUPABASE_KEY,
+        "Authorization":`Bearer ${SUPABASE_KEY}`,
+        "Content-Type":"application/json",
+        "Prefer":
+          method === "POST"
+          ? "return=representation"
+          : "return=minimal"
+      }
+    };
+
+    if(body){
+      options.body = JSON.stringify(body);
+    }
+
+    const response = await fetch(
+      `${SUPABASE_URL}/rest/v1/${endpoint}`,
+      options
+    );
+
+    if(!response.ok){
+
+      const errData =
+        await response
+          .json()
+          .catch(() => ({}));
+
+      throw new Error(
+        errData.message ||
+        `خطأ في الاتصال: ${response.status}`
+      );
+
+    }
+
+    if(
+      method === "GET" ||
+      (method === "POST" && response.status !== 204)
+    ){
+
+      const data = await response.json();
+
+      showLoading(false);
+
+      return data;
+    }
+
+    showLoading(false);
+
+    return true;
+
+  }catch(error){
+
+    showLoading(false);
+
+    console.error(
+      "Supabase Error:",
+      error
+    );
+
+    showToast(
+      "حدث خطأ أثناء التواصل مع قاعدة البيانات"
+    );
+
+    return null;
+  }
+}
+
+
+/* ==========================================
+   3. الرجوع إلى صفحة الطالب
+========================================== */
+
+function goToStudentPage(){
+
+  window.location.href = "index.html";
+
+}
+
+
+/* ==========================================
+   4. LOGIN & UI
+========================================== */
+
+function login(){
+
+  const input =
+    document
+      .getElementById("passwordInput")
+      .value;
+
+  const errorElement =
+    document
+      .getElementById("loginError");
+
+  if(input === ADMIN_PASSWORD){
+
+    document
+      .getElementById("loginScreen")
+      .style.display = "none";
+
+    document
+      .getElementById("app")
+      .style.display = "block";
+
+    errorElement.textContent = "";
+
+    loadAllData();
+
+  }else{
+
+    errorElement.textContent =
+      "كلمة المرور غير صحيحة، حاول مرة أخرى.";
+
+  }
+
+}
+
+
+function logout(){
+
+  document
+    .getElementById("app")
+    .style.display = "none";
+
+  document
+    .getElementById("loginScreen")
+    .style.display = "flex";
+
+  document
+    .getElementById("passwordInput")
+    .value = "";
+
+}
+
+
+function showSection(sectionId){
+
+  const currentActive =
+    document.querySelector(".section.active");
+
+  if(
+    currentActive &&
+    currentActive.id !== `section-${sectionId}`
+  ){
+
+    const currentId =
+      currentActive.id.replace(
+        "section-",
+        ""
+      );
+
+    if(
+      sectionHistory[
+        sectionHistory.length - 1
+      ] !== currentId
+    ){
+
+      sectionHistory.push(currentId);
+
+    }
+
+  }
+
+  document
+    .querySelectorAll(".section")
+    .forEach(sec =>
+      sec.classList.remove("active")
+    );
+
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(btn =>
+      btn.classList.remove("active")
+    );
+
+  const targetSection =
+    document.getElementById(
+      `section-${sectionId}`
+    );
+
+  if(targetSection){
+    targetSection.classList.add("active");
+  }
+
+  const targetNav =
+    document.querySelector(
+      `.nav-btn[data-section="${sectionId}"]`
+    );
+
+  if(targetNav){
+    targetNav.classList.add("active");
+  }
+
+  const sidebar =
+    document.getElementById("sidebar");
+
+  if(sidebar){
+    sidebar.classList.remove("open");
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+function goBackSection(){
+
+  if(sectionHistory.length > 1){
+
+    sectionHistory.pop();
+
+    const prevSection =
+      sectionHistory[
+        sectionHistory.length - 1
+      ];
+
+    showSectionWithoutHistory(prevSection);
+
+  }else{
+
+    showSectionWithoutHistory("home");
+
+  }
+
+}
+
+
+function showSectionWithoutHistory(sectionId){
+
+  document
+    .querySelectorAll(".section")
+    .forEach(sec =>
+      sec.classList.remove("active")
+    );
+
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(btn =>
+      btn.classList.remove("active")
+    );
+
+  const targetSection =
+    document.getElementById(
+      `section-${sectionId}`
+    );
+
+  if(targetSection){
+    targetSection.classList.add("active");
+  }
+
+  const targetNav =
+    document.querySelector(
+      `.nav-btn[data-section="${sectionId}"]`
+    );
+
+  if(targetNav){
+    targetNav.classList.add("active");
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+function toggleSidebar(){
+
+  document
+    .getElementById("sidebar")
+    .classList.toggle("open");
+
+}
+
+
+function toggleForm(
+  formId,
+  show = true
+){
+
+  const form =
+    document.getElementById(formId);
+
+  if(form){
+
+    if(show){
+      form.classList.toggle("show");
+    }else{
+      form.classList.remove("show");
+    }
+
+  }
+
+}
+
+
+function showLoading(show){
+
+  const loading =
+    document.getElementById("loading");
+
+  if(loading){
+    loading.style.display =
+      show ? "flex" : "none";
+  }
+
+}
+
+
+function showToast(message){
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent = message;
+
+  toast.classList.add("show");
+
+  setTimeout(
+    () =>
+      toast.classList.remove("show"),
+    3000
+  );
+
+}
+
+
+function scrollTopPage(){
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+window.addEventListener(
+  "scroll",
+  () => {
+
+    const upBtn =
+      document.getElementById("upBtn");
+
+    if(window.scrollY > 200){
+
+      upBtn.classList.add("show");
+
+    }else{
+
+      upBtn.classList.remove("show");
+
+    }
+
+  }
+);
+
+
+/* ==========================================
+   5. CLOCKS
+========================================== */
+
+function updateClocks(){
+
+  const now = new Date();
+
+  const timeStr =
+    now.toLocaleTimeString("ar-EG");
+
+  const dateStr =
+    now.toLocaleDateString(
+      "ar-EG",
+      {
+        weekday:"long",
+        year:"numeric",
+        month:"long",
+        day:"numeric"
+      }
+    );
+
+  const loginTime =
+    document.getElementById(
+      "loginClockTime"
+    );
+
+  const loginDate =
+    document.getElementById(
+      "loginClockDate"
+    );
+
+  const appClock =
+    document.getElementById(
+      "appClock"
+    );
+
+  if(loginTime){
+    loginTime.textContent =
+      timeStr;
+  }
+
+  if(loginDate){
+    loginDate.textContent =
+      dateStr;
+  }
+
+  if(appClock){
+    appClock.textContent =
+      timeStr;
+  }
+
+}
+
+setInterval(
+  updateClocks,
+  1000
+);
+
+updateClocks();
+
+
+/* ==========================================
+   6. DATA
+========================================== */
+
+async function loadAllData(){
+
+  await Promise.all([
+    loadLessons(),
+    loadSummaries(),
+    loadTests(),
+    loadRooms(),
+    loadStudents(),
+    loadAnnouncement()
+  ]);
+
+}
+
+
+/* ==========================================
+   LESSONS
+========================================== */
+
+async function loadLessons(){
+
+  const data =
+    await supabaseFetch(
+      "lessons?select=*&order=id.desc"
+    );
+
+  if(data){
+
+    lessons = data;
+
+    renderLessons();
+
+  }
+
+}
+
+
+function renderLessons(){
+
+  const container =
+    document.getElementById(
+      "lessonsList"
+    );
+
+  if(!lessons.length){
+
+    container.innerHTML = `
+      <div class="empty">
+        <div class="empty-icon">📚</div>
+        لا توجد حصص مضافة حالياً.
+      </div>
+    `;
+
+    return;
+  }
+
+  container.innerHTML =
+    lessons.map(item => `
+
+      <div class="item-card">
+
+        <div class="item-cover">
+
+          ${
+            item.cover_url
+            ? `
+              <img
+                src="${item.cover_url}"
+                alt="${item.title || "حصة"}"
+                onerror="this.style.display='none'"
+              >
+            `
+            : `
+              <div class="item-cover-placeholder">
+                <strong>📚</strong>
+                <span>لا يتوفر غلاف</span>
+              </div>
+            `
+          }
+
+          <span class="cover-badge">
+            ${item.unit || "حصة"}
+          </span>
+
+        </div>
+
+        <div class="item-title">
+          ${item.title || ""}
+        </div>
+
+        <div class="item-desc">
+          ${item.description || "لا يوجد وصف"}
+        </div>
+
+        <div class="item-meta">
+
+          <span class="tag">
+            ⏱️ ${item.duration || "غير محدد"}
+          </span>
+
+        </div>
+
+        <div class="item-actions">
+
+          ${
+            item.video_url
+            ? `
+              <button
+                class="watch-btn"
+                onclick="playVideo(
+                  '${escapeJs(item.video_url)}',
+                  '${escapeJs(item.title || "الفيديو")}'
+                )"
+              >
+                ▶ مشاهدة
+              </button>
+            `
+            : ""
+          }
+
+          <button
+            class="edit-btn"
+            onclick="openEditModal('lesson',${item.id})"
+          >
+            ✏️ تعديل
+          </button>
+
+          <button
+            class="delete-btn"
+            onclick="deleteItem(
+              'lessons',
+              ${item.id},
+              loadLessons
+            )"
+          >
+            🗑️ حذف
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* ==========================================
+   ADD LESSON
+========================================== */
+
+async function addLesson(){
+
+  const title =
+    document
+      .getElementById("lessonTitle")
+      .value
+      .trim();
+
+  const unit =
+    document
+      .getElementById("lessonUnit")
+      .value
+      .trim();
+
+  const video_url =
+    document
+      .getElementById("lessonVideo")
+      .value
+      .trim();
+
+  const duration =
+    document
+      .getElementById("lessonDuration")
+      .value
+      .trim();
+
+  const cover_url =
+    document
+      .getElementById("lessonCover")
+      .value
+      .trim();
+
+  const description =
+    document
+      .getElementById("lessonDescription")
+      .value
+      .trim();
+
+  if(!title){
+
+    return showToast(
+      "يرجى كتابة عنوان الحصة"
+    );
+
+  }
+
+  const res =
+    await supabaseFetch(
+      "lessons",
+      "POST",
+      {
+        title,
+        unit,
+        video_url,
+        duration,
+        cover_url,
+        description
+      }
+    );
+
+  if(res){
+
+    showToast(
+      "تمت إضافة الحصة بنجاح"
+    );
+
+    toggleForm(
+      "lessonForm",
+      false
+    );
+
+    clearInputs([
+      "lessonTitle",
+      "lessonUnit",
+      "lessonVideo",
+      "lessonDuration",
+      "lessonCover",
+      "lessonDescription"
+    ]);
+
+    document
+      .getElementById(
+        "lessonCoverPreview"
+      )
+      .innerHTML =
+      "🖼️ معاينة الغلاف";
+
+    document
+      .getElementById(
+        "lessonCoverPreview"
+      )
+      .className =
+      "cover-preview-empty";
+
+    loadLessons();
+
+  }
+
+}
+
+
+/* ==========================================
+   SUMMARIES
+========================================== */
+
+async function loadSummaries(){
+
+  const data =
+    await supabaseFetch(
+      "summaries?select=*&order=id.desc"
+    );
+
+  if(data){
+
+    summaries = data;
+
+    renderSummaries();
+
+  }
+
+}
+
+
+function renderSummaries(){
+
+  const container =
+    document.getElementById(
+      "summariesList"
+    );
+
+  if(!summaries.length){
+
+    container.innerHTML = `
+      <div class="empty">
+        <div class="empty-icon">📘</div>
+        لا توجد ملخصات مضافة حالياً.
+      </div>
+    `;
+
+    return;
+  }
+
+  container.innerHTML =
+    summaries.map(item => `
+
+      <div class="item-card">
+
+        <div class="item-cover">
+
+          ${
+            item.cover_url
+            ? `
+              <img
+                src="${item.cover_url}"
+                alt="${item.title || "ملخص"}"
+                onerror="this.style.display='none'"
+              >
+            `
+            : `
+              <div class="item-cover-placeholder">
+                <strong>📘</strong>
+                <span>ملخص تعليمي</span>
+              </div>
+            `
+          }
+
+        </div>
+
+        <div class="item-title">
+          ${item.title || ""}
+        </div>
+
+        <div class="item-desc">
+          ${item.description || "لا يوجد وصف"}
+        </div>
+
+        <div class="item-actions">
+
+          ${
+            item.file_url
+            ? `
+              <a
+                href="${item.file_url}"
+                target="_blank"
+                class="watch-btn"
+                style="text-align:center;text-decoration:none;"
+              >
+                📄 تحميل
+              </a>
+            `
+            : ""
+          }
+
+          <button
+            class="edit-btn"
+            onclick="openEditModal(
+              'summary',
+              ${item.id}
+            )"
+          >
+            ✏️ تعديل
+          </button>
+
+          <button
+            class="delete-btn"
+            onclick="deleteItem(
+              'summaries',
+              ${item.id},
+              loadSummaries
+            )"
+          >
+            🗑️ حذف
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+async function addSummary(){
+
+  const title =
+    document
+      .getElementById("summaryTitle")
+      .value
+      .trim();
+
+  const file_url =
+    document
+      .getElementById("summaryFile")
+      .value
+      .trim();
+
+  const cover_url =
+    document
+      .getElementById("summaryCover")
+      .value
+      .trim();
+
+  const description =
+    document
+      .getElementById("summaryDescription")
+      .value
+      .trim();
+
+  if(!title){
+
+    return showToast(
+      "يرجى كتابة عنوان الملخص"
+    );
+
+  }
+
+  const res =
+    await supabaseFetch(
+      "summaries",
+      "POST",
+      {
+        title,
+        file_url,
+        cover_url,
+        description
+      }
+    );
+
+  if(res){
+
+    showToast(
+      "تمت إضافة الملخص بنجاح"
+    );
+
+    toggleForm(
+      "summaryForm",
+      false
+    );
+
+    clearInputs([
+      "summaryTitle",
+      "summaryFile",
+      "summaryCover",
+      "summaryDescription"
+    ]);
+
+    document
+      .getElementById(
+        "summaryCoverPreview"
+      )
+      .innerHTML =
+      "🖼️ معاينة الغلاف";
+
+    document
+      .getElementById(
+        "summaryCoverPreview"
+      )
+      .className =
+      "cover-preview-empty";
+
+    loadSummaries();
+
+  }
+
+}
+
+
+/* ==========================================
+   TESTS
+========================================== */
+
+async function loadTests(){
+
+  const data =
+    await supabaseFetch(
+      "tests?select=*&order=id.desc"
+    );
+
+  if(data){
+
+    tests = data;
+
+    renderTests();
+
+  }
+
+}
+
+
+function renderTests(){
+
+  const container =
+    document.getElementById(
+      "testsList"
+    );
+
+  if(!tests.length){
+
+    container.innerHTML = `
+      <div class="empty">
+        <div class="empty-icon">📝</div>
+        لا توجد اختبارات أو أعمال مضافة.
+      </div>
+    `;
+
+    return;
+  }
+
+  container.innerHTML =
+    tests.map(item => `
+
+      <div class="item-card">
+
+        <div class="item-cover">
+
+          ${
+            item.cover_url
+            ? `
+              <img
+                src="${item.cover_url}"
+                alt="${item.title || "اختبار"}"
+                onerror="this.style.display='none'"
+              >
+            `
+            : `
+              <div class="item-cover-placeholder">
+                <strong>📝</strong>
+                <span>اختبار / عمل</span>
+              </div>
+            `
+          }
+
+        </div>
+
+        <div class="item-title">
+          ${item.title || ""}
+        </div>
+
+        <div class="item-desc">
+          ${item.description || "لا يوجد وصف"}
+        </div>
+
+        <div class="item-meta">
+
+          <span class="tag">
+            ❓ ${item.questions_count || 0} أسئلة
+          </span>
+
+          <span class="tag">
+            ⏱️ ${item.duration_minutes || 90} دقيقة
+          </span>
+
+        </div>
+
+        <div class="item-actions">
+
+          <button
+            class="question-btn"
+            onclick="openQuestionsModal(${item.id})"
+          >
+            ❓ الأسئلة
+          </button>
+
+          <button
+            class="edit-btn"
+            onclick="openEditModal(
+              'test',
+              ${item.id}
+            )"
+          >
+            ✏️ تعديل
+          </button>
+
+          <button
+            class="delete-btn"
+            onclick="deleteItem(
+              'tests',
+              ${item.id},
+              loadTests
+            )"
+          >
+            🗑️ حذف
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+async function addTest(){
+
+  const title =
+    document
+      .getElementById("testTitle")
+      .value
+      .trim();
+
+  const questions_count =
+    parseInt(
+      document
+        .getElementById("testQuestions")
+        .value
+    ) || 0;
+
+  const duration_minutes =
+    parseInt(
+      document
+        .getElementById("testDuration")
+        .value
+    ) || 90;
+
+  const cover_url =
+    document
+      .getElementById("testCover")
+      .value
+      .trim();
+
+  const description =
+    document
+      .getElementById("testDescription")
+      .value
+      .trim();
+
+  if(!title){
+
+    return showToast(
+      "يرجى كتابة عنوان الاختبار"
+    );
+
+  }
+
+  const res =
+    await supabaseFetch(
+      "tests",
+      "POST",
+      {
+        title,
+        questions_count,
+        duration_minutes,
+        cover_url,
+        description
+      }
+    );
+
+  if(res){
+
+    showToast(
+      "تمت إضافة الاختبار بنجاح"
+    );
+
+    toggleForm(
+      "testForm",
+      false
+    );
+
+    clearInputs([
+      "testTitle",
+      "testQuestions",
+      "testCover",
+      "testDescription"
+    ]);
+
+    document
+      .getElementById("testDuration")
+      .value = "90";
+
+    document
+      .getElementById(
+        "testCoverPreview"
+      )
+      .innerHTML =
+      "🖼️ معاينة الغلاف";
+
+    document
+      .getElementById(
+        "testCoverPreview"
+      )
+      .className =
+      "cover-preview-empty";
+
+    loadTests();
+
+  }
+
+}
+
+
+/* ==========================================
+   ROOMS
+========================================== */
+
+async function loadRooms(){
+
+  const data =
+    await supabaseFetch(
+      "rooms?select=*&order=id.desc"
+    );
+
+  if(data){
+
+    rooms = data;
+
+    renderRooms();
+
+  }
+
+}
+
+
+function renderRooms(){
+
+  const container =
+    document.getElementById(
+      "roomsList"
+    );
+
+  if(!rooms.length){
+
+    container.innerHTML = `
+      <div class="empty">
+        <div class="empty-icon">🚪</div>
+        لا توجد غرف دراسية مضافة.
+      </div>
+    `;
+
+    return;
+  }
+
+  container.innerHTML =
+    rooms.map(item => `
+
+      <div class="item-card">
+
+        <div
+          class="item-title"
+          style="margin-top:10px;"
+        >
+          🚪 ${item.name || ""}
+        </div>
+
+        <div class="item-desc">
+          ${item.description || "لا يوجد وصف"}
+        </div>
+
+        <div class="item-actions">
+
+          ${
+            item.link
+            ? `
+              <a
+                href="${item.link}"
+                target="_blank"
+                class="watch-btn"
+                style="text-align:center;text-decoration:none;"
+              >
+                🔗 دخول الغرفة
+              </a>
+            `
+            : ""
+          }
+
+          <button
+            class="edit-btn"
+            onclick="openEditModal(
+              'room',
+              ${item.id}
+            )"
+          >
+            ✏️ تعديل
+          </button>
+
+          <button
+            class="delete-btn"
+            onclick="deleteItem(
+              'rooms',
+              ${item.id},
+              loadRooms
+            )"
+          >
+            🗑️ حذف
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+async function addRoom(){
+
+  const name =
+    document
+      .getElementById("roomName")
+      .value
+      .trim();
+
+  const link =
+    document
+      .getElementById("roomLink")
+      .value
+      .trim();
+
+  const description =
+    document
+      .getElementById("roomDescription")
+      .value
+      .trim();
+
+  if(!name){
+
+    return showToast(
+      "يرجى كتابة اسم الغرفة"
+    );
+
+  }
+
+  const res =
+    await supabaseFetch(
+      "rooms",
+      "POST",
+      {
+        name,
+        link,
+        description
+      }
+    );
+
+  if(res){
+
+    showToast(
+      "تمت إضافة الغرفة بنجاح"
+    );
+
+    toggleForm(
+      "roomForm",
+      false
+    );
+
+    clearInputs([
+      "roomName",
+      "roomLink",
+      "roomDescription"
+    ]);
+
+    loadRooms();
+
+  }
+
+}
+
+
+/* ==========================================
+   STUDENTS
+========================================== */
+
+async function loadStudents(){
+
+  const data =
+    await supabaseFetch(
+      "students?select=*&order=id.desc"
+    );
+
+  if(data){
+
+    students = data;
+
+    renderStudents();
+
+  }
+
+}
+
+
+function renderStudents(){
+
+  const container =
+    document.getElementById(
+      "studentsList"
+    );
+
+  if(!students.length){
+
+    container.innerHTML = `
+      <div class="empty">
+        <div class="empty-icon">👨‍🎓</div>
+        لا يوجد طلاب مسجلون حالياً.
+      </div>
+    `;
+
+    return;
+  }
+
+  container.innerHTML =
+    students.map(item => `
+
+      <div class="item-card">
+
+        <div
+          class="item-title"
+          style="margin-top:10px;"
+        >
+          👨‍🎓 ${item.name || ""}
+        </div>
+
+        <div class="item-desc">
+
+          📞 ${item.phone || "بدون رقم"}
+
+          <br>
+
+          📧 ${item.email || "بدون بريد"}
+
+        </div>
+
+        <div class="item-meta">
+
+          <span
+            class="student-status
+            ${
+              item.is_active
+              ? "status-active"
+              : "status-inactive"
+            }"
+          >
+
+            ${
+              item.is_active
+              ? "نشط"
+              : "غير نشط"
+            }
+
+          </span>
+
+        </div>
+
+        <div class="item-actions">
+
+          <button
+            class="edit-btn"
+            onclick="toggleStudentStatus(
+              ${item.id},
+              ${!item.is_active}
+            )"
+          >
+
+            ${
+              item.is_active
+              ? "تعطيل"
+              : "تفعيل"
+            }
+
+          </button>
+
+          <button
+            class="delete-btn"
+            onclick="deleteItem(
+              'students',
+              ${item.id},
+              loadStudents
+            )"
+          >
+            🗑️ حذف
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+async function toggleStudentStatus(
+  id,
+  newStatus
+){
+
+  const res =
+    await supabaseFetch(
+      `students?id=eq.${id}`,
+      "PATCH",
+      {
+        is_active:newStatus
+      }
+    );
+
+  if(res){
+
+    showToast(
+      "تم تغيير حالة الطالب"
+    );
+
+    loadStudents();
+
+  }
+
+}
+
+
+/* ==========================================
+   ANNOUNCEMENT
+========================================== */
+
+async function loadAnnouncement(){
+
+  const data =
+    await supabaseFetch(
+      "announcements?select=*&limit=1"
+    );
+
+  if(
+    data &&
+    data.length > 0
+  ){
+
+    announcement = data[0];
+
+    document
+      .getElementById(
+        "announcementTitle"
+      )
+      .value =
+      announcement.title || "";
+
+    document
+      .getElementById(
+        "announcementText"
+      )
+      .value =
+      announcement.text || "";
+
+    document
+      .getElementById(
+        "announcementActive"
+      )
+      .checked =
+      !!announcement.is_active;
+
+    document
+      .getElementById(
+        "announcementPreviewText"
+      )
+      .innerHTML = `
+        <strong>
+          ${announcement.title || "بدون عنوان"}
+        </strong>
+        <br>
+        ${announcement.text || "لا يوجد نص بالإعلان"}
+      `;
+
+  }
+
+}
+
+
+async function saveAnnouncement(){
+
+  const title =
+    document
+      .getElementById(
+        "announcementTitle"
+      )
+      .value
+      .trim();
+
+  const text =
+    document
+      .getElementById(
+        "announcementText"
+      )
+      .value
+      .trim();
+
+  const is_active =
+    document
+      .getElementById(
+        "announcementActive"
+      )
+      .checked;
+
+  let res;
+
+  if(announcement.id){
+
+    res =
+      await supabaseFetch(
+        `announcements?id=eq.${announcement.id}`,
+        "PATCH",
+        {
+          title,
+          text,
+          is_active
+        }
+      );
+
+  }else{
+
+    res =
+      await supabaseFetch(
+        "announcements",
+        "POST",
+        {
+          title,
+          text,
+          is_active
+        }
+      );
+
+  }
+
+  if(res){
+
+    showToast(
+      "تم حفظ الإعلان بنجاح"
+    );
+
+    loadAnnouncement();
+
+  }
+
+}
+
+
+/* ==========================================
+   EDIT & DELETE
+========================================== */
+
+async function deleteItem(
+  table,
+  id,
+  reloadFn
+){
+
+  if(
+    !confirm(
+      "هل أنت تأكد من إجراء عملية الحذف؟"
+    )
+  ){
+    return;
+  }
+
+  const res =
+    await supabaseFetch(
+      `${table}?id=eq.${id}`,
+      "DELETE"
+    );
+
+  if(res){
+
+    showToast(
+      "تم الحذف بنجاح"
+    );
+
+    reloadFn();
+
+  }
+
+}
+
+
+function openEditModal(
+  type,
+  id
+){
+
+  currentEditType = type;
+  currentEditItem = id;
+
+  const modal =
+    document.getElementById(
+      "editModal"
+    );
+
+  const modalBody =
+    document.getElementById(
+      "modalBody"
+    );
+
+  const modalTitle =
+    document.getElementById(
+      "modalTitle"
+    );
+
+
+  if(type === "lesson"){
+
+    const item =
+      lessons.find(
+        l => l.id === id
+      );
+
+    if(!item) return;
+
+    modalTitle.textContent =
+      "تعديل الحصة";
+
+    modalBody.innerHTML = `
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>العنوان</label>
+          <input
+            id="editTitle"
+            value="${escapeHtml(item.title || "")}"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>الوحدة</label>
+          <input
+            id="editUnit"
+            value="${escapeHtml(item.unit || "")}"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>رابط الفيديو</label>
+          <input
+            id="editVideo"
+            value="${escapeHtml(item.video_url || "")}"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>المدة</label>
+          <input
+            id="editDuration"
+            value="${escapeHtml(item.duration || "")}"
+          >
+        </div>
+
+        <div class="form-group full">
+          <label>رابط الغلاف</label>
+          <input
+            id="editCover"
+            value="${escapeHtml(item.cover_url || "")}"
+          >
+        </div>
+
+        <div class="form-group full">
+          <label>الوصف</label>
+          <textarea id="editDesc">${escapeHtml(item.description || "")}</textarea>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+
+        <button
+          class="save-btn"
+          onclick="saveEdit('lessons')"
+        >
+          حفظ التغييرات
+        </button>
+
+      </div>
+    `;
+
+
+  }else if(type === "summary"){
+
+    const item =
+      summaries.find(
+        s => s.id === id
+      );
+
+    if(!item) return;
+
+    modalTitle.textContent =
+      "تعديل الملخص";
+
+    modalBody.innerHTML = `
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>العنوان</label>
+          <input
+            id="editTitle"
+            value="${escapeHtml(item.title || "")}"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>رابط الملف</label>
+          <input
+            id="editFile"
+            value="${escapeHtml(item.file_url || "")}"
+          >
+        </div>
+
+        <div class="form-group full">
+          <label>رابط الغلاف</label>
+          <input
+            id="editCover"
+            value="${escapeHtml(item.cover_url || "")}"
+          >
+        </div>
+
+        <div class="form-group full">
+          <label>الوصف</label>
+          <textarea id="editDesc">${escapeHtml(item.description || "")}</textarea>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+
+        <button
+          class="save-btn"
+          onclick="saveEdit('summaries')"
+        >
+          حفظ التغييرات
+        </button>
+
+      </div>
+    `;
+
+
+  }else if(type === "test"){
+
+    const item =
+      tests.find(
+        t => t.id === id
+      );
+
+    if(!item) return;
+
+    modalTitle.textContent =
+      "تعديل الاختبار";
+
+    modalBody.innerHTML = `
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>العنوان</label>
+          <input
+            id="editTitle"
+            value="${escapeHtml(item.title || "")}"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>عدد الأسئلة</label>
+          <input
+            id="editQuestions"
+            type="number"
+            value="${item.questions_count || 0}"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>المدة (دقائق)</label>
+          <input
+            id="editDuration"
+            type="number"
+            value="${item.duration_minutes || 90}"
+          >
+        </div>
+
+        <div class="form-group full">
+          <label>رابط الغلاف</label>
+          <input
+            id="editCover"
+            value="${escapeHtml(item.cover_url || "")}"
+          >
+        </div>
+
+        <div class="form-group full">
+          <label>الوصف</label>
+          <textarea id="editDesc">${escapeHtml(item.description || "")}</textarea>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+
+        <button
+          class="save-btn"
+          onclick="saveEdit('tests')"
+        >
+          حفظ التغييرات
+        </button>
+
+      </div>
+    `;
+
+
+  }else if(type === "room"){
+
+    const item =
+      rooms.find(
+        r => r.id === id
+      );
+
+    if(!item) return;
+
+    modalTitle.textContent =
+      "تعديل الغرفة";
+
+    modalBody.innerHTML = `
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>اسم الغرفة</label>
+          <input
+            id="editName"
+            value="${escapeHtml(item.name || "")}"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>الرابط</label>
+          <input
+            id="editLink"
+            value="${escapeHtml(item.link || "")}"
+          >
+        </div>
+
+        <div class="form-group full">
+          <label>الوصف</label>
+          <textarea id="editDesc">${escapeHtml(item.description || "")}</textarea>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+
+        <button
+          class="save-btn"
+          onclick="saveEdit('rooms')"
+        >
+          حفظ التغييرات
+        </button>
+
+      </div>
+    `;
+
+  }
+
+  modal.classList.add("show");
+
+}
+
+
+async function saveEdit(table){
+
+  let body = {};
+
+
+  if(table === "lessons"){
+
+    body = {
+
+      title:
+        document
+          .getElementById("editTitle")
+          .value,
+
+      unit:
+        document
+          .getElementById("editUnit")
+          .value,
+
+      video_url:
+        document
+          .getElementById("editVideo")
+          .value,
+
+      duration:
+        document
+          .getElementById("editDuration")
+          .value,
+
+      cover_url:
+        document
+          .getElementById("editCover")
+          .value,
+
+      description:
+        document
+          .getElementById("editDesc")
+          .value
+
+    };
+
+
+  }else if(table === "summaries"){
+
+    body = {
+
+      title:
+        document
+          .getElementById("editTitle")
+          .value,
+
+      file_url:
+        document
+          .getElementById("editFile")
+          .value,
+
+      cover_url:
+        document
+          .getElementById("editCover")
+          .value,
+
+      description:
+        document
+          .getElementById("editDesc")
+          .value
+
+    };
+
+
+  }else if(table === "tests"){
+
+    body = {
+
+      title:
+        document
+          .getElementById("editTitle")
+          .value,
+
+      questions_count:
+        parseInt(
+          document
+            .getElementById("editQuestions")
+            .value
+        ) || 0,
+
+      duration_minutes:
+        parseInt(
+          document
+            .getElementById("editDuration")
+            .value
+        ) || 90,
+
+      cover_url:
+        document
+          .getElementById("editCover")
+          .value,
+
+      description:
+        document
+          .getElementById("editDesc")
+          .value
+
+    };
+
+
+  }else if(table === "rooms"){
+
+    body = {
+
+      name:
+        document
+          .getElementById("editName")
+          .value,
+
+      link:
+        document
+          .getElementById("editLink")
+          .value,
+
+      description:
+        document
+          .getElementById("editDesc")
+          .value
+
+    };
+
+  }
+
+
+  const res =
+    await supabaseFetch(
+      `${table}?id=eq.${currentEditItem}`,
+      "PATCH",
+      body
+    );
+
+
+  if(res){
+
+    showToast(
+      "تم تحديث البيانات بنجاح"
+    );
+
+    closeModal();
+
+    if(table === "lessons"){
+      loadLessons();
+    }
+
+    if(table === "summaries"){
+      loadSummaries();
+    }
+
+    if(table === "tests"){
+      loadTests();
+    }
+
+    if(table === "rooms"){
+      loadRooms();
+    }
+
+  }
+
+}
+
+
+function closeModal(){
+
+  document
+    .getElementById("editModal")
+    .classList.remove("show");
+
+}
+
+
+/* ==========================================
+   VIDEO
+========================================== */
+
+function playVideo(
+  url,
+  title
+){
+
+  currentVideoUrl = url;
+
+  document
+    .getElementById(
+      "videoModalTitle"
+    )
+    .textContent =
+    `▶ ${title}`;
+
+  const wrap =
+    document.getElementById(
+      "videoPlayerWrap"
+    );
+
+  let embedUrl = url;
+
+  if(
+    url.includes(
+      "youtube.com/watch?v="
+    )
+  ){
+
+    embedUrl =
+      url.replace(
+        "watch?v=",
+        "embed/"
+      );
+
+  }else if(
+    url.includes(
+      "youtu.be/"
+    )
+  ){
+
+    embedUrl =
+      url.replace(
+        "youtu.be/",
+        "youtube.com/embed/"
+      );
+
+  }
+
+  wrap.innerHTML = `
+
+    <iframe
+      src="${embedUrl}"
+      allowfullscreen
+      loading="lazy"
+    ></iframe>
+
+  `;
+
+  document
+    .getElementById(
+      "videoModal"
+    )
+    .classList.add("show");
+
+}
+
+
+function closeVideoModal(){
+
+  document
+    .getElementById(
+      "videoPlayerWrap"
+    )
+    .innerHTML = "";
+
+  document
+    .getElementById(
+      "videoModal"
+    )
+    .classList.remove("show");
+
+}
+
+
+function openCurrentVideoOriginal(){
+
+  if(currentVideoUrl){
+
+    window.open(
+      currentVideoUrl,
+      "_blank"
+    );
+
+  }
+
+}
+
+
+/* ==========================================
+   COVER PREVIEW
+========================================== */
+
+function previewCoverInput(
+  inputId,
+  previewId
+){
+
+  const url =
+    document
+      .getElementById(inputId)
+      .value
+      .trim();
+
+  const preview =
+    document
+      .getElementById(previewId);
+
+  if(url){
+
+    preview.className =
+      "cover-preview";
+
+    preview.innerHTML = `
+
+      <img
+        src="${url}"
+        style="
+          width:100%;
+          height:100%;
+          object-fit:cover;
+          border-radius:15px;
+        "
+        onerror="
+          this.parentElement.className='cover-preview-empty';
+          this.parentElement.innerHTML='❌ رابط الصورة غير صالح';
+        "
+      >
+
+    `;
+
+  }else{
+
+    preview.className =
+      "cover-preview-empty";
+
+    preview.innerHTML =
+      "🖼️ معاينة الغلاف";
+
+  }
+
+}
+
+
+/* ==========================================
+   SEARCH
+========================================== */
+
+function filterItems(
+  inputId,
+  containerId
+){
+
+  const query =
+    document
+      .getElementById(inputId)
+      .value
+      .toLowerCase();
+
+  const cards =
+    document
+      .getElementById(containerId)
+      .getElementsByClassName(
+        "item-card"
+      );
+
+  Array.from(cards)
+    .forEach(card => {
+
+      const text =
+        card.textContent
+          .toLowerCase();
+
+      card.style.display =
+        text.includes(query)
+        ? "block"
+        : "none";
+
+    });
+
+}
+
+
+/* ==========================================
+   CLEAR INPUTS
+========================================== */
+
+function clearInputs(ids){
+
+  ids.forEach(id => {
+
+    const el =
+      document.getElementById(id);
+
+    if(el){
+      el.value = "";
+    }
+
+  });
+
+}
+
+
+/* ==========================================
+   SAFE TEXT
+========================================== */
+
+function escapeHtml(value){
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeJs(value){
+
+  return String(value)
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'")
+    .replace(/"/g,'\\"')
+    .replace(/\n/g,"\\n")
+    .replace(/\r/g,"\\r");
+
+}
+
+
+/* ==========================================
+   BACKGROUND STARS
+========================================== */
+
+function createStars(){
+
+  const container =
+    document.getElementById(
+      "stars"
+    );
+
+  if(!container) return;
+
+  const count = 45;
+
+  for(
+    let i = 0;
+    i < count;
+    i++
+  ){
+
+    const star =
+      document.createElement(
+        "div"
+      );
+
+    star.className =
+      "star";
+
+    star.textContent =
+      "✦";
+
+    star.style.left =
+      `${Math.random() * 100}%`;
+
+    star.style.fontSize =
+      `${Math.random() * 12 + 8}px`;
+
+    star.style.animationDuration =
+      `${Math.random() * 8 + 4}s`;
+
+    star.style.animationDelay =
+      `${Math.random() * 5}s`;
+
+    container.appendChild(star);
+
+  }
+
+}
+
+createStars();
+
+</script>
+
+</body>
+</html>
