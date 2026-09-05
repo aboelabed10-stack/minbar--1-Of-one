@@ -6,7 +6,6 @@
 <meta name="theme-color" content="#070b1a">
 <title>منبر ون | منصة الرياضيات</title>
 
-<!-- منع ظهور شاشة الدخول للحظة عند تحديث الصفحة -->
 <script>
 (function(){
   try{
@@ -34,10 +33,15 @@
  --cyan:#18d9ff;
  --pink:#ff4fd0;
  --green:#27e49b;
- --orange:#ffb14a;
- --red:#ff6478;
+ --orange:#ff8a30;
+ --red:#ff3f45;
  --gold:#ffd66b;
- --border:rgba(255,255,255,.10)
+ --border:rgba(255,255,255,.10);
+
+ --lesson:#a98cff;
+ --summary:#18d9ff;
+ --test:#27e49b;
+ --room:#ff9b45;
 }
 
 html{scroll-behavior:smooth}
@@ -50,7 +54,7 @@ body{
  background:
  radial-gradient(circle at 8% 5%,rgba(118,87,255,.20),transparent 28%),
  radial-gradient(circle at 92% 12%,rgba(24,217,255,.12),transparent 25%),
- linear-gradient(135deg,var(--bg),#090e24 52%,#10183a)
+ linear-gradient(135deg,var(--bg),#090e24 52%,#10183a);
 }
 
 body.locked{overflow:hidden}
@@ -69,7 +73,7 @@ a{text-decoration:none;color:inherit}
  inset:0;
  pointer-events:none;
  overflow:hidden;
- z-index:0
+ z-index:0;
 }
 
 .star{
@@ -82,15 +86,15 @@ a{text-decoration:none;color:inherit}
    fall linear infinite,
    twinkle 2.4s ease-in-out infinite alternate;
  will-change:transform,opacity;
- filter:drop-shadow(0 0 5px currentColor)
+ filter:drop-shadow(0 0 5px currentColor);
 }
 
 @keyframes fall{
  from{
-  transform:translate3d(0,0,0) rotate(0deg)
+   transform:translate3d(0,0,0) rotate(0deg)
  }
  to{
-  transform:translate3d(var(--drift),115vh,0) rotate(220deg)
+   transform:translate3d(var(--drift),115vh,0) rotate(220deg)
  }
 }
 
@@ -111,7 +115,7 @@ header{
  backdrop-filter:blur(22px) saturate(150%);
  -webkit-backdrop-filter:blur(22px) saturate(150%);
  border-bottom:1px solid rgba(255,255,255,.08);
- box-shadow:0 8px 35px rgba(0,0,0,.18)
+ box-shadow:0 8px 35px rgba(0,0,0,.18);
 }
 
 .nav{
@@ -121,13 +125,13 @@ header{
  display:flex;
  align-items:center;
  justify-content:space-between;
- gap:14px
+ gap:14px;
 }
 
 .logo{
  display:flex;
  align-items:center;
- gap:10px
+ gap:10px;
 }
 
 .logo-icon{
@@ -143,13 +147,12 @@ header{
  border:1px solid rgba(255,255,255,.18);
  box-shadow:
  0 0 25px rgba(118,87,255,.25),
- inset 0 1px rgba(255,255,255,.25)
+ inset 0 1px rgba(255,255,255,.25);
 }
 
 .logo-text h1{
  font-size:18px;
  font-weight:900;
- letter-spacing:.2px
 }
 
 .logo-text small{
@@ -158,16 +161,14 @@ header{
  font-size:7px;
  letter-spacing:2px;
  margin-top:3px;
- opacity:.85
+ opacity:.85;
 }
 
 .nav-actions{
  display:flex;
  align-items:center;
- gap:8px
+ gap:8px;
 }
-
-/* الأزرار العلوية */
 
 .nav-actions .btn{
  position:relative;
@@ -183,12 +184,8 @@ header{
  border:1px solid rgba(255,255,255,.10);
  font-weight:800;
  font-size:11px;
- transition:
-  transform .22s ease,
-  background .22s ease,
-  border-color .22s ease,
-  box-shadow .22s ease;
- overflow:hidden
+ transition:.22s;
+ overflow:hidden;
 }
 
 .nav-actions .btn:before{
@@ -196,63 +193,47 @@ header{
  position:absolute;
  inset:0;
  background:linear-gradient(
-  120deg,
-  transparent 20%,
-  rgba(255,255,255,.10),
-  transparent 80%
+   120deg,
+   transparent 20%,
+   rgba(255,255,255,.10),
+   transparent 80%
  );
  transform:translateX(-120%);
- transition:.5s
+ transition:.5s;
 }
 
 .nav-actions .btn:hover:before{
- transform:translateX(120%)
+ transform:translateX(120%);
 }
 
 .nav-actions .btn:hover{
  transform:translateY(-2px);
  background:rgba(255,255,255,.09);
- border-color:rgba(255,255,255,.18)
+ border-color:rgba(255,255,255,.18);
 }
 
-/* زر لوحة التحكم */
-
-.nav-actions .control-btn{
+.control-btn{
  background:
  linear-gradient(
-  135deg,
-  rgba(118,87,255,.20),
-  rgba(24,217,255,.08)
- );
- border-color:rgba(118,87,255,.32);
- box-shadow:
- 0 6px 22px rgba(118,87,255,.10),
- inset 0 1px rgba(255,255,255,.08)
+   135deg,
+   rgba(118,87,255,.20),
+   rgba(24,217,255,.08)
+ )!important;
+ border-color:rgba(118,87,255,.32)!important;
 }
-
-.nav-actions .control-btn:hover{
- border-color:rgba(24,217,255,.45);
- box-shadow:
- 0 8px 28px rgba(118,87,255,.18),
- 0 0 20px rgba(24,217,255,.06)
-}
-
-/* زر تسجيل الدخول */
 
 .nav-login{
  background:
  linear-gradient(
-  135deg,
-  rgba(118,87,255,.30),
-  rgba(24,217,255,.10)
+   135deg,
+   rgba(255,63,69,.90),
+   rgba(255,139,48,.90)
  )!important;
- border-color:rgba(118,87,255,.40)!important;
+ border-color:rgba(255,150,80,.55)!important;
  box-shadow:
- 0 7px 25px rgba(118,87,255,.15),
- inset 0 1px rgba(255,255,255,.10)
+ 0 7px 25px rgba(255,76,55,.18),
+ inset 0 1px rgba(255,255,255,.20);
 }
-
-/* بطاقة الطالب */
 
 .user-box{
  display:none;
@@ -263,37 +244,28 @@ header{
  border-radius:13px;
  background:
  linear-gradient(
-  135deg,
-  rgba(39,228,155,.10),
-  rgba(24,217,255,.045)
+   135deg,
+   rgba(39,228,155,.10),
+   rgba(24,217,255,.045)
  );
  border:1px solid rgba(39,228,155,.20);
- box-shadow:inset 0 1px rgba(255,255,255,.07);
  font-size:10px;
- white-space:nowrap
+ white-space:nowrap;
 }
 
 .user-points{
  color:var(--gold);
- font-weight:900
+ font-weight:900;
 }
-
-/* زر الخروج */
 
 .nav-actions .btn-danger{
  background:rgba(255,100,120,.07);
  border-color:rgba(255,100,120,.20);
- color:#ffb7c0
-}
-
-.nav-actions .btn-danger:hover{
- background:rgba(255,100,120,.13);
- border-color:rgba(255,100,120,.35);
- box-shadow:0 7px 22px rgba(255,100,120,.10)
+ color:#ffb7c0;
 }
 
 /* =========================
-   قفل الموقع
+   بوابة الدخول
 ========================= */
 
 #loginGate{
@@ -304,11 +276,11 @@ header{
  backdrop-filter:blur(16px);
  display:none;
  place-items:center;
- padding:20px
+ padding:20px;
 }
 
 html.need-login #loginGate{
- display:grid
+ display:grid;
 }
 
 .gate-card{
@@ -318,7 +290,7 @@ html.need-login #loginGate{
  text-align:center;
  background:linear-gradient(145deg,#131d43,#090f25);
  border:1px solid rgba(118,87,255,.28);
- box-shadow:0 30px 100px rgba(0,0,0,.55)
+ box-shadow:0 30px 100px rgba(0,0,0,.55);
 }
 
 .gate-logo{
@@ -330,19 +302,18 @@ html.need-login #loginGate{
  margin:0 auto 15px;
  font-size:27px;
  background:linear-gradient(135deg,var(--primary),var(--cyan));
- box-shadow:0 0 25px rgba(118,87,255,.20)
 }
 
 .gate-card h2{
  font-size:28px;
- margin-bottom:8px
+ margin-bottom:8px;
 }
 
 .gate-card p{
  color:var(--muted);
  line-height:1.8;
  font-size:13px;
- margin-bottom:20px
+ margin-bottom:20px;
 }
 
 .input{
@@ -354,12 +325,12 @@ html.need-login #loginGate{
  border:1px solid var(--border);
  color:#fff;
  outline:none;
- font-size:15px
+ font-size:15px;
 }
 
 .input:focus{
  border-color:var(--primary);
- box-shadow:0 0 20px rgba(118,87,255,.12)
+ box-shadow:0 0 20px rgba(118,87,255,.12);
 }
 
 .message{
@@ -367,7 +338,28 @@ html.need-login #loginGate{
  color:var(--muted);
  font-size:12px;
  line-height:1.6;
- margin:4px 0 10px
+ margin:4px 0 10px;
+}
+
+/* =========================
+   الأزرار الحمراء البرتقالية
+========================= */
+
+.action-orange{
+ color:#fff!important;
+ background:
+ linear-gradient(135deg,#ff3f45 0%,#ff603b 48%,#ff9b32 100%)!important;
+ border:1px solid rgba(255,184,110,.50)!important;
+ box-shadow:
+ 0 8px 24px rgba(255,74,50,.20),
+ inset 0 1px rgba(255,255,255,.22);
+}
+
+.action-orange:hover{
+ transform:translateY(-2px);
+ box-shadow:
+ 0 12px 30px rgba(255,74,50,.28),
+ inset 0 1px rgba(255,255,255,.28);
 }
 
 /* =========================
@@ -378,16 +370,16 @@ html.need-login #loginGate{
  position:relative;
  z-index:1;
  width:min(1420px,92%);
- margin:auto
+ margin:auto;
 }
 
 .hero{
- min-height:600px;
+ min-height:560px;
  display:grid;
  grid-template-columns:1.1fr .9fr;
  align-items:center;
  gap:40px;
- padding:60px 0 45px
+ padding:55px 0 35px;
 }
 
 .badge{
@@ -400,37 +392,43 @@ html.need-login #loginGate{
  border:1px solid rgba(118,87,255,.25);
  color:#d9d1ff;
  font-size:12px;
- margin-bottom:18px
+ margin-bottom:18px;
 }
 
 .hero h2{
  font-size:clamp(42px,6vw,75px);
  line-height:1.05;
- margin-bottom:18px
+ margin-bottom:18px;
 }
 
 .gradient{
  background:linear-gradient(90deg,#fff,var(--cyan),#a98cff,var(--pink));
  -webkit-background-clip:text;
- color:transparent
+ color:transparent;
 }
 
 .hero p{
  max-width:650px;
  color:var(--muted);
  font-size:17px;
- line-height:1.9
+ line-height:1.9;
 }
 
 .hero-actions{
  display:flex;
  gap:10px;
  flex-wrap:wrap;
- margin-top:25px
+ margin-top:25px;
+}
+
+.hero-actions .btn{
+ padding:12px 18px;
+ border-radius:13px;
+ font-size:12px;
 }
 
 .hero-visual{
- min-height:390px;
+ min-height:360px;
  border-radius:31px;
  display:grid;
  place-items:center;
@@ -440,44 +438,44 @@ html.need-login #loginGate{
  radial-gradient(circle at 50% 30%,rgba(118,87,255,.32),transparent 38%),
  linear-gradient(145deg,#141d43,#080d21);
  border:1px solid var(--border);
- box-shadow:0 30px 80px rgba(0,0,0,.30)
+ box-shadow:0 30px 80px rgba(0,0,0,.30);
 }
 
 .equation{
- font-size:100px;
+ font-size:90px;
  font-weight:900;
  background:linear-gradient(135deg,var(--cyan),var(--primary),var(--pink));
  -webkit-background-clip:text;
  color:transparent;
- filter:drop-shadow(0 0 28px rgba(118,87,255,.3))
+ filter:drop-shadow(0 0 28px rgba(118,87,255,.3));
 }
 
 .orbit{
  position:absolute;
- width:270px;
- height:270px;
+ width:250px;
+ height:250px;
  border:1px solid rgba(255,255,255,.10);
  border-radius:50%;
- animation:spin 18s linear infinite
+ animation:spin 18s linear infinite;
 }
 
 .orbit:before,
 .orbit:after{
  content:"✦";
  position:absolute;
- font-size:17px;
- color:var(--cyan)
+ font-size:15px;
+ color:var(--cyan);
 }
 
 .orbit:before{
- top:-9px;
- left:50%
+ top:-8px;
+ left:50%;
 }
 
 .orbit:after{
  bottom:18px;
  right:7px;
- color:var(--pink)
+ color:var(--pink);
 }
 
 @keyframes spin{
@@ -490,32 +488,20 @@ html.need-login #loginGate{
 
 .announcement-box{
  position:relative;
- padding:26px 25px;
+ padding:25px;
  border-radius:25px;
  background:
  linear-gradient(
-  145deg,
-  rgba(118,87,255,.18),
-  rgba(24,217,255,.08) 55%,
-  rgba(255,79,208,.10)
+   145deg,
+   rgba(118,87,255,.18),
+   rgba(24,217,255,.08) 55%,
+   rgba(255,79,208,.10)
  );
  border:1px solid rgba(255,255,255,.14);
  box-shadow:
  0 22px 65px rgba(0,0,0,.22),
  inset 0 1px rgba(255,255,255,.08);
- overflow:hidden
-}
-
-.announcement-box:before{
- content:"";
- position:absolute;
- width:180px;
- height:180px;
- border-radius:50%;
- left:-80px;
- top:-95px;
- background:rgba(24,217,255,.12);
- filter:blur(4px)
+ overflow:hidden;
 }
 
 .announcement-top{
@@ -523,32 +509,31 @@ html.need-login #loginGate{
  display:flex;
  justify-content:space-between;
  align-items:center;
- gap:10px;
  color:#d9d1ff;
  font-size:12px;
  font-weight:800;
- margin-bottom:16px
+ margin-bottom:15px;
 }
 
 .announcement-live{
  color:var(--green);
- font-size:10px
+ font-size:10px;
 }
 
 .announcement-box h2{
  position:relative;
- font-size:clamp(32px,5vw,58px);
+ font-size:clamp(30px,5vw,55px);
  line-height:1.12;
- margin-bottom:13px
+ margin-bottom:13px;
 }
 
 .announcement-box p{
  position:relative;
  max-width:700px;
  color:#d5ddf7;
- font-size:16px;
- line-height:1.95;
- white-space:pre-wrap
+ font-size:15px;
+ line-height:1.9;
+ white-space:pre-wrap;
 }
 
 /* =========================
@@ -560,71 +545,250 @@ html.need-login #loginGate{
  align-items:center;
  justify-content:space-between;
  gap:15px;
- padding:15px 18px;
+ padding:14px 18px;
  margin:10px 0 35px;
  border-radius:18px;
  background:
  linear-gradient(
-  90deg,
-  rgba(118,87,255,.10),
-  rgba(24,217,255,.06)
+   90deg,
+   rgba(118,87,255,.10),
+   rgba(24,217,255,.06)
  );
- border:1px solid var(--border)
+ border:1px solid var(--border);
 }
 
 .student-bar strong{
- font-size:14px
+ font-size:14px;
 }
 
 .student-bar span{
  color:var(--muted);
- font-size:12px
+ font-size:12px;
 }
 
 .level{
  color:var(--gold)!important;
- font-weight:bold
+ font-weight:bold;
 }
 
 /* =========================
-   البحث
+   صفحة القسم الداخلية
 ========================= */
 
-.search-wrap{
- position:relative;
- margin:10px 0 45px
+.section-page{
+ display:none;
+ padding:35px 0 80px;
+ min-height:650px;
+ animation:pageIn .3s ease;
 }
 
-.search{
+.section-page.active{
+ display:block;
+}
+
+@keyframes pageIn{
+ from{
+  opacity:0;
+  transform:translateY(12px);
+ }
+ to{
+  opacity:1;
+  transform:translateY(0);
+ }
+}
+
+.page-header{
+ position:relative;
+ padding:28px;
+ border-radius:25px;
+ margin-bottom:22px;
+ overflow:hidden;
+ border:1px solid var(--border);
+ background:linear-gradient(145deg,#111a3a,#0a112b);
+}
+
+.page-header:after{
+ content:"";
+ position:absolute;
+ width:180px;
+ height:180px;
+ border-radius:50%;
+ right:-70px;
+ top:-90px;
+ opacity:.13;
+ filter:blur(3px);
+}
+
+.page-header-content{
+ position:relative;
+ z-index:1;
+}
+
+.page-back{
+ display:inline-flex;
+ align-items:center;
+ gap:7px;
+ padding:8px 12px;
+ border-radius:11px;
+ background:rgba(255,255,255,.06);
+ border:1px solid var(--border);
+ color:#fff;
+ font-size:11px;
+ font-weight:800;
+ margin-bottom:18px;
+ transition:.2s;
+}
+
+.page-back:hover{
+ transform:translateX(3px);
+ background:rgba(255,255,255,.10);
+}
+
+.page-title{
+ display:flex;
+ align-items:center;
+ gap:11px;
+ margin-bottom:8px;
+}
+
+.page-icon{
+ width:40px;
+ height:40px;
+ border-radius:12px;
+ display:grid;
+ place-items:center;
+ font-size:20px;
+ background:rgba(255,255,255,.07);
+ border:1px solid rgba(255,255,255,.10);
+}
+
+.page-title h2{
+ font-size:31px;
+}
+
+.page-header p{
+ color:var(--muted);
+ font-size:12px;
+ line-height:1.8;
+}
+
+.page-search-wrap{
+ position:relative;
+ margin:0 0 25px;
+}
+
+.page-search{
  width:100%;
- padding:16px 48px 16px 15px;
- border-radius:16px;
+ padding:15px 47px 15px 15px;
+ border-radius:15px;
  background:rgba(255,255,255,.055);
  border:1px solid var(--border);
  color:#fff;
  outline:none;
- font-size:15px
+ font-size:14px;
+ transition:.2s;
 }
 
-.search:focus{
- border-color:var(--primary);
- box-shadow:0 0 25px rgba(118,87,255,.10)
+.page-search:focus{
+ background:rgba(255,255,255,.07);
 }
 
-.search-icon{
+.page-search-icon{
  position:absolute;
- right:16px;
+ right:15px;
  top:50%;
  transform:translateY(-50%);
- font-size:19px
+ font-size:18px;
+ opacity:.85;
+}
+
+.page-empty{
+ display:none;
+ padding:35px;
+ text-align:center;
+ color:var(--muted);
+ border:1px dashed var(--border);
+ border-radius:18px;
+ background:rgba(255,255,255,.025);
+}
+
+/* ألوان الصفحات */
+
+#lessonsPage .page-header{
+ border-color:rgba(169,140,255,.25);
+ box-shadow:0 18px 50px rgba(118,87,255,.08);
+}
+
+#lessonsPage .page-header:after{
+ background:var(--lesson);
+}
+
+#lessonsPage .page-title h2{
+ color:var(--lesson);
+}
+
+#lessonsPage .page-search:focus{
+ border-color:var(--lesson);
+ box-shadow:0 0 22px rgba(169,140,255,.10);
+}
+
+#summariesPage .page-header{
+ border-color:rgba(24,217,255,.25);
+}
+
+#summariesPage .page-header:after{
+ background:var(--summary);
+}
+
+#summariesPage .page-title h2{
+ color:var(--summary);
+}
+
+#summariesPage .page-search:focus{
+ border-color:var(--summary);
+ box-shadow:0 0 22px rgba(24,217,255,.10);
+}
+
+#testsPage .page-header{
+ border-color:rgba(39,228,155,.25);
+}
+
+#testsPage .page-header:after{
+ background:var(--test);
+}
+
+#testsPage .page-title h2{
+ color:var(--test);
+}
+
+#testsPage .page-search:focus{
+ border-color:var(--test);
+ box-shadow:0 0 22px rgba(39,228,155,.10);
+}
+
+#roomsPage .page-header{
+ border-color:rgba(255,155,69,.25);
+}
+
+#roomsPage .page-header:after{
+ background:var(--room);
+}
+
+#roomsPage .page-title h2{
+ color:var(--room);
+}
+
+#roomsPage .page-search:focus{
+ border-color:var(--room);
+ box-shadow:0 0 22px rgba(255,155,69,.10);
 }
 
 /* =========================
-   الأقسام
+   التصنيفات الرئيسية
 ========================= */
 
-.section{
- margin:58px 0
+.home-section{
+ margin:45px 0;
 }
 
 .section-title{
@@ -632,85 +796,103 @@ html.need-login #loginGate{
  align-items:end;
  justify-content:space-between;
  gap:15px;
- margin-bottom:20px
+ margin-bottom:20px;
 }
 
 .section-title h2{
- font-size:28px
+ font-size:27px;
 }
 
 .section-title p{
  color:var(--muted);
  font-size:12px;
- margin-top:7px
+ margin-top:7px;
 }
 
 .categories{
  display:grid;
  grid-template-columns:repeat(4,1fr);
- gap:13px
+ gap:13px;
 }
 
 .category{
- min-height:125px;
- padding:19px;
+ min-height:120px;
+ padding:18px;
  border-radius:19px;
  border:1px solid var(--border);
  background:
  linear-gradient(
-  145deg,
-  rgba(255,255,255,.065),
-  rgba(255,255,255,.025)
+   145deg,
+   rgba(255,255,255,.065),
+   rgba(255,255,255,.025)
  );
  transition:.25s;
- cursor:pointer
+ cursor:pointer;
+ position:relative;
+ overflow:hidden;
 }
 
 .category:hover{
  transform:translateY(-5px);
- border-color:rgba(255,255,255,.20)
+ border-color:rgba(255,255,255,.20);
 }
 
 .category-icon{
- font-size:21px;
- margin-bottom:9px;
- opacity:.90
+ font-size:20px;
+ margin-bottom:8px;
+ opacity:.9;
 }
 
 .category h3{
  font-size:17px;
- margin-bottom:6px
+ margin-bottom:6px;
 }
 
 .category p{
  font-size:12px;
- color:var(--muted)
+ color:var(--muted);
 }
 
 .cat-purple{
- box-shadow:inset 0 -3px var(--primary)
+ box-shadow:inset 0 -3px var(--lesson);
+}
+
+.cat-purple h3{
+ color:var(--lesson);
 }
 
 .cat-blue{
- box-shadow:inset 0 -3px var(--cyan)
+ box-shadow:inset 0 -3px var(--summary);
+}
+
+.cat-blue h3{
+ color:var(--summary);
 }
 
 .cat-green{
- box-shadow:inset 0 -3px var(--green)
+ box-shadow:inset 0 -3px var(--test);
+}
+
+.cat-green h3{
+ color:var(--test);
 }
 
 .cat-orange{
- box-shadow:inset 0 -3px var(--orange)
+ box-shadow:inset 0 -3px var(--room);
+}
+
+.cat-orange h3{
+ color:var(--room);
 }
 
 /* =========================
-   البطاقات
+   بطاقات
 ========================= */
 
 .cards{
  display:grid;
  grid-template-columns:repeat(3,1fr);
- gap:17px
+ gap:17px;
 }
 
 .card{
@@ -719,36 +901,35 @@ html.need-login #loginGate{
  border-radius:20px;
  overflow:hidden;
  box-shadow:0 14px 40px rgba(0,0,0,.15);
- transition:.25s
+ transition:.25s;
 }
 
 .card:hover{
  transform:translateY(-5px);
- border-color:rgba(118,87,255,.42)
 }
 
 .cover{
- height:205px;
+ height:195px;
  position:relative;
  overflow:hidden;
- background:linear-gradient(135deg,#202b55,#0d1430)
+ background:linear-gradient(135deg,#202b55,#0d1430);
 }
 
 .cover img{
  width:100%;
  height:100%;
  object-fit:cover;
- display:block
+ display:block;
 }
 
 .cover-shade{
  position:absolute;
  inset:0;
  background:linear-gradient(
-  to top,
-  rgba(3,6,16,.88),
-  transparent 65%
- )
+   to top,
+   rgba(3,6,16,.88),
+   transparent 65%
+ );
 }
 
 .play{
@@ -756,15 +937,15 @@ html.need-login #loginGate{
  left:50%;
  top:50%;
  transform:translate(-50%,-50%);
- width:46px;
- height:46px;
+ width:44px;
+ height:44px;
  border-radius:50%;
  display:grid;
  place-items:center;
  background:rgba(118,87,255,.92);
- border:2px solid rgba(255,255,255,.75);
- font-size:17px;
- box-shadow:0 0 25px rgba(118,87,255,.38)
+ border:1.5px solid rgba(255,255,255,.75);
+ font-size:16px;
+ box-shadow:0 0 25px rgba(118,87,255,.38);
 }
 
 .duration{
@@ -774,24 +955,24 @@ html.need-login #loginGate{
  padding:5px 8px;
  border-radius:7px;
  background:rgba(0,0,0,.65);
- font-size:10px
+ font-size:10px;
 }
 
 .card-body{
- padding:17px
+ padding:17px;
 }
 
 .card-body h3{
- font-size:17px;
+ font-size:16px;
  line-height:1.5;
- margin-bottom:7px
+ margin-bottom:7px;
 }
 
 .card-body p{
  font-size:12px;
  color:var(--muted);
  line-height:1.7;
- min-height:40px
+ min-height:40px;
 }
 
 .meta{
@@ -800,30 +981,45 @@ html.need-login #loginGate{
  gap:8px;
  margin-top:13px;
  font-size:10px;
- color:#cbd3ed
+ color:#cbd3ed;
 }
 
 .unit{
- color:var(--cyan)
-}
-
-.resource-icon{
- font-size:21px;
- margin-bottom:9px;
- opacity:.90
+ color:var(--lesson);
 }
 
 .resource-card{
- padding:19px
+ padding:19px;
+}
+
+.resource-icon{
+ width:38px;
+ height:38px;
+ border-radius:11px;
+ display:grid;
+ place-items:center;
+ font-size:19px;
+ margin-bottom:12px;
+ background:rgba(255,255,255,.055);
+ border:1px solid rgba(255,255,255,.08);
+}
+
+.resource-card h3{
+ font-size:17px;
+ line-height:1.5;
+ margin-bottom:7px;
+}
+
+.resource-card p{
+ color:var(--muted);
+ font-size:12px;
+ line-height:1.7;
+ min-height:50px;
 }
 
 .resource-card .btn{
  width:100%;
- margin-top:13px
-}
-
-.resource-card p{
- min-height:50px
+ margin-top:13px;
 }
 
 /* =========================
@@ -835,123 +1031,26 @@ html.need-login #loginGate{
  border-radius:24px;
  background:
  radial-gradient(
-  circle at 90% 10%,
-  rgba(255,79,208,.14),
-  transparent 30%
+   circle at 90% 10%,
+   rgba(255,79,208,.14),
+   transparent 30%
  ),
  linear-gradient(135deg,#17143b,#10183a);
- border:1px solid rgba(118,87,255,.25)
+ border:1px solid rgba(118,87,255,.25);
+ position:relative;
+ overflow:hidden;
 }
 
 .daily-grid{
  display:grid;
  grid-template-columns:repeat(5,1fr);
  gap:11px;
- margin-bottom:15px
-}
-
-.day-q{
- padding:14px;
- border-radius:16px;
- background:rgba(255,255,255,.045);
- border:1px solid var(--border);
- min-height:190px
-}
-
-.day-top{
- display:flex;
- justify-content:space-between;
- gap:7px;
- align-items:center;
- font-size:10px;
- color:var(--muted);
- margin-bottom:9px
-}
-
-.difficulty{
- color:var(--gold)
-}
-
-.day-q h4{
- font-size:15px;
- line-height:1.6;
- margin-bottom:11px
-}
-
-.q-options{
- display:grid;
- gap:7px
-}
-
-.q-option{
- padding:8px 9px;
- border-radius:9px;
- background:rgba(255,255,255,.045);
- border:1px solid var(--border);
- color:#fff;
- text-align:right;
- font-size:11px
-}
-
-.q-option:hover{
- border-color:var(--primary)
-}
-
-.q-option.done{
- opacity:.65;
- pointer-events:none
-}
-
-.q-option.correct{
- background:rgba(39,228,155,.16);
- border-color:var(--green)
-}
-
-.q-option.wrong{
- background:rgba(255,100,120,.14);
- border-color:var(--red)
-}
-
-.challenge-note{
- color:var(--muted);
- font-size:11px;
- line-height:1.7
-}
-
-.challenge{
- position:relative;
- overflow:hidden
-}
-
-.challenge:before,
-.challenge:after{
- content:"";
- position:absolute;
- border-radius:50%;
- filter:blur(2px);
- pointer-events:none
-}
-
-.challenge:before{
- width:180px;
- height:180px;
- background:rgba(24,217,255,.08);
- left:-70px;
- bottom:-80px
-}
-
-.challenge:after{
- width:160px;
- height:160px;
- background:rgba(255,79,208,.08);
- right:-60px;
- top:-70px
 }
 
 .challenge-progress{
  display:flex;
  gap:7px;
- margin-bottom:18px
+ margin-bottom:18px;
 }
 
 .challenge-step{
@@ -960,12 +1059,11 @@ html.need-login #loginGate{
  border-radius:20px;
  background:rgba(255,255,255,.08);
  border:1px solid rgba(255,255,255,.06);
- overflow:hidden
 }
 
 .challenge-step.active,
 .challenge-step.done{
- background:linear-gradient(90deg,var(--primary),var(--cyan))
+ background:linear-gradient(90deg,var(--primary),var(--cyan));
 }
 
 .challenge-card{
@@ -977,23 +1075,20 @@ html.need-login #loginGate{
  border-radius:20px;
  background:rgba(255,255,255,.045);
  border:1px solid rgba(255,255,255,.10);
- box-shadow:0 20px 55px rgba(0,0,0,.16)
 }
 
 .challenge-card-head{
  display:flex;
  justify-content:space-between;
  align-items:center;
- gap:10px;
  margin-bottom:14px;
  color:var(--muted);
- font-size:12px
+ font-size:12px;
 }
 
 .challenge-number{
- font-size:13px;
+ color:#fff;
  font-weight:900;
- color:#fff
 }
 
 .challenge-points{
@@ -1002,18 +1097,18 @@ html.need-login #loginGate{
  color:var(--gold);
  background:rgba(255,214,107,.08);
  border:1px solid rgba(255,214,107,.18);
- font-weight:900
+ font-weight:900;
 }
 
 .challenge-question{
  font-size:22px;
  line-height:1.9;
- margin-bottom:18px
+ margin-bottom:18px;
 }
 
 .challenge-options{
  display:grid;
- gap:10px
+ gap:10px;
 }
 
 .challenge-option{
@@ -1025,27 +1120,27 @@ html.need-login #loginGate{
  color:#fff;
  text-align:right;
  font-size:14px;
- transition:.2s
+ transition:.2s;
 }
 
 .challenge-option:hover{
  transform:translateX(-3px);
  border-color:var(--cyan);
- background:rgba(24,217,255,.07)
+ background:rgba(24,217,255,.07);
 }
 
 .challenge-option.correct{
  background:rgba(39,228,155,.15);
- border-color:var(--green)
+ border-color:var(--green);
 }
 
 .challenge-option.wrong{
  background:rgba(255,100,120,.15);
- border-color:var(--red)
+ border-color:var(--red);
 }
 
 .challenge-option:disabled{
- cursor:default
+ cursor:default;
 }
 
 .challenge-feedback{
@@ -1053,71 +1148,64 @@ html.need-login #loginGate{
  min-height:28px;
  margin-top:14px;
  font-size:13px;
- font-weight:800
+ font-weight:800;
 }
 
 .challenge-next{
  display:none;
- margin:12px auto 0
+ margin:12px auto 0;
 }
 
 .challenge-complete{
  text-align:center;
  padding:25px;
- position:relative;
- z-index:1
 }
 
 .challenge-complete .big-star{
  font-size:48px;
- animation:pulseStar 1.5s infinite
 }
 
 .challenge-complete h3{
  font-size:25px;
- margin:8px 0
+ margin:8px 0;
 }
 
 .challenge-complete p{
  color:var(--muted);
  line-height:1.8;
- font-size:13px
-}
-
-@keyframes pulseStar{
- 50%{transform:scale(1.15) rotate(8deg)}
+ font-size:13px;
 }
 
 /* =========================
-   إحصائيات
+   منصة الأرقام - أصغر
 ========================= */
 
 .stats{
  display:grid;
  grid-template-columns:repeat(4,1fr);
- gap:13px
+ gap:10px;
 }
 
 .stat{
  text-align:center;
- padding:20px;
- border-radius:18px;
- background:rgba(255,255,255,.045);
- border:1px solid var(--border)
+ padding:14px;
+ border-radius:15px;
+ background:rgba(255,255,255,.04);
+ border:1px solid var(--border);
 }
 
 .stat strong{
  display:block;
- font-size:29px;
- margin-bottom:6px;
+ font-size:23px;
+ margin-bottom:4px;
  background:linear-gradient(90deg,var(--cyan),var(--primary));
  -webkit-background-clip:text;
- color:transparent
+ color:transparent;
 }
 
 .stat span{
- font-size:11px;
- color:var(--muted)
+ font-size:10px;
+ color:var(--muted);
 }
 
 /* =========================
@@ -1133,11 +1221,11 @@ html.need-login #loginGate{
  display:none;
  align-items:center;
  justify-content:center;
- padding:12px
+ padding:12px;
 }
 
 .modal.show{
- display:flex
+ display:flex;
 }
 
 .modal-box{
@@ -1149,7 +1237,7 @@ html.need-login #loginGate{
  border-radius:22px;
  padding:20px;
  position:relative;
- box-shadow:0 25px 90px rgba(0,0,0,.5)
+ box-shadow:0 25px 90px rgba(0,0,0,.5);
 }
 
 .close{
@@ -1162,7 +1250,7 @@ html.need-login #loginGate{
  background:rgba(255,255,255,.08);
  color:#fff;
  font-size:20px;
- z-index:3
+ z-index:3;
 }
 
 .video-frame{
@@ -1171,7 +1259,7 @@ html.need-login #loginGate{
  border:0;
  border-radius:14px;
  margin-top:18px;
- background:#000
+ background:#000;
 }
 
 .video-points{
@@ -1185,11 +1273,11 @@ html.need-login #loginGate{
  background:rgba(39,228,155,.06);
  border:1px solid rgba(39,228,155,.14);
  font-size:11px;
- color:#bff5df
+ color:#bff5df;
 }
 
 .video-points b{
- color:var(--gold)
+ color:var(--gold);
 }
 
 .pdf-frame{
@@ -1198,41 +1286,41 @@ html.need-login #loginGate{
  border:0;
  border-radius:13px;
  background:#fff;
- margin-top:18px
+ margin-top:18px;
 }
 
 .pdf-fallback{
  padding:25px;
  text-align:center;
  color:var(--muted);
- line-height:1.8
+ line-height:1.8;
 }
 
 .auth-box{
- width:min(430px,100%)
+ width:min(430px,100%);
 }
 
 .auth-box h2{
  font-size:25px;
- margin-bottom:15px
+ margin-bottom:15px;
 }
 
 .auth-help{
  color:var(--muted);
  font-size:11px;
  line-height:1.7;
- margin-bottom:15px
+ margin-bottom:15px;
 }
 
 .exam-question{
  font-size:22px;
  line-height:1.8;
- margin:18px 0
+ margin:18px 0;
 }
 
 .exam-options{
  display:grid;
- gap:9px
+ gap:9px;
 }
 
 .exam-option{
@@ -1242,38 +1330,38 @@ html.need-login #loginGate{
  border:1px solid var(--border);
  color:#fff;
  text-align:right;
- font-size:14px
+ font-size:14px;
 }
 
 .exam-option.selected{
- background:rgba(118,87,255,.24);
- border-color:var(--primary)
+ background:rgba(39,228,155,.16);
+ border-color:var(--green);
 }
 
 .exam-actions{
  display:flex;
  justify-content:space-between;
  gap:8px;
- margin-top:18px
+ margin-top:18px;
 }
 
 .progress{
  height:7px;
  background:rgba(255,255,255,.08);
  border-radius:20px;
- overflow:hidden
+ overflow:hidden;
 }
 
 .progress-bar{
  height:100%;
  width:0;
  background:linear-gradient(90deg,var(--primary),var(--cyan));
- transition:.25s
+ transition:.25s;
 }
 
 .result{
  text-align:center;
- padding:25px
+ padding:25px;
 }
 
 .result-score{
@@ -1282,7 +1370,7 @@ html.need-login #loginGate{
  margin:14px;
  background:linear-gradient(90deg,var(--cyan),var(--primary),var(--pink));
  -webkit-background-clip:text;
- color:transparent
+ color:transparent;
 }
 
 /* =========================
@@ -1301,20 +1389,20 @@ html.need-login #loginGate{
  border:1px solid rgba(255,214,107,.28);
  box-shadow:0 10px 35px rgba(0,0,0,.35);
  color:#fff;
- font-size:12px
+ font-size:12px;
 }
 
 #pointToast b{
- color:var(--gold)
+ color:var(--gold);
 }
 
 footer{
- margin-top:80px;
+ margin-top:50px;
  padding:35px 5%;
  text-align:center;
  color:var(--muted);
  font-size:11px;
- border-top:1px solid var(--border)
+ border-top:1px solid var(--border);
 }
 
 .loading,
@@ -1324,7 +1412,7 @@ footer{
  color:var(--muted);
  background:rgba(255,255,255,.025);
  border-radius:15px;
- font-size:13px
+ font-size:13px;
 }
 
 .error{
@@ -1334,7 +1422,7 @@ footer{
  background:rgba(255,80,90,.07);
  border:1px solid rgba(255,80,90,.15);
  font-size:12px;
- line-height:1.7
+ line-height:1.7;
 }
 
 /* =========================
@@ -1345,35 +1433,31 @@ footer{
 
  .hero{
   grid-template-columns:1fr;
-  text-align:center
+  text-align:center;
  }
 
  .hero p{
-  margin:auto
+  margin:auto;
  }
 
  .hero-actions{
-  justify-content:center
+  justify-content:center;
  }
 
  .categories{
-  grid-template-columns:repeat(2,1fr)
+  grid-template-columns:repeat(2,1fr);
  }
 
  .cards{
-  grid-template-columns:repeat(2,1fr)
- }
-
- .daily-grid{
-  grid-template-columns:repeat(2,1fr)
+  grid-template-columns:repeat(2,1fr);
  }
 
  .stats{
-  grid-template-columns:repeat(2,1fr)
+  grid-template-columns:repeat(2,1fr);
  }
 
  .hero-visual{
-  min-height:300px
+  min-height:280px;
  }
 }
 
@@ -1381,30 +1465,30 @@ footer{
 
  .nav{
   min-height:60px;
-  width:94%
+  width:94%;
  }
 
  .logo-text{
-  display:none
+  display:none;
  }
 
  .logo-icon{
   width:38px;
   height:38px;
   border-radius:12px;
-  font-size:20px
+  font-size:20px;
  }
 
  .nav-actions{
   margin-right:auto;
-  gap:5px
+  gap:5px;
  }
 
  .nav-actions .btn{
   min-height:35px;
   padding:7px 9px;
   border-radius:11px;
-  font-size:9px
+  font-size:9px;
  }
 
  .user-box{
@@ -1412,110 +1496,154 @@ footer{
   padding:6px 8px;
   font-size:9px;
   max-width:125px;
-  overflow:hidden
+  overflow:hidden;
  }
 
  .user-box #userName{
   max-width:48px;
   overflow:hidden;
-  text-overflow:ellipsis
+  text-overflow:ellipsis;
  }
 
  .hero{
   padding:40px 0 25px;
-  min-height:auto
+  min-height:auto;
  }
 
  .hero h2{
-  font-size:41px
+  font-size:41px;
  }
 
  .hero p{
-  font-size:15px
+  font-size:15px;
  }
 
  .hero-visual{
-  min-height:250px
+  min-height:240px;
  }
 
  .equation{
-  font-size:72px
+  font-size:65px;
  }
 
  .orbit{
-  width:205px;
-  height:205px
+  width:195px;
+  height:195px;
  }
 
  .categories,
  .cards,
- .stats,
- .daily-grid{
-  grid-template-columns:1fr
+ .stats{
+  grid-template-columns:1fr;
  }
 
  .section-title{
-  display:block
+  display:block;
  }
 
  .section-title h2{
-  font-size:24px
+  font-size:24px;
  }
 
  .category{
-  min-height:110px;
-  padding:17px
+  min-height:105px;
+  padding:16px;
  }
 
  .category-icon{
   font-size:19px;
-  margin-bottom:7px
- }
-
- .resource-icon{
-  font-size:20px
  }
 
  .cover{
-  height:210px
+  height:205px;
  }
 
  .modal-box{
-  padding:17px
+  padding:17px;
  }
 
  .pdf-frame{
-  height:65vh
+  height:65vh;
  }
 
  .exam-question{
-  font-size:19px
+  font-size:19px;
  }
 
  .student-bar{
-  display:block
+  display:block;
  }
 
  .student-bar span{
   display:block;
-  margin-top:5px
+  margin-top:5px;
  }
 
  .gate-card{
   padding:24px 18px;
-  border-radius:22px
+  border-radius:22px;
  }
 
  .gate-card h2{
-  font-size:24px
+  font-size:24px;
  }
 
  .gate-card p{
-  font-size:12px
+  font-size:12px;
  }
 
- .nav-actions .control-btn span{
-  display:inline
+ .section-page{
+  padding-top:25px;
+ }
+
+ .page-header{
+  padding:21px;
+ }
+
+ .page-title h2{
+  font-size:25px;
+ }
+
+ .page-icon{
+  width:36px;
+  height:36px;
+  font-size:18px;
+ }
+
+ .page-search{
+  font-size:13px;
+ }
+
+ .stats{
+  grid-template-columns:repeat(2,1fr);
+ }
+
+ .stat{
+  padding:12px;
+ }
+
+ .stat strong{
+  font-size:21px;
+ }
+}
+
+@media(max-width:390px){
+
+ .nav-actions .btn span{
+  display:none;
+ }
+
+ .nav-actions .btn{
+  min-width:35px;
+  padding:7px;
+ }
+
+ .user-box{
+  max-width:90px;
+ }
+
+ .user-box #userName{
+  max-width:35px;
  }
 }
 </style>
@@ -1530,6 +1658,7 @@ footer{
 ========================= -->
 
 <div id="loginGate">
+
  <div class="gate-card">
 
   <div class="gate-logo">∑</div>
@@ -1563,14 +1692,14 @@ footer{
   <div id="gateMessage" class="message"></div>
 
   <button
-   class="btn btn-primary"
+   class="btn action-orange"
    style="width:100%"
    onclick="loginStudent()">
    🚀 دخول الطالب
   </button>
 
   <button
-   class="btn"
+   class="btn action-orange"
    style="width:100%;margin-top:8px"
    onclick="signupStudent()">
    ✨ إنشاء حساب جديد
@@ -1592,8 +1721,13 @@ footer{
    <div class="logo-icon">∑</div>
 
    <div class="logo-text">
+
     <h1>منبر ون</h1>
-    <small>MINBAR ONE • MATH</small>
+
+    <small>
+     MINBAR ONE • MATH
+    </small>
+
    </div>
 
   </div>
@@ -1623,7 +1757,10 @@ footer{
     onclick="location.href='teacher.html'">
 
     ⚙️
-    <span>لوحة التحكم</span>
+
+    <span>
+     دخول لوحة التحكم
+    </span>
 
    </button>
 
@@ -1633,7 +1770,10 @@ footer{
     onclick="openLogin()">
 
     👨‍🎓
-    <span>تسجيل الدخول</span>
+
+    <span>
+     تسجيل الدخول
+    </span>
 
    </button>
 
@@ -1643,7 +1783,11 @@ footer{
     style="display:none"
     onclick="logoutStudent()">
 
-    🚪 خروج
+    🚪
+
+    <span>
+     خروج
+    </span>
 
    </button>
 
@@ -1653,11 +1797,18 @@ footer{
 
 </header>
 
+
 <!-- =========================
-     المحتوى
+     المحتوى الرئيسي
 ========================= -->
 
 <main class="container">
+
+<!-- =========================
+     الرئيسية
+========================= -->
+
+<div id="homeView">
 
  <section class="hero">
 
@@ -1696,8 +1847,8 @@ footer{
    <div class="hero-actions">
 
     <button
-     class="btn btn-primary"
-     onclick="scrollToSection('lessonsSection')">
+     class="btn action-orange"
+     onclick="openSection('lessons')">
 
      🎥 ابدأ الحصص
 
@@ -1715,6 +1866,7 @@ footer{
 
   </div>
 
+
   <div class="hero-visual">
 
    <div class="orbit"></div>
@@ -1727,15 +1879,19 @@ footer{
 
  </section>
 
+
  <div class="student-bar">
 
   <div>
 
    <strong>
+
     👋 أهلًا
+
     <span id="welcomeName">
      بالطالب
     </span>
+
    </strong>
 
    <br>
@@ -1747,19 +1903,24 @@ footer{
   </div>
 
   <div>
+
    <span
     class="level"
     id="levelText">
     المستوى 1
    </span>
+
   </div>
 
  </div>
 
- <!-- التحديات -->
+
+ <!-- =========================
+      التحديات
+ ========================= -->
 
  <section
-  class="section"
+  class="home-section"
   id="challengeSection">
 
   <div class="section-title">
@@ -1771,7 +1932,7 @@ footer{
     </h2>
 
     <p>
-     السؤال الأول ⭐1، الثاني ⭐2، الثالث ⭐3، الرابع ⭐4، والخامس ⭐5 — سؤال واحد في كل مرة
+     سؤال واحد في كل مرة — واجمع النقاط ⭐
     </p>
 
    </div>
@@ -1792,25 +1953,12 @@ footer{
 
  </section>
 
- <!-- البحث -->
 
- <div class="search-wrap">
+ <!-- =========================
+      الأقسام
+ ========================= -->
 
-  <span class="search-icon">
-   🔎
-  </span>
-
-  <input
-   id="searchInput"
-   class="search"
-   placeholder="ابحث عن حصة، ملخص، اختبار أو غرفة..."
-   oninput="searchEverything()">
-
- </div>
-
- <!-- الأقسام -->
-
- <section class="section">
+ <section class="home-section">
 
   <div class="section-title">
 
@@ -1821,18 +1969,20 @@ footer{
     </h2>
 
     <p>
-     وصول سريع إلى أقسام المنصة
+     اختر القسم الذي تريد الدخول إليه
     </p>
 
    </div>
 
   </div>
 
+
   <div class="categories">
+
 
    <div
     class="category cat-purple"
-    onclick="scrollToSection('lessonsSection')">
+    onclick="openSection('lessons')">
 
     <div class="category-icon">
      🎥
@@ -1848,9 +1998,10 @@ footer{
 
    </div>
 
+
    <div
     class="category cat-blue"
-    onclick="scrollToSection('summariesSection')">
+    onclick="openSection('summaries')">
 
     <div class="category-icon">
      📚
@@ -1866,9 +2017,10 @@ footer{
 
    </div>
 
+
    <div
     class="category cat-green"
-    onclick="scrollToSection('testsSection')">
+    onclick="openSection('tests')">
 
     <div class="category-icon">
      📝
@@ -1884,9 +2036,10 @@ footer{
 
    </div>
 
+
    <div
     class="category cat-orange"
-    onclick="scrollToSection('roomsSection')">
+    onclick="openSection('rooms')">
 
     <div class="category-icon">
      💬
@@ -1902,149 +2055,17 @@ footer{
 
    </div>
 
-  </div>
-
- </section>
-
- <!-- الحصص -->
-
- <section
-  class="section"
-  id="lessonsSection">
-
-  <div class="section-title">
-
-   <div>
-
-    <h2>
-     🎥 الحصص
-    </h2>
-
-    <p>
-     العنوان والوصف يظهران تلقائيًا من رابط YouTube قدر الإمكان
-    </p>
-
-   </div>
-
-  </div>
-
-  <div
-   id="lessonsContainer"
-   class="cards">
-
-   <div class="loading">
-    جاري تحميل الحصص...
-   </div>
 
   </div>
 
  </section>
 
- <!-- الملخصات -->
 
- <section
-  class="section"
-  id="summariesSection">
+ <!-- =========================
+      إحصائيات صغيرة
+ ========================= -->
 
-  <div class="section-title">
-
-   <div>
-
-    <h2>
-     📚 الملخصات
-    </h2>
-
-    <p>
-     عرض الملخص داخل الموقع مع خيار فتحه في صفحة مستقلة
-    </p>
-
-   </div>
-
-  </div>
-
-  <div
-   id="summariesContainer"
-   class="cards">
-
-   <div class="loading">
-    جاري تحميل الملخصات...
-   </div>
-
-  </div>
-
- </section>
-
- <!-- الاختبارات -->
-
- <section
-  class="section"
-  id="testsSection">
-
-  <div class="section-title">
-
-   <div>
-
-    <h2>
-     📝 الاختبارات
-    </h2>
-
-    <p>
-     اختبار حقيقي مرتبط بأسئلة test_questions
-    </p>
-
-   </div>
-
-  </div>
-
-  <div
-   id="testsContainer"
-   class="cards">
-
-   <div class="loading">
-    جاري تحميل الاختبارات...
-   </div>
-
-  </div>
-
- </section>
-
- <!-- الغرف -->
-
- <section
-  class="section"
-  id="roomsSection">
-
-  <div class="section-title">
-
-   <div>
-
-    <h2>
-     💬 الغرف التعليمية
-    </h2>
-
-    <p>
-     غرف التعلم والتواصل
-    </p>
-
-   </div>
-
-  </div>
-
-  <div
-   id="roomsContainer"
-   class="cards">
-
-   <div class="loading">
-    جاري تحميل الغرف...
-   </div>
-
-  </div>
-
- </section>
-
- <!-- الإحصائيات -->
-
- <section class="section">
+ <section class="home-section">
 
   <div class="section-title">
 
@@ -2058,37 +2079,377 @@ footer{
 
   </div>
 
+
   <div class="stats">
 
    <div class="stat">
-    <strong id="lessonsCount">0</strong>
-    <span>حصص</span>
+
+    <strong id="lessonsCount">
+     0
+    </strong>
+
+    <span>
+     حصص
+    </span>
+
    </div>
 
-   <div class="stat">
-    <strong id="summariesCount">0</strong>
-    <span>ملخصات</span>
-   </div>
 
    <div class="stat">
-    <strong id="testsCount">0</strong>
-    <span>اختبارات</span>
+
+    <strong id="summariesCount">
+     0
+    </strong>
+
+    <span>
+     ملخصات
+    </span>
+
    </div>
 
+
    <div class="stat">
-    <strong id="roomsCount">0</strong>
-    <span>غرف</span>
+
+    <strong id="testsCount">
+     0
+    </strong>
+
+    <span>
+     اختبارات
+    </span>
+
+   </div>
+
+
+   <div class="stat">
+
+    <strong id="roomsCount">
+     0
+    </strong>
+
+    <span>
+     غرف
+    </span>
+
    </div>
 
   </div>
 
  </section>
 
+</div>
+
+
+<!-- =========================
+     صفحة الحصص
+========================= -->
+
+<section
+ id="lessonsPage"
+ class="section-page">
+
+ <div class="page-header">
+
+  <div class="page-header-content">
+
+   <button
+    class="page-back"
+    onclick="goHome()">
+    ↩ الرئيسية
+   </button>
+
+   <div class="page-title">
+
+    <div class="page-icon">
+     🎥
+    </div>
+
+    <h2>
+     الحصص
+    </h2>
+
+   </div>
+
+   <p>
+    شاهد جميع الحصص التعليمية وابحث عن الحصة التي تريدها بسهولة.
+   </p>
+
+  </div>
+
+ </div>
+
+
+ <div class="page-search-wrap">
+
+  <span class="page-search-icon">
+   🔎
+  </span>
+
+  <input
+   id="lessonsSearch"
+   class="page-search"
+   placeholder="اكتب عنوان الحصة أو الوحدة..."
+   oninput="searchSection('lessons')">
+
+ </div>
+
+
+ <div
+  id="lessonsContainer"
+  class="cards">
+
+  <div class="loading">
+   جاري تحميل الحصص...
+  </div>
+
+ </div>
+
+
+ <div
+  id="lessonsEmpty"
+  class="page-empty">
+
+  🔎 لم نجد حصة مطابقة للبحث.
+
+ </div>
+
+</section>
+
+
+<!-- =========================
+     صفحة الملخصات
+========================= -->
+
+<section
+ id="summariesPage"
+ class="section-page">
+
+ <div class="page-header">
+
+  <div class="page-header-content">
+
+   <button
+    class="page-back"
+    onclick="goHome()">
+    ↩ الرئيسية
+   </button>
+
+   <div class="page-title">
+
+    <div class="page-icon">
+     📚
+    </div>
+
+    <h2>
+     الملخصات
+    </h2>
+
+   </div>
+
+   <p>
+    ابحث عن الملخص الذي تحتاجه وافتحه مباشرة داخل المنصة.
+   </p>
+
+  </div>
+
+ </div>
+
+
+ <div class="page-search-wrap">
+
+  <span class="page-search-icon">
+   🔎
+  </span>
+
+  <input
+   id="summariesSearch"
+   class="page-search"
+   placeholder="اكتب اسم الملخص..."
+   oninput="searchSection('summaries')">
+
+ </div>
+
+
+ <div
+  id="summariesContainer"
+  class="cards">
+
+  <div class="loading">
+   جاري تحميل الملخصات...
+  </div>
+
+ </div>
+
+
+ <div
+  id="summariesEmpty"
+  class="page-empty">
+
+  🔎 لم نجد ملخصًا مطابقًا للبحث.
+
+ </div>
+
+</section>
+
+
+<!-- =========================
+     صفحة الاختبارات
+========================= -->
+
+<section
+ id="testsPage"
+ class="section-page">
+
+ <div class="page-header">
+
+  <div class="page-header-content">
+
+   <button
+    class="page-back"
+    onclick="goHome()">
+    ↩ الرئيسية
+   </button>
+
+   <div class="page-title">
+
+    <div class="page-icon">
+     📝
+    </div>
+
+    <h2>
+     الاختبارات
+    </h2>
+
+   </div>
+
+   <p>
+    اختر الاختبار المناسب لك واختبر مستواك.
+   </p>
+
+  </div>
+
+ </div>
+
+
+ <div class="page-search-wrap">
+
+  <span class="page-search-icon">
+   🔎
+  </span>
+
+  <input
+   id="testsSearch"
+   class="page-search"
+   placeholder="اكتب اسم الاختبار..."
+   oninput="searchSection('tests')">
+
+ </div>
+
+
+ <div
+  id="testsContainer"
+  class="cards">
+
+  <div class="loading">
+   جاري تحميل الاختبارات...
+  </div>
+
+ </div>
+
+
+ <div
+  id="testsEmpty"
+  class="page-empty">
+
+  🔎 لم نجد اختبارًا مطابقًا للبحث.
+
+ </div>
+
+</section>
+
+
+<!-- =========================
+     صفحة الغرف
+========================= -->
+
+<section
+ id="roomsPage"
+ class="section-page">
+
+ <div class="page-header">
+
+  <div class="page-header-content">
+
+   <button
+    class="page-back"
+    onclick="goHome()">
+    ↩ الرئيسية
+   </button>
+
+   <div class="page-title">
+
+    <div class="page-icon">
+     💬
+    </div>
+
+    <h2>
+     الغرف التعليمية
+    </h2>
+
+   </div>
+
+   <p>
+    ابحث عن الغرفة التعليمية التي تريد الدخول إليها.
+   </p>
+
+  </div>
+
+ </div>
+
+
+ <div class="page-search-wrap">
+
+  <span class="page-search-icon">
+   🔎
+  </span>
+
+  <input
+   id="roomsSearch"
+   class="page-search"
+   placeholder="اكتب اسم الغرفة..."
+   oninput="searchSection('rooms')">
+
+ </div>
+
+
+ <div
+  id="roomsContainer"
+  class="cards">
+
+  <div class="loading">
+   جاري تحميل الغرف...
+  </div>
+
+ </div>
+
+
+ <div
+  id="roomsEmpty"
+  class="page-empty">
+
+  🔎 لم نجد غرفة مطابقة للبحث.
+
+ </div>
+
+</section>
+
 </main>
+
 
 <footer>
  © 2026 منبر ون — منصة الرياضيات التعليمية ✨
 </footer>
+
 
 <!-- =========================
      تسجيل الدخول
@@ -2137,28 +2498,27 @@ footer{
   </div>
 
   <button
-   class="btn btn-primary"
+   class="btn action-orange"
    style="width:100%"
    onclick="loginStudent('modal')">
-
-   دخول
-
+   🚀 دخول
   </button>
 
   <button
-   class="btn"
+   class="btn action-orange"
    style="width:100%;margin-top:8px"
    onclick="signupStudent('modal')">
-
-   إنشاء حساب جديد
-
+   ✨ إنشاء حساب جديد
   </button>
 
  </div>
 
 </div>
 
-<!-- الفيديو -->
+
+<!-- =========================
+     الفيديو
+========================= -->
 
 <div
  class="modal"
@@ -2199,7 +2559,10 @@ footer{
 
 </div>
 
-<!-- الملخص -->
+
+<!-- =========================
+     الملخص
+========================= -->
 
 <div
  class="modal"
@@ -2223,7 +2586,10 @@ footer{
 
 </div>
 
-<!-- الاختبار -->
+
+<!-- =========================
+     الاختبار
+========================= -->
 
 <div
  class="modal"
@@ -2243,11 +2609,11 @@ footer{
 
 </div>
 
-<!-- إشعار -->
 
 <div id="pointToast">
  ⭐ <b>+1</b> نقطة! أحسنت 👏
 </div>
+
 
 <script src="https://www.youtube.com/iframe_api"></script>
 
@@ -2261,13 +2627,15 @@ const SUPABASE_URL="https://vugnptbvkitokwqxulla.supabase.co";
 
 const SUPABASE_KEY="sb_publishable__WJDSewc6JN6XTM6czk11Q_lgON6Chj";
 
-let session=null,
-    student=null;
+let session=null;
+let student=null;
 
-let lessons=[],
-    summaries=[],
-    tests=[],
-    rooms=[];
+let lessons=[];
+let summaries=[];
+let tests=[];
+let rooms=[];
+
+let currentSection="home";
 
 let exam={
  test:null,
@@ -2277,21 +2645,21 @@ let exam={
  attempted:false
 };
 
-let ytPlayer=null,
-    watchTimer=null,
-    watchSeconds=0,
-    awardedMinutes=0,
-    watchPoints=0,
-    currentVideoId=null,
-    pendingVideoId=null,
-    playerReady=false;
+let ytPlayer=null;
+let watchTimer=null;
+let watchSeconds=0;
+let awardedMinutes=0;
+let watchPoints=0;
+let currentVideoId=null;
+let pendingVideoId=null;
+let playerReady=false;
+
 
 /* =========================
    تحديات اليوم
 ========================= */
 
 const DAILY=[
-
  {
   q:"إذا كان 3x = 18 فما قيمة x؟",
   o:["3","6","9","12"],
@@ -2299,7 +2667,6 @@ const DAILY=[
   d:1,
   p:1
  },
-
  {
   q:"ما ناتج 5² − 3²؟",
   o:["8","12","16","18"],
@@ -2307,7 +2674,6 @@ const DAILY=[
   d:2,
   p:2
  },
-
  {
   q:"إذا كان x² = 49، فما القيم الممكنة لـ x؟",
   o:["7 فقط","−7 فقط","7 أو −7","49"],
@@ -2315,7 +2681,6 @@ const DAILY=[
   d:2,
   p:3
  },
-
  {
   q:"ما قيمة √144 + 2³؟",
   o:["16","18","20","22"],
@@ -2323,7 +2688,6 @@ const DAILY=[
   d:3,
   p:4
  },
-
  {
   q:"إذا كان 2^(x+1)=32، فما قيمة x؟",
   o:["3","4","5","6"],
@@ -2331,36 +2695,120 @@ const DAILY=[
   d:4,
   p:5
  }
-
 ];
+
 
 /* =========================
    أدوات
 ========================= */
 
 function $(id){
- return document.getElementById(id)
+ return document.getElementById(id);
 }
 
 function safe(v){
  return String(v??"")
-  .replace(/&/g,"&amp;")
-  .replace(/</g,"&lt;")
-  .replace(/>/g,"&gt;")
-  .replace(/"/g,"&quot;")
-  .replace(/'/g,"&#039;")
+ .replace(/&/g,"&amp;")
+ .replace(/</g,"&lt;")
+ .replace(/>/g,"&gt;")
+ .replace(/"/g,"&quot;")
+ .replace(/'/g,"&#039;");
 }
 
 function closeModal(id){
- $(id).classList.remove("show")
+ $(id).classList.remove("show");
 }
 
-function scrollToSection(id){
- $(id)?.scrollIntoView({
-  behavior:"smooth",
-  block:"start"
- })
+
+/* =========================
+   التنقل بين الصفحات
+========================= */
+
+function openSection(section){
+
+ currentSection=section;
+
+ $("homeView").style.display="none";
+
+ document.querySelectorAll(".section-page")
+ .forEach(page=>{
+  page.classList.remove("active");
+ });
+
+ const page=$(section+"Page");
+
+ if(page){
+  page.classList.add("active");
+ }
+
+ window.scrollTo({
+  top:0,
+  behavior:"smooth"
+ });
+
+ if(section==="lessons"){
+  setTimeout(()=>{
+   $("lessonsSearch")?.focus();
+  },350);
+ }
+
+ if(section==="summaries"){
+  setTimeout(()=>{
+   $("summariesSearch")?.focus();
+  },350);
+ }
+
+ if(section==="tests"){
+  setTimeout(()=>{
+   $("testsSearch")?.focus();
+  },350);
+ }
+
+ if(section==="rooms"){
+  setTimeout(()=>{
+   $("roomsSearch")?.focus();
+  },350);
+ }
 }
+
+function goHome(){
+
+ currentSection="home";
+
+ document.querySelectorAll(".section-page")
+ .forEach(page=>{
+  page.classList.remove("active");
+ });
+
+ $("homeView").style.display="block";
+
+ window.scrollTo({
+  top:0,
+  behavior:"smooth"
+ });
+}
+
+
+/* =========================
+   التمرير للتحديات
+========================= */
+
+function scrollToSection(id){
+
+ goHome();
+
+ setTimeout(()=>{
+  $(id)?.scrollIntoView({
+   behavior:"smooth",
+   block:"start"
+  });
+ },50);
+}
+
+
+/* =========================
+   بوابة الدخول
+========================= */
 
 function showGate(){
 
@@ -2370,6 +2818,14 @@ function showGate(){
 
  document.body.classList.add("locked");
 
+ if($("topLoginBtn"))
+  $("topLoginBtn").style.display="inline-flex";
+
+ if($("userBox"))
+  $("userBox").style.display="none";
+
+ if($("logoutBtn"))
+  $("logoutBtn").style.display="none";
 }
 
 function hideGate(){
@@ -2379,12 +2835,18 @@ function hideGate(){
  document.documentElement.classList.remove("need-login");
 
  document.body.classList.remove("locked");
-
 }
+
+
+/* =========================
+   الرسائل
+========================= */
 
 function setMsg(id,text){
- $(id).textContent=text
+ if($(id))
+  $(id).textContent=text;
 }
+
 
 /* =========================
    النجوم
@@ -2401,7 +2863,9 @@ function makeStars(){
   "✧",
   "⋆",
   "·",
-  "★"
+  "★",
+  "✦",
+  "✧"
  ];
 
  const colors=[
@@ -2418,19 +2882,27 @@ function makeStars(){
 
   const left=Math.random()*100;
 
-  const delay=Math.random()*14;
+  const delay=-(Math.random()*14);
 
   const dur=9+Math.random()*14;
 
-  const size=5+Math.random()*8;
+  const size=5+Math.random()*7;
 
   const drift=(Math.random()*140-70).toFixed(0);
 
   const color=
-   colors[Math.floor(Math.random()*colors.length)];
+   colors[
+    Math.floor(
+     Math.random()*colors.length
+    )
+   ];
 
   const symbol=
-   symbols[Math.floor(Math.random()*symbols.length)];
+   symbols[
+    Math.floor(
+     Math.random()*symbols.length
+    )
+   ];
 
   html+=`
    <span
@@ -2446,14 +2918,13 @@ function makeStars(){
     ${symbol}
    </span>
   `;
-
  }
 
  box.innerHTML=html;
-
 }
 
 makeStars();
+
 
 /* =========================
    Supabase Auth
@@ -2481,9 +2952,9 @@ async function auth(path,body,method="POST"){
  let d={};
 
  try{
-  d=raw?JSON.parse(raw):{}
+  d=raw?JSON.parse(raw):{};
  }catch{
-  d={message:raw}
+  d={message:raw};
  }
 
  if(!r.ok){
@@ -2494,12 +2965,11 @@ async function auth(path,body,method="POST"){
    d.message||
    "تعذر تنفيذ العملية"
   );
-
  }
 
  return d;
-
 }
+
 
 /* =========================
    تحديث الجلسة
@@ -2531,10 +3001,9 @@ async function refreshSession(){
  }catch{
 
   return false;
-
  }
-
 }
+
 
 /* =========================
    API
@@ -2551,8 +3020,8 @@ async function api(
 
  const token=
   useSession
-   ?(session?.access_token||SUPABASE_KEY)
-   :SUPABASE_KEY;
+  ?(session?.access_token||SUPABASE_KEY)
+  :SUPABASE_KEY;
 
  const headers={
   "apikey":SUPABASE_KEY,
@@ -2584,9 +3053,9 @@ async function api(
  let d;
 
  try{
-  d=raw?JSON.parse(raw):[]
+  d=raw?JSON.parse(raw):[];
  }catch{
-  d=raw
+  d=raw;
  }
 
  if(!r.ok){
@@ -2606,7 +3075,6 @@ async function api(
     useSession,
     true
    );
-
   }
 
   let msg=
@@ -2623,12 +3091,11 @@ async function api(
    "Supabase "+r.status+": "+
    (msg||"خطأ")
   );
-
  }
 
  return d;
-
 }
+
 
 /* =========================
    إنشاء صف الطالب
@@ -2678,15 +3145,16 @@ async function ensureStudentRow(){
 
      watch_minutes:0,
 
-     last_seen:new Date().toISOString()
+     last_seen:
+      new Date().toISOString()
     },
     "",
     true
    );
 
    student=created?.[0]||null;
-
   }
+
 
   if(student?.status==="blocked"){
 
@@ -2708,14 +3176,15 @@ async function ensureStudentRow(){
    );
 
    return false;
-
   }
+
 
   await api(
    "students",
    "PATCH",
    {
-    last_seen:new Date().toISOString()
+    last_seen:
+     new Date().toISOString()
    },
    "id=eq."+student.id
   );
@@ -2730,10 +3199,9 @@ async function ensureStudentRow(){
   );
 
   return false;
-
  }
-
 }
+
 
 /* =========================
    واجهة الطالب
@@ -2746,11 +3214,9 @@ function fillStudentUI(){
 
  $("userBox").style.display="flex";
 
- $("logoutBtn").style.display=
-  "inline-flex";
+ $("logoutBtn").style.display="inline-flex";
 
- $("topLoginBtn").style.display=
-  "none";
+ $("topLoginBtn").style.display="none";
 
  $("userName").textContent=
   student.name||"طالب";
@@ -2759,7 +3225,6 @@ function fillStudentUI(){
   student.name||"بالطالب";
 
  updatePointsUI();
-
 }
 
 function updatePointsUI(){
@@ -2773,8 +3238,8 @@ function updatePointsUI(){
  $("levelText").textContent=
   "المستوى "+
   (Math.floor(pts/50)+1);
-
 }
+
 
 /* =========================
    تسجيل الدخول
@@ -2783,36 +3248,36 @@ function updatePointsUI(){
 async function loginStudent(source){
 
  const p=
-  source==="modal"
-  ?
-  {
-   name:$("studentName").value.trim(),
+ source==="modal"
+ ?
+ {
+  name:$("studentName").value.trim(),
 
-   email:
-    $("studentEmail").value
-    .trim()
-    .toLowerCase(),
+  email:
+   $("studentEmail").value
+   .trim()
+   .toLowerCase(),
 
-   password:
-    $("studentPassword").value
-  }
-  :
-  {
-   name:$("gateName").value.trim(),
+  password:
+   $("studentPassword").value
+ }
+ :
+ {
+  name:$("gateName").value.trim(),
 
-   email:
-    $("gateEmail").value
-    .trim()
-    .toLowerCase(),
+  email:
+   $("gateEmail").value
+   .trim()
+   .toLowerCase(),
 
-   password:
-    $("gatePassword").value
-  };
+  password:
+   $("gatePassword").value
+ };
 
  const msgId=
-  source==="modal"
-  ?"authMessage"
-  :"gateMessage";
+ source==="modal"
+ ?"authMessage"
+ :"gateMessage";
 
  if(!p.email||!p.password){
 
@@ -2822,7 +3287,6 @@ async function loginStudent(source){
   );
 
   return;
-
  }
 
  setMsg(
@@ -2869,10 +3333,9 @@ async function loginStudent(source){
    msgId,
    "❌ "+e.message
   );
-
  }
-
 }
+
 
 /* =========================
    إنشاء حساب
@@ -2881,36 +3344,36 @@ async function loginStudent(source){
 async function signupStudent(source){
 
  const p=
-  source==="modal"
-  ?
-  {
-   name:$("studentName").value.trim(),
+ source==="modal"
+ ?
+ {
+  name:$("studentName").value.trim(),
 
-   email:
-    $("studentEmail").value
-    .trim()
-    .toLowerCase(),
+  email:
+   $("studentEmail").value
+   .trim()
+   .toLowerCase(),
 
-   password:
-    $("studentPassword").value
-  }
-  :
-  {
-   name:$("gateName").value.trim(),
+  password:
+   $("studentPassword").value
+ }
+ :
+ {
+  name:$("gateName").value.trim(),
 
-   email:
-    $("gateEmail").value
-    .trim()
-    .toLowerCase(),
+  email:
+   $("gateEmail").value
+   .trim()
+   .toLowerCase(),
 
-   password:
-    $("gatePassword").value
-  };
+  password:
+   $("gatePassword").value
+ };
 
  const msgId=
-  source==="modal"
-  ?"authMessage"
-  :"gateMessage";
+ source==="modal"
+ ?"authMessage"
+ :"gateMessage";
 
  if(!p.name||!p.email||!p.password){
 
@@ -2920,7 +3383,6 @@ async function signupStudent(source){
   );
 
   return;
-
  }
 
  setMsg(
@@ -2972,7 +3434,6 @@ async function signupStudent(source){
     msgId,
     "✅ تم إنشاء الحساب. إذا كان تأكيد البريد مفعّلًا، أكد بريدك ثم سجّل الدخول."
    );
-
   }
 
  }catch(e){
@@ -2981,10 +3442,9 @@ async function signupStudent(source){
    msgId,
    "❌ "+e.message
   );
-
  }
-
 }
+
 
 /* =========================
    استعادة الجلسة
@@ -3004,16 +3464,16 @@ async function restoreSession(){
  }catch{
 
   session=null;
-
  }
+
 
  if(!session?.access_token){
 
   showGate();
 
   return;
-
  }
+
 
  try{
 
@@ -3031,11 +3491,9 @@ async function restoreSession(){
     );
 
     showGate();
-
    }
 
    return;
-
   }
 
   hideGate();
@@ -3064,9 +3522,7 @@ async function restoreSession(){
     renderDaily();
 
     return;
-
    }
-
   }
 
   session=null;
@@ -3078,10 +3534,9 @@ async function restoreSession(){
   );
 
   showGate();
-
  }
-
 }
+
 
 /* =========================
    تسجيل الخروج
@@ -3102,8 +3557,8 @@ async function logoutStudent(){
  );
 
  location.reload();
-
 }
+
 
 /* =========================
    تحميل المحتوى
@@ -3117,8 +3572,8 @@ async function getTable(table){
   null,
   "select=*"
  );
-
 }
+
 
 async function loadLessons(){
 
@@ -3138,21 +3593,26 @@ async function loadLessons(){
  }catch(e){
 
   $("lessonsContainer").innerHTML=
-   `
+  `
    <div class="error">
+
     ❌ تعذر تحميل الحصص.
+
     <br>
+
     ${safe(e.message)}
+
     <br>
+
     <small>
-     إذا كان الخطأ 401، شغّل ملف SQL الأخير وتأكد من Publishable Key.
+     إذا كان الخطأ 401، تأكد من Publishable Key.
     </small>
+
    </div>
-   `;
-
+  `;
  }
-
 }
+
 
 async function loadSummaries(){
 
@@ -3172,21 +3632,20 @@ async function loadSummaries(){
  }catch(e){
 
   $("summariesContainer").innerHTML=
-   `
+  `
    <div class="error">
+
     ❌ تعذر تحميل الملخصات.
+
     <br>
+
     ${safe(e.message)}
-    <br>
-    <small>
-     إذا كان الخطأ 401، شغّل ملف SQL الأخير وتأكد من Publishable Key.
-    </small>
+
    </div>
-   `;
-
+  `;
  }
-
 }
+
 
 async function loadTests(){
 
@@ -3206,21 +3665,20 @@ async function loadTests(){
  }catch(e){
 
   $("testsContainer").innerHTML=
-   `
+  `
    <div class="error">
+
     ❌ تعذر تحميل الاختبارات.
+
     <br>
+
     ${safe(e.message)}
-    <br>
-    <small>
-     إذا كان الخطأ 401، شغّل ملف SQL الأخير وتأكد من Publishable Key.
-    </small>
+
    </div>
-   `;
-
+  `;
  }
-
 }
+
 
 async function loadRooms(){
 
@@ -3240,21 +3698,20 @@ async function loadRooms(){
  }catch(e){
 
   $("roomsContainer").innerHTML=
-   `
+  `
    <div class="error">
+
     ❌ تعذر تحميل الغرف.
+
     <br>
+
     ${safe(e.message)}
-    <br>
-    <small>
-     إذا كان الخطأ 401، شغّل ملف SQL الأخير وتأكد من Publishable Key.
-    </small>
+
    </div>
-   `;
-
+  `;
  }
-
 }
+
 
 /* =========================
    الإعلانات
@@ -3277,8 +3734,10 @@ async function loadAnnouncement(){
   if(
    a &&
    a.announcement_active!==false &&
-   (a.announcement_title||
-    a.announcement_text)
+   (
+    a.announcement_title||
+    a.announcement_text
+   )
   ){
 
    $("announcementTitle").textContent=
@@ -3291,7 +3750,6 @@ async function loadAnnouncement(){
    $("announcementBox")
     .classList
     .remove("hidden");
-
   }
 
  }catch(e){
@@ -3300,28 +3758,21 @@ async function loadAnnouncement(){
    "announcement",
    e.message
   );
-
  }
-
 }
+
 
 async function loadAll(){
 
  await Promise.allSettled([
-
   loadLessons(),
-
   loadSummaries(),
-
   loadTests(),
-
   loadRooms(),
-
   loadAnnouncement()
-
  ]);
-
 }
+
 
 /* =========================
    YouTube
@@ -3365,8 +3816,8 @@ function youtubeId(url){
   return m[1];
 
  return "";
-
 }
+
 
 function youtubeEmbed(url){
 
@@ -3374,11 +3825,11 @@ function youtubeEmbed(url){
   youtubeId(url);
 
  return id
-  ?
-   `https://www.youtube.com/embed/${id}?enablejsapi=1&rel=0&modestbranding=1`
-  :"";
-
+ ?
+ `https://www.youtube.com/embed/${id}?enablejsapi=1&rel=0&modestbranding=1`
+ :"";
 }
+
 
 /* =========================
    عرض الحصص
@@ -3392,88 +3843,89 @@ function renderLessons(list){
    '<div class="empty">لا توجد حصص مضافة بعد.</div>';
 
   return;
-
  }
 
  $("lessonsContainer").innerHTML=
-  list.map((x,i)=>{
 
-   const id=
-    youtubeId(x.video_url);
+ list.map((x,i)=>{
 
-   const thumb=
-    id
-    ?
-     `https://img.youtube.com/vi/${id}/hqdefault.jpg`
-    :"";
+  const id=
+   youtubeId(x.video_url);
 
-   return `
-    <article
-     class="card"
-     data-search="${safe(
-      (x.title||"")+" "+
-      (x.description||"")+" "+
-      (x.unit||"")
-     )}"
-     onclick="openVideoByIndex(${lessons.indexOf(x)})">
+  const thumb=
+   id
+   ?
+   `https://img.youtube.com/vi/${id}/hqdefault.jpg`
+   :"";
 
-     <div class="cover">
+  return `
 
-      ${
-       thumb
-       ?
-        `<img src="${thumb}" alt="">`
-       :""
-      }
+   <article
+    class="card"
+    data-search="${safe(
+     (x.title||"")+" "+
+     (x.description||"")+" "+
+     (x.unit||"")
+    )}"
+    onclick="openVideoByIndex(${lessons.indexOf(x)})">
 
-      <div class="cover-shade"></div>
+    <div class="cover">
 
-      <div class="play">
-       ▶
-      </div>
+     ${
+      thumb
+      ?
+      `<img src="${thumb}" alt="">`
+      :""
+     }
 
-      ${
-       x.duration
-       ?
-        `<span class="duration">${safe(x.duration)}</span>`
-       :""
-      }
+     <div class="cover-shade"></div>
+
+     <div class="play">
+      ▶
+     </div>
+
+     ${
+      x.duration
+      ?
+      `<span class="duration">${safe(x.duration)}</span>`
+      :""
+     }
+
+    </div>
+
+    <div class="card-body">
+
+     <h3>
+      ${safe(x.title||"حصة رياضيات")}
+     </h3>
+
+     <p>
+      ${safe(
+       x.description||
+       "🎬 فيديو تعليمي — اضغط للمشاهدة."
+      )}
+     </p>
+
+     <div class="meta">
+
+      <span class="unit">
+       ${safe(x.unit||"رياضيات")}
+      </span>
+
+      <span>
+       🎥 فيديو
+      </span>
 
      </div>
 
-     <div class="card-body">
+    </div>
 
-      <h3>
-       ${safe(x.title||"حصة رياضيات")}
-      </h3>
+   </article>
+  `;
 
-      <p>
-       ${safe(
-        x.description||
-        "🎬 فيديو تعليمي — اضغط للمشاهدة."
-       )}
-      </p>
-
-      <div class="meta">
-
-       <span class="unit">
-        ${safe(x.unit||"رياضيات")}
-       </span>
-
-       <span>
-        🎥 فيديو
-       </span>
-
-      </div>
-
-     </div>
-
-    </article>
-   `;
-
-  }).join("");
-
+ }).join("");
 }
+
 
 /* =========================
    عرض الملخصات
@@ -3487,47 +3939,47 @@ function renderSummaries(list){
    '<div class="empty">لا توجد ملخصات مضافة بعد.</div>';
 
   return;
-
  }
 
  $("summariesContainer").innerHTML=
-  list.map((x,i)=>`
 
-   <article
-    class="card resource-card"
-    data-search="${safe(
-     (x.title||"")+" "+
-     (x.description||"")
-    )}">
+ list.map((x,i)=>`
 
-    <div class="resource-icon">
-     📚
-    </div>
+  <article
+   class="card resource-card"
+   data-search="${safe(
+    (x.title||"")+" "+
+    (x.description||"")
+   )}">
 
-    <h3>
-     ${safe(x.title||"ملخص")}
-    </h3>
+   <div class="resource-icon">
+    📚
+   </div>
 
-    <p>
-     ${safe(
-      x.description||
-      "ملخص جاهز للمراجعة."
-     )}
-    </p>
+   <h3>
+    ${safe(x.title||"ملخص")}
+   </h3>
 
-    <button
-     class="btn btn-primary"
-     onclick="event.stopPropagation();openSummaryByIndex(${i})">
+   <p>
+    ${safe(
+     x.description||
+     "ملخص جاهز للمراجعة."
+    )}
+   </p>
 
-     📖 فتح داخل الموقع
+   <button
+    class="btn action-orange"
+    onclick="event.stopPropagation();openSummaryByIndex(${i})">
 
-    </button>
+    📖 فتح الملخص
 
-   </article>
+   </button>
 
-  `).join("");
+  </article>
 
+ `).join("");
 }
+
 
 /* =========================
    عرض الاختبارات
@@ -3541,59 +3993,59 @@ function renderTests(list){
    '<div class="empty">لا توجد اختبارات مضافة بعد.</div>';
 
   return;
-
  }
 
  $("testsContainer").innerHTML=
-  list.map((x,i)=>`
 
-   <article
-    class="card resource-card"
-    data-search="${safe(
-     (x.title||"")+" "+
-     (x.description||"")
-    )}">
+ list.map((x,i)=>`
 
-    <div class="resource-icon">
-     📝
-    </div>
+  <article
+   class="card resource-card"
+   data-search="${safe(
+    (x.title||"")+" "+
+    (x.description||"")
+   )}">
 
-    <h3>
-     ${safe(x.title||"اختبار")}
-    </h3>
+   <div class="resource-icon">
+    📝
+   </div>
 
-    <p>
-     ${safe(
-      x.description||
-      "اختبار من أسئلة المنصة."
-     )}
-    </p>
+   <h3>
+    ${safe(x.title||"اختبار")}
+   </h3>
 
-    <div class="meta">
+   <p>
+    ${safe(
+     x.description||
+     "اختبار من أسئلة المنصة."
+    )}
+   </p>
 
-     <span>
-      ${Number(x.questions_count||0)} سؤال
-     </span>
+   <div class="meta">
 
-     <span>
-      🎯 اختبار
-     </span>
+    <span>
+     ${Number(x.questions_count||0)} سؤال
+    </span>
 
-    </div>
+    <span>
+     🎯 اختبار
+    </span>
 
-    <button
-     class="btn btn-primary"
-     onclick="event.stopPropagation();startExamByIndex(${i})">
+   </div>
 
-     🚀 بدء الاختبار
+   <button
+    class="btn action-orange"
+    onclick="event.stopPropagation();startExamByIndex(${i})">
 
-    </button>
+    🚀 بدء الاختبار
 
-   </article>
+   </button>
 
-  `).join("");
+  </article>
 
+ `).join("");
 }
+
 
 /* =========================
    عرض الغرف
@@ -3607,54 +4059,110 @@ function renderRooms(list){
    '<div class="empty">لا توجد غرف مضافة بعد.</div>';
 
   return;
-
  }
 
  $("roomsContainer").innerHTML=
-  list.map((x,i)=>`
 
-   <article
-    class="card resource-card"
-    data-search="${safe(
-     (x.name||"")+" "+
-     (x.description||"")
-    )}">
+ list.map((x,i)=>`
 
-    <div class="resource-icon">
-     💬
-    </div>
+  <article
+   class="card resource-card"
+   data-search="${safe(
+    (x.name||"")+" "+
+    (x.description||"")
+   )}">
 
-    <h3>
-     ${safe(x.name||"غرفة تعليمية")}
-    </h3>
+   <div class="resource-icon">
+    💬
+   </div>
 
-    <p>
-     ${safe(
-      x.description||
-      "غرفة تعليمية."
-     )}
-    </p>
+   <h3>
+    ${safe(x.name||"غرفة تعليمية")}
+   </h3>
 
-    ${
-     x.room_link
-     ?
-      `
-       <button
-        class="btn btn-primary"
-        onclick="event.stopPropagation();window.open('${safe(x.room_link)}','_blank','noopener')">
+   <p>
+    ${safe(
+     x.description||
+     "غرفة تعليمية."
+    )}
+   </p>
 
-        🔗 دخول الغرفة
+   ${
+    x.room_link
+    ?
+    `
+     <button
+      class="btn action-orange"
+      onclick="
+       event.stopPropagation();
+       window.open('${safe(x.room_link)}','_blank','noopener')
+      ">
 
-       </button>
-      `
-     :""
-    }
+      🔗 دخول الغرفة
 
-   </article>
+     </button>
+    `
+    :""
+   }
 
-  `).join("");
+  </article>
 
+ `).join("");
 }
+
+
+/* =========================
+   البحث داخل الأقسام
+========================= */
+
+function searchSection(section){
+
+ const input=$(section+"Search");
+
+ const query=
+  input.value
+  .trim()
+  .toLowerCase();
+
+ const container=
+  $(section+"Container");
+
+ const empty=
+  $(section+"Empty");
+
+ const cards=
+  container.querySelectorAll(
+   "[data-search]"
+  );
+
+ let visible=0;
+
+ cards.forEach(card=>{
+
+  const text=
+   (card.getAttribute("data-search")||"")
+   .toLowerCase();
+
+  const match=
+   !query||
+   text.includes(query);
+
+  card.style.display=
+   match?"":"none";
+
+  if(match)
+   visible++;
+ });
+
+ if(empty){
+
+  empty.style.display=
+   query && visible===0
+   ?"block"
+   :"none";
+ }
+}
+
 
 /* =========================
    الملخصات
@@ -3685,8 +4193,8 @@ function drivePreview(url){
   return `https://drive.google.com/file/d/${m[1]}/preview`;
 
  return s;
-
 }
+
 
 function openSummaryByIndex(i){
 
@@ -3704,16 +4212,19 @@ function openSummaryByIndex(i){
  if(!url){
 
   $("summaryContent").innerHTML=
-   `
+  `
    <div class="pdf-fallback">
+
     ⚠️ هذا الملخص لا يحتوي على رابط ملف صحيح.
+
    </div>
-   `;
+  `;
 
  }else{
 
   $("summaryContent").innerHTML=
-   `
+  `
+
    <iframe
     class="pdf-frame"
     src="${safe(url)}"
@@ -3722,31 +4233,34 @@ function openSummaryByIndex(i){
 
    <div class="pdf-fallback">
 
-    إذا ظهر خطأ 401 أو رفض Google العرض داخل الصفحة،
-    فهذا يعني أن الملف نفسه غير متاح للعامة.
-    افتح الرابط من الزر التالي بعد التأكد أن مشاركة الملف تسمح بالعرض.
+    إذا لم يظهر الملف، افتحه في صفحة جديدة.
 
     <br>
 
     <button
-     class="btn btn-primary"
+     class="btn action-orange"
      style="margin-top:10px"
-     onclick="window.open('${safe(x.file_url)}','_blank','noopener')">
+     onclick="
+      window.open(
+       '${safe(x.file_url)}',
+       '_blank',
+       'noopener'
+      )
+     ">
 
      🔗 فتح الملف في صفحة جديدة
 
     </button>
 
    </div>
-   `;
-
+  `;
  }
 
  $("summaryModal")
   .classList
   .add("show");
-
 }
+
 
 /* =========================
    الفيديو والنقاط
@@ -3769,7 +4283,6 @@ function openVideoByIndex(i){
   );
 
   return;
-
  }
 
  stopWatching();
@@ -3803,10 +4316,9 @@ function openVideoByIndex(i){
  ){
 
   createYoutubePlayer(id);
-
  }
-
 }
+
 
 function createYoutubePlayer(id){
 
@@ -3818,139 +4330,132 @@ function createYoutubePlayer(id){
   try{
    ytPlayer.destroy()
   }catch{}
-
  }
 
  $("videoFrame").innerHTML="";
 
  ytPlayer=
-  new YT.Player(
-   "videoFrame",
-   {
-    width:"100%",
-    height:"100%",
-    videoId:id,
+ new YT.Player(
+  "videoFrame",
+  {
+   width:"100%",
+   height:"100%",
 
-    playerVars:{
-     autoplay:1,
-     rel:0,
-     modestbranding:1,
-     playsinline:1
+   videoId:id,
+
+   playerVars:{
+    autoplay:1,
+    rel:0,
+    modestbranding:1,
+    playsinline:1
+   },
+
+   events:{
+
+    onReady:function(){
+
+     playerReady=true;
+
+     startWatchCounter();
     },
 
-    events:{
+    onStateChange:function(e){
 
-     onReady:function(){
-
-      playerReady=true;
+     if(
+      e.data===
+      YT.PlayerState.PLAYING
+     ){
 
       startWatchCounter();
 
-     },
+     }else{
 
-     onStateChange:function(e){
-
-      if(
-       e.data===
-       YT.PlayerState.PLAYING
-      ){
-
-       startWatchCounter();
-
-      }else{
-
-       clearInterval(
-        watchTimer
-       );
-
-      }
-
+      clearInterval(
+       watchTimer
+      );
      }
-
     }
-
    }
-  );
-
+  }
+ );
 }
 
+
 window.onYouTubeIframeAPIReady=
- function(){
+function(){
 
-  playerReady=true;
+ playerReady=true;
 
-  if(
-   pendingVideoId&&
-   $("videoModal")
-    .classList
-    .contains("show")
-  ){
+ if(
+  pendingVideoId&&
+  $("videoModal")
+   .classList
+   .contains("show")
+ ){
 
-   createYoutubePlayer(
-    pendingVideoId
-   );
+  createYoutubePlayer(
+   pendingVideoId
+  );
+ }
+};
 
-  }
-
- };
 
 function startWatchCounter(){
 
  clearInterval(watchTimer);
 
  watchTimer=
-  setInterval(
-   async()=>{
+ setInterval(
+  async()=>{
 
-    if(
-     !ytPlayer||
-     typeof ytPlayer.getPlayerState!=="function"
-    )
-     return;
+   if(
+    !ytPlayer||
+    typeof ytPlayer.getPlayerState!=="function"
+   )
+    return;
 
-    if(
-     ytPlayer.getPlayerState()!==
-     YT.PlayerState.PLAYING
-    )
-     return;
+   if(
+    ytPlayer.getPlayerState()!==
+    YT.PlayerState.PLAYING
+   )
+    return;
 
-    watchSeconds++;
+   watchSeconds++;
 
-    $("watchClock").textContent=
-     Math.floor(
-      watchSeconds/60
-     )+
-     ":"+
-     String(
-      watchSeconds%60
-     ).padStart(2,"0");
+   $("watchClock").textContent=
+    Math.floor(
+     watchSeconds/60
+    )+
+    ":"+
+    String(
+     watchSeconds%60
+    ).padStart(2,"0");
 
-    const mins=
-     Math.floor(
-      watchSeconds/60
-     );
+   const mins=
+    Math.floor(
+     watchSeconds/60
+    );
 
-    if(mins>awardedMinutes){
+   if(mins>awardedMinutes){
 
-     awardedMinutes=mins;
+    awardedMinutes=mins;
 
-     watchPoints=mins;
+    watchPoints=mins;
 
-     $("watchPoints").textContent=
-      watchPoints;
+    $("watchPoints").textContent=
+     watchPoints;
 
-     await addStudentPoints(
-      1,
-      "watch"
-     );
+    await addStudentPoints(
+     1,
+     "watch"
+    );
+   }
 
-    }
-
-   },
-   1000
-  );
-
+  },
+  1000
+ );
 }
+
 
 async function addStudentPoints(
  amount,
@@ -4003,10 +4508,10 @@ async function addStudentPoints(
   updatePointsUI();
 
   $("pointToast").innerHTML=
-   `
+  `
    ⭐ <b>+${amount}</b>
    نقطة! أحسنت 👏
-   `;
+  `;
 
   $("pointToast").style.display=
    "block";
@@ -4017,9 +4522,10 @@ async function addStudentPoints(
 
   window.pointToastTimer=
    setTimeout(
-    ()=>
+    ()=>{
      $("pointToast").style.display=
-      "none",
+      "none";
+    },
     2300
    );
 
@@ -4029,10 +4535,9 @@ async function addStudentPoints(
    "points:",
    e.message
   );
-
  }
-
 }
+
 
 function stopWatching(){
 
@@ -4052,7 +4557,6 @@ function stopWatching(){
   try{
    ytPlayer.destroy()
   }catch{}
-
  }
 
  ytPlayer=null;
@@ -4061,8 +4565,8 @@ function stopWatching(){
 
  if($("videoFrame"))
   $("videoFrame").innerHTML="";
-
 }
+
 
 function closeVideo(){
 
@@ -4071,8 +4575,8 @@ function closeVideo(){
  closeModal(
   "videoModal"
  );
-
 }
+
 
 /* =========================
    التحديات اليومية
@@ -4086,8 +4590,8 @@ function dailyKey(){
   d.getFullYear()+"_"+
   (d.getMonth()+1)+"_"+
   d.getDate();
-
 }
+
 
 function readDaily(){
 
@@ -4104,10 +4608,9 @@ function readDaily(){
  }catch{
 
   return {};
-
  }
-
 }
+
 
 function saveDaily(done){
 
@@ -4115,8 +4618,8 @@ function saveDaily(done){
   dailyKey(),
   JSON.stringify(done)
  );
-
 }
+
 
 function renderDaily(){
 
@@ -4136,7 +4639,7 @@ function renderDaily(){
    );
 
   $("challengeContent").innerHTML=
-   `
+  `
    <div class="challenge-complete">
 
     <div class="big-star">
@@ -4148,19 +4651,23 @@ function renderDaily(){
     </h3>
 
     <p>
+
      أحسنت 👏 أجبت عن الأسئلة الخمسة.
+
      <br>
+
      مجموع نقاط التحدي اليومي الممكن:
+
      <b style="color:var(--gold)">
       ${total} ⭐
      </b>
+
     </p>
 
    </div>
-   `;
+  `;
 
   return;
-
  }
 
  const i=completed;
@@ -4170,17 +4677,17 @@ function renderDaily(){
  const steps=
   DAILY.map(
    (_,n)=>
-    `
+   `
     <span
      class="challenge-step
      ${n<completed?"done":""}
      ${n===i?"active":""}">
     </span>
-    `
+   `
   ).join("");
 
  $("challengeContent").innerHTML=
-  `
+ `
   <div class="challenge-progress">
    ${steps}
   </div>
@@ -4207,7 +4714,7 @@ function renderDaily(){
 
     ${q.o.map(
      (o,j)=>
-      `
+     `
       <button
        class="challenge-option"
        onclick="answerDaily(${i},${j},this)">
@@ -4215,7 +4722,7 @@ function renderDaily(){
        ${safe(o)}
 
       </button>
-      `
+     `
     ).join("")}
 
    </div>
@@ -4227,7 +4734,7 @@ function renderDaily(){
 
    <button
     id="dailyNext"
-    class="btn btn-primary challenge-next"
+    class="btn action-orange challenge-next"
     onclick="nextDaily()">
 
     السؤال التالي ➡
@@ -4235,9 +4742,9 @@ function renderDaily(){
    </button>
 
   </div>
-  `;
-
+ `;
 }
+
 
 async function answerDaily(i,j,btn){
 
@@ -4272,7 +4779,6 @@ async function answerDaily(i,j,btn){
 
   opts[q.a]?.classList
    .add("correct");
-
  }
 
  done[i]={
@@ -4288,12 +4794,13 @@ async function answerDaily(i,j,btn){
  if(correct){
 
   fb.innerHTML=
-   `
+  `
    🎉 إجابة صحيحة!
+
    <span style="color:var(--gold)">
     +${q.p} ⭐
    </span>
-   `;
+  `;
 
   await addStudentPoints(
    q.p,
@@ -4303,14 +4810,15 @@ async function answerDaily(i,j,btn){
  }else{
 
   fb.innerHTML=
-   `
+  `
    💡 ليست صحيحة.
+
    الإجابة الصحيحة هي:
+
    <b>
     ${safe(q.o[q.a])}
    </b>
-   `;
-
+  `;
  }
 
  const next=
@@ -4324,19 +4832,18 @@ async function answerDaily(i,j,btn){
   next.textContent=
    i===DAILY.length-1
    ?
-    "🏁 عرض النتيجة"
+   "🏁 عرض النتيجة"
    :
-    "السؤال التالي ➡";
-
+   "السؤال التالي ➡";
  }
-
 }
+
 
 function nextDaily(){
 
  renderDaily();
-
 }
+
 
 /* =========================
    الاختبارات
@@ -4372,7 +4879,6 @@ async function startExamByIndex(i){
    );
 
    return;
-
   }
 
   const qs=
@@ -4392,7 +4898,6 @@ async function startExamByIndex(i){
    );
 
    return;
-
   }
 
   exam={
@@ -4417,10 +4922,9 @@ async function startExamByIndex(i){
    "❌ تعذر فتح الاختبار: "+
    e.message
   );
-
  }
-
 }
+
 
 function normalizeAnswer(q){
 
@@ -4463,8 +4967,8 @@ function normalizeAnswer(q){
  return idx>=0
   ?idx
   :-1;
-
 }
+
 
 function renderExam(){
 
@@ -4482,7 +4986,7 @@ function renderExam(){
   ];
 
  $("examContent").innerHTML=
-  `
+ `
   <div class="exam-header">
 
    <strong>
@@ -4525,7 +5029,7 @@ function renderExam(){
      q.option_d
     ].map(
      (o,j)=>
-      `
+     `
       <button
        class="exam-option ${
         chosen===j
@@ -4538,7 +5042,7 @@ function renderExam(){
        ${safe(o)}
 
       </button>
-      `
+     `
     ).join("")
    }
 
@@ -4556,7 +5060,7 @@ function renderExam(){
    </button>
 
    <button
-    class="btn btn-primary"
+    class="btn action-orange"
     onclick="${
      exam.index===total-1
      ?"finishExam()"
@@ -4572,9 +5076,9 @@ function renderExam(){
    </button>
 
   </div>
-  `;
-
+ `;
 }
+
 
 function chooseExam(j){
 
@@ -4583,8 +5087,8 @@ function chooseExam(j){
  ]=j;
 
  renderExam();
-
 }
+
 
 function prevExam(){
 
@@ -4593,10 +5097,9 @@ function prevExam(){
   exam.index--;
 
   renderExam();
-
  }
-
 }
+
 
 function nextExam(){
 
@@ -4611,7 +5114,6 @@ function nextExam(){
   );
 
   return;
-
  }
 
  if(
@@ -4622,10 +5124,9 @@ function nextExam(){
   exam.index++;
 
   renderExam();
-
  }
-
 }
+
 
 async function finishExam(){
 
@@ -4640,7 +5141,6 @@ async function finishExam(){
   );
 
   return;
-
  }
 
  let correct=0;
@@ -4659,9 +5159,7 @@ async function finishExam(){
   ){
 
    correct++;
-
   }
-
  }
 
  const total=
@@ -4684,16 +5182,18 @@ async function finishExam(){
    }
   );
 
-  if(points)
+  if(points){
+
    await addStudentPoints(
     points,
     "test"
    );
+  }
 
   exam.attempted=true;
 
   $("examContent").innerHTML=
-   `
+  `
    <div class="result">
 
     <h2>
@@ -4711,6 +5211,7 @@ async function finishExam(){
      ">
 
      حصلت على
+
      <b style="color:var(--gold)">
       ${points} نقطة ⭐
      </b>
@@ -4723,7 +5224,7 @@ async function finishExam(){
     </p>
 
     <button
-     class="btn btn-primary"
+     class="btn action-orange"
      style="margin-top:15px"
      onclick="closeExam()">
 
@@ -4732,7 +5233,7 @@ async function finishExam(){
     </button>
 
    </div>
-   `;
+  `;
 
  }catch(e){
 
@@ -4751,12 +5252,10 @@ async function finishExam(){
     "❌ تعذر حفظ النتيجة: "+
     e.message
    );
-
   }
-
  }
-
 }
+
 
 function closeExam(){
 
@@ -4771,46 +5270,8 @@ function closeExam(){
   index:0,
   attempted:false
  };
-
 }
 
-/* =========================
-   البحث
-========================= */
-
-function searchEverything(){
-
- const q=
-  $("searchInput")
-   .value
-   .trim()
-   .toLowerCase();
-
- document
-  .querySelectorAll(
-   "[data-search]"
-  )
-  .forEach(
-   el=>{
-
-    el.style.display=
-     (
-      !q||
-      el.getAttribute(
-       "data-search"
-      )
-      .toLowerCase()
-      .includes(q)
-     )
-     ?
-      ""
-     :
-      "none";
-
-   }
-  );
-
-}
 
 /* =========================
    فتح تسجيل الدخول
@@ -4821,8 +5282,8 @@ function openLogin(){
  $("loginModal")
   .classList
   .add("show");
-
 }
+
 
 /* =========================
    إغلاق المودالات
@@ -4845,12 +5306,12 @@ document
       m.classList.remove(
        "show"
       );
-
      }
 
     }
    )
  );
+
 
 /* =========================
    تحديث آخر ظهور
@@ -4871,12 +5332,12 @@ setInterval(
     "id=eq."+student.id
    )
    .catch(()=>{});
-
   }
 
  },
-  60000
+ 60000
 );
+
 
 /* =========================
    بدء الموقع
