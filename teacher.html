@@ -1,0 +1,4801 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#070b1a">
+
+<title>منبر ون | لوحة التحكم</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0
+}
+
+:root{
+--bg:#050817;
+--card:#101938;
+--card2:#151f48;
+--text:#fff;
+--muted:#aeb9d9;
+
+--primary:#7657ff;
+--purple:#9b6cff;
+
+--cyan:#18d9ff;
+--pink:#ff4fd0;
+
+--green:#27e49b;
+--red:#ff6478;
+
+--gold:#ffd66b;
+--orange:#ffb14a;
+--blue:#4d9cff;
+
+--border:rgba(255,255,255,.10)
+}
+
+html{
+scroll-behavior:smooth
+}
+
+body{
+font-family:Arial,"Tahoma",sans-serif;
+color:var(--text);
+min-height:100vh;
+overflow-x:hidden;
+
+background:
+radial-gradient(
+circle at 8% 5%,
+rgba(118,87,255,.20),
+transparent 28%
+),
+radial-gradient(
+circle at 92% 12%,
+rgba(24,217,255,.12),
+transparent 25%
+),
+radial-gradient(
+circle at 50% 100%,
+rgba(255,79,208,.08),
+transparent 30%
+),
+linear-gradient(
+135deg,
+var(--bg),
+#090e24 52%,
+#10183a
+)
+}
+
+button,
+input,
+textarea,
+select{
+font-family:inherit
+}
+
+button{
+cursor:pointer;
+border:0
+}
+
+a{
+text-decoration:none;
+color:inherit
+}
+
+.hidden{
+display:none!important
+}
+
+
+/* =========================
+   النجوم
+========================= */
+
+.stars{
+position:fixed;
+inset:0;
+pointer-events:none;
+overflow:hidden;
+z-index:0
+}
+
+.star{
+position:absolute;
+top:-35px;
+color:var(--star-color,#fff);
+font-size:8px;
+font-weight:700;
+opacity:.28;
+
+text-shadow:
+0 0 5px currentColor,
+0 0 10px currentColor;
+
+animation:
+fall linear infinite,
+softTwinkle ease-in-out infinite alternate;
+
+will-change:transform,opacity;
+user-select:none
+}
+
+@keyframes fall{
+
+0%{
+transform:
+translate3d(0,-30px,0)
+rotate(0deg)
+scale(.75);
+opacity:0
+}
+
+10%{
+opacity:.28
+}
+
+50%{
+opacity:.42
+}
+
+90%{
+opacity:.20
+}
+
+100%{
+transform:
+translate3d(var(--drift),115vh,0)
+rotate(300deg)
+scale(1);
+opacity:0
+}
+
+}
+
+@keyframes softTwinkle{
+
+from{
+filter:brightness(.75)
+}
+
+to{
+filter:brightness(1.35)
+}
+
+}
+
+
+/* =========================
+   الهيدر
+========================= */
+
+header{
+position:sticky;
+top:0;
+z-index:50;
+
+background:rgba(5,8,23,.84);
+
+backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
+
+border-bottom:
+1px solid rgba(255,255,255,.08);
+
+padding:9px 4%;
+
+box-shadow:
+0 8px 30px rgba(0,0,0,.12)
+}
+
+.nav{
+width:min(1420px,94%);
+margin:auto;
+
+min-height:60px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+gap:12px
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:9px
+}
+
+.logo-icon{
+width:40px;
+height:40px;
+
+border-radius:12px;
+
+display:grid;
+place-items:center;
+
+font-size:21px;
+
+background:
+linear-gradient(
+135deg,
+var(--primary),
+var(--cyan)
+);
+
+box-shadow:
+0 0 20px rgba(118,87,255,.20),
+0 0 35px rgba(24,217,255,.07)
+}
+
+.logo h1{
+font-size:18px
+}
+
+.logo small{
+display:block;
+color:var(--cyan);
+font-size:8px;
+letter-spacing:2px;
+margin-top:2px
+}
+
+.nav-actions{
+display:flex;
+gap:7px
+}
+
+
+/* =========================
+   الأزرار
+========================= */
+
+.btn{
+padding:9px 12px;
+
+border-radius:11px;
+
+color:#fff;
+
+background:
+rgba(255,255,255,.055);
+
+border:
+1px solid rgba(255,255,255,.10);
+
+font-weight:700;
+font-size:11px;
+
+transition:
+transform .2s,
+background .2s,
+box-shadow .2s,
+border-color .2s
+}
+
+.btn:hover{
+transform:translateY(-2px);
+
+background:
+rgba(255,255,255,.10);
+
+box-shadow:
+0 8px 22px rgba(0,0,0,.15)
+}
+
+.btn:active{
+transform:translateY(0)
+}
+
+.primary{
+background:
+linear-gradient(
+135deg,
+var(--primary),
+#a34cff
+);
+
+border-color:
+rgba(167,126,255,.35);
+
+box-shadow:
+0 7px 20px rgba(118,87,255,.15)
+}
+
+.danger{
+background:
+rgba(255,100,120,.065);
+
+border-color:
+rgba(255,100,120,.20)
+}
+
+.success{
+background:
+rgba(39,228,155,.065);
+
+border-color:
+rgba(39,228,155,.20)
+}
+
+
+/* =========================
+   ألوان الأقسام
+========================= */
+
+.lessons-color{
+--section-color:#a98cff;
+--section-bg:rgba(118,87,255,.12);
+--section-border:rgba(169,140,255,.25)
+}
+
+.summaries-color{
+--section-color:#18d9ff;
+--section-bg:rgba(24,217,255,.10);
+--section-border:rgba(24,217,255,.24)
+}
+
+.tests-color{
+--section-color:#27e49b;
+--section-bg:rgba(39,228,155,.10);
+--section-border:rgba(39,228,155,.24)
+}
+
+.rooms-color{
+--section-color:#ffb14a;
+--section-bg:rgba(255,177,74,.10);
+--section-border:rgba(255,177,74,.24)
+}
+
+.students-color{
+--section-color:#18d9ff;
+--section-bg:rgba(24,217,255,.10);
+--section-border:rgba(24,217,255,.24)
+}
+
+
+/* =========================
+   المحتوى
+========================= */
+
+.container{
+position:relative;
+z-index:1;
+
+width:min(1420px,92%);
+
+margin:auto
+}
+
+.hero{
+padding:42px 0 18px
+}
+
+.hero h2{
+font-size:38px;
+margin-bottom:8px;
+
+background:
+linear-gradient(
+90deg,
+#fff,
+#bcaeff 42%,
+#71eaff
+);
+
+-webkit-background-clip:text;
+background-clip:text;
+
+-webkit-text-fill-color:transparent
+}
+
+.hero p{
+color:var(--muted);
+line-height:1.8;
+font-size:13px
+}
+
+
+/* =========================
+   الإحصائيات
+========================= */
+
+.stats{
+display:grid;
+grid-template-columns:
+repeat(4,1fr);
+
+gap:11px;
+
+margin:21px 0
+}
+
+.stat{
+position:relative;
+overflow:hidden;
+
+padding:15px 12px;
+
+border-radius:17px;
+
+background:
+linear-gradient(
+145deg,
+rgba(255,255,255,.055),
+rgba(255,255,255,.025)
+);
+
+border:
+1px solid rgba(255,255,255,.09);
+
+text-align:center;
+
+box-shadow:
+0 12px 30px rgba(0,0,0,.12);
+
+transition:.25s
+}
+
+.stat:hover{
+transform:translateY(-3px)
+}
+
+.stat:before{
+content:"";
+
+position:absolute;
+
+top:0;
+left:15%;
+right:15%;
+
+height:2px;
+
+border-radius:10px;
+
+background:var(--cyan)
+}
+
+.stat:nth-child(2):before{
+background:var(--green)
+}
+
+.stat:nth-child(3):before{
+background:var(--red)
+}
+
+.stat:nth-child(4):before{
+background:var(--gold)
+}
+
+.stat strong{
+display:block;
+
+font-size:27px;
+
+color:var(--cyan);
+
+margin-bottom:4px
+}
+
+.stat:nth-child(2) strong{
+color:var(--green)
+}
+
+.stat:nth-child(3) strong{
+color:var(--red)
+}
+
+.stat:nth-child(4) strong{
+color:var(--gold)
+}
+
+.stat span{
+color:var(--muted);
+font-size:10px
+}
+
+
+/* =========================
+   لوحة التحكم الرئيسية
+========================= */
+
+.dashboard-grid{
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:12px;
+
+margin:22px 0 35px
+}
+
+.dashboard-card{
+position:relative;
+
+overflow:hidden;
+
+min-height:145px;
+
+padding:20px;
+
+border-radius:21px;
+
+background:
+linear-gradient(
+145deg,
+rgba(17,26,61,.95),
+rgba(9,17,43,.95)
+);
+
+border:
+1px solid rgba(255,255,255,.09);
+
+transition:
+transform .25s,
+border-color .25s,
+box-shadow .25s;
+
+cursor:pointer
+}
+
+.dashboard-card:hover{
+transform:translateY(-5px)
+}
+
+.dashboard-card .big-icon{
+width:48px;
+height:48px;
+
+display:grid;
+place-items:center;
+
+border-radius:15px;
+
+font-size:23px;
+
+margin-bottom:13px
+}
+
+.dashboard-card h3{
+font-size:16px;
+margin-bottom:6px
+}
+
+.dashboard-card p{
+color:var(--muted);
+font-size:10px;
+line-height:1.7
+}
+
+.dashboard-card .count{
+position:absolute;
+
+left:15px;
+bottom:15px;
+
+font-size:11px;
+
+color:var(--muted)
+}
+
+
+/* الطلاب */
+
+.card-students{
+border-color:
+rgba(24,217,255,.20)
+}
+
+.card-students .big-icon{
+background:
+rgba(24,217,255,.11);
+
+color:var(--cyan)
+}
+
+
+/* الحصص */
+
+.card-lessons{
+border-color:
+rgba(169,140,255,.20)
+}
+
+.card-lessons .big-icon{
+background:
+rgba(118,87,255,.12);
+
+color:#a98cff
+}
+
+
+/* الملخصات */
+
+.card-summaries{
+border-color:
+rgba(24,217,255,.20)
+}
+
+.card-summaries .big-icon{
+background:
+rgba(24,217,255,.11);
+
+color:var(--cyan)
+}
+
+
+/* الاختبارات */
+
+.card-tests{
+border-color:
+rgba(39,228,155,.20)
+}
+
+.card-tests .big-icon{
+background:
+rgba(39,228,155,.11);
+
+color:var(--green)
+}
+
+
+/* الغرف */
+
+.card-rooms{
+border-color:
+rgba(255,177,74,.20)
+}
+
+.card-rooms .big-icon{
+background:
+rgba(255,177,74,.11);
+
+color:var(--orange)
+}
+
+
+/* =========================
+   الصفحات الداخلية
+========================= */
+
+.inner-page{
+display:none;
+
+padding:
+24px 0 45px;
+}
+
+.inner-page.active{
+display:block;
+animation:
+pageIn .25s ease
+}
+
+@keyframes pageIn{
+
+from{
+opacity:0;
+transform:translateY(8px)
+}
+
+to{
+opacity:1;
+transform:translateY(0)
+}
+
+}
+
+.page-top{
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+gap:10px;
+
+margin-bottom:17px
+}
+
+.page-title{
+display:flex;
+align-items:center;
+
+gap:11px
+}
+
+.page-title .page-icon{
+width:45px;
+height:45px;
+
+display:grid;
+place-items:center;
+
+border-radius:14px;
+
+font-size:22px;
+
+background:
+var(--section-bg);
+
+border:
+1px solid var(--section-border);
+
+color:
+var(--section-color)
+}
+
+.page-title h2{
+font-size:24px
+}
+
+.page-title p{
+color:var(--muted);
+font-size:10px;
+margin-top:3px
+}
+
+.back-btn{
+font-size:10px
+}
+
+
+/* =========================
+   البحث
+========================= */
+
+.page-tools{
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+gap:10px;
+
+margin-bottom:13px
+}
+
+.page-search{
+width:280px;
+
+padding:11px 13px;
+
+border-radius:12px;
+
+background:
+rgba(255,255,255,.045);
+
+border:
+1px solid rgba(255,255,255,.09);
+
+color:#fff;
+
+outline:none;
+
+font-size:11px
+}
+
+.page-search:focus{
+border-color:
+var(--section-color);
+
+box-shadow:
+0 0 0 3px
+rgba(118,87,255,.08)
+}
+
+.add-btn{
+background:
+linear-gradient(
+135deg,
+var(--section-color),
+#ffffff33
+);
+
+border:
+1px solid
+var(--section-border);
+
+font-size:10px
+}
+
+
+/* =========================
+   لوحة
+========================= */
+
+.panel{
+position:relative;
+
+overflow:hidden;
+
+background:
+linear-gradient(
+145deg,
+rgba(17,26,61,.94),
+rgba(9,17,43,.94)
+);
+
+border:
+1px solid rgba(255,255,255,.09);
+
+border-radius:20px;
+
+padding:18px;
+
+box-shadow:
+0 15px 45px rgba(0,0,0,.16)
+}
+
+
+/* =========================
+   نماذج الإضافة
+========================= */
+
+.form-panel{
+margin-bottom:16px;
+
+border-color:
+var(--section-border)
+}
+
+.form-panel h3{
+font-size:15px;
+
+margin-bottom:12px;
+
+color:
+var(--section-color)
+}
+
+.input,
+.select,
+.textarea{
+width:100%;
+
+padding:11px 12px;
+
+margin-bottom:9px;
+
+border-radius:11px;
+
+background:
+rgba(255,255,255,.045);
+
+border:
+1px solid rgba(255,255,255,.09);
+
+color:#fff;
+
+outline:none;
+
+font-size:12px
+}
+
+.select option{
+background:#101938;
+color:#fff
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus{
+border-color:
+var(--section-color);
+
+background:
+rgba(255,255,255,.065)
+}
+
+.textarea{
+min-height:82px;
+resize:vertical
+}
+
+.row{
+display:grid;
+
+grid-template-columns:
+1fr 1fr;
+
+gap:8px
+}
+
+.notice{
+padding:10px 11px;
+
+border-radius:11px;
+
+background:
+linear-gradient(
+135deg,
+rgba(24,217,255,.055),
+rgba(118,87,255,.035)
+);
+
+border:
+1px solid rgba(24,217,255,.11);
+
+color:#bdefff;
+
+font-size:10px;
+
+line-height:1.8;
+
+margin-bottom:10px
+}
+
+
+/* =========================
+   بطاقات المحتوى
+========================= */
+
+.manage-grid{
+display:grid;
+
+grid-template-columns:
+repeat(3,1fr);
+
+gap:11px
+}
+
+.manage-card{
+position:relative;
+
+overflow:hidden;
+
+padding:15px;
+
+border-radius:17px;
+
+background:
+rgba(255,255,255,.035);
+
+border:
+1px solid rgba(255,255,255,.08);
+
+transition:.25s
+}
+
+.manage-card:hover{
+transform:translateY(-3px);
+
+background:
+rgba(255,255,255,.055)
+}
+
+.manage-card:before{
+content:"";
+
+position:absolute;
+
+top:0;
+left:0;
+right:0;
+
+height:2px;
+
+background:
+var(--section-color)
+}
+
+.manage-card h3{
+font-size:14px;
+
+margin-bottom:6px;
+
+color:
+var(--section-color)
+}
+
+.manage-card p{
+font-size:10px;
+
+color:var(--muted);
+
+line-height:1.7;
+
+margin-bottom:8px
+}
+
+.manage-meta{
+display:flex;
+gap:6px;
+
+flex-wrap:wrap;
+
+margin-bottom:10px
+}
+
+.meta{
+padding:4px 7px;
+
+border-radius:7px;
+
+background:
+rgba(255,255,255,.045);
+
+font-size:8px;
+
+color:#d8def0
+}
+
+.manage-actions{
+display:flex;
+
+gap:5px;
+
+flex-wrap:wrap
+}
+
+.manage-actions .btn{
+font-size:9px;
+
+padding:6px 8px;
+
+border-radius:8px
+}
+
+.edit-btn{
+background:
+rgba(24,217,255,.08);
+
+border-color:
+rgba(24,217,255,.20)
+}
+
+.delete-btn{
+background:
+rgba(255,100,120,.08);
+
+border-color:
+rgba(255,100,120,.20)
+}
+
+
+/* =========================
+   الطلاب
+========================= */
+
+.students-head{
+display:flex;
+
+align-items:center;
+justify-content:space-between;
+
+gap:8px;
+
+margin-bottom:9px
+}
+
+.students-head b{
+font-size:11px
+}
+
+.search{
+padding:9px 10px;
+
+border-radius:10px;
+
+background:
+rgba(255,255,255,.045);
+
+border:
+1px solid rgba(255,255,255,.09);
+
+color:#fff;
+
+outline:none;
+
+width:215px;
+
+font-size:10px
+}
+
+.student{
+display:grid;
+
+grid-template-columns:
+1.2fr 1.4fr .6fr .7fr 1.1fr;
+
+gap:7px;
+
+align-items:center;
+
+padding:11px 4px;
+
+border-bottom:
+1px solid rgba(255,255,255,.045);
+
+font-size:10px
+}
+
+.student:hover{
+background:
+rgba(255,255,255,.025);
+
+border-radius:9px
+}
+
+.student-name{
+font-weight:bold
+}
+
+.student-email{
+color:var(--muted);
+
+direction:ltr;
+
+text-align:right;
+
+word-break:break-all;
+
+font-size:9px
+}
+
+.points{
+color:var(--gold)
+}
+
+.active{
+color:var(--green)
+}
+
+.blocked{
+color:var(--red)
+}
+
+.last{
+color:var(--muted);
+
+font-size:9px;
+
+margin-bottom:4px
+}
+
+.student-actions{
+display:flex;
+
+gap:4px;
+
+flex-wrap:wrap
+}
+
+.student-actions .btn{
+padding:5px 7px;
+
+font-size:8px;
+
+border-radius:8px
+}
+
+
+/* =========================
+   الإعلان
+========================= */
+
+.announcement-admin{
+background:
+linear-gradient(
+145deg,
+rgba(255,79,208,.075),
+rgba(24,217,255,.045) 55%,
+rgba(118,87,255,.055)
+)
+}
+
+.announcement-admin h3{
+margin-bottom:7px
+}
+
+.switch-row{
+display:flex;
+
+align-items:center;
+justify-content:space-between;
+
+gap:10px;
+
+padding:9px 11px;
+
+margin:4px 0 10px;
+
+border-radius:11px;
+
+background:
+rgba(255,255,255,.035);
+
+border:
+1px solid rgba(255,255,255,.08)
+}
+
+.switch-row label{
+font-size:11px
+}
+
+.check{
+width:17px;
+height:17px;
+
+accent-color:#7657ff
+}
+
+
+/* =========================
+   حالات
+========================= */
+
+.message{
+min-height:23px;
+
+color:var(--muted);
+
+font-size:10px;
+
+line-height:1.6;
+
+margin:5px 0 8px
+}
+
+.error{
+padding:12px;
+
+border-radius:11px;
+
+color:#ffd1d1;
+
+background:
+rgba(255,80,90,.065);
+
+border:
+1px solid rgba(255,80,90,.14);
+
+font-size:10px;
+
+line-height:1.8
+}
+
+.loading,
+.empty{
+padding:22px;
+
+text-align:center;
+
+color:var(--muted);
+
+background:
+rgba(255,255,255,.022);
+
+border-radius:12px;
+
+font-size:11px
+}
+
+
+/* =========================
+   نافذة التعديل
+========================= */
+
+.modal{
+position:fixed;
+
+inset:0;
+
+z-index:200;
+
+display:none;
+
+place-items:center;
+
+padding:18px;
+
+background:
+rgba(0,0,0,.62);
+
+backdrop-filter:blur(8px)
+}
+
+.modal.show{
+display:grid
+}
+
+.modal-box{
+width:min(520px,100%);
+
+max-height:90vh;
+
+overflow:auto;
+
+padding:21px;
+
+border-radius:21px;
+
+background:
+linear-gradient(
+145deg,
+#121c42,
+#080f29
+);
+
+border:
+1px solid rgba(255,255,255,.12);
+
+box-shadow:
+0 25px 100px rgba(0,0,0,.5)
+}
+
+.modal-head{
+display:flex;
+
+align-items:center;
+justify-content:space-between;
+
+gap:10px;
+
+margin-bottom:15px
+}
+
+.modal-head h3{
+font-size:17px
+}
+
+.close{
+width:32px;
+height:32px;
+
+border-radius:9px;
+
+background:
+rgba(255,255,255,.06);
+
+color:#fff;
+
+font-size:17px
+}
+
+.modal-actions{
+display:flex;
+
+gap:7px;
+
+margin-top:7px
+}
+
+.modal-actions .btn{
+flex:1
+}
+
+
+/* =========================
+   شاشة الدخول
+========================= */
+
+.login{
+position:relative;
+
+z-index:5;
+
+min-height:100vh;
+
+display:grid;
+
+place-items:center;
+
+padding:20px
+}
+
+.login-card{
+position:relative;
+
+overflow:hidden;
+
+width:min(410px,100%);
+
+padding:29px;
+
+border-radius:24px;
+
+text-align:center;
+
+background:
+linear-gradient(
+145deg,
+rgba(17,26,61,.96),
+rgba(9,17,43,.96)
+);
+
+border:
+1px solid rgba(255,255,255,.10);
+
+box-shadow:
+0 25px 90px rgba(0,0,0,.45),
+0 0 50px rgba(118,87,255,.06)
+}
+
+.login-card .logo-icon{
+margin:
+0 auto 12px
+}
+
+.login-card h2{
+margin-bottom:8px;
+
+font-size:25px
+}
+
+.login-card p{
+color:var(--muted);
+
+font-size:10px;
+
+line-height:1.8;
+
+margin-bottom:17px
+}
+
+.pin{
+font-size:19px;
+
+letter-spacing:5px;
+
+text-align:center
+}
+
+
+/* =========================
+   الهاتف
+========================= */
+
+@media(max-width:1050px){
+
+.dashboard-grid{
+grid-template-columns:
+repeat(2,1fr)
+}
+
+.manage-grid{
+grid-template-columns:
+repeat(2,1fr)
+}
+
+.student{
+grid-template-columns:
+1fr 1fr
+}
+
+.student-actions{
+grid-column:1/-1
+}
+
+}
+
+@media(max-width:700px){
+
+.container{
+width:94%
+}
+
+.nav{
+width:100%
+}
+
+.logo h1{
+font-size:16px
+}
+
+.logo small{
+font-size:7px
+}
+
+.nav-actions .btn{
+padding:7px 8px;
+font-size:9px
+}
+
+.hero{
+padding:32px 0 13px
+}
+
+.hero h2{
+font-size:30px
+}
+
+.stats{
+grid-template-columns:
+repeat(2,1fr);
+
+gap:8px
+}
+
+.stat{
+padding:13px 8px
+}
+
+.stat strong{
+font-size:24px
+}
+
+.dashboard-grid{
+grid-template-columns:
+repeat(2,1fr);
+
+gap:8px
+}
+
+.dashboard-card{
+min-height:130px;
+
+padding:14px
+}
+
+.dashboard-card .big-icon{
+width:42px;
+height:42px;
+
+font-size:20px
+}
+
+.dashboard-card h3{
+font-size:13px
+}
+
+.dashboard-card p{
+font-size:9px
+}
+
+.page-top{
+align-items:flex-start
+}
+
+.page-title h2{
+font-size:19px
+}
+
+.page-title p{
+font-size:9px
+}
+
+.page-tools{
+display:block
+}
+
+.page-search{
+width:100%;
+
+margin-bottom:7px
+}
+
+.add-btn{
+width:100%
+}
+
+.manage-grid{
+grid-template-columns:
+1fr
+}
+
+.row{
+grid-template-columns:
+1fr
+}
+
+.student{
+grid-template-columns:
+1fr;
+
+gap:6px
+}
+
+.student-actions{
+grid-column:auto
+}
+
+.search{
+width:100%
+}
+
+.students-head{
+display:block
+}
+
+.students-head .search{
+margin-top:7px
+}
+
+}
+
+@media(max-width:430px){
+
+.logo div:not(.logo-icon){
+display:none
+}
+
+.dashboard-grid{
+gap:7px
+}
+
+.dashboard-card{
+padding:12px;
+
+min-height:120px
+}
+
+.dashboard-card h3{
+font-size:11px
+}
+
+.dashboard-card p{
+font-size:8px
+}
+
+.stats{
+gap:7px
+}
+
+.stat strong{
+font-size:22px
+}
+
+.login-card{
+padding:24px 18px
+}
+
+}
+
+
+/* تقليل الحركة */
+
+@media(prefers-reduced-motion:reduce){
+
+*{
+scroll-behavior:auto!important
+}
+
+.star{
+animation:none!important;
+display:none
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     النجوم
+========================= -->
+
+<div class="stars" id="stars"></div>
+
+
+<!-- =========================
+     تسجيل الدخول
+========================= -->
+
+<div id="loginView" class="login">
+
+<div class="login-card">
+
+<div class="logo-icon">
+∑
+</div>
+
+<h2>
+⚙️ لوحة التحكم
+</h2>
+
+<p>
+لوحة خاصة بالمعلم.<br>
+الدخول يتم برمز لوحة التحكم.
+</p>
+
+<input
+id="teacherPin"
+class="input pin"
+type="password"
+inputmode="numeric"
+maxlength="6"
+placeholder="••••••"
+>
+
+<div
+id="loginMessage"
+class="message">
+</div>
+
+<button
+class="btn primary"
+style="width:100%;padding:12px"
+onclick="teacherLogin()">
+
+🔐 دخول
+
+</button>
+
+<a
+class="btn"
+style="display:block;margin-top:8px"
+href="index.html">
+
+← العودة للمنصة
+
+</a>
+
+</div>
+</div>
+
+
+<!-- =========================
+     التطبيق
+========================= -->
+
+<div id="appView" class="hidden">
+
+
+<header>
+
+<div class="nav">
+
+<div class="logo">
+
+<div class="logo-icon">
+∑
+</div>
+
+<div>
+
+<h1>
+منبر ون
+</h1>
+
+<small>
+لوحة التحكم
+</small>
+
+</div>
+
+</div>
+
+<div class="nav-actions">
+
+<a
+class="btn"
+href="index.html">
+
+🏠 المنصة
+
+</a>
+
+<button
+class="btn danger"
+onclick="teacherLogout()">
+
+خروج
+
+</button>
+
+</div>
+
+</div>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- =========================
+     الرئيسية
+========================= -->
+
+<section id="homePage">
+
+<section class="hero">
+
+<h2>
+⚙️ لوحة التحكم
+</h2>
+
+<p>
+إدارة منصة منبر ون بسهولة — الطلاب، الحصص، الملخصات، الاختبارات والغرف.
+</p>
+
+</section>
+
+
+<!-- الإحصائيات -->
+
+<section class="stats">
+
+<div class="stat">
+
+<strong id="studentsCount">
+0
+</strong>
+
+<span>
+👨‍🎓 الطلاب
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong id="activeCount">
+0
+</strong>
+
+<span>
+🟢 نشطون
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong id="blockedCount">
+0
+</strong>
+
+<span>
+🔴 موقوفون
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong id="totalPoints">
+0
+</strong>
+
+<span>
+⭐ مجموع النقاط
+</span>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     أقسام الإدارة
+========================= -->
+
+<div class="dashboard-grid">
+
+
+<div
+class="dashboard-card card-students"
+onclick="openPage('studentsPage')">
+
+<div class="big-icon">
+👨‍🎓
+</div>
+
+<h3>
+الطلاب
+</h3>
+
+<p>
+إدارة الطلاب المسجلين ومتابعة حالتهم ونقاطهم.
+</p>
+
+<div
+class="count"
+id="homeStudentsCount">
+0 طالب
+</div>
+
+</div>
+
+
+<div
+class="dashboard-card card-lessons"
+onclick="openPage('lessonsPage')">
+
+<div class="big-icon">
+🎥
+</div>
+
+<h3>
+الحصص
+</h3>
+
+<p>
+إضافة الحصص وتعديلها وحذفها وإدارة روابط YouTube.
+</p>
+
+<div
+class="count"
+id="homeLessonsCount">
+0 حصة
+</div>
+
+</div>
+
+
+<div
+class="dashboard-card card-summaries"
+onclick="openPage('summariesPage')">
+
+<div class="big-icon">
+📚
+</div>
+
+<h3>
+الملخصات
+</h3>
+
+<p>
+إدارة الملخصات والملفات والمواد التعليمية.
+</p>
+
+<div
+class="count"
+id="homeSummariesCount">
+0 ملخص
+</div>
+
+</div>
+
+
+<div
+class="dashboard-card card-tests"
+onclick="openPage('testsPage')">
+
+<div class="big-icon">
+📝
+</div>
+
+<h3>
+الاختبارات
+</h3>
+
+<p>
+إدارة الاختبارات الموجودة في المنصة.
+</p>
+
+<div
+class="count"
+id="homeTestsCount">
+0 اختبار
+</div>
+
+</div>
+
+
+<div
+class="dashboard-card card-rooms"
+onclick="openPage('roomsPage')">
+
+<div class="big-icon">
+💬
+</div>
+
+<h3>
+الغرف
+</h3>
+
+<p>
+إدارة الغرف التعليمية والمناقشات.
+</p>
+
+<div
+class="count"
+id="homeRoomsCount">
+0 غرفة
+</div>
+
+</div>
+
+</div>
+
+
+<!-- الإعلان -->
+
+<section class="panel announcement-admin">
+
+<h3>
+📢 لوحة الإعلانات
+</h3>
+
+<div class="notice">
+
+اكتب الإعلان الذي تريد ظهوره للطلاب في الصفحة الرئيسية.
+يمكنك تعديله أو إخفاؤه في أي وقت.
+
+</div>
+
+<input
+id="announcementTitle"
+class="input"
+placeholder="عنوان الإعلان"
+>
+
+<textarea
+id="announcementText"
+class="textarea"
+placeholder="اكتب نص الإعلان هنا... ويمكنك كتابة عدة أسطر">
+</textarea>
+
+<div class="switch-row">
+
+<label for="announcementActive">
+إظهار الإعلان للطلاب
+</label>
+
+<input
+id="announcementActive"
+class="check"
+type="checkbox"
+checked
+>
+
+</div>
+
+<button
+class="btn primary"
+onclick="saveAnnouncement()">
+
+📢 حفظ ونشر الإعلان
+
+</button>
+
+<div
+id="announcementMsg"
+class="message">
+</div>
+
+</section>
+
+</section>
+
+
+<!-- =========================
+     الطلاب
+========================= -->
+
+<section
+id="studentsPage"
+class="inner-page students-color">
+
+<div class="page-top">
+
+<div class="page-title">
+
+<div class="page-icon">
+👨‍🎓
+</div>
+
+<div>
+
+<h2>
+الطلاب
+</h2>
+
+<p>
+إدارة الطلاب المسجلين في المنصة
+</p>
+
+</div>
+
+</div>
+
+<button
+class="btn back-btn"
+onclick="goHome()">
+
+← الرئيسية
+
+</button>
+
+</div>
+
+
+<div class="panel">
+
+<div class="notice">
+
+كل طالب يسجل الدخول ويُنشأ له سجل يظهر هنا.
+يمكنك إيقافه أو إعادة السماح له.
+الحذف يحذف سجل المنصة فقط.
+
+</div>
+
+<div class="students-head">
+
+<b>
+قائمة الطلاب
+</b>
+
+<input
+id="studentSearch"
+class="search"
+placeholder="بحث باسم أو بريد"
+>
+
+</div>
+
+<div id="studentsList">
+
+<div class="loading">
+جاري تحميل الطلاب...
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     الحصص
+========================= -->
+
+<section
+id="lessonsPage"
+class="inner-page lessons-color">
+
+<div class="page-top">
+
+<div class="page-title">
+
+<div class="page-icon">
+🎥
+</div>
+
+<div>
+
+<h2>
+الحصص
+</h2>
+
+<p>
+إضافة وتعديل وحذف الحصص التعليمية
+</p>
+
+</div>
+
+</div>
+
+<button
+class="btn back-btn"
+onclick="goHome()">
+
+← الرئيسية
+
+</button>
+
+</div>
+
+
+<!-- إضافة حصة -->
+
+<div class="panel form-panel">
+
+<h3>
+➕ إضافة حصة جديدة
+</h3>
+
+<div class="notice">
+
+أدخل رابط YouTube، وسيتم محاولة جلب عنوان الفيديو تلقائيًا.
+
+</div>
+
+<input
+id="lessonVideo"
+class="input"
+placeholder="رابط YouTube"
+>
+
+<div
+id="youtubeInfo"
+class="message">
+
+ضع الرابط ثم اضغط خارج الحقل.
+
+</div>
+
+<div class="row">
+
+<input
+id="lessonTitle"
+class="input"
+placeholder="عنوان الحصة"
+>
+
+<input
+id="lessonUnit"
+class="input"
+placeholder="الوحدة"
+>
+
+</div>
+
+<input
+id="lessonDuration"
+class="input"
+placeholder="المدة — اختياري"
+>
+
+<button
+class="btn add-btn"
+onclick="addLesson()">
+
+💾 إضافة الحصة
+
+</button>
+
+</div>
+
+
+<div class="page-tools">
+
+<input
+id="lessonSearch"
+class="page-search"
+placeholder="🔎 ابحث في الحصص..."
+>
+
+</div>
+
+
+<div
+id="lessonsList"
+class="manage-grid">
+
+<div class="loading">
+جاري تحميل الحصص...
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     الملخصات
+========================= -->
+
+<section
+id="summariesPage"
+class="inner-page summaries-color">
+
+<div class="page-top">
+
+<div class="page-title">
+
+<div class="page-icon">
+📚
+</div>
+
+<div>
+
+<h2>
+الملخصات
+</h2>
+
+<p>
+إضافة وتعديل وحذف الملخصات
+</p>
+
+</div>
+
+</div>
+
+<button
+class="btn back-btn"
+onclick="goHome()">
+
+← الرئيسية
+
+</button>
+
+</div>
+
+
+<div class="panel form-panel">
+
+<h3>
+➕ إضافة ملخص جديد
+</h3>
+
+<input
+id="summaryTitle"
+class="input"
+placeholder="عنوان الملخص"
+>
+
+<input
+id="summaryDescription"
+class="input"
+placeholder="وصف الملخص — اختياري"
+>
+
+<input
+id="summaryUrl"
+class="input"
+placeholder="رابط ملف PDF أو الملخص"
+>
+
+<input
+id="summaryUnit"
+class="input"
+placeholder="الوحدة — اختياري"
+>
+
+<button
+class="btn add-btn"
+onclick="addSummary()">
+
+💾 إضافة الملخص
+
+</button>
+
+</div>
+
+
+<div class="page-tools">
+
+<input
+id="summarySearch"
+class="page-search"
+placeholder="🔎 ابحث في الملخصات..."
+>
+
+</div>
+
+
+<div
+id="summariesList"
+class="manage-grid">
+
+<div class="loading">
+جاري تحميل الملخصات...
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     الاختبارات
+========================= -->
+
+<section
+id="testsPage"
+class="inner-page tests-color">
+
+<div class="page-top">
+
+<div class="page-title">
+
+<div class="page-icon">
+📝
+</div>
+
+<div>
+
+<h2>
+الاختبارات
+</h2>
+
+<p>
+إدارة الاختبارات الموجودة
+</p>
+
+</div>
+
+</div>
+
+<button
+class="btn back-btn"
+onclick="goHome()">
+
+← الرئيسية
+
+</button>
+
+</div>
+
+
+<div class="panel form-panel">
+
+<h3>
+➕ إضافة اختبار جديد
+</h3>
+
+<input
+id="testTitle"
+class="input"
+placeholder="عنوان الاختبار"
+>
+
+<input
+id="testDescription"
+class="input"
+placeholder="وصف الاختبار — اختياري"
+>
+
+<input
+id="testUnit"
+class="input"
+placeholder="الوحدة — اختياري"
+>
+
+<input
+id="testDuration"
+class="input"
+placeholder="مدة الاختبار بالدقائق — اختياري"
+>
+
+<button
+class="btn add-btn"
+onclick="addTest()">
+
+💾 إضافة الاختبار
+
+</button>
+
+<div
+id="testMsg"
+class="message">
+</div>
+
+</div>
+
+
+<div class="page-tools">
+
+<input
+id="testSearch"
+class="page-search"
+placeholder="🔎 ابحث في الاختبارات..."
+>
+
+</div>
+
+
+<div
+id="testsList"
+class="manage-grid">
+
+<div class="loading">
+جاري تحميل الاختبارات...
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     الغرف
+========================= -->
+
+<section
+id="roomsPage"
+class="inner-page rooms-color">
+
+<div class="page-top">
+
+<div class="page-title">
+
+<div class="page-icon">
+💬
+</div>
+
+<div>
+
+<h2>
+الغرف
+</h2>
+
+<p>
+إدارة الغرف التعليمية
+</p>
+
+</div>
+
+</div>
+
+<button
+class="btn back-btn"
+onclick="goHome()">
+
+← الرئيسية
+
+</button>
+
+</div>
+
+
+<div class="panel form-panel">
+
+<h3>
+➕ إضافة غرفة جديدة
+</h3>
+
+<input
+id="roomName"
+class="input"
+placeholder="اسم الغرفة"
+>
+
+<input
+id="roomDescription"
+class="input"
+placeholder="وصف الغرفة — اختياري"
+>
+
+<input
+id="roomUrl"
+class="input"
+placeholder="رابط الغرفة — اختياري"
+>
+
+<button
+class="btn add-btn"
+onclick="addRoom()">
+
+💾 إضافة الغرفة
+
+</button>
+
+<div
+id="roomMsg"
+class="message">
+</div>
+
+</div>
+
+
+<div class="page-tools">
+
+<input
+id="roomSearch"
+class="page-search"
+placeholder="🔎 ابحث في الغرف..."
+>
+
+</div>
+
+
+<div
+id="roomsList"
+class="manage-grid">
+
+<div class="loading">
+جاري تحميل الغرف...
+</div>
+
+</div>
+
+</section>
+
+
+</main>
+
+</div>
+
+
+<!-- =========================
+     نافذة التعديل
+========================= -->
+
+<div
+id="editModal"
+class="modal">
+
+<div class="modal-box">
+
+<div class="modal-head">
+
+<h3 id="editModalTitle">
+تعديل
+</h3>
+
+<button
+class="close"
+onclick="closeEdit()">
+
+×
+</button>
+
+</div>
+
+
+<div id="editForm">
+</div>
+
+
+<div class="modal-actions">
+
+<button
+class="btn success"
+onclick="saveEdit()">
+
+💾 حفظ التعديل
+
+</button>
+
+<button
+class="btn danger"
+onclick="closeEdit()">
+
+إلغاء
+
+</button>
+
+</div>
+
+<div
+id="editMsg"
+class="message">
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* ==================================================
+   إعدادات Supabase
+================================================== */
+
+const SUPABASE_URL =
+"https://vugnptbvkitokwqxulla.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable__WJDSewc6JN6XTM6czk11Q_lgON6Chj";
+
+
+/* رمز المعلم */
+
+const TEACHER_PIN =
+"059989";
+
+
+/* البيانات */
+
+let students=[];
+
+let content={
+lessons:[],
+summaries:[],
+tests:[],
+rooms:[]
+};
+
+
+/* التعديل الحالي */
+
+let editType="";
+let editId=null;
+
+
+/* ==================================================
+   اختصار
+================================================== */
+
+function $(id){
+return document.getElementById(id);
+}
+
+
+/* ==================================================
+   حماية النصوص
+================================================== */
+
+function safe(v){
+
+return String(v ?? "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* ==================================================
+   النجوم
+================================================== */
+
+function stars(){
+
+const box=$("stars");
+
+let h="";
+
+const symbols=[
+"✦",
+"✧",
+"⋆",
+"·",
+"✷",
+"✹",
+"★"
+];
+
+const colors=[
+"#18d9ff",
+"#a98cff",
+"#ff4fd0",
+"#ffd66b",
+"#27e49b",
+"#8fdcff",
+"#ffffff"
+];
+
+for(let i=0;i<75;i++){
+
+const drift=
+(Math.random()*180-90).toFixed(0);
+
+const size=
+(6+Math.random()*7).toFixed(1);
+
+const delay=
+-(Math.random()*14).toFixed(2);
+
+const duration=
+(10+Math.random()*14).toFixed(2);
+
+const color=
+colors[
+Math.floor(
+Math.random()*colors.length
+)
+];
+
+h+=`
+
+<span
+class="star"
+style="
+left:${Math.random()*100}%;
+animation-delay:${delay}s;
+animation-duration:${duration}s;
+font-size:${size}px;
+--drift:${drift}px;
+--star-color:${color};
+">
+
+${symbols[
+Math.floor(
+Math.random()*symbols.length
+)
+]}
+
+</span>
+
+`;
+
+}
+
+box.innerHTML=h;
+
+}
+
+stars();
+
+
+/* ==================================================
+   RPC
+================================================== */
+
+async function rpc(fn,body={}){
+
+const url=
+`${SUPABASE_URL}/rest/v1/rpc/${fn}`;
+
+const r=
+await fetch(
+url,
+{
+method:"POST",
+
+headers:{
+"apikey":SUPABASE_KEY,
+"Content-Type":"application/json",
+"Accept":"application/json"
+},
+
+body:
+JSON.stringify(body)
+}
+);
+
+const raw=
+await r.text();
+
+let d;
+
+try{
+
+d=
+raw
+?
+JSON.parse(raw)
+:
+null;
+
+}catch{
+
+d=raw;
+
+}
+
+if(!r.ok){
+
+let m=
+typeof d==="object"
+?
+(
+d?.message ||
+d?.hint ||
+d?.details ||
+d?.code
+)
+:
+String(d);
+
+if(r.status===401){
+
+m=
+"401: Supabase رفض طلب لوحة التحكم. تأكد من المفتاح الحالي للمشروع.";
+
+}
+
+if(r.status===403){
+
+m=
+"403: ليس لديك صلاحية لتنفيذ هذه العملية في Supabase.";
+
+}
+
+if(r.status===404){
+
+m=
+"404: دالة Supabase غير موجودة. شغّل SQL الخاص بلوحة التحكم.";
+
+}
+
+throw new Error(
+m ||
+`تعذر تنفيذ العملية (${r.status})`
+);
+
+}
+
+return d;
+
+}
+
+
+/* ==================================================
+   تسجيل الدخول
+================================================== */
+
+async function teacherLogin(){
+
+const pin=
+$("teacherPin").value;
+
+if(pin!==TEACHER_PIN){
+
+$("loginMessage").textContent=
+"❌ رمز الدخول غير صحيح.";
+
+return;
+
+}
+
+$("loginMessage").textContent=
+"⏳ جاري التحقق...";
+
+try{
+
+const ok=
+await rpc(
+"teacher_check_password",
+{
+p_password:pin
+}
+);
+
+if(ok!==true){
+
+$("loginMessage").textContent=
+"❌ تعذر التحقق من الرمز.";
+
+return;
+
+}
+
+sessionStorage.setItem(
+"minbar_teacher_unlocked",
+"1"
+);
+
+showApp();
+
+$("loginMessage").textContent="";
+
+loadAll();
+
+}catch(e){
+
+$("loginMessage").textContent=
+"❌ "+e.message;
+
+}
+
+}
+
+
+/* ==================================================
+   إظهار التطبيق
+================================================== */
+
+function showApp(){
+
+$("loginView")
+.classList
+.add("hidden");
+
+$("appView")
+.classList
+.remove("hidden");
+
+}
+
+
+/* ==================================================
+   تسجيل الخروج
+================================================== */
+
+function teacherLogout(){
+
+sessionStorage.removeItem(
+"minbar_teacher_unlocked"
+);
+
+location.reload();
+
+}
+
+
+/* ==================================================
+   التنقل بين الصفحات
+================================================== */
+
+function openPage(id){
+
+document
+.querySelectorAll(".inner-page")
+.forEach(
+x=>x.classList.remove("active")
+);
+
+$("homePage").classList.add("hidden");
+
+const page=$(id);
+
+if(page){
+
+page.classList.add("active");
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+if(id==="lessonsPage")
+loadLessons();
+
+if(id==="summariesPage")
+loadSummaries();
+
+if(id==="testsPage")
+loadTests();
+
+if(id==="roomsPage")
+loadRooms();
+
+if(id==="studentsPage")
+loadStudents();
+
+}
+
+
+function goHome(){
+
+document
+.querySelectorAll(".inner-page")
+.forEach(
+x=>x.classList.remove("active")
+);
+
+$("homePage").classList.remove("hidden");
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+/* ==================================================
+   الطلاب
+================================================== */
+
+async function loadStudents(){
+
+try{
+
+students=
+await rpc(
+"teacher_list_students",
+{
+p_password:TEACHER_PIN
+}
+);
+
+if(!Array.isArray(students))
+students=[];
+
+renderStudents();
+
+$("homeStudentsCount").textContent=
+students.length+" طالب";
+
+}catch(e){
+
+$("studentsList").innerHTML=
+`
+<div class="error">
+❌ ${safe(e.message)}
+</div>
+`;
+
+}
+
+}
+
+
+function formatDate(v){
+
+if(!v)
+return "—";
+
+const d=new Date(v);
+
+if(isNaN(d))
+return "—";
+
+return d.toLocaleString(
+"ar-EG",
+{
+dateStyle:"short",
+timeStyle:"short"
+}
+);
+
+}
+
+
+function renderStudents(){
+
+$("studentsCount").textContent=
+students.length;
+
+$("activeCount").textContent=
+students.filter(
+x=>x.status!=="blocked"
+).length;
+
+$("blockedCount").textContent=
+students.filter(
+x=>x.status==="blocked"
+).length;
+
+$("totalPoints").textContent=
+students.reduce(
+(a,x)=>
+a+Number(x.points||0),
+0
+);
+
+const q=
+(
+$("studentSearch").value||""
+)
+.trim()
+.toLowerCase();
+
+const list=
+students.filter(
+x=>
+(
+String(x.name||"")+
+" "+
+String(x.email||"")
+)
+.toLowerCase()
+.includes(q)
+);
+
+if(!list.length){
+
+$("studentsList").innerHTML=
+`
+<div class="empty">
+لا يوجد طلاب.
+</div>
+`;
+
+return;
+
+}
+
+$("studentsList").innerHTML=
+list.map(
+s=>`
+
+<div class="student">
+
+<div class="student-name">
+👨‍🎓 ${safe(s.name||"طالب")}
+</div>
+
+<div class="student-email">
+${safe(s.email)}
+</div>
+
+<div class="points">
+⭐ ${Number(s.points||0)}
+</div>
+
+<div class="${
+s.status==="blocked"
+?
+"blocked"
+:
+"active"
+}">
+${
+s.status==="blocked"
+?
+"🔴 موقوف"
+:
+"🟢 نشط"
+}
+</div>
+
+<div>
+
+<div class="last">
+آخر دخول: ${formatDate(s.last_seen)}
+</div>
+
+<div class="student-actions">
+
+<button
+class="btn ${
+s.status==="blocked"
+?
+"success"
+:
+"danger"
+}"
+onclick="
+toggleStudent(
+${s.id},
+'${s.status==="blocked"
+?
+"active"
+:
+"blocked"}'
+)
+">
+
+${
+s.status==="blocked"
+?
+"✅ سماح"
+:
+"🚫 إيقاف"
+}
+
+</button>
+
+<button
+class="btn danger"
+onclick="
+deleteStudent(${s.id})
+">
+
+🗑 حذف
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`
+).join("");
+
+}
+
+
+$("studentSearch")
+.addEventListener(
+"input",
+renderStudents
+);
+
+
+$("teacherPin")
+.addEventListener(
+"keydown",
+e=>{
+if(e.key==="Enter")
+teacherLogin();
+}
+);
+
+
+async function toggleStudent(id,status){
+
+if(
+!confirm(
+status==="blocked"
+?
+"إيقاف هذا الطالب؟"
+:
+"إعادة السماح لهذا الطالب؟"
+)
+)
+return;
+
+try{
+
+await rpc(
+"teacher_set_student_status",
+{
+p_password:TEACHER_PIN,
+p_student_id:id,
+p_status:status
+}
+);
+
+await loadStudents();
+
+}catch(e){
+
+alert("❌ "+e.message);
+
+}
+
+}
+
+
+async function deleteStudent(id){
+
+if(
+!confirm(
+"حذف سجل الطالب من قائمة المنصة؟"
+)
+)
+return;
+
+try{
+
+await rpc(
+"teacher_delete_student",
+{
+p_password:TEACHER_PIN,
+p_student_id:id
+}
+);
+
+await loadStudents();
+
+}catch(e){
+
+alert("❌ "+e.message);
+
+}
+
+}
+
+
+/* ==================================================
+   YouTube
+================================================== */
+
+async function getYoutubeTitle(url){
+
+const r=
+await fetch(
+"https://www.youtube.com/oembed?url="+
+encodeURIComponent(url)+
+"&format=json"
+);
+
+if(!r.ok)
+throw new Error(
+"لم يتمكن YouTube من قراءة الرابط"
+);
+
+const d=await r.json();
+
+return d.title||"";
+
+}
+
+
+$("lessonVideo")
+.addEventListener(
+"blur",
+async()=>{
+
+const url=
+$("lessonVideo").value.trim();
+
+if(!url)
+return;
+
+$("youtubeInfo").textContent=
+"⏳ جاري جلب عنوان الفيديو...";
+
+try{
+
+const title=
+await getYoutubeTitle(url);
+
+$("lessonTitle").value=title;
+
+$("youtubeInfo").textContent=
+"✅ تم جلب العنوان تلقائيًا.";
+
+}catch{
+
+$("youtubeInfo").textContent=
+"⚠️ اكتب العنوان يدويًا.";
+
+}
+
+}
+);
+
+
+/* ==================================================
+   الحصص
+================================================== */
+
+async function loadLessons(){
+
+try{
+
+const data=
+await rpc(
+"teacher_list_lessons",
+{
+p_password:TEACHER_PIN
+}
+);
+
+content.lessons=
+Array.isArray(data)
+?
+data
+:
+[];
+
+renderLessons();
+
+$("homeLessonsCount").textContent=
+content.lessons.length+" حصة";
+
+}catch(e){
+
+$("lessonsList").innerHTML=
+`
+<div class="error">
+❌ ${safe(e.message)}
+</div>
+`;
+
+}
+
+}
+
+
+function renderLessons(){
+
+const q=
+(
+$("lessonSearch").value||""
+)
+.trim()
+.toLowerCase();
+
+const list=
+content.lessons.filter(
+x=>
+(
+String(x.title||"")+
+" "+
+String(x.unit||"")+
+" "+
+String(x.description||"")
+)
+.toLowerCase()
+.includes(q)
+);
+
+if(!list.length){
+
+$("lessonsList").innerHTML=
+`
+<div class="empty">
+لا توجد حصص.
+</div>
+`;
+
+return;
+
+}
+
+$("lessonsList").innerHTML=
+list.map(
+x=>`
+
+<div class="manage-card">
+
+<h3>
+🎥 ${safe(x.title||"حصة")}
+</h3>
+
+<p>
+${safe(x.description||"حصة تعليمية")}
+</p>
+
+<div class="manage-meta">
+
+${x.unit?
+`
+<span class="meta">
+📘 ${safe(x.unit)}
+</span>
+`
+:""}
+
+${x.duration?
+`
+<span class="meta">
+⏱ ${safe(x.duration)}
+</span>
+`
+:""}
+
+</div>
+
+<div class="manage-actions">
+
+<button
+class="btn edit-btn"
+onclick="
+openEdit(
+'lessons',
+${x.id}
+)
+">
+
+✏️ تعديل
+
+</button>
+
+<button
+class="btn delete-btn"
+onclick="
+deleteContent(
+'lessons',
+${x.id}
+)
+">
+
+🗑 حذف
+
+</button>
+
+</div>
+
+</div>
+
+`
+).join("");
+
+}
+
+
+$("lessonSearch")
+.addEventListener(
+"input",
+renderLessons
+);
+
+
+async function addLesson(){
+
+const video=
+$("lessonVideo").value.trim();
+
+const unit=
+$("lessonUnit").value.trim();
+
+const duration=
+$("lessonDuration").value.trim();
+
+let title=
+$("lessonTitle").value.trim();
+
+if(!video){
+
+alert("أدخل رابط YouTube.");
+
+return;
+
+}
+
+if(!title){
+
+try{
+
+title=
+await getYoutubeTitle(video);
+
+}catch{
+
+title="حصة رياضيات";
+
+}
+
+}
+
+try{
+
+await rpc(
+"teacher_add_lesson",
+{
+p_password:TEACHER_PIN,
+p_title:title,
+p_unit:unit,
+p_video_url:video,
+p_duration:duration
+}
+);
+
+alert(
+"✅ تمت إضافة الحصة."
+);
+
+[
+"lessonVideo",
+"lessonTitle",
+"lessonUnit",
+"lessonDuration"
+]
+.forEach(
+id=>$(id).value=""
+);
+
+$("youtubeInfo").textContent=
+"ضع رابط YouTube ثم اضغط خارج الحقل.";
+
+await loadLessons();
+
+}catch(e){
+
+alert(
+"❌ "+e.message
+);
+
+}
+
+}
+
+
+/* ==================================================
+   الملخصات
+================================================== */
+
+async function loadSummaries(){
+
+try{
+
+const data=
+await rpc(
+"teacher_list_summaries",
+{
+p_password:TEACHER_PIN
+}
+);
+
+content.summaries=
+Array.isArray(data)
+?
+data
+:
+[];
+
+renderSummaries();
+
+$("homeSummariesCount").textContent=
+content.summaries.length+" ملخص";
+
+}catch(e){
+
+$("summariesList").innerHTML=
+`
+<div class="error">
+❌ ${safe(e.message)}
+</div>
+`;
+
+}
+
+}
+
+
+function renderSummaries(){
+
+const q=
+(
+$("summarySearch").value||""
+)
+.trim()
+.toLowerCase();
+
+const list=
+content.summaries.filter(
+x=>
+(
+String(x.title||"")+
+" "+
+String(x.description||"")+
+" "+
+String(x.unit||"")
+)
+.toLowerCase()
+.includes(q)
+);
+
+if(!list.length){
+
+$("summariesList").innerHTML=
+`
+<div class="empty">
+لا توجد ملخصات.
+</div>
+`;
+
+return;
+
+}
+
+$("summariesList").innerHTML=
+list.map(
+x=>`
+
+<div class="manage-card">
+
+<h3>
+📚 ${safe(x.title||"ملخص")}
+</h3>
+
+<p>
+${safe(x.description||"ملخص تعليمي")}
+</p>
+
+<div class="manage-meta">
+
+${x.unit?
+`
+<span class="meta">
+📘 ${safe(x.unit)}
+</span>
+`
+:""}
+
+</div>
+
+<div class="manage-actions">
+
+<button
+class="btn edit-btn"
+onclick="
+openEdit(
+'summaries',
+${x.id}
+)
+">
+
+✏️ تعديل
+
+</button>
+
+<button
+class="btn delete-btn"
+onclick="
+deleteContent(
+'summaries',
+${x.id}
+)
+">
+
+🗑 حذف
+
+</button>
+
+</div>
+
+</div>
+
+`
+).join("");
+
+}
+
+
+$("summarySearch")
+.addEventListener(
+"input",
+renderSummaries
+);
+
+
+async function addSummary(){
+
+const title=
+$("summaryTitle").value.trim();
+
+const description=
+$("summaryDescription").value.trim();
+
+const url=
+$("summaryUrl").value.trim();
+
+const unit=
+$("summaryUnit").value.trim();
+
+if(!title){
+
+alert("أدخل عنوان الملخص.");
+
+return;
+
+}
+
+try{
+
+await rpc(
+"teacher_add_summary",
+{
+p_password:TEACHER_PIN,
+p_title:title,
+p_description:description,
+p_pdf_url:url,
+p_unit:unit
+}
+);
+
+alert(
+"✅ تمت إضافة الملخص."
+);
+
+[
+"summaryTitle",
+"summaryDescription",
+"summaryUrl",
+"summaryUnit"
+]
+.forEach(
+id=>$(id).value=""
+);
+
+await loadSummaries();
+
+}catch(e){
+
+alert(
+"❌ "+e.message
+);
+
+}
+
+}
+
+
+/* ==================================================
+   الاختبارات
+================================================== */
+
+async function loadTests(){
+
+try{
+
+const data=
+await rpc(
+"teacher_list_tests",
+{
+p_password:TEACHER_PIN
+}
+);
+
+content.tests=
+Array.isArray(data)
+?
+data
+:
+[];
+
+renderTests();
+
+$("homeTestsCount").textContent=
+content.tests.length+" اختبار";
+
+}catch(e){
+
+$("testsList").innerHTML=
+`
+<div class="error">
+❌ ${safe(e.message)}
+</div>
+`;
+
+}
+
+}
+
+
+function renderTests(){
+
+const q=
+(
+$("testSearch").value||""
+)
+.trim()
+.toLowerCase();
+
+const list=
+content.tests.filter(
+x=>
+(
+String(x.title||"")+
+" "+
+String(x.description||"")+
+" "+
+String(x.unit||"")
+)
+.toLowerCase()
+.includes(q)
+);
+
+if(!list.length){
+
+$("testsList").innerHTML=
+`
+<div class="empty">
+لا توجد اختبارات.
+</div>
+`;
+
+return;
+
+}
+
+$("testsList").innerHTML=
+list.map(
+x=>`
+
+<div class="manage-card">
+
+<h3>
+📝 ${safe(x.title||"اختبار")}
+</h3>
+
+<p>
+${safe(x.description||"اختبار رياضيات")}
+</p>
+
+<div class="manage-meta">
+
+${x.unit?
+`
+<span class="meta">
+📘 ${safe(x.unit)}
+</span>
+`
+:""}
+
+${x.duration?
+`
+<span class="meta">
+⏱ ${safe(x.duration)} دقيقة
+</span>
+`
+:""}
+
+</div>
+
+<div class="manage-actions">
+
+<button
+class="btn edit-btn"
+onclick="
+openEdit(
+'tests',
+${x.id}
+)
+">
+
+✏️ تعديل
+
+</button>
+
+<button
+class="btn delete-btn"
+onclick="
+deleteContent(
+'tests',
+${x.id}
+)
+">
+
+🗑 حذف
+
+</button>
+
+</div>
+
+</div>
+
+`
+).join("");
+
+}
+
+
+$("testSearch")
+.addEventListener(
+"input",
+renderTests
+);
+
+
+async function addTest(){
+
+const title=
+$("testTitle").value.trim();
+
+const description=
+$("testDescription").value.trim();
+
+const unit=
+$("testUnit").value.trim();
+
+const duration=
+$("testDuration").value.trim();
+
+if(!title){
+
+$("testMsg").textContent=
+"❌ أدخل عنوان الاختبار.";
+
+return;
+
+}
+
+$("testMsg").textContent=
+"⏳ جاري الإضافة...";
+
+try{
+
+await rpc(
+"teacher_add_test",
+{
+p_password:TEACHER_PIN,
+p_title:title,
+p_description:description,
+p_unit:unit,
+p_duration:duration
+}
+);
+
+$("testMsg").textContent=
+"✅ تمت إضافة الاختبار.";
+
+[
+"testTitle",
+"testDescription",
+"testUnit",
+"testDuration"
+]
+.forEach(
+id=>$(id).value=""
+);
+
+await loadTests();
+
+}catch(e){
+
+$("testMsg").textContent=
+"❌ "+e.message;
+
+}
+
+}
+
+
+/* ==================================================
+   الغرف
+================================================== */
+
+async function loadRooms(){
+
+try{
+
+const data=
+await rpc(
+"teacher_list_rooms",
+{
+p_password:TEACHER_PIN
+}
+);
+
+content.rooms=
+Array.isArray(data)
+?
+data
+:
+[];
+
+renderRooms();
+
+$("homeRoomsCount").textContent=
+content.rooms.length+" غرفة";
+
+}catch(e){
+
+$("roomsList").innerHTML=
+`
+<div class="error">
+❌ ${safe(e.message)}
+</div>
+`;
+
+}
+
+}
+
+
+function renderRooms(){
+
+const q=
+(
+$("roomSearch").value||""
+)
+.trim()
+.toLowerCase();
+
+const list=
+content.rooms.filter(
+x=>
+(
+String(x.name||"")+
+" "+
+String(x.title||"")+
+" "+
+String(x.description||"")
+)
+.toLowerCase()
+.includes(q)
+);
+
+if(!list.length){
+
+$("roomsList").innerHTML=
+`
+<div class="empty">
+لا توجد غرف.
+</div>
+`;
+
+return;
+
+}
+
+$("roomsList").innerHTML=
+list.map(
+x=>`
+
+<div class="manage-card">
+
+<h3>
+💬 ${safe(x.name||x.title||"غرفة")}
+</h3>
+
+<p>
+${safe(x.description||"غرفة تعليمية")}
+</p>
+
+<div class="manage-actions">
+
+<button
+class="btn edit-btn"
+onclick="
+openEdit(
+'rooms',
+${x.id}
+)
+">
+
+✏️ تعديل
+
+</button>
+
+<button
+class="btn delete-btn"
+onclick="
+deleteContent(
+'rooms',
+${x.id}
+)
+">
+
+🗑 حذف
+
+</button>
+
+</div>
+
+</div>
+
+`
+).join("");
+
+}
+
+
+$("roomSearch")
+.addEventListener(
+"input",
+renderRooms
+);
+
+
+async function addRoom(){
+
+const name=
+$("roomName").value.trim();
+
+const description=
+$("roomDescription").value.trim();
+
+const url=
+$("roomUrl").value.trim();
+
+if(!name){
+
+$("roomMsg").textContent=
+"❌ أدخل اسم الغرفة.";
+
+return;
+
+}
+
+$("roomMsg").textContent=
+"⏳ جاري الإضافة...";
+
+try{
+
+await rpc(
+"teacher_add_room",
+{
+p_password:TEACHER_PIN,
+p_name:name,
+p_description:description,
+p_url:url
+}
+);
+
+$("roomMsg").textContent=
+"✅ تمت إضافة الغرفة.";
+
+[
+"roomName",
+"roomDescription",
+"roomUrl"
+]
+.forEach(
+id=>$(id).value=""
+);
+
+await loadRooms();
+
+}catch(e){
+
+$("roomMsg").textContent=
+"❌ "+e.message;
+
+}
+
+}
+
+
+/* ==================================================
+   التعديل
+================================================== */
+
+function findItem(type,id){
+
+const arr=
+content[type]||[];
+
+return arr.find(
+x=>Number(x.id)===Number(id)
+);
+
+}
+
+
+function openEdit(type,id){
+
+const item=
+findItem(type,id);
+
+if(!item){
+
+alert(
+"لم يتم العثور على العنصر."
+);
+
+return;
+
+}
+
+editType=type;
+editId=id;
+
+let title="";
+
+let html="";
+
+
+if(type==="lessons"){
+
+title="✏️ تعديل الحصة";
+
+html=`
+
+<input
+id="editTitle"
+class="input"
+placeholder="عنوان الحصة"
+value="${safe(item.title)}"
+>
+
+<input
+id="editUnit"
+class="input"
+placeholder="الوحدة"
+value="${safe(item.unit)}"
+>
+
+<input
+id="editVideo"
+class="input"
+placeholder="رابط YouTube"
+value="${safe(item.video_url)}"
+>
+
+<input
+id="editDuration"
+class="input"
+placeholder="المدة"
+value="${safe(item.duration)}"
+>
+
+<textarea
+id="editDescription"
+class="textarea"
+placeholder="الوصف"
+>${safe(item.description)}</textarea>
+
+`;
+
+}
+
+
+if(type==="summaries"){
+
+title="✏️ تعديل الملخص";
+
+html=`
+
+<input
+id="editTitle"
+class="input"
+placeholder="عنوان الملخص"
+value="${safe(item.title)}"
+>
+
+<input
+id="editUnit"
+class="input"
+placeholder="الوحدة"
+value="${safe(item.unit)}"
+>
+
+<input
+id="editUrl"
+class="input"
+placeholder="رابط PDF"
+value="${safe(item.pdf_url||item.url)}"
+>
+
+<textarea
+id="editDescription"
+class="textarea"
+placeholder="الوصف"
+>${safe(item.description)}</textarea>
+
+`;
+
+}
+
+
+if(type==="tests"){
+
+title="✏️ تعديل الاختبار";
+
+html=`
+
+<input
+id="editTitle"
+class="input"
+placeholder="عنوان الاختبار"
+value="${safe(item.title)}"
+>
+
+<input
+id="editUnit"
+class="input"
+placeholder="الوحدة"
+value="${safe(item.unit)}"
+>
+
+<input
+id="editDuration"
+class="input"
+placeholder="المدة"
+value="${safe(item.duration)}"
+>
+
+<textarea
+id="editDescription"
+class="textarea"
+placeholder="الوصف"
+>${safe(item.description)}</textarea>
+
+`;
+
+}
+
+
+if(type==="rooms"){
+
+title="✏️ تعديل الغرفة";
+
+html=`
+
+<input
+id="editName"
+class="input"
+placeholder="اسم الغرفة"
+value="${safe(item.name||item.title)}"
+>
+
+<input
+id="editUrl"
+class="input"
+placeholder="رابط الغرفة"
+value="${safe(item.url)}"
+>
+
+<textarea
+id="editDescription"
+class="textarea"
+placeholder="الوصف"
+>${safe(item.description)}</textarea>
+
+`;
+
+}
+
+
+$("editModalTitle").textContent=
+title;
+
+$("editForm").innerHTML=
+html;
+
+$("editMsg").textContent="";
+
+$("editModal")
+.classList
+.add("show");
+
+}
+
+
+function closeEdit(){
+
+$("editModal")
+.classList
+.remove("show");
+
+editType="";
+editId=null;
+
+}
+
+
+async function saveEdit(){
+
+if(!editType||!editId)
+return;
+
+$("editMsg").textContent=
+"⏳ جاري حفظ التعديل...";
+
+try{
+
+if(editType==="lessons"){
+
+await rpc(
+"teacher_update_lesson",
+{
+p_password:TEACHER_PIN,
+p_id:editId,
+p_title:$("editTitle").value.trim(),
+p_unit:$("editUnit").value.trim(),
+p_video_url:$("editVideo").value.trim(),
+p_duration:$("editDuration").value.trim(),
+p_description:$("editDescription").value.trim()
+}
+);
+
+await loadLessons();
+
+}
+
+
+if(editType==="summaries"){
+
+await rpc(
+"teacher_update_summary",
+{
+p_password:TEACHER_PIN,
+p_id:editId,
+p_title:$("editTitle").value.trim(),
+p_unit:$("editUnit").value.trim(),
+p_pdf_url:$("editUrl").value.trim(),
+p_description:$("editDescription").value.trim()
+}
+);
+
+await loadSummaries();
+
+}
+
+
+if(editType==="tests"){
+
+await rpc(
+"teacher_update_test",
+{
+p_password:TEACHER_PIN,
+p_id:editId,
+p_title:$("editTitle").value.trim(),
+p_unit:$("editUnit").value.trim(),
+p_duration:$("editDuration").value.trim(),
+p_description:$("editDescription").value.trim()
+}
+);
+
+await loadTests();
+
+}
+
+
+if(editType==="rooms"){
+
+await rpc(
+"teacher_update_room",
+{
+p_password:TEACHER_PIN,
+p_id:editId,
+p_name:$("editName").value.trim(),
+p_url:$("editUrl").value.trim(),
+p_description:$("editDescription").value.trim()
+}
+);
+
+await loadRooms();
+
+}
+
+$("editMsg").textContent=
+"✅ تم حفظ التعديل.";
+
+setTimeout(
+closeEdit,
+500
+);
+
+}catch(e){
+
+$("editMsg").textContent=
+"❌ "+e.message;
+
+}
+
+}
+
+
+/* ==================================================
+   الحذف
+================================================== */
+
+async function deleteContent(type,id){
+
+let name="العنصر";
+
+const item=
+findItem(type,id);
+
+if(item){
+
+name=
+item.title ||
+item.name ||
+"العنصر";
+
+}
+
+if(
+!confirm(
+`هل تريد حذف "${name}" نهائيًا؟`
+)
+)
+return;
+
+try{
+
+if(type==="lessons"){
+
+await rpc(
+"teacher_delete_lesson",
+{
+p_password:TEACHER_PIN,
+p_id:id
+}
+);
+
+await loadLessons();
+
+}
+
+
+if(type==="summaries"){
+
+await rpc(
+"teacher_delete_summary",
+{
+p_password:TEACHER_PIN,
+p_id:id
+}
+);
+
+await loadSummaries();
+
+}
+
+
+if(type==="tests"){
+
+await rpc(
+"teacher_delete_test",
+{
+p_password:TEACHER_PIN,
+p_id:id
+}
+);
+
+await loadTests();
+
+}
+
+
+if(type==="rooms"){
+
+await rpc(
+"teacher_delete_room",
+{
+p_password:TEACHER_PIN,
+p_id:id
+}
+);
+
+await loadRooms();
+
+}
+
+}catch(e){
+
+alert(
+"❌ لم يتم الحذف:\n"+
+e.message
+);
+
+}
+
+}
+
+
+/* ==================================================
+   الإعلان
+================================================== */
+
+async function loadAnnouncement(){
+
+try{
+
+const a=
+await rpc(
+"teacher_get_announcement",
+{
+p_password:TEACHER_PIN
+}
+);
+
+$("announcementTitle").value=
+a?.announcement_title||"";
+
+$("announcementText").value=
+a?.announcement_text||"";
+
+$("announcementActive").checked=
+a?.announcement_active!==false;
+
+}catch(e){
+
+$("announcementMsg").textContent=
+"⚠️ تعذر تحميل الإعلان: "+
+e.message;
+
+}
+
+}
+
+
+async function saveAnnouncement(){
+
+const title=
+$("announcementTitle").value.trim();
+
+const text=
+$("announcementText").value.trim();
+
+const active=
+$("announcementActive").checked;
+
+$("announcementMsg").textContent=
+"⏳ جاري الحفظ...";
+
+try{
+
+await rpc(
+"teacher_set_announcement",
+{
+p_password:TEACHER_PIN,
+p_title:title,
+p_text:text,
+p_active:active
+}
+);
+
+$("announcementMsg").textContent=
+"✅ تم حفظ الإعلان ونشره.";
+
+}catch(e){
+
+$("announcementMsg").textContent=
+"❌ "+e.message;
+
+}
+
+}
+
+
+/* ==================================================
+   تحميل الكل
+================================================== */
+
+async function loadAll(){
+
+await Promise.allSettled([
+
+loadStudents(),
+loadLessons(),
+loadSummaries(),
+loadTests(),
+loadRooms(),
+loadAnnouncement()
+
+]);
+
+}
+
+
+/* ==================================================
+   فتح تلقائي إذا كانت الجلسة محفوظة
+================================================== */
+
+if(
+sessionStorage.getItem(
+"minbar_teacher_unlocked"
+)==="1"
+){
+
+showApp();
+
+loadAll();
+
+}
+
+</script>
+
+</body>
+</html>
